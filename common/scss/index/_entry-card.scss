@@ -1,0 +1,135 @@
+// 文章卡片样式
+.entry-card {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px;
+  cursor: pointer;
+
+  &+.entry-card {
+    border-top: 1px solid rgba(178, 186, 194, .15);
+  }
+
+  .content-box {
+    min-width: 0;
+    flex-grow: 1;
+
+    .info-box {
+      .info-top {
+        font-size: 12px;
+        color: #b2bac2;
+        word-break: break-all;
+
+
+        a {
+          color: inherit;
+          text-decoration: none;
+
+          &:hover,
+          &:active {
+            color: #007fff;
+          }
+        }
+
+        .author::after,
+        .time::after {
+          content: "·";
+          color: #b2bac2;
+          margin: 0 5px;
+        }
+
+        .classify-cut {
+          &::before {
+            content: "/";
+            color: #b2bac2;
+            margin: 0 5px;
+          }
+        }
+      }
+
+      .info-center {
+        margin-top: 6px;
+        margin-bottom: 12px;
+
+        .title {
+          display: block;
+          color: #2e3135;
+          text-decoration: none;
+
+          h2 {
+            font-size: 17px;
+            line-height: 1.2;
+            font-weight: bold;
+            @include nowrap();
+          }
+
+          &:hover,
+          &:active {
+            text-decoration: underline;
+          }
+        }
+
+        .description {
+          font-size: 14px;
+          line-height: 22px;
+          color: #4e5969;
+          margin: 13px 0;
+          @include clamp(2);
+        }
+      }
+
+      .info-bottom {
+        display: flex;
+        align-items: center;
+
+        .btn {
+          font-size: 13px;
+          font-weight: bold;
+          line-height: 1;
+          color: #b2bac2;
+          padding: 0 10px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          border: 1px solid #edeeef;
+
+          &:hover {
+            background-color: #f7f8fa;
+          }
+
+          .icon {
+            font-size: 12px;
+            margin-right: 3px;
+            font-weight: normal;
+          }
+        }
+
+        @import "../components/share";
+      }
+    }
+  }
+
+  .entry-img {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    margin-left: 24px;
+    border-radius: 2px;
+
+    img {
+      @include imgFit();
+    }
+
+    @media screen and (max-width:600px) {
+      display: none;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .01);
+
+    .content-box .info-bottom .share {
+      display: flex;
+    }
+  }
+
+}

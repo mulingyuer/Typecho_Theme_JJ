@@ -1,0 +1,144 @@
+// 左侧文章工具
+#article-tool {
+  position: fixed;
+  top: 190px;
+  margin-left: -84px;
+
+  .top {
+    .badge {
+      display: block;
+      width: 36px;
+      height: 36px;
+      text-align: center;
+      text-decoration: none;
+      line-height: 36px;
+      background-color: #fff;
+      border-radius: 50%;
+      color: #B2BAC2;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .04);
+      cursor: pointer;
+      position: relative;
+
+      &::after {
+        content: attr(badge);
+        position: absolute;
+        top: 0;
+        left: 75%;
+        padding: 2px 5px;
+        font-size: 12px;
+        line-height: 1;
+        color: #fff;
+        background-color: #b2bac2;
+        border-radius: 200px;
+        transform: scale(.75);
+        transform-origin: left top;
+      }
+
+      &+.badge {
+        margin-top: 9px;
+      }
+
+      &:hover {
+        color: #8A93A0;
+      }
+
+      .icon {
+        font-size: 20px;
+      }
+
+      &.active {
+        &::after {
+          background-color: #74ca46;
+        }
+
+        .icon {
+          color: #74ca46;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    margin-top: 30px;
+
+    &.share {
+      .share-title {
+        text-align: center;
+        font-size: 12px;
+        color: #c6c6c6;
+        margin-bottom: 12px;
+        @include no-select();
+      }
+
+      .share-content {
+        display: flex;
+        flex-direction: column;
+
+        .share-item {
+          width: 36px;
+          height: 36px;
+          text-align: center;
+          line-height: 36px;
+          text-decoration: none;
+          background-color: #fff;
+          border-radius: 50%;
+          color: #B2BAC2;
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .04);
+          cursor: pointer;
+
+          &+.share-item {
+            margin-top: 9px;
+          }
+
+          &.weibo:hover {
+            color: #D52B2A;
+          }
+
+          &.qq:hover {
+            color: #55B2F1;
+          }
+
+          &.qq-kj:hover {
+            color: #FFCE00;
+          }
+
+          &.wx:hover {
+            color: #44B035;
+          }
+
+          .icon {
+            font-size: 20px;
+          }
+
+          &.wx {
+            position: relative;
+
+            &:hover {
+              .wx-qrcode {
+                display: block;
+              }
+            }
+
+            .wx-qrcode {
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              width: 96px;
+              height: 96px;
+              padding: 6px;
+              margin-top: 9px;
+              background-color: #fff;
+              transform: translateX(-50%);
+              display: none;
+
+              img {
+                @include imgFit(contain);
+              }
+            }
+          }
+
+        }
+      }
+    }
+  }
+}

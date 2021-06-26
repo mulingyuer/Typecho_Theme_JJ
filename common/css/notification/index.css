@@ -1,0 +1,121 @@
+#notification-main {
+  padding-top: 67px; }
+  #notification-main .notification-warp {
+    margin-top: 15px;
+    overflow: hidden; }
+    #notification-main .notification-warp .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -10px; }
+      #notification-main .notification-warp .row .col {
+        width: 50%;
+        padding: 0 10px;
+        margin-bottom: 15px; }
+        @media screen and (max-width: 760px) {
+          #notification-main .notification-warp .row .col {
+            width: 100%; } }
+    #notification-main .notification-warp .card {
+      height: 100%;
+      background-color: #fff;
+      border-radius: 3px;
+      padding: 10px 15px;
+      padding-bottom: 0; }
+      #notification-main .notification-warp .card .card-head {
+        display: flex;
+        align-items: center; }
+        #notification-main .notification-warp .card .card-head .left {
+          min-width: 0;
+          flex-grow: 1;
+          display: flex;
+          align-items: center; }
+          #notification-main .notification-warp .card .card-head .left .card-img {
+            flex-shrink: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px; }
+            #notification-main .notification-warp .card .card-head .left .card-img img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              vertical-align: top; }
+          #notification-main .notification-warp .card .card-head .left .card-title .title {
+            font-size: 16px;
+            line-height: 1;
+            font-weight: bold;
+            color: #333; }
+            #notification-main .notification-warp .card .card-head .left .card-title .title a {
+              color: inherit;
+              text-decoration: none; }
+          #notification-main .notification-warp .card .card-head .left .card-title .subtitle {
+            margin-top: 5px;
+            font-size: 13px;
+            line-height: 1;
+            color: #8a9aa9; }
+        #notification-main .notification-warp .card .card-head .right {
+          flex-shrink: 0; }
+          #notification-main .notification-warp .card .card-head .right .btn {
+            display: inline-block;
+            vertical-align: top;
+            width: 55px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            text-decoration: none;
+            border: 1px solid #6cbd45;
+            color: #6cbd45; }
+            #notification-main .notification-warp .card .card-head .right .btn:hover {
+              opacity: .7; }
+            #notification-main .notification-warp .card .card-head .right .btn:active {
+              opacity: .9; }
+      #notification-main .notification-warp .card .card-body {
+        padding: 10px 15px;
+        padding-left: 57px;
+        font-size: 15px;
+        color: #17181a;
+        line-height: 1.6;
+        word-wrap: break-word;
+        height: 92px; }
+        #notification-main .notification-warp .card .card-body .card-text {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+          overflow: hidden; }
+          #notification-main .notification-warp .card .card-body .card-text img {
+            width: 25px;
+            height: 25px;
+            vertical-align: sub;
+            margin-left: 4px; }
+            #notification-main .notification-warp .card .card-body .card-text img + img {
+              margin-right: 2px; }
+      #notification-main .notification-warp .card .card-footer {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #ebebeb;
+        margin: 0 -15px;
+        padding: 5px 0; }
+        #notification-main .notification-warp .card .card-footer a {
+          min-width: 0;
+          flex-grow: 1;
+          color: #919AA6;
+          height: 24px;
+          font-size: 12px;
+          text-decoration: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center; }
+          #notification-main .notification-warp .card .card-footer a:first-child {
+            border-right: 1px solid #ebebeb; }
+          #notification-main .notification-warp .card .card-footer a:last-child {
+            border-left: 1px solid #ebebeb; }
+          #notification-main .notification-warp .card .card-footer a:hover {
+            opacity: .7; }
+          #notification-main .notification-warp .card .card-footer a .icon {
+            margin-right: 5px; }
+
+/*# sourceMappingURL=index.css.map */
