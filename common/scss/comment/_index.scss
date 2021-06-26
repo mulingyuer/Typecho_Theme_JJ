@@ -1,0 +1,22 @@
+#comments {
+
+  //关闭评论
+  .off-comment {
+    background-color: #fafbfc;
+    border-radius: 3px;
+    padding: 18px 16px;
+
+    .info {
+      text-align: center;
+      font-weight: normal;
+      font-size: 18px;
+      color: #c2c2c2;
+    }
+  }
+
+  @import "./form";
+
+  @import "./list-template";
+
+  @import "./pagination";
+}

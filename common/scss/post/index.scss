@@ -1,0 +1,23 @@
+@import "../mixins";
+
+.lg-backdrop.in {
+  opacity: .7;
+}
+
+#post-main {
+  padding-top: $header-h + 7px;
+
+  .post-warp {
+    margin-top: $main-top;
+    position: relative;
+
+    @import "./article-tool";
+
+    @import "./post-left";
+
+    @import "./post-right";
+  }
+}
+
+//表情菜单
+@import "../face/face-tootip";
