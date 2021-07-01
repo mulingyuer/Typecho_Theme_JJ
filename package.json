@@ -1,0 +1,22 @@
+{
+  "name": "jj",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mulingyuer/Typecho_Theme_JJ.git",
+  "author": "mulingyuer <1321968423@qq.com>",
+  "license": "bsd 3.0",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "css-loader": "^5.2.6",
+    "mini-css-extract-plugin": "^2.0.0",
+    "postcss-loader": "^6.1.1",
+    "postcss-preset-env": "^6.7.0",
+    "sass": "^1.35.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.0.0",
+    "webpack": "^5.41.1",
+    "webpack-cli": "^4.7.2"
+  }
+}

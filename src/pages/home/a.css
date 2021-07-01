@@ -1,0 +1,11 @@
+.box {
+  background-color: red;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background-color: #345534;
+  transform: rotate(45deg);
+  display: flex;
+}
