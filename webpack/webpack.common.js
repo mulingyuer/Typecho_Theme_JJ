@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 02:24:10
- * @LastEditTime: 2021-07-04 04:12:26
+ * @LastEditTime: 2021-07-04 04:28:14
  * @LastEditors: mulingyuer
  * @Description: 通用配置
  * @FilePath: \JJ\webpack\webpack.common.js
@@ -11,6 +11,7 @@ const path = require('path');
 const resolve = function (myPath) {
   return path.resolve(__dirname, myPath);
 };
+const webpack = require('webpack');
 
 //入口文件
 const autoEntry = require('./auto-entry');
@@ -129,6 +130,8 @@ module.exports = {
   plugins: [
     //清理打包文件
     new CleanWebpackPlugin(),
+    //进度条
+    new webpack.ProgressPlugin(),
     //抽取css
     // new MiniCssExtractPlugin({
     //   filename: '[name]/style.css', //输出的css文件名，默认以入口文件名命名(例如main.css)
