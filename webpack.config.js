@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-01 22:17:24
- * @LastEditTime: 2021-07-04 00:23:31
+ * @LastEditTime: 2021-07-04 02:17:38
  * @LastEditors: mulingyuer
  * @Description:webpack配置文件
  * @FilePath: \JJ\webpack.config.js
@@ -22,6 +22,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 //分析
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+//自定义模板
+const customTemplate = require('./webpack/custom-template');
 
 module.exports = (env, argv) => ({
   mode: argv.mode || 'development',  //模式 development、production
@@ -35,8 +37,8 @@ module.exports = (env, argv) => ({
   // 出口
   output: {
     path: resolve('./dist'), //指定输出目录
-    filename: '[name]/index.js',  //文件名
-    chunkFilename: '[id].js'
+    filename: argv.mode === 'production' ? '[name]/index.[contenthash:8].js' : '[name]/index.js',  //文件名
+    chunkFilename: argv.mode === 'production' ? '[id].[contenthash:8].js' : '[id].js'
   },
   //模块-解析器loader
   module: {
@@ -125,11 +127,13 @@ module.exports = (env, argv) => ({
     new CleanWebpackPlugin(),
     //抽取css
     new MiniCssExtractPlugin({
-      filename: '[name]/style.css', //输出的css文件名，默认以入口文件名命名(例如main.css)
-      chunkFilename: "[id].css", //公共样式？？
+      filename: argv.mode === 'production' ? '[name]/style.[contenthash:8].css' : '[name]/style.css', //输出的css文件名，默认以入口文件名命名(例如main.css)
+      chunkFilename: argv.mode === 'production' ? '[id].[contenthash:8].css' : '[id].css', //公共样式？？
     }),
     //代码分析
     (process.env.ANALYZER ? new BundleAnalyzerPlugin({ analyzerMode: "static" }) : () => { }),
+    //多页面
+    ...customTemplate()
   ],
   //优化
   optimization: {

@@ -1,0 +1,3 @@
+<% for (var js in htmlWebpackPlugin.files.js) { %>
+<script src="<?php $this->options->themeUrl('<%= htmlWebpackPlugin.files.js[js] %>'); ?>"></script>
+<% } %>

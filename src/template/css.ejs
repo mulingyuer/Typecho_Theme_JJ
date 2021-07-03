@@ -1,0 +1,3 @@
+<% for (var css in htmlWebpackPlugin.files.css) { %>
+  <link rel="stylesheet" href="<?php $this->options->themeUrl('<%=htmlWebpackPlugin.files.css[css] %>'); ?>">
+<% } %>
