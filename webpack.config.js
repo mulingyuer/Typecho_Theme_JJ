@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-01 22:17:24
- * @LastEditTime: 2021-07-03 19:08:40
+ * @LastEditTime: 2021-07-04 00:23:31
  * @LastEditors: mulingyuer
  * @Description:webpack配置文件
  * @FilePath: \JJ\webpack.config.js
@@ -45,6 +45,7 @@ module.exports = (env, argv) => ({
       {
         test: /\.css$/,
         use: [
+          'cache-loader',
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -52,13 +53,14 @@ module.exports = (env, argv) => ({
               importLoaders: 1
             }
           },
-          'postcss-loader'
+          'postcss-loader',
         ]
       },
       // scss
       {
         test: /\.scss$/,
         use: [
+          // 'cache-loader', //绝对路径图片文件容易丢失，不开
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -68,6 +70,17 @@ module.exports = (env, argv) => ({
           },
           'postcss-loader',
           'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [
+                resolve("./src/assets/scss/vars.scss"),
+                resolve("./src/assets/scss/mixins.scss"),
+                resolve("./src/assets/scss/functions.scss"),
+                resolve("./src/assets/scss/reset.scss"),
+              ]
+            }
+          }
         ]
       },
       // js
@@ -78,9 +91,32 @@ module.exports = (env, argv) => ({
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
+            cacheDirectory: true, //开启缓存
           }
         },
-      }
+      },
+      // jquery
+      {
+        test: require.resolve('jquery'),
+        loader: 'expose-loader',
+        options: {
+          exposes: ['$', 'jQuery'],
+        },
+      },
+      //图片文件
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              name: "[name].[hash:16].[ext]", // 文件名.hash.文件扩展名 默认格式为[hash].[ext]
+              limit: 10, // 小于10KB图片，转base64编码
+              outputPath: "images", // 为你的文件配置自定义 output 输出目录
+            }
+          },
+        ]
+      },
     ]
   },
   // 插件
@@ -119,22 +155,23 @@ module.exports = (env, argv) => ({
     ],
     //拆包
     splitChunks: {
+      chunks: 'async',
       cacheGroups: {
+        // 打包第三方库的文件
+        vendors: {
+          name: `vendor`,
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          chunks: 'initial',
+          // minChunks: 2, // 同时引用了2次才打包
+        },
         // 打包业务中公共代码
         common: {
-          name: "common",
-          chunks: "initial",
-          minSize: 1,
-          priority: 0,
-          minChunks: 2, // 同时引用了2次才打包
-        },
-        // 打包第三方库的文件
-        vendor: {
-          name: "vendor",
-          test: /[\\/]node_modules[\\/]/,
-          chunks: "initial",
-          priority: 10,
-          minChunks: 2, // 同时引用了2次才打包
+          name: `common`,
+          minChunks: 2,  // 同时引用了2次才打包
+          priority: -20,
+          chunks: 'initial',
+          reuseExistingChunk: true
         }
       }
     },
@@ -151,6 +188,7 @@ module.exports = (env, argv) => ({
   //监听的配置
   watchOptions: {
     aggregateTimeout: 600,  //延迟600ms打包
+    poll: 1000,
     ignored: /node_modules/,  //忽略
   }
 
