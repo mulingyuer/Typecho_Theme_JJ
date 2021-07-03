@@ -1,0 +1,1 @@
+<script src="<?php $this->options->themeUrl('../manifest/index.js'); ?>"></script><script src="<?php $this->options->themeUrl('../vendor/index.js'); ?>"></script><script src="<?php $this->options->themeUrl('../index/index.js'); ?>"></script>

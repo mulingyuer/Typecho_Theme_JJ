@@ -1,0 +1,27 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .image {
+    background-image: rgba(18,50,19,0.07451);
+  }
+}
+body {
+  background-color: red;
+  background-image: url(../images/0afecaf3a3499479af946f29749e1a6c285b6f65.177aacca473d32bc.png);
+}
+
+.box {
+  background-color: red;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background-color: #345534;
+  transform: rotate(45deg);
+  display: flex;
+}
