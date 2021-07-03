@@ -1,1 +1,0 @@
-<link rel="stylesheet" href="<?php $this->options->themeUrl('../index/style.css'); ?>">

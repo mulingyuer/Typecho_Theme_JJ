@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-01 22:17:24
- * @LastEditTime: 2021-07-04 02:43:38
+ * @LastEditTime: 2021-07-04 03:11:41
  * @LastEditors: mulingyuer
  * @Description:webpack配置文件
  * @FilePath: \JJ\webpack.config.js
@@ -11,6 +11,7 @@ const path = require('path');
 const resolve = function (myPath) {
   return path.resolve(__dirname, myPath);
 };
+
 
 //公共配置
 const commonConfig = require('./webpack/webpack.common');

@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 02:24:10
- * @LastEditTime: 2021-07-04 02:47:23
+ * @LastEditTime: 2021-07-04 04:12:26
  * @LastEditors: mulingyuer
  * @Description: 通用配置
  * @FilePath: \JJ\webpack\webpack.common.js
@@ -11,6 +11,9 @@ const path = require('path');
 const resolve = function (myPath) {
   return path.resolve(__dirname, myPath);
 };
+
+//入口文件
+const autoEntry = require('./auto-entry');
 
 //样式抽离
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -31,8 +34,9 @@ module.exports = {
   devtool: 'eval', //模式类型
   //入口
   entry: {
-    index: resolve('../src/pages/home/index.js'),
-    about: resolve('../src/pages/about/index.js'),
+    ...autoEntry.entry()
+    // index: resolve('../src/pages/home/index.js'),
+    // about: resolve('../src/pages/about/index.js'),
   },
   // 出口
   output: {

@@ -6,7 +6,7 @@
   "author": "mulingyuer <1321968423@qq.com>",
   "license": "bsd 3.0",
   "scripts": {
-    "dev": "webpack --mode=development",
+    "dev": "webpack --mode=development --watch --progress",
     "build": "webpack --mode=production",
     "analyzer": "cross-env ANALYZER=true webpack --mode=production"
   },

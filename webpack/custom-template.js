@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 01:29:59
- * @LastEditTime: 2021-07-04 01:52:33
+ * @LastEditTime: 2021-07-04 03:18:57
  * @LastEditors: mulingyuer
  * @Description: 自定义模板
  * @FilePath: \JJ\webpack\custom-template.js
@@ -12,6 +12,8 @@ const resolve = function (myPath) {
   return path.resolve(__dirname, myPath);
 };
 
+//入口文件
+const autoEntry = require('./auto-entry');
 //模板插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -45,7 +47,8 @@ const jsTemplate = (...chunks) => ({
 });
 
 
-const chunksArr = ["index", "about"];
+// const chunksArr = ["index", "about"];
+const chunksArr = autoEntry.chunks();
 
 
 module.exports = function () {
