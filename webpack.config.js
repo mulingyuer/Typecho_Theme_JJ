@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-01 22:17:24
- * @LastEditTime: 2021-07-03 18:53:09
+ * @LastEditTime: 2021-07-03 19:08:40
  * @LastEditors: mulingyuer
  * @Description:webpack配置文件
  * @FilePath: \JJ\webpack.config.js
@@ -93,9 +93,7 @@ module.exports = (env, argv) => ({
       chunkFilename: "[id].css", //公共样式？？
     }),
     //代码分析
-    (process.env.ANALYZER && new BundleAnalyzerPlugin({
-      analyzerMode: "static",  //生成静态文件
-    })),
+    (process.env.ANALYZER ? new BundleAnalyzerPlugin({ analyzerMode: "static" }) : () => { }),
   ],
   //优化
   optimization: {
