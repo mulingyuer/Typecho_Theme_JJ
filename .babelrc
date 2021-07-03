@@ -1,0 +1,17 @@
+// {
+//   "presets": [
+//     ["@babel/preset-env",
+//       {
+//         "useBuiltIns": "usage",
+//         "corejs": 3
+//       }
+//     ]
+//   ],
+//   "plugins": [
+//     ["@babel/plugin-transform-runtime",{"corejs": 3 }], // 处理ES6新功能非垫片实现
+//     ["@babel/plugin-transform-modules-commonjs"]  //使commonjs能被处理为前端识别的代码
+//   ]
+// }
+{
+	
+}
