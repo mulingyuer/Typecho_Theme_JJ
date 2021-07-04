@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 02:24:10
- * @LastEditTime: 2021-07-04 15:50:15
+ * @LastEditTime: 2021-07-04 23:05:07
  * @LastEditors: mulingyuer
  * @Description: 通用配置
  * @FilePath: \JJ\webpack\webpack.common.js
@@ -104,7 +104,7 @@ module.exports = {
       },
       // jquery
       {
-        test: require.resolve('jquery'),
+        test: require.resolve('jquery/dist/jquery.slim'),
         loader: 'expose-loader',
         options: {
           exposes: ['$', 'jQuery'],
