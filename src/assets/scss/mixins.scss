@@ -1,1 +1,47 @@
 // 全局混入
+
+//单行文本溢出
+@mixin nowrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+//指定行数溢出
+@mixin clamp($num) {
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+//禁止选中
+@mixin no-select {
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  -o-user-select: none;
+  /* Opera*/
+  user-select: none;
+}
+
+
+// 图片
+@mixin imgFit($fit:cover) {
+  width: 100%;
+  height: 100%;
+  object-fit: $fit;
+  vertical-align: top;
+}
+
+//去除元素移动端点击的背景色
+@mixin no-highlight {
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+}

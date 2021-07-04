@@ -1,0 +1,397 @@
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $white;
+  color: $text-color;
+  height: $header-h;
+  border-bottom: 1px solid $border-color;
+  z-index: 3;
+
+  .container {
+    max-width: 1200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .logo {
+      flex-shrink: 0;
+      width: 98px;
+      margin-right: 20px;
+
+      img {
+        max-width: 100%;
+        height: 38px;
+      }
+
+      .mobile-logo {
+        display: none;
+      }
+
+      @media screen and (max-width:700px) {
+        width: 38px;
+        margin-right: 10px;
+
+        .pc-logo {
+          display: none;
+        }
+
+        .mobile-logo {
+          display: block;
+        }
+      }
+
+      @media screen and (max-width:350px) {
+        display: none;
+      }
+    }
+
+    .header-nav {
+      min-width: 0;
+      flex-grow: 1;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      .nav-item {
+        height: 100%;
+      }
+
+      // 主菜单
+      .main-nav-list {
+        min-width: 0;
+        flex-grow: 1;
+        position: relative;
+
+        .mobile-show-menu {
+          width: 68px;
+          display: none;
+          height: $header-h;
+          line-height: $header-h;
+          text-align: center;
+          font-size: 16px;
+          color: $primary;
+          cursor: pointer;
+          @include no-select();
+
+          .icon {
+            font-size: 12px;
+            margin-left: 8px;
+          }
+
+          @media screen and (max-width:980px) {
+            display: block;
+          }
+        }
+
+        .mobile-hide {
+          display: flex;
+          white-space: nowrap;
+
+          .menu-item {
+            display: block;
+            text-decoration: none;
+            line-height: $header-h;
+            text-align: center;
+            padding: 0 18px;
+            color: inherit;
+            font-size: 16px;
+
+            &.active,
+            &:hover,
+            &:active {
+              color: $primary;
+            }
+          }
+
+          @media screen and (max-width:980px) {
+            width: 136px;
+            display: none;
+            flex-direction: column;
+            background-color: $white;
+            border: 1px solid $border-color;
+            box-shadow: 0 1px 2px 0 $box-shadow;
+            border-radius: 4px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+
+
+            .menu-item {
+              height: 48px;
+              line-height: 48px;
+            }
+
+            &.show {
+              display: flex;
+            }
+
+          }
+        }
+
+      }
+
+      //搜索&写文章
+      .search-add {
+        display: flex;
+        align-items: center;
+        width: 270px;
+
+        //表单被选中
+        &:focus-within {
+          .add-btn {
+            width: 0;
+            margin-left: 0;
+            overflow: hidden;
+          }
+        }
+
+        @media screen and (max-width:980px) {
+          width: auto;
+        }
+
+        //表单
+        .search-form {
+          min-width: 0;
+          flex-grow: 1;
+          display: flex;
+          border: 1px solid $body-bg;
+          background-color: $body-bg;
+          border-radius: 2px;
+          position: relative;
+
+          &:focus-within {
+            border-color: $primary;
+          }
+
+          .search-input {
+            min-width: 0;
+            flex-grow: 1;
+            border: none;
+            box-shadow: none;
+            outline: none;
+            font-size: 14px;
+            color: $text-search;
+            background-color: transparent;
+            padding: 8px 0 8px 12px;
+            height: calc(#{$header-btn-h} - 2px);
+            transition: width .3s;
+          }
+
+          .search-btn {
+            cursor: pointer;
+            padding: 0 6px;
+
+            @media screen and (max-width:700px) {
+              display: none;
+            }
+
+            .icon {
+              height: 100%;
+              display: flex;
+              align-items: center;
+              font-size: 14px;
+              color: $text-search;
+            }
+          }
+
+          // 搜索记录
+          .typehead {
+            display: none;
+            position: absolute;
+            top: 105%;
+            left: 0;
+            right: 0;
+            background-color: $white;
+            font-size: 12px;
+            line-height: 2;
+            color: $typehead-color;
+            border: 1px solid $border-color;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px 0 $box-shadow;
+            transition: width .3s;
+
+            &.show {
+              display: block;
+            }
+
+            .title {
+              margin: 3px 12px;
+              border-bottom: 1px solid $border-color;
+              display: flex;
+              justify-content: space-between;
+
+              .clear {
+                cursor: pointer;
+              }
+            }
+
+            .list {
+              color: $typehead-list-color;
+              padding-bottom: 3px;
+              cursor: pointer;
+
+              >div {
+                padding: 3px 12px;
+                @include nowrap();
+
+
+                &:hover,
+                &:active {
+                  background-color: darken($white, 5%);
+                }
+              }
+            }
+          }
+        }
+
+        //写文章
+        .add-btn {
+          flex-shrink: 0;
+          text-decoration: none;
+          width: 72px;
+          height: $header-btn-h;
+          text-align: center;
+          line-height: $header-btn-h;
+          background-color: $primary;
+          color: $white;
+          font-size: 14px;
+          border-radius: 3px;
+          margin-left: 14px;
+          transition: width .2s, margin-left .3s, background-color .3s;
+
+          &:hover {
+            background-color: darken($primary, 5%);
+          }
+
+          @media screen and (max-width:640px) {
+            display: none;
+          }
+        }
+      }
+
+      //登录&通知&博客菜单
+      .login-notifi {
+        display: flex;
+        align-items: center;
+        margin-left: 14px;
+
+        //登录按钮
+        .login-btn {
+          text-decoration: none;
+          padding: 0 15px;
+          height: $header-btn-h;
+          text-align: center;
+          line-height: calc(#{$header-btn-h} - 2px);
+          background-color: $white;
+          border: 1px solid $primary;
+          color: $primary;
+          font-size: 16px;
+          border-radius: 3px;
+        }
+
+        //消息
+        .notifi {
+          text-decoration: none;
+          padding: 0 15px;
+          height: $header-btn-h;
+          text-align: center;
+          line-height: calc(#{$header-btn-h} - 2px);
+          color: darken($text-color, 5%);
+
+          &:hover,
+          &:active {
+            color: $primary;
+          }
+
+          .icon {
+            font-size: 25px;
+          }
+
+          @media screen and (max-width:420px) {
+            display: none;
+          }
+        }
+
+        //博客菜单
+        .blog-menu {
+          height: 100%;
+          margin-left: 12px;
+          display: flex;
+          align-items: center;
+          position: relative;
+          cursor: pointer;
+
+          .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: $body-bg;
+            overflow: hidden;
+            @include no-select();
+
+            img {
+              @include imgFit();
+            }
+          }
+
+          .blog-menu-list {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 158px;
+            background-color: $white;
+            border: 1px solid $border-color;
+            box-shadow: 0 1px 2px 0 $box-shadow;
+            border-radius: 4px;
+
+            &.show {
+              display: block;
+            }
+
+            .menu-item-group {
+              padding: 12px 0;
+              border-bottom: 1px solid $border-color;
+            }
+
+            .menu-item {
+              font-size: 16px;
+              white-space: nowrap;
+
+              a {
+                color: inherit;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                padding: 6px 12px;
+
+                &::before {
+                  display: none;
+                }
+
+                &:hover,
+                &:active {
+                  color: inherit;
+                  background-color: $body-bg;
+                }
+
+                .icon {
+                  font-size: 14px;
+                  color: $icon-color;
+                  margin-right: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+
+
+
+    }
+  }
+}
