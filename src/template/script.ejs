@@ -1,3 +1,4 @@
 <% for (var js in htmlWebpackPlugin.files.js) { %>
-<script src="<?php $this->options->themeUrl('<%= htmlWebpackPlugin.files.js[js] %>'); ?>"></script>
+<% const path = htmlWebpackPlugin.files.js[js].replace(/^\.\./,'dist'); %>
+<script src="<?php $this->options->themeUrl('<%= path %>'); ?>"></script>
 <% } %>
