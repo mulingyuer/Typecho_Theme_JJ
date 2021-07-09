@@ -1,13 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 21:52:00
- * @LastEditTime: 2021-07-04 22:46:30
+ * @LastEditTime: 2021-07-09 21:59:40
  * @LastEditors: mulingyuer
  * @Description: 下拉菜单类
  * @FilePath: \JJ\src\utils\dropdown.js
  * 怎么可能会有bug！！！
  */
-
+import $ from "jquery";
 
 export default class Dropdown {
   options = {

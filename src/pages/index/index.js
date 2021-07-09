@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-07-04 22:45:56
+ * @LastEditTime: 2021-07-09 23:07:09
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\index\index.js
@@ -9,19 +9,20 @@
  */
 import "./index.scss";
 
+//js
+import $ from "jquery";
+import { MainNav, Search, BlogMenu } from "@/scripts/header"; //header
+import { Nav } from "@/scripts/nav";
 
-//header
-import { MainNav, Search, BlogMenu } from "@/scripts/header";
+$(function () {
+  //导航菜单
+  const mianNav = new MainNav();
+  //搜索
+  const search = new Search();
 
-const mianNav = new MainNav();  //导航菜单
-//搜索
-new Search({
-  elForm: "#header .search-form", //form选择器
-  elInput: ".search-form .search-input", //input选择器
-  subBtn: ".search-form .search-btn",  //搜索按钮
-  recordWrap: ".search-form .typehead",  //历史记录容器
-  clearBtn: ".search-form .clear", //清理按钮
-  recordList: ".search-form .typehead .list", //搜索列表
+  //博客功能按钮
+  const blogMenu = new BlogMenu();
+
+  //导航按钮
+  const nav = new Nav();
 });
-
-const blogMenu = new BlogMenu();

@@ -1,14 +1,14 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 18:58:24
- * @LastEditTime: 2021-07-04 22:45:22
+ * @LastEditTime: 2021-07-09 23:00:02
  * @LastEditors: mulingyuer
  * @Description: header脚本
  * @FilePath: \JJ\src\scripts\header.js
  * 怎么可能会有bug！！！
  */
 import $ from "jquery";
-import Dropdown from "@/utils/dropdown";
+import Dropdown from "@/packages/dropdown";
 import SearchRecord from "@/utils/search-record";
 
 
@@ -33,14 +33,22 @@ export class MainNav extends Dropdown {
 
 // 搜索框
 export class Search {
-  constructor(args = {}) {
-    this.init(args);  //初始化
+  options = {
+    elForm: "#header .search-form", //form选择器
+    elInput: ".search-form .search-input", //input选择器
+    subBtn: ".search-form .search-btn",  //搜索按钮
+    recordWrap: ".search-form .typehead",  //历史记录容器
+    clearBtn: ".search-form .clear", //清理按钮
+    recordList: ".search-form .typehead .list", //搜索列表
+  };
+
+  constructor(options = {}) {
+    this.init(options);  //初始化
     this.addEvent();  //添加事件
   }
 
   //初始化
   init(options) {
-    this.options = {};
     Object.assign(this.options, options);  //合并配置
 
     this.$form = $(this.options.elForm);   //form
