@@ -2513,6 +2513,11 @@ mdn-data@2.0.14:
   resolved "https://registry.nlark.com/mdn-data/download/mdn-data-2.0.14.tgz?cache=0&sync_timestamp=1622679294056&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmdn-data%2Fdownload%2Fmdn-data-2.0.14.tgz#7113fc4281917d63ce29b43446f701e68c25ba50"
   integrity sha1-cRP8QoGRfWPOKbQ0RvcB5owlulA=
 
+melanke-watchjs@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.nlark.com/melanke-watchjs/download/melanke-watchjs-1.5.2.tgz#acc1c85fc04f3832bb9366896c844143ac686787"
+  integrity sha1-rMHIX8BPODK7k2aJbIRBQ6xoZ4c=
+
 merge-stream@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/merge-stream/download/merge-stream-2.0.0.tgz?cache=0&sync_timestamp=1589682763068&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmerge-stream%2Fdownload%2Fmerge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"

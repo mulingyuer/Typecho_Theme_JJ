@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-09 22:54:14
- * @LastEditTime: 2021-07-10 00:36:01
+ * @LastEditTime: 2021-07-10 21:12:14
  * @LastEditors: mulingyuer
  * @Description: 导航nav
  * @FilePath: \JJ\src\scripts\nav.js
@@ -10,6 +10,7 @@
 import $ from "jquery";
 import { createPopper } from '@popperjs/core';
 import BetterScroll from "@better-scroll/core";
+import FixedCollect from "@/packages/fixed-collect";
 
 
 export class Nav {
@@ -133,4 +134,26 @@ export class Nav {
       click: true, //允许点击
     })
   }
+}
+
+//收起header
+export class CollectNav extends FixedCollect {
+  options = {
+    wrap: '#fixed-top-nav',
+    top: 500,
+    className: "visible",
+  }
+
+  constructor(options = {}) {
+    super();
+
+    this.init(options);
+  }
+
+  init(options) {
+    Object.assign(this.options, options);
+
+    super.init(this.options);
+  }
+
 }

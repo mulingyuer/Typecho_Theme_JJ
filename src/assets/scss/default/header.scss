@@ -8,6 +8,12 @@
   height: $header-h;
   border-bottom: 1px solid $border-color;
   z-index: 3;
+  transform: translate3d(0, -100%, 0);
+  transition: transform .2s;
+
+  &.visible {
+    transform: translateZ(0);
+  }
 
   .container {
     max-width: 1200px;
@@ -69,7 +75,7 @@
           display: none;
           height: $header-h;
           line-height: $header-h;
-          text-align: center;
+          // text-align: center;
           font-size: 16px;
           color: $primary;
           cursor: pointer;

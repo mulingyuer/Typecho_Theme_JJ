@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 18:58:24
- * @LastEditTime: 2021-07-09 23:00:02
+ * @LastEditTime: 2021-07-10 21:08:20
  * @LastEditors: mulingyuer
  * @Description: header脚本
  * @FilePath: \JJ\src\scripts\header.js
@@ -10,6 +10,7 @@
 import $ from "jquery";
 import Dropdown from "@/packages/dropdown";
 import SearchRecord from "@/utils/search-record";
+import FixedCollect from "@/packages/fixed-collect";
 
 
 //导航菜单
@@ -173,4 +174,27 @@ export class BlogMenu extends Dropdown {
     Object.assign(this.options, config); //合并参数
     super.init(this.options);
   }
+}
+
+
+//收起header
+export class CollectHeader extends FixedCollect {
+  options = {
+    wrap: '#header',
+    top: 500,
+    className: "visible",
+  }
+
+  constructor(options = {}) {
+    super();
+
+    this.init(options);
+  }
+
+  init(options) {
+    Object.assign(this.options, options);
+
+    super.init(this.options);
+  }
+
 }

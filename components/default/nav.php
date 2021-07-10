@@ -1,5 +1,5 @@
 <?php //导航菜单?>
-<div id="fixed-top-nav">
+<div id="fixed-top-nav" class="visible">
   <div class="container">
     <div class="main-nav">
       <?php //右侧?>
