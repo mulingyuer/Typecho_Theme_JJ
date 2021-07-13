@@ -1,13 +1,14 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-10 00:47:25
- * @LastEditTime: 2021-07-10 20:54:13
+ * @LastEditTime: 2021-07-13 23:42:13
  * @LastEditors: mulingyuer
  * @Description: 监听
  * @FilePath: \JJ\src\scripts\watch.js
  * 怎么可能会有bug！！！
  */
 import { watch } from 'melanke-watchjs';
+import { ready } from '@/utils/tool';
 
 
 const data = {
@@ -46,10 +47,13 @@ const myWatch = function (key, callback, handler = false) {
 
 //预设监听滚动
 myWatch('scrollTop');
-data.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-window.addEventListener('scroll', () => {
+ready(() => {
   data.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  window.addEventListener('scroll', () => {
+    data.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  });
 });
+
 
 
 export default {

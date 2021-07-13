@@ -6,3 +6,96 @@
 body {
   height: 1200px;
 }
+
+#main {
+  padding-top: calc(#{$header-h} + #{$nav-h} + #{$main-top});
+
+  .content {
+    position: relative;
+
+    .left {
+      width: 700px;
+      border-radius: 2px;
+      background-color: #fff;
+      margin-right: 260px;
+
+      @media screen and (max-width:960px) {
+        width: 100%;
+        margin-right: 0;
+      }
+
+      // 快捷导航
+      .head-nav {
+        padding: 16px 12px;
+        border-bottom: 1px solid hsla(0, 0%, 59.2%, .1);
+
+        a.nav-item {
+          display: inline-block;
+          vertical-align: top;
+          font-size: 14px;
+          line-height: 1;
+          color: #909090;
+          text-decoration: none;
+          padding: 0 14px;
+
+          &+.nav-item {
+            border-left: 1px solid hsla(0, 0%, 59.2%, .2);
+          }
+
+          &.active,
+          &:hover,
+          &:active {
+            color: #007fff;
+          }
+        }
+      }
+
+      //骨架屏
+      @import "@/assets/scss/index/skeleton";
+
+      // 文章列表
+      #article-list-wrap {
+        &.hide {
+          height: 0;
+          display: none;
+          overflow: hidden;
+        }
+
+        @import "@/assets/scss/index/mini-article-card";
+      }
+
+
+
+      //自动加载
+      .auto-load {
+        padding: 5px;
+        text-align: center;
+        background-color: #fff;
+        border-top: 1px solid #edeeef;
+        @include no-select();
+        display: none;
+
+        &.show {
+          display: block;
+        }
+
+        img {
+          width: 40px;
+          vertical-align: top;
+        }
+
+        .next,
+        .prev {
+          display: none;
+        }
+
+        .no-more {
+          font-size: 14px;
+          line-height: 40px;
+          color: #b2bac2;
+        }
+      }
+    }
+  }
+
+}

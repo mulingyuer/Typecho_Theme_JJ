@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 02:24:10
- * @LastEditTime: 2021-07-04 23:05:07
+ * @LastEditTime: 2021-07-14 00:07:10
  * @LastEditors: mulingyuer
  * @Description: 通用配置
  * @FilePath: \JJ\webpack\webpack.common.js
@@ -97,7 +97,6 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
             cacheDirectory: true, //开启缓存
           }
         },

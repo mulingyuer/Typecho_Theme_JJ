@@ -26,7 +26,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     <?php $this->need("components/default/header.php");?>
     <?php $this->need("components/default/nav.php");?>
   <?php endif; ?>
-  
+   
+  <main id="main">
+    <div class="container">
+      <div class="content">
+        <?php $this->need("components/index/left.php");?>
+      </div>
+    </div>
+  </main>
   
 
    

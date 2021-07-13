@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-07-10 21:13:15
+ * @LastEditTime: 2021-07-14 00:08:17
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\index\index.js
@@ -29,4 +29,17 @@ $(function () {
   //收起动画
   const collectHeader = new CollectHeader();
   const collectNav = new CollectNav();
+
+
+  const $skeleton = $('#mini-article-skeleton-wrap');
+  const $articleList = $('#article-list-wrap');
+
+
+  setTimeout(() => {
+    if ($skeleton.length) $skeleton.remove();
+    if ($articleList.hasClass("hide")) $articleList.removeClass("hide");
+  }, 300)
+
+
+
 });
