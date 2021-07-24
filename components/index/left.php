@@ -10,9 +10,10 @@
       <?php $this->need("components/default/mini-article-card.php");?>
     <?php endwhile; ?>
   </div>
-  <div class="auto-load">
+  <div class="auto-load <?php if (!$this->have()) echo 'show'; ?>">
     <?php $this->pageLink("上一页",'prev');?>
     <?php $this->pageLink("下一页",'next');?>
     <img src="<?php themeUrl('static/images/tool/section-loading.gif');?>" alt="加载中">
   </div>
+  
 </div>
