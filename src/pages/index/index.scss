@@ -16,7 +16,7 @@ body {
     .left {
       width: 700px;
       border-radius: 2px;
-      background-color: #fff;
+      background-color: $white;
       margin-right: 260px;
 
       @media screen and (max-width:960px) {
@@ -27,25 +27,25 @@ body {
       // 快捷导航
       .head-nav {
         padding: 16px 12px;
-        border-bottom: 1px solid hsla(0, 0%, 59.2%, .1);
+        border-bottom: 1px solid $border-color;
 
         a.nav-item {
           display: inline-block;
           vertical-align: top;
           font-size: 14px;
           line-height: 1;
-          color: #909090;
+          color: $text-color;
           text-decoration: none;
           padding: 0 14px;
 
           &+.nav-item {
-            border-left: 1px solid hsla(0, 0%, 59.2%, .2);
+            border-left: 1px solid darken($border-color, 10%);
           }
 
           &.active,
           &:hover,
           &:active {
-            color: #007fff;
+            color: $primary;
           }
         }
       }
@@ -67,34 +67,7 @@ body {
 
 
       //自动加载
-      .auto-load {
-        padding: 5px;
-        text-align: center;
-        background-color: #fff;
-        border-top: 1px solid #edeeef;
-        @include no-select();
-        display: none;
-
-        &.show {
-          display: block;
-        }
-
-        img {
-          width: 40px;
-          vertical-align: top;
-        }
-
-        .next,
-        .prev {
-          display: none;
-        }
-
-        .no-more {
-          font-size: 14px;
-          line-height: 40px;
-          color: #b2bac2;
-        }
-      }
+      @import "@/assets/scss/index/auto-load";
     }
   }
 

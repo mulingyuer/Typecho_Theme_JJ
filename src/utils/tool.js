@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-03 17:50:36
- * @LastEditTime: 2021-07-13 23:41:17
+ * @LastEditTime: 2021-07-24 19:45:32
  * @LastEditors: mulingyuer
  * @Description: 工具
  * @FilePath: \JJ\src\utils\tool.js
@@ -27,3 +27,18 @@ export function ready(fn) {
   }
 }
 
+
+//获取指定的class的父元素或者自身
+export function specifyParentClass(className, el) {
+  if (el.classList.contains(className)) {
+    return el;
+  } else {
+    let parent = el.parentNode;
+    while (parent) {
+      if (parent.classList.contains(className)) {
+        return parent;
+      }
+      parent = parent.parentNode;
+    }
+  }
+}

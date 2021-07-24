@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-07-14 00:08:17
+ * @LastEditTime: 2021-07-24 19:49:24
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\index\index.js
@@ -13,6 +13,7 @@ import "./index.scss";
 import $ from "jquery";
 import { MainNav, Search, BlogMenu, CollectHeader } from "@/scripts/header"; //header
 import { Nav, CollectNav } from "@/scripts/nav";
+import { specifyParentClass } from "@/utils/tool";
 
 
 $(function () {
@@ -38,7 +39,21 @@ $(function () {
   setTimeout(() => {
     if ($skeleton.length) $skeleton.remove();
     if ($articleList.hasClass("hide")) $articleList.removeClass("hide");
+
+
+
   }, 300)
+
+
+  //文章卡片点击事件
+  $articleList.on('click', (event) => {
+    const articleCard = specifyParentClass('min-article-card', event.target);
+    if (!articleCard) return;  //不存在就跳过
+
+    const link = articleCard.dataset.link;
+    link && window.open(link, "_self");
+  })
+
 
 
 
