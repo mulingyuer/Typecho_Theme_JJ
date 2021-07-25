@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-07-25 01:23:11
+ * @LastEditTime: 2021-07-25 01:34:12
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\index\index.js
@@ -34,7 +34,7 @@ $(function () {
   const collectHeader = new CollectHeader();
   const collectNav = new CollectNav();
 
-  //left
+  //left内容  
   const $skeleton = $('#mini-article-skeleton-wrap');
   const $articleList = $('#article-list-wrap');
   let imgLazy = null;  //图片懒加载实例
