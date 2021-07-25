@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-07-25 01:34:12
+ * @LastEditTime: 2021-07-25 21:34:36
  * @LastEditors: mulingyuer
  * @Description: 首页
- * @FilePath: \JJ\src\pages\index\index.js
+ * @FilePath: \JJ\src\pages\category\index.js
  * 怎么可能会有bug！！！
  */
 import "./index.scss";
@@ -17,6 +17,7 @@ import { specifyParentClass } from "@/utils/tool";
 import ImgLazyload from "@/packages/img-lazyload";
 import IllimitedLoad from "@/packages/illimited-load";
 import api from "@/packages/request";
+import CategoryCollapse from "@/scripts/category-collapse";
 
 
 $(function () {
@@ -106,6 +107,13 @@ $(function () {
     }
   }
 
+
+  //折叠菜单
+  new CategoryCollapse({
+    wrap: "#category-nav-children .children-wrap",
+    content: "#category-nav-children .children-content",
+    trigger: "#category-nav-children .more"
+  });
 
 
 

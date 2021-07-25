@@ -10,6 +10,9 @@ body {
 #main {
   padding-top: calc(#{$header-h} + #{$nav-h} + #{$main-top});
 
+  //nav-children
+  @import "@/assets/scss/category/category-nav-children";
+
   .content {
     position: relative;
 

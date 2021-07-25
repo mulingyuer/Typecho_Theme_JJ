@@ -29,6 +29,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
    
   <main id="main">
     <div class="container">
+      <?php //菜单?>
+      <?php $this->need("components/category/nav-children.php");?>
       <div class="content">
         <?php $this->need("components/category/left.php");?>
         <?php $this->need("components/index/right.php");?>

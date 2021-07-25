@@ -67,3 +67,9 @@ input:-webkit-autofill {
 .notyf-icon {
   font-size: 21px;
 }
+
+
+//折叠动画
+.mu-category-collapse {
+  transition: height .25s;
+}
