@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 01:29:59
- * @LastEditTime: 2021-07-04 03:18:57
+ * @LastEditTime: 2021-07-25 18:39:32
  * @LastEditors: mulingyuer
  * @Description: 自定义模板
  * @FilePath: \JJ\webpack\custom-template.js
@@ -20,10 +20,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // css模板
 const cssEjs = resolve('../src/template/css.ejs');
-const cssTemplate = (...chunks) => ({
-  filename: '[name]/css.php',  //输出的文件名
+const cssTemplate = (filename) => ({
+  filename: `css/${filename}.php`,  //输出的文件名
   template: cssEjs, //自定义模板
-  chunks, //指定入口块
+  chunks: [filename], //指定入口块
   inject: false, //自定义模板不需要自动注入
   minify: {
     removeComments: true, //去除html注释
@@ -34,10 +34,10 @@ const cssTemplate = (...chunks) => ({
 
 //js模板
 const jsEjs = resolve('../src/template/script.ejs');
-const jsTemplate = (...chunks) => ({
-  filename: '[name]/script.php', //输出的文件名
+const jsTemplate = (filename) => ({
+  filename: `script/${filename}.php`, //输出的文件名
   template: jsEjs, //自定义模板
-  chunks, //指定入口块
+  chunks: [filename], //指定入口块
   inject: false, //自定义模板不需要自动注入
   minify: {
     removeComments: true, //去除html注释
@@ -60,5 +60,5 @@ module.exports = function () {
   chunksArr.forEach(chunk => jsPhp.push(jsTemplate(chunk)));
 
   //导出
-  return [cssPhp, jsPhp].map(arr => new HtmlWebpackPlugin(...arr));
+  return [...cssPhp, ...jsPhp].map(item => new HtmlWebpackPlugin(item));
 }

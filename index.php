@@ -17,7 +17,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
   <?php if(!is_ajax()): ?>
     <?php $this->need("components/default/head.php");?>
     <?php //样式?>
-    <?php $this->need("dist/index/css.php");?>
+    <?php $this->need("dist/css/index.php");?>
     
   <?php endif; ?>
 </head>
@@ -39,6 +39,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 
    
   <?php //脚本?>
-  <?php $this->need("dist/index/script.php");?>
+  <?php $this->need("dist/script/index.php");?>
 </body>
 </html>
