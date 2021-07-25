@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-07-25 21:34:36
+ * @LastEditTime: 2021-07-25 22:00:40
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\category\index.js
@@ -112,7 +112,8 @@ $(function () {
   new CategoryCollapse({
     wrap: "#category-nav-children .children-wrap",
     content: "#category-nav-children .children-content",
-    trigger: "#category-nav-children .more"
+    trigger: "#category-nav-children .more",
+    wrapNotExist: true,
   });
 
 

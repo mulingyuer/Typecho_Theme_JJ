@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-25 21:21:44
- * @LastEditTime: 2021-07-25 21:55:52
+ * @LastEditTime: 2021-07-25 22:02:21
  * @LastEditors: mulingyuer
  * @Description: 折叠
  * @FilePath: \JJ\src\scripts\category-collapse.js
@@ -11,9 +11,11 @@
 export default class CategoryCollapse {
   options = {
     status: false,  //折叠状态
+    wrapNotExist: false, //是否允许容器不存在
   };
   constructor(options = {}) {
     Object.assign(this.options, options);
+
 
     this.init();
   }
@@ -22,7 +24,11 @@ export default class CategoryCollapse {
   init() {
     //容器
     this.$wrap = document.querySelector(this.options.wrap);
-    if (!this.$wrap) throw new Error("CategoryCollapse：容器元素不存在！")
+
+    if (!this.$wrap) {
+      if (this.options.wrapNotExist) return; //允许不存在就跳过所有
+      throw new Error("CategoryCollapse：容器元素不存在！")
+    }
 
     //内容
     this.$content = document.querySelector(this.options.content);
