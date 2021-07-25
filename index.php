@@ -31,6 +31,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     <div class="container">
       <div class="content">
         <?php $this->need("components/index/left.php");?>
+        <?php $this->need("components/index/right.php");?>
       </div>
     </div>
   </main>

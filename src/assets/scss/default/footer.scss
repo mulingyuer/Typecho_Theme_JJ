@@ -1,0 +1,24 @@
+#footer {
+  .footer-list {
+    font-size: 12px;
+    line-height: 1.6;
+    color: darken($icon-color, 10%);
+
+    .item::after {
+      content: "·";
+      margin: 0 6px;
+      color: lighten($icon-color, 7%);
+
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover,
+      &:active {
+        color: $primary;
+      }
+    }
+  }
+}
