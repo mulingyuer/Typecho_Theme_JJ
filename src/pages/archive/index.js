@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-07-25 01:34:12
+ * @LastEditTime: 2021-08-01 19:36:43
  * @LastEditors: mulingyuer
  * @Description: 首页
- * @FilePath: \JJ\src\pages\index\index.js
+ * @FilePath: \JJ\src\pages\archive\index.js
  * 怎么可能会有bug！！！
  */
 import "./index.scss";
@@ -17,6 +17,8 @@ import { specifyParentClass } from "@/utils/tool";
 import ImgLazyload from "@/packages/img-lazyload";
 import IllimitedLoad from "@/packages/illimited-load";
 import api from "@/packages/request";
+import LoginDialog from "@/scripts/login-dialog";
+import BackTop from "@/scripts/back-top";
 
 
 $(function () {
@@ -107,7 +109,11 @@ $(function () {
   }
 
 
+  //登录弹窗
+  new LoginDialog();
 
+  //返回顶部
+  new BackTop();
 
 
   //骨架屏

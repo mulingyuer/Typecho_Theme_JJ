@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-07-25 22:00:40
+ * @LastEditTime: 2021-08-01 19:36:28
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\category\index.js
@@ -18,6 +18,9 @@ import ImgLazyload from "@/packages/img-lazyload";
 import IllimitedLoad from "@/packages/illimited-load";
 import api from "@/packages/request";
 import CategoryCollapse from "@/scripts/category-collapse";
+import LoginDialog from "@/scripts/login-dialog";
+import BackTop from "@/scripts/back-top";
+
 
 
 $(function () {
@@ -116,7 +119,11 @@ $(function () {
     wrapNotExist: true,
   });
 
+  //登录弹窗
+  new LoginDialog();
 
+  //返回顶部
+  new BackTop();
 
 
   //骨架屏

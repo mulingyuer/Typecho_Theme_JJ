@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-01 15:52:43
- * @LastEditTime: 2021-08-01 15:56:16
+ * @LastEditTime: 2021-08-01 19:37:16
  * @LastEditors: mulingyuer
  * @Description: 友链
  * @FilePath: \JJ\src\pages\links\index.js
@@ -13,6 +13,8 @@ import "./index.scss";
 import $ from "jquery";
 import { MainNav, Search, BlogMenu, CollectHeader } from "@/scripts/header"; //header
 import { Nav, CollectNav } from "@/scripts/nav"; //nav
+import LoginDialog from "@/scripts/login-dialog";
+import BackTop from "@/scripts/back-top";
 
 
 $(function () {
@@ -29,4 +31,10 @@ $(function () {
   //收起动画
   const collectHeader = new CollectHeader();
   const collectNav = new CollectNav();
+
+  //登录弹窗
+  new LoginDialog();
+
+  //返回顶部
+  new BackTop();
 })

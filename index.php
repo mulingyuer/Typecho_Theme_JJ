@@ -41,7 +41,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
   <?php $this->need("components/default/login-dialog.php");?>
   <?php //悬浮工具?>
   <?php $this->need("components/default/fixed-tool.php");?>
-
   <?php //脚本?>
   <?php $this->need("dist/script/index.php");?>
 </body>
