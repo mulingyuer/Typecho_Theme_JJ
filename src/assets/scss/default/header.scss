@@ -145,14 +145,6 @@
         align-items: center;
         width: 270px;
 
-        //表单被选中
-        &:focus-within {
-          .add-btn {
-            width: 0;
-            margin-left: 0;
-            overflow: hidden;
-          }
-        }
 
         @media screen and (max-width:980px) {
           width: auto;
@@ -168,8 +160,15 @@
           border-radius: 2px;
           position: relative;
 
+          //选中
           &:focus-within {
             border-color: $primary;
+
+            &+.add-btn {
+              width: 0;
+              margin-left: 0;
+              overflow: hidden;
+            }
           }
 
           .search-input {
