@@ -1,0 +1,147 @@
+//header
+@import "@/assets/scss/default/header.scss";
+@import "@/assets/scss/default/nav.scss";
+
+
+#main {
+  padding-top: calc(#{$header-h} + #{$nav-h} + #{$main-top});
+
+  .links-content {
+    padding: 24px;
+    padding-bottom: 36px;
+    border-radius: 2px;
+    background-color: $white;
+
+    .links-head {
+      margin-top: 30px;
+      margin-bottom: 30px;
+
+      .title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: lighter;
+        color: $title;
+
+        a {
+          text-decoration: none;
+          margin-left: 10px;
+          font-size: 20px;
+          color: $success;
+
+          &:hover,
+          &:active {
+            opacity: .7;
+          }
+        }
+      }
+    }
+
+    .links-body {
+
+      ul,
+      ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin: 30px 0 60px 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 212px);
+        grid-auto-rows: 84px;
+        grid-gap: 16px;
+
+        @media screen and (max-width: 760px) {
+          grid-template-columns: repeat(auto-fill, calc(33% - 11px));
+        }
+
+        @media screen and (max-width: 480px) {
+          grid-template-columns: repeat(auto-fill, calc(50% - 8px));
+        }
+
+        @media screen and (max-width: 360px) {
+          grid-template-columns: repeat(auto-fill, 100%);
+        }
+
+        li {
+          padding: 5px;
+          background-color: $white;
+          box-shadow: inset 0 0 0 1px $border-color;
+          position: relative;
+          overflow: hidden;
+
+          &:hover {
+            box-shadow: 0 0 0 2px lighten($primary, 10%) inset;
+
+            a {
+              opacity: 1;
+            }
+
+            img {
+              opacity: 0;
+            }
+          }
+
+          a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 10px 20px;
+            // background-color: #fff;
+            color: $title;
+            font-size: 14px;
+            line-height: 1.5;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity .5s;
+          }
+
+          img {
+            @include imgFit(contain);
+            transition: opacity .5s;
+          }
+        }
+      }
+    }
+
+    //友链声明
+    .links-declaration {
+      margin: 30px 0;
+      padding: 10px 23px;
+      background-color: $body-bg;
+      border-left: 4px solid lighten($primary, 15%);
+      display: flex;
+      align-items: flex-start;
+
+      .left {
+        flex-shrink: 0;
+        margin-right: 15px;
+
+        .icon {
+          font-size: 30px;
+          color: lighten($primary, 15%);
+        }
+      }
+
+      .right {
+        min-width: 0;
+        flex-grow: 1;
+
+        .title {
+          font-size: 16px;
+          color: $title;
+          font-weight: normal;
+        }
+
+        .subtitle {
+          margin-top: 5px;
+          font-size: 14px;
+          color: $text-color;
+        }
+      }
+    }
+  }
+}
