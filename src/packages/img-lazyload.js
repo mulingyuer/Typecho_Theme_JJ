@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-24 19:52:20
- * @LastEditTime: 2021-07-25 01:22:49
+ * @LastEditTime: 2021-08-08 04:11:52
  * @LastEditors: mulingyuer
  * @Description: 图片懒加载
  * @FilePath: \JJ\src\packages\img-lazyload.js
@@ -11,6 +11,8 @@
 export default class ImgLazyload {
   options = {
     dataName: "src",  //data默认名
+    specify: false, //是否指定某些dom，需要传入参数imgDoms
+    imgDoms: [], //dom类数组
   };
 
   constructor(options = {}) {
@@ -26,7 +28,12 @@ export default class ImgLazyload {
   //初始化
   init() {
     //获取到图片dom
-    this.imgSet = new Set(this.getImgDom());
+    if (!this.options.specify) {
+      this.imgSet = new Set(this.getImgDom());
+    } else {
+      this.imgSet = new Set(this.options.imgDoms);
+    }
+
 
     //监听
     this.watch(this.imgSet);
@@ -84,14 +91,17 @@ export default class ImgLazyload {
   validateOptions(options) {
     const { el, dataName } = options;
 
-    //是否存在选择器
-    if (typeof el !== 'string' || el.length === 0) {
-      throw new Error("图片懒加载：请配置正确的元素选择器！");
+    if (!this.options.specify) {
+      //是否存在选择器
+      if (typeof el !== 'string' || el.length === 0) {
+        throw new Error("图片懒加载：请配置正确的元素选择器！");
+      }
     }
 
     //dataNmae是否正确
     if (dataName && typeof dataName !== "string" && el.length === 0) {
       throw new Error("图片懒加载：请配置正确的元素dataName！");
     }
+
   }
 }

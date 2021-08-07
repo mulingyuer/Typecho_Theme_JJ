@@ -1,212 +1,98 @@
-//表情菜单
+// 表情弹窗
+@import "./arrow.scss";
+
 #face-tooltip {
   position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 300px;
-  height: 240px;
-  background-color: #fff;
-  box-shadow: 0 5px 18px 0 rgba(0, 0, 0, .16);
+  // top: 100%;
+  // left: 0;
+  width: 280px;
+  height: 245px;
+  // margin-top: 10px;
+  background-color: $white;
+  box-shadow: 0 5px 18px 0 $box-shadow;
   border-radius: 2px;
   display: none;
-  opacity: 0;
-  transition: opacity .25s;
 
-  &[data-show] {
+  &.show {
     display: block;
   }
 
-  &.show {
-    opacity: 1;
-  }
+  .face-tooltip-head {
+    display: flex;
 
-  #arrow {
-    position: absolute;
+    label {
+      width: 0;
+      flex-grow: 1;
+      text-align: center;
+      font-size: 14px;
+      height: 35px;
+      line-height: 35px;
+      border-bottom: 1px solid $border-color;
+      cursor: pointer;
+      transition: border-color .25s;
 
-    &:before {
-      content: "";
-      display: block;
-      width: 8px;
-      height: 8px;
-      background-image: linear-gradient(45deg, transparent 50%, #fff 0);
-      filter: drop-shadow(0 5px 18px rgba(0, 0, 0, .16));
-      transform-origin: center;
-    }
+      &.active {
+        color: $primary;
+        border-bottom-color: $primary;
+      }
 
-  }
-
-
-  &[data-popper-placement^='top']>#arrow {
-    bottom: -4px;
-
-    &:before {
-      transform: rotate(135deg);
-    }
-  }
-
-  &[data-popper-placement^='bottom']>#arrow {
-    top: -4px;
-
-    &:before {
-      transform: rotate(-45deg);
+      img {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+      }
     }
   }
 
-  &[data-popper-placement^='left']>#arrow {
-    right: -4px;
-
-    &:before {
-      transform: rotate(45deg);
-    }
-  }
-
-  &[data-popper-placement^='right']>#arrow {
-    left: -4px;
-
-    &:before {
-      transform: rotate(-135deg);
-    }
-  }
-
-
-  //内容容器
-  .tooltip-conntent {
-    height: 100%;
+  .face-tooltip-body {
+    height: calc(100% - 35px);
     overflow: hidden;
+
+    .face-tooltip-scroll {
+      height: 100%;
+      width: calc(100% + 17px);
+      overflow-y: scroll;
+      overflow-x: hidden;
+      position: relative;
+    }
 
     input[type="radio"] {
       display: none;
     }
 
-    .tab-head {
-      display: flex;
+    .face-tooltip-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: none;
 
-      .tab-title {
-        width: 0;
-        flex-grow: 1;
-        font-size: 16px;
-        height: 35px;
-        color: #999;
-        border-bottom: 1px solid #999;
+      span {
+        display: inline-block;
+        vertical-align: top;
+        padding: 6px 12px;
+        border-radius: 4px;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+
+        &:hover {
+          background-color: whitesmoke;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
 
         img {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-
-    .tab-content {
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-
-      .scroll-warp {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: calc(100% + 17px);
-        height: 100%;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        padding: 10px;
-        display: none;
-      }
-
-      .content {
-        span {
-          display: inline-block;
+          width: 30px;
+          height: 30px;
           vertical-align: top;
-          padding: 6px 12px;
-          border-radius: 4px;
-          cursor: pointer;
-
-          &:hover {
-            background-color: whitesmoke;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-          }
-
-          img {
-            width: 30px;
-            height: 30px;
-            vertical-align: top;
-          }
         }
       }
     }
 
-
-    //选中效果
-    $radio:"#one",
-    "#two",
-    "#three";
-
-    @each $id in $radio {
-      #{$id}:checked {
-        &~.tab-head .tab-title[for="#{str-slice($id,2)}"] {
-          color: #007fff;
-          border-bottom-color: #007fff;
-        }
-
-        &~.tab-content .#{str-slice($id,2)} {
-          display: block;
-        }
+    input[type="radio"]:checked {
+      &+.face-tooltip-wrap {
+        display: block;
       }
     }
+
+
   }
-
-  // .tooltip-scroll {
-  //   width: calc(100% + 20px);
-  //   position: relative;
-
-  //   .tab-head {
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     right: 0;
-  //     padding-right: 20px;
-  //     display: flex;
-
-  //     .tab-title {
-  //       width: 0;
-  //       flex-grow: 1;
-  //       line-height: 35px;
-  //       border-bottom: 1px solid #999;
-  //       text-align: center;
-  //       text-decoration: none;
-  //       font-size: 16px;
-  //       color: #6c757d;
-  //     }
-  //   }
-
-  //   .tab-content {
-  //     position: absolute;
-  //     top: 35px;
-  //     left: 0;
-  //     right: 0;
-  //     padding: 10px;
-  //     display: none;
-
-  //     &:target {
-  //       display: block;
-  //     }
-  //   }
-
-  //   #tab-content1:target~.tab-head .tab-title:first-child {
-  //     border-bottom-color: #007fff;
-  //   }
-
-  //   #tab-content3:target~.tab-head .tab-title:last-child {
-  //     border-bottom-color: #007fff;
-  //   }
-
-  //   #tab-content2:target~.tab-head .tab-title:nth-child(2) {
-  //     border-bottom-color: #007fff;
-  //   }
-  // }
-  // }
 }

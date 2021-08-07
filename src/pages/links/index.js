@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-01 15:52:43
- * @LastEditTime: 2021-08-01 19:37:16
+ * @LastEditTime: 2021-08-08 02:06:08
  * @LastEditors: mulingyuer
  * @Description: 友链
  * @FilePath: \JJ\src\pages\links\index.js
@@ -15,6 +15,7 @@ import { MainNav, Search, BlogMenu, CollectHeader } from "@/scripts/header"; //h
 import { Nav, CollectNav } from "@/scripts/nav"; //nav
 import LoginDialog from "@/scripts/login-dialog";
 import BackTop from "@/scripts/back-top";
+import Face from "@/scripts/face";
 
 
 $(function () {
@@ -37,4 +38,7 @@ $(function () {
 
   //返回顶部
   new BackTop();
+
+  //表情
+  new Face();
 })

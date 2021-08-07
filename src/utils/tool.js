@@ -1,12 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-03 17:50:36
- * @LastEditTime: 2021-07-24 20:39:41
+ * @LastEditTime: 2021-08-08 04:12:16
  * @LastEditors: mulingyuer
  * @Description: 工具
  * @FilePath: \JJ\src\utils\tool.js
  * 怎么可能会有bug！！！
  */
+import { faceData } from "@/api/face";
 
 //判断数据类型
 export function getType(value) {
@@ -38,4 +39,23 @@ export function specifyParentClass(className, el) {
     parent = parent.parentNode;
   }
 
+}
+
+
+//获取表情数据：缓存||api
+export async function getFaceData() {
+  try {
+    //先读取缓存
+    if (localStorage.getItem("face")) {
+      const arr = localStorage.getItem("face");
+      return JSON.parse(arr);
+    } else {
+      //api请求
+      const res = await faceData();
+      if (res) localStorage.setItem("face", JSON.stringify(res));
+      return res;
+    }
+  } catch (error) {
+    throw error;
+  }
 }

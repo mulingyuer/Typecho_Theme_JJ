@@ -124,9 +124,7 @@
       flex-wrap: wrap;
 
       .tool-left {
-        @import "../face/face-btn";
-        //表情菜单
-        @import "../face/face-tootip";
+        @import "../face/face";
       }
 
       .form-btn {

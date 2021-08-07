@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-09 22:10:05
- * @LastEditTime: 2021-07-09 23:18:18
+ * @LastEditTime: 2021-08-08 02:07:06
  * @LastEditors: mulingyuer
  * @Description: popper类
  * @FilePath: \JJ\src\packages\popper.js
@@ -20,7 +20,7 @@ export default class Popper {
     this.init(button, tooltip, options);
   }
 
-  //初始化
+  //初始化:传入dom
   init(button, tooltip, options) {
     if (!button || !tooltip) throw new Error("dom元素不存在，初始化失败！");
     Object.assign(this.options, options); //合并配置
