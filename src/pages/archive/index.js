@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-08-01 19:36:43
+ * @LastEditTime: 2021-08-08 15:52:52
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\archive\index.js
@@ -19,6 +19,7 @@ import IllimitedLoad from "@/packages/illimited-load";
 import api from "@/packages/request";
 import LoginDialog from "@/scripts/login-dialog";
 import BackTop from "@/scripts/back-top";
+import FaceReplace from "@/scripts/face-replace";
 
 
 $(function () {
@@ -114,6 +115,9 @@ $(function () {
 
   //返回顶部
   new BackTop();
+
+  //表情替换
+  new FaceReplace({ el: ["#main .recent-comment .recent-body"] });
 
 
   //骨架屏

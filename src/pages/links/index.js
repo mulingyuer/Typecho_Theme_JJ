@@ -43,5 +43,5 @@ $(function () {
   //表情
   new Face();
   //表情替换
-  new FaceReplace();
+  new FaceReplace({ el: ["#my-custom-comment"] });
 })

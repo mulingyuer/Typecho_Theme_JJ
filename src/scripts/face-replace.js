@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-08 15:19:15
- * @LastEditTime: 2021-08-08 15:41:57
+ * @LastEditTime: 2021-08-08 15:50:07
  * @LastEditors: mulingyuer
  * @Description:表情替换
  * @FilePath: \JJ\src\scripts\face-replace.js
@@ -11,7 +11,7 @@ import { getFaceData, getType } from "@/utils/tool";
 
 export default class FaceReplace {
   options = {
-    el: ["#my-custom-comment"]
+    el: []
   }
 
   constructor(options = {}) {
@@ -28,6 +28,7 @@ export default class FaceReplace {
       throw new Error("表情替换选择器必须是一个数组参数");
     }
     this.$el = this.options.el.map(item => document.querySelector(item));
+    if (!this.$el.length) return; //不存在直接跳过
 
     //初始化表情数据
     this.initFaceData();
