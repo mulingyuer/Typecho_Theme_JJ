@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-08 02:00:41
- * @LastEditTime: 2021-08-08 04:23:56
+ * @LastEditTime: 2021-08-08 15:17:44
  * @LastEditors: mulingyuer
  * @Description: 表情
  * @FilePath: \JJ\src\scripts\face.js
@@ -17,14 +17,15 @@ export default class Face {
   options = {
     btn: "#face-btn",
     tooltip: "#face-tooltip",
+    textarea: "#comments #textarea",
     popperStatus: false, //初始化状态
     config: {
-      placement: 'bottom',
+      placement: 'bottom-start',
       modifiers: [
         {
           name: 'offset',
           options: {
-            offset: [0, 8],
+            offset: [0, 10],
           },
         },
       ]
@@ -40,13 +41,15 @@ export default class Face {
   init(options) {
     Object.assign(this.options, options);  //合并配置
 
-    const { btn, tooltip, placement } = this.options;
+    const { btn, tooltip, textarea } = this.options;
     this.$btn = this.query(btn);
     if (!this.$btn) throw new Error("表情菜单触发按钮不存在");
 
     this.$tooltip = this.query(tooltip);
     if (!this.$tooltip) throw new Error("表情菜单不存在");
-    // document.body.appendChild(this.$tooltip);
+
+    this.$textarea = this.query(textarea);
+    if (!this.$textarea) throw new Error("表情插入容器不存在");
 
     this.$btn.addEventListener("click", this.btnClick); //添加按钮事件
 
@@ -100,8 +103,9 @@ export default class Face {
     const isContains = this.$tooltip.contains(event.target);  //是否点击是表情菜单
     const isBtn = this.$btn.contains(event.target);  //是否点击是表情触发按钮
     const isShow = this.isClass(this.$tooltip, "show");  //表情菜单是否显示
+    const isTextarea = this.$textarea.contains(event.target); //是否点击的输入框
 
-    if (!isContains && !isBtn && isShow) {
+    if (!isContains && !isTextarea && !isBtn && isShow) {
       this.hideTooltip();
     }
   }
@@ -158,6 +162,10 @@ export default class Face {
       this.$label = this.$tooltip.querySelectorAll(".face-tooltip-head label");
       this.$label.forEach(item => item.addEventListener("click", this.labelClick));  //click
 
+      //表情点击事件
+      const tooltipBody = this.$tooltip.querySelector(".face-tooltip-scroll");
+      tooltipBody && tooltipBody.addEventListener("click", this.onFaceClick);
+
     } catch (error) {
       throw error;
     }
@@ -176,6 +184,31 @@ export default class Face {
   //label清理class
   labelRemoveClass(className = "active") {
     this.$label.forEach(item => item.classList.remove(className));
+  }
+
+  //表情点击事件
+  onFaceClick = (event) => {
+    let target = event.target;
+    const value = this.$textarea.value;
+    let dataId = "";
+
+    if (target.tagName.toLowerCase() === "img") {
+      target = target.parentNode;
+      dataId = `[${target.dataset.id}]`;
+
+    } else if (target.tagName.toLowerCase() === "span") {
+      const type = target.dataset.type;
+
+      if (type === "image") {
+        dataId = `[${target.dataset.id}]`;
+      } else if (type === "text") {
+        dataId = target.dataset.id;
+      }
+    }
+
+    //插入
+    const start = this.$textarea.selectionStart;
+    this.$textarea.value = value.slice(0, start) + dataId + value.slice(start);
   }
 
   //获取元素

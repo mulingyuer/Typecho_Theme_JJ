@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-01 15:52:43
- * @LastEditTime: 2021-08-08 02:06:08
+ * @LastEditTime: 2021-08-08 15:32:18
  * @LastEditors: mulingyuer
  * @Description: 友链
  * @FilePath: \JJ\src\pages\links\index.js
@@ -16,6 +16,7 @@ import { Nav, CollectNav } from "@/scripts/nav"; //nav
 import LoginDialog from "@/scripts/login-dialog";
 import BackTop from "@/scripts/back-top";
 import Face from "@/scripts/face";
+import FaceReplace from "@/scripts/face-replace";
 
 
 $(function () {
@@ -41,4 +42,6 @@ $(function () {
 
   //表情
   new Face();
+  //表情替换
+  new FaceReplace();
 })
