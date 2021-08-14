@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-03 17:50:36
- * @LastEditTime: 2021-08-08 04:12:16
+ * @LastEditTime: 2021-08-14 18:39:06
  * @LastEditors: mulingyuer
  * @Description: 工具
  * @FilePath: \JJ\src\utils\tool.js
@@ -58,4 +58,15 @@ export async function getFaceData() {
   } catch (error) {
     throw error;
   }
+}
+
+
+//自定义哈希定位
+export function hashPostion(id) {
+  const dom = document.querySelector(id);
+  dom && dom.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+    inline: "nearest"
+  });
 }

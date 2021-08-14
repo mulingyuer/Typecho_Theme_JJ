@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-08 15:19:15
- * @LastEditTime: 2021-08-08 15:50:07
+ * @LastEditTime: 2021-08-14 17:29:58
  * @LastEditors: mulingyuer
  * @Description:表情替换
  * @FilePath: \JJ\src\scripts\face-replace.js
@@ -59,6 +59,7 @@ export default class FaceReplace {
     const themePath = window.$theme_path;  //主题目录
 
     this.$el.forEach(item => {
+      if (!item) return;
       let html = item.innerHTML;
 
       const newHtml = html.replace(reg, (match, param) => {

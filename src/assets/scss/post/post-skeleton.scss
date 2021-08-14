@@ -1,0 +1,57 @@
+//文章页骨架屏
+.post-skeleton {
+  .skeleton-head {
+    display: flex;
+    align-items: center;
+
+    .avatar {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      margin-right: 12px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #F0F0F0;
+    }
+
+    .info {
+      min-width: 0;
+      flex-grow: 1;
+
+      .title {
+        width: 80px;
+        height: 15px;
+        background-color: #F0F0F0;
+      }
+
+      .subtitle {
+        margin-top: 5px;
+        width: 120px;
+        height: 10px;
+        background-color: #F0F0F0;
+      }
+    }
+  }
+
+  .skeleton-body {
+    margin-top: 30px;
+    height: 400px;
+    background-color: #F0F0F0;
+  }
+
+  .skeleton-footer {
+    margin-top: 30px;
+
+    .footer-item {
+      max-width: 50%;
+      height: 30px;
+      background-color: #F0F0F0;
+
+      &:last-child {
+        margin-top: 20px;
+        max-width: 80%;
+        height: 20px
+      }
+    }
+  }
+}

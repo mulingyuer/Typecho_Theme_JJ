@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-08-08 15:51:46
+ * @LastEditTime: 2021-08-14 22:41:30
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\index\index.js
@@ -126,7 +126,7 @@ $(function () {
     if ($articleList.hasClass("hide")) $articleList.removeClass("hide");
 
 
-    imgLazy = new ImgLazyload({ el: "#article-list-wrap img" }); //图片懒加载
+    imgLazy = new ImgLazyload({ el: "#article-list-wrap img[data-src]" }); //图片懒加载
 
     if (!$autoLoad.find(".next").length) AutoLoadOperate.noMore().show();  //首次
     new IllimitedLoad({ callback: articleLoad }); //无线加载

@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 02:24:10
- * @LastEditTime: 2021-07-14 00:07:10
+ * @LastEditTime: 2021-08-14 22:52:47
  * @LastEditors: mulingyuer
  * @Description: 通用配置
  * @FilePath: \JJ\webpack\webpack.common.js
@@ -52,7 +52,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'cache-loader',
+          // 'cache-loader',
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',

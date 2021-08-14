@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-04-07 09:25:37
- * @LastEditTime: 2021-06-26 17:54:12
+ * @LastEditTime: 2021-08-14 22:41:20
  * @LastEditors: mulingyuer
  * @Description: 工具函数
  * @FilePath: \JJ\common\js\utils\tool.js
@@ -180,6 +180,7 @@ function giveLike() {
 
   }
 };
+
 
 //手动哈希定位
 function hashPosition() {
