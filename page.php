@@ -12,7 +12,7 @@
 <body>
   <?php if(!is_ajax()): ?>
     <?php $this->need("components/default/header.php");?>
-    <?php //$this->need("components/default/nav.php");?>
+    <?php $this->need("components/default/nav.php");?>
   <?php endif; ?>
    
   <main id="main">

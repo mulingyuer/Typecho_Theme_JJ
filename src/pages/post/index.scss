@@ -7,7 +7,7 @@
 
 
 #main {
-  padding-top: calc(#{$header-h} + #{$nav-h} + #{$main-top});
+  padding-top: calc(#{$header-h} + #{$main-top});
 
   .post-content {
     position: relative;

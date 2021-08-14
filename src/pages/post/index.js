@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-14 17:30:24
- * @LastEditTime: 2021-08-14 23:09:51
+ * @LastEditTime: 2021-08-14 23:33:17
  * @LastEditors: mulingyuer
  * @Description: 文章页
  * @FilePath: \JJ\src\pages\post\index.js
@@ -11,8 +11,7 @@ import "./index.scss";
 
 //js
 import $ from "jquery";
-import { MainNav, Search, BlogMenu, CollectHeader } from "@/scripts/header"; //header
-import { Nav, CollectNav } from "@/scripts/nav"; //nav
+import { Search, BlogMenu, CollectHeader } from "@/scripts/header"; //header
 import LoginDialog from "@/scripts/login-dialog";
 import BackTop from "@/scripts/back-top";
 import Face from "@/scripts/face";
@@ -29,18 +28,15 @@ import LightBox from "@/packages/light-box/index";
 
 $(function () {
   //导航菜单
-  const mianNav = new MainNav();
+  // const mianNav = new MainNav();
   //搜索
   const search = new Search();
   //博客功能按钮
   const blogMenu = new BlogMenu();
 
-  //导航按钮
-  const nav = new Nav();
 
   //收起动画
   const collectHeader = new CollectHeader();
-  const collectNav = new CollectNav();
 
   //登录弹窗
   new LoginDialog();
