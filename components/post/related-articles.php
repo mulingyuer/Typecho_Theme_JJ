@@ -7,47 +7,34 @@
     </div>
     <div class="content">
       <?php while ($relatedPosts->next()): ?>
-        <div class="related-item" data-link="<?php $relatedPosts->permalink(); ?>">
-          <div class="item-head">
-            <div class="head-left">
-              <a class="user" href="<?php $relatedPosts->author->permalink(); ?>" target="_blank">
-                <?php $relatedPosts->author(); ?>
-              </a>
-              <span class="dividing"></span>
-              <time class="date" datetime="<?php $relatedPosts->date('c'); ?>" itemprop="datePublished"><?php timesince($relatedPosts->created);?></time>
-            </div>
-            <div class="head-right">
-              <?php $relatedPosts->category(""); ?>
-            </div>
+        <section class="related-item" data-link="<?php $relatedPosts->permalink() ?>">
+          <div class="article-info">
+            <a href="<?php $relatedPosts->author->permalink(); ?>" class="author"><?php $relatedPosts->author(); ?></a>
+            <span class="time"><?php timesince($relatedPosts->created);?></span>
+            <?php $relatedPosts->category('<span class="classify-cut"></span>'); ?>
           </div>
-          <div class="item-body">
-            <div class="item-body-left">
-              <h2 class="title"><?php $relatedPosts->title(); ?></h2>
-              <p class="subtitle">
-                <?php $relatedPosts->excerpt(80, '...'); ?>
-              </p>
-              <div class="info">
-                <div class="info-item like"><i class="icon icon-like"></i><?php echo getLikeCount($relatedPosts->cid); ?></div>
-                <div class="info-item"><i class="icon icon-message"></i><?php $relatedPosts->commentsNum(_t('0'), _t('1'), _t('%d ')); ?></div>
-                <div class="info-item share" data-link="<?php $relatedPosts->permalink() ?>" title="手机扫一扫">
-                  <i class="icon icon-share"></i>分享
-                  <div class="share-panel hide">
-                    <div class="qr-code-tooltip">
-                      <div class="qr-code-head"><i class="icon icon-saoyisao"></i>手机扫一扫</div>
-                      <div class="qr-code-body"></div>
-                    </div>
-                  </div>
-                </div>
+          <div class="article-card-content">
+            <div class="info-box">
+              <div class="info-center">
+                <a class="title" href="<?php $relatedPosts->permalink() ?>" title="<?php $relatedPosts->title() ?>">
+                  <h2><?php $relatedPosts->title() ?></h2>
+                </a>
+                <p class="description"><?php $relatedPosts->excerpt(300); ?></p>
+              </div>
+              <div class="info-bottom">
+                <a class="btn" href="javascript:;"><i class="icon icon-eye"></i><?php views($relatedPosts); ?></a>
+                <a class="btn" href="javascript:;"><i class="icon icon-like"></i><?php echo getLikeCount($relatedPosts->cid); ?></a>
+                <a class="btn comment" href="<?php $relatedPosts->permalink() ?>#comments"><i class="icon icon-message"></i><?php $relatedPosts->commentsNum(_t('0'), _t('1'), _t('%d ')); ?></a>
               </div>
             </div>
             <?php $thumbnail = get_ArticleThumbnail($relatedPosts);?>
             <?php if($thumbnail !== ""): ?>
-            <div class="item-body-right">
+            <div class="entry-img">
               <img data-src="<?php echo $thumbnail;?>" src="<?php themeUrl('static/images/tool/img-loading.gif');?>" alt="<?php $relatedPosts->title() ?>">
             </div>
             <?php endif;?>
           </div>
-        </div>
+        </section>
       <?php endwhile; ?>  
     </div>
   </div> 

@@ -17,191 +17,152 @@
 
   .content {
     .related-item {
-      position: relative;
-      padding: 16px 20px;
-      background-color: #fff;
+      padding: 18px 24px;
       cursor: pointer;
 
-      &::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 20px;
-        right: 20px;
-        border-bottom: 1px solid #e5e6eb;
+      &+.related-item {
+        border-top: 1px solid $border-color;
       }
 
-      &:hover {
-        background-color: #fafafa;
-      }
+      //文章信息-分类啥的
+      .article-info {
+        font-size: 12px;
+        color: darken($icon-color, 20%);
+        word-break: break-all;
 
-      &:last-child::before {
-        display: none;
-      }
-
-      .item-head {
-        @media screen and (max-width: 400px) {
-          display: flex;
-          flex-wrap: wrap;
+        .author {
+          color: lighten($title, 10%)
         }
 
-        .head-left {
-          display: flex;
-          align-items: center;
-          font-size: 14px;
-          line-height: 22px;
 
-          .user {
-            flex-shrink: 0;
-            min-width: 0;
-            max-width: 162px;
-            color: #4e5969;
-            text-decoration: none;
-            @include nowrap();
-          }
+        a {
+          color: inherit;
+          text-decoration: none;
 
-          .dividing {
-            width: 1px;
-            height: 14px;
-            background-color: #e5e6eb;
-            margin: 0 8px;
-          }
-
-          .date {
-            color: #86909c;
+          &:hover,
+          &:active {
+            color: $primary;
           }
         }
 
-        .head-right {
-          position: absolute;
-          top: 16px;
-          right: 20px;
-          display: flex;
-          align-items: center;
+        .author::after,
+        .time::after {
+          content: "|";
+          color: lighten($icon-color, 20%);
+          margin: 0 5px;
+        }
 
-          @media screen and (max-width: 600px) {
-            top: auto;
-            bottom: 16px;
-          }
-
-          @media screen and (max-width: 400px) {
-            position: static;
-            margin-left: auto;
-          }
-
-          a {
-            flex-shrink: 0;
-            min-width: 0;
-            max-width: 110px;
-            padding: 0 8px;
-            text-decoration: none;
-            font-size: 14px;
-            line-height: 22px;
-            color: #4e5969;
-            background-color: #fafafa;
-            @include nowrap();
-
-            &+a {
-              margin-left: 8px;
-            }
-
-            &:hover {
-              background-color: #e5e6eb;
-            }
+        .classify-cut {
+          &::before {
+            content: "·";
+            color: $icon-color;
+            margin: 0 5px;
           }
         }
       }
 
-      .item-body {
+      //主体内容
+      .article-card-content {
         display: flex;
         align-items: center;
 
-        @media screen and (max-width:400px) {
-          flex-direction: column-reverse;
-
-          div.item-body-left {
-            width: 100%;
-          }
-
-          div.item-body-right {
-            margin-top: 14px;
-            width: 100%;
-            height: auto;
-            position: relative;
-
-            &::before {
-              content: "";
-              display: block;
-              padding-bottom: 40%;
-            }
-
-            img {
-              position: absolute;
-              top: 0;
-              left: 0;
-            }
-          }
-        }
-
-        .item-body-left {
-          width: 0;
+        .info-box {
+          min-width: 0;
           flex-grow: 1;
 
-          .title {
-            margin: 14px 0 12px;
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 24px;
-            color: #1d2129;
-            word-break: break-all;
-            @include clamp(2);
+          .info-center {
+            margin-top: 6px;
+            margin-bottom: 12px;
+
+            .title {
+              display: block;
+              color: $title;
+              text-decoration: none;
+
+              h2 {
+                font-size: 17px;
+                line-height: 1.2;
+                font-weight: bold;
+                @include nowrap();
+              }
+
+              &:hover,
+              &:active {
+                text-decoration: underline;
+              }
+            }
+
+            .description {
+              font-size: 14px;
+              line-height: 22px;
+              color: lighten($title, 35%);
+              margin: 13px 0;
+              @include clamp(2);
+            }
           }
 
-          .subtitle {
-            font-size: 14px;
-            line-height: 22px;
-            color: #4e5969;
-            margin-bottom: 14px;
-            @include clamp(2);
-          }
-
-          .info {
+          .info-bottom {
             display: flex;
             align-items: center;
-            font-size: 14px;
-            line-height: 20px;
-            color: #86909c;
 
-            .info-item {
-              &+.info-item {
-                margin-left: 32px;
+            .btn {
+              font-size: 13px;
+              line-height: 1;
+              color: darken($text-color, 20%);
+              height: 24px;
+              display: flex;
+              align-items: center;
+              text-decoration: none;
+
+              &+.btn {
+                margin-left: 20px;
               }
 
               .icon {
-                margin-right: 4px
+                font-size: 14px;
+                margin-right: 5px;
+                font-weight: normal;
+                color: $icon-color;
               }
 
-              &.share {
-                display: flex;
+              &:hover {
+                color: $primary;
+
+                .icon {
+                  color: $primary;
+                }
               }
             }
+
           }
         }
 
-        .item-body-right {
+        .entry-img {
           flex-shrink: 0;
-          width: 142px;
+          width: 120px;
           height: 80px;
-          margin-left: 16px;
-          background-color: #fff;
+          margin-left: 24px;
           border-radius: 2px;
-          overflow: hidden;
 
           img {
             @include imgFit();
           }
+
+          @media screen and (max-width:600px) {
+            width: 80px;
+            height: 54px;
+            margin-left: 14px;
+          }
+
+          @media screen and (max-width:420px) {
+            width: 60px;
+            height: 40px;
+            margin-left: 5px;
+          }
         }
       }
+
+
     }
   }
 }
