@@ -5,14 +5,13 @@
   <?php if(!is_ajax()): ?>
     <?php $this->need("components/default/head.php");?>
     <?php //样式?>
-    <?php $this->need("dist/css/post.php");?>
+    <?php $this->need("dist/css/page.php");?>
     
   <?php endif; ?>
 </head>
 <body>
   <?php if(!is_ajax()): ?>
     <?php $this->need("components/default/header.php");?>
-    <?php $this->need("components/default/nav.php");?>
   <?php endif; ?>
    
   <main id="main">
@@ -31,6 +30,6 @@
   <?php //悬浮工具?>
   <?php $this->need("components/default/fixed-tool.php");?>
   <?php //脚本?>
-  <?php $this->need("dist/script/post.php");?>
+  <?php $this->need("dist/script/page.php");?>
 </body>
 </html>
