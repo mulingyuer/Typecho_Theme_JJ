@@ -48,9 +48,7 @@
         }
       }
 
-      @media screen and (max-width:350px) {
-        display: none;
-      }
+
     }
 
     .header-nav {
@@ -150,6 +148,7 @@
           width: auto;
         }
 
+
         //表单
         .search-form {
           min-width: 0;
@@ -159,6 +158,10 @@
           background-color: $body-bg;
           border-radius: 2px;
           position: relative;
+
+          @media screen and (max-width:420px) {
+            display: none;
+          }
 
           //选中
           &:focus-within {
