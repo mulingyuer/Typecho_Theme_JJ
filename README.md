@@ -14,7 +14,7 @@ Typecho主题-《高仿掘金》
 
 ## 主题预览
 
-[![f2lHgK.gif](https://z3.ax1x.com/2021/08/15/f2lHgK.gif)](https://imgtu.com/i/f2lHgK)
+[![f23qTH.gif](https://z3.ax1x.com/2021/08/15/f23qTH.gif)](https://imgtu.com/i/f23qTH)
 
 
 ## FAQ文档
