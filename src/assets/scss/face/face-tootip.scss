@@ -1,0 +1,98 @@
+// 表情弹窗
+@import "./arrow.scss";
+
+#face-tooltip {
+  position: absolute;
+  // top: 100%;
+  // left: 0;
+  width: 280px;
+  height: 245px;
+  // margin-top: 10px;
+  background-color: $white;
+  box-shadow: 0 5px 18px 0 $box-shadow;
+  border-radius: 2px;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  .face-tooltip-head {
+    display: flex;
+
+    label {
+      width: 0;
+      flex-grow: 1;
+      text-align: center;
+      font-size: 14px;
+      height: 35px;
+      line-height: 35px;
+      border-bottom: 1px solid $border-color;
+      cursor: pointer;
+      transition: border-color .25s;
+
+      &.active {
+        color: $primary;
+        border-bottom-color: $primary;
+      }
+
+      img {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .face-tooltip-body {
+    height: calc(100% - 35px);
+    overflow: hidden;
+
+    .face-tooltip-scroll {
+      height: 100%;
+      width: calc(100% + 17px);
+      overflow-y: scroll;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .face-tooltip-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: none;
+
+      span {
+        display: inline-block;
+        vertical-align: top;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: whitesmoke;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+          width: 30px;
+          height: 30px;
+          vertical-align: top;
+        }
+      }
+    }
+
+    input[type="radio"]:checked {
+      &+.face-tooltip-wrap {
+        display: block;
+      }
+    }
+
+
+  }
+}

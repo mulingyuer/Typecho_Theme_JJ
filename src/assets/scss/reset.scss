@@ -1,0 +1,75 @@
+// 重置样式
+:root {
+  box-sizing: border-box;
+  font-family: system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    segoe ui,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+  font-family: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: #333;
+  background-color: $body-bg;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+
+  @media screen and (max-width:980px) {
+    width: 96%;
+  }
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
+// 去除谷歌自动填充input样式-颜色覆盖
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px white inset;
+}
+
+//通知自定义字符图标
+.notyf-icon {
+  font-size: 21px;
+}
+
+
+//折叠动画
+.mu-category-collapse {
+  transition: height .25s;
+}

@@ -15,60 +15,33 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <html lang="zh-CN">
 <head>
   <?php if(!is_ajax()): ?>
-    <?php $this->need("components/head.php");?>
-    <link rel="stylesheet" href="<?php themeUrl('common/css/index/index.css'); ?>">
-    <script src="<?php themeUrl('index/js/index.js'); ?>" ></script> 
+    <?php $this->need("components/default/head.php");?>
+    <?php //样式?>
+    <?php $this->need("dist/css/index.php");?>
+    
   <?php endif; ?>
 </head>
 <body>
   <?php if(!is_ajax()): ?>
-    <?php $this->need("components/header.php");?>
+    <?php $this->need("components/default/header.php");?>
+    <?php $this->need("components/default/nav.php");?>
   <?php endif; ?>
-  
-   <main id="index-main">
-    <?php if(!is_ajax()): ?>
-    <nav id="index-main-nav">
-      <div class="container">
-        <?php $this->need("index/components/nav.php");?>
+   
+  <main id="main">
+    <div class="container">
+      <div class="content">
+        <?php $this->need("components/index/left.php");?>
+        <?php $this->need("components/index/right.php");?>
       </div>
-    </nav>
-    <?php endif; ?>
-    <section id="index-content">
-      <div class="index-container">
-        <div class="content">
-          <div class="index-left">
-            <nav class="head head-nav">
-              <a href="#" class="nav-item active">热门</a>
-              <a href="#" class="nav-item">最新</a>
-              <a href="#" class="nav-item">热榜</a>
-            </nav>
-            <?php $this->need("components/index-skeleton.php");?>
-            <div class="entry-list-wrap hide">
-              <?php while ($this->next()) : ?>
-                <?php $this->need("components/index-section.php");?>
-              <?php endwhile; ?>
-            </div>
-            <div class="auto-load">
-              <?php $this->pageLink("上一页",'prev');?>
-              <?php $this->pageLink("下一页",'next');?>
-              <img src="<?php themeUrl('common/images/tool/section-loading.gif');?>" alt="加载中">
-            </div>
-          </div>
-          <?php if(!is_ajax()): ?>
-          <?php $this->need("index/components/aside.php");?>
-          <?php endif; ?>
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
+  
 
   <?php //登录弹窗?>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/login-dialog.php");?>
-  <?php endif; ?>
-  <?php //浮动工具?>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/fixed-tool.php");?>
-  <?php endif; ?>
+  <?php $this->need("components/default/login-dialog.php");?>
+  <?php //悬浮工具?>
+  <?php $this->need("components/default/fixed-tool.php");?>
+  <?php //脚本?>
+  <?php $this->need("dist/script/index.php");?>
 </body>
 </html>

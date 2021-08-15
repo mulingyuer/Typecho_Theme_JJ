@@ -1,0 +1,22 @@
+// 灯箱样式
+.light-box-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 4;
+  opacity: 0;
+  transition: opacity .3s;
+  cursor: zoom-out;
+}
+
+.light-box-mask.show {
+  opacity: 1;
+}
+
+img.light-box {
+  transition: transform .3s cubic-bezier(.2, 0, .2, 1);
+  cursor: zoom-in;
+}

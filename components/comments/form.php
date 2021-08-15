@@ -12,7 +12,7 @@
         <?php $email=$this->remember('mail',true);if(!empty($email)) : ?>
           <img src="https://gravatar.loli.net/avatar/<?php echo md5($email);?>">
         <?php else : ?>
-          <img src="<?php themeUrl('common/images/comments/akari.jpg'); ?>">
+          <img src="<?php themeUrl('static/images/comments/akari.jpg'); ?>">
         <?php endif; ?>
       <?php endif;?>
     </div>

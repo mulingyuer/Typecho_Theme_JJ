@@ -1,0 +1,119 @@
+ #fixed-top-nav {
+   position: fixed;
+   top: $header-h;
+   left: 0;
+   right: 0;
+   background-color: $white;
+   box-shadow: 0 1px 2px 0 $box-shadow;
+   transition: all .2s;
+   transform: translate3d(0, -$header-h, 0);
+   z-index: 2;
+
+   &.visible {
+     transform: translateZ(0);
+   }
+
+   .main-nav {
+
+     //导航按钮
+     .nav-item {
+       height: $nav-h;
+       line-height: $nav-h;
+       padding: 0 12px;
+       font-size: 14px;
+       text-decoration: none;
+       color: darken($text-color, 10%);
+       cursor: pointer;
+
+       &:first-child {
+         padding-left: 0;
+       }
+
+       &.active,
+       &:hover,
+       &:active {
+         color: #007fff;
+       }
+
+       // 导航悬浮菜单
+       .tooltip-children {
+         position: absolute;
+         max-width: 360px;
+         padding: 10px;
+         background-color: #fff;
+         border-radius: 4px;
+         box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+         line-height: normal;
+         white-space: normal;
+         display: none;
+         opacity: 0;
+         transition: opacity .25s;
+
+         &[data-show] {
+           display: block;
+         }
+
+         &.show {
+           opacity: 1;
+         }
+
+         a {
+           display: inline-block;
+           font-size: 13px;
+           color: #71777D;
+           text-decoration: none;
+           background-color: #F4F5F5;
+           padding: 2px 12px;
+           border-radius: 200px;
+           margin-right: 12px;
+           margin-bottom: 12px;
+
+           &:hover,
+           &:active {
+             color: #007fff;
+           }
+
+           &.active {
+             color: #fff;
+             background-color: #007fff;
+           }
+         }
+       }
+     }
+
+     //左侧
+     .left {
+       padding-right: 80px;
+       overflow: hidden;
+
+       .nav-content {
+         display: flex;
+         white-space: nowrap;
+       }
+
+       @media screen and (max-width:960px) {
+         padding-right: 0;
+       }
+     }
+
+
+
+     //右侧
+     .right {
+       float: right;
+
+       @media screen and (max-width:960px) {
+         display: none;
+       }
+     }
+
+   }
+ }
+
+
+ //  横向滚动
+ #fixed-top-nav-scroll-wrap {
+   .scroll-wrap-content {
+     white-space: nowrap;
+   }
+ }

@@ -3,35 +3,33 @@
 <html lang="zh-CN">
 <head>
   <?php if(!is_ajax()): ?>
-    <?php $this->need("components/head.php");?>
-    <link rel="stylesheet" href="<?php themeUrl('common/css/page/index.css'); ?>">
-    <script src="<?php themeUrl('page/js/index.js'); ?>"></script>
-
-
+    <?php $this->need("components/default/head.php");?>
+    <?php //样式?>
+    <?php $this->need("dist/css/page.php");?>
+    
   <?php endif; ?>
 </head>
 <body>
   <?php if(!is_ajax()): ?>
-    <?php $this->need("components/header.php");?>
+    <?php $this->need("components/default/header.php");?>
   <?php endif; ?>
-  
-  <main id="page-main">
+   
+  <main id="main">
     <div class="container">
-      <div class="page-warp">
-        <?php $this->need("post/components/article-tool.php");?>
-        <?php $this->need("page/components/left.php");?>
-        <?php $this->need("page/components/right.php");?>
+      <div class="post-content">
+        <?php $this->need("components/post/article-tool.php");?>
+        <?php $this->need("components/post/left.php");?>
+        <?php $this->need("components/post/right.php");?>
       </div>
     </div>
   </main>
+  
 
   <?php //登录弹窗?>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/login-dialog.php");?>
-  <?php endif; ?>
-  <?php //浮动工具?>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/fixed-tool.php");?>
-  <?php endif; ?>
+  <?php $this->need("components/default/login-dialog.php");?>
+  <?php //悬浮工具?>
+  <?php $this->need("components/default/fixed-tool.php");?>
+  <?php //脚本?>
+  <?php $this->need("dist/script/page.php");?>
 </body>
 </html>
