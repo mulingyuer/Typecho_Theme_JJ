@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-08 02:00:41
- * @LastEditTime: 2021-08-08 15:17:44
+ * @LastEditTime: 2021-08-18 09:37:30
  * @LastEditors: mulingyuer
  * @Description: 表情
  * @FilePath: \JJ\src\scripts\face.js
@@ -74,6 +74,7 @@ export default class Face {
     if (!this.options.popperStatus) {
       //首次初始化
       this.$popper = createPopper(this.$btn, this.$tooltip, this.options.config);
+      this.options.popperStatus = true;
     } else {
       //开启事件监听
       this.$popper.setOptions({
