@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-09 22:54:14
- * @LastEditTime: 2021-08-18 22:11:10
+ * @LastEditTime: 2021-08-18 23:25:11
  * @LastEditors: mulingyuer
  * @Description: 导航nav
  * @FilePath: \JJ\src\scripts\nav.js
@@ -81,6 +81,7 @@ export class Nav {
 
       //显示逻辑
       const tooltip = weakMap.tooltip;
+      weakMap.hideEndFn && tooltip.removeEventListener("transitionend", weakMap.hideEndFn);
       if (!tooltip.classList.contains("show")) {
         tooltip.style.display = "block";
 
@@ -97,17 +98,25 @@ export class Nav {
     const weakMap = this.popperWeakMap.get(target);
     if (weakMap) {
       const tooltip = weakMap.tooltip;
+      //添加hide回调
+      if (!weakMap.hideEndFn) {
+        weakMap.hideEndFn = () => {
+          tooltip.style.display = "none";
+          //优化-禁用popper的事件监听
+          weakMap.popper.setOptions({
+            modifiers: [{ name: 'eventListeners', enabled: false }],
+          });
+
+          tooltip.removeEventListener("transitionend", weakMap.hideEndFn);
+        }
+      }
+
+      //添加动画结束事件
+      tooltip.addEventListener("transitionend", weakMap.hideEndFn);
+
       //删除类名
       if (tooltip.classList.contains("show")) {
         tooltip.classList.remove("show");
-
-        tooltip.offsetWidth;
-        tooltip.style.display = "none";
-
-        //优化-禁用popper的事件监听
-        weakMap.popper.setOptions({
-          modifiers: [{ name: 'eventListeners', enabled: false }],
-        });
       }
     }
   }
