@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-08-19 00:21:35
+ * @LastEditTime: 2021-08-19 00:28:25
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\index\index.js
@@ -41,7 +41,6 @@ $(function () {
   const $skeleton = $('#mini-article-skeleton-wrap');
   const $articleList = $('#article-list-wrap');
   let imgLazy = null;  //图片懒加载实例
-  console.log(111)
 
   //文章卡片点击事件
   $articleList.on('click', (event) => {
