@@ -1,2 +1,11 @@
 /.gitignore merge=ours
 /.gitattributes merge=ours
+/src merge=ours
+/webpack merge=ours
+/.babelrc merge=ours
+/.browserslistrc merge=ours
+/jsconfig.json merge=ours
+/package.json merge=ours
+/postcss.config.js merge=ours
+/webpack.config.js merge=ours
+/yarn.lock merge=ours
