@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-09 22:54:14
- * @LastEditTime: 2021-07-10 21:12:14
+ * @LastEditTime: 2021-08-18 22:11:10
  * @LastEditors: mulingyuer
  * @Description: 导航nav
  * @FilePath: \JJ\src\scripts\nav.js
@@ -67,7 +67,7 @@ export class Nav {
       const tooltip = target.querySelector(this.options.tooltip);
       const popper = createPopper(target, tooltip, this.options.popperOptions);
       //存储
-      this.popperWeakMap.set(target, { tooltip, popper, time: null });
+      this.popperWeakMap.set(target, { tooltip, popper });
     }
 
     //显示逻辑
@@ -84,10 +84,8 @@ export class Nav {
       if (!tooltip.classList.contains("show")) {
         tooltip.style.display = "block";
 
-        if (weakMap.time) clearTimeout(weakMap.time);  //清除之前定时器
-        weakMap.time = setTimeout(() => {
-          tooltip.classList.add("show");
-        }, 20)
+        tooltip.offsetWidth;
+        tooltip.classList.add("show");
       }
     }
   }
@@ -103,14 +101,13 @@ export class Nav {
       if (tooltip.classList.contains("show")) {
         tooltip.classList.remove("show");
 
-        if (weakMap.time) clearTimeout(weakMap.time);  //清除之前定时器
-        weakMap.time = setTimeout(() => {
-          tooltip.style.display = "none";
-          //优化-禁用popper的事件监听
-          weakMap.popper.setOptions({
-            modifiers: [{ name: 'eventListeners', enabled: false }],
-          });
-        }, 300)
+        tooltip.offsetWidth;
+        tooltip.style.display = "none";
+
+        //优化-禁用popper的事件监听
+        weakMap.popper.setOptions({
+          modifiers: [{ name: 'eventListeners', enabled: false }],
+        });
       }
     }
   }
