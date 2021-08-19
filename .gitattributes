@@ -1,7 +1,7 @@
-/.gitignore merge=ours diff=nodiff
-/.gitattributes merge=ours diff=nodiff
-/src/**/* merge=ours
-/webpack/**/* merge=ours
+/.gitignore merge=ours
+/.gitattributes merge=ours
+/src/* merge=ours
+/webpack/* merge=ours
 /.babelrc merge=ours
 /.browserslistrc merge=ours
 /jsconfig.json merge=ours
