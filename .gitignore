@@ -1,8 +1,6 @@
 .sass-cache
 /node_modules
 /.history
-/.gitignore 
-/.gitattributes 
 /src
 /webpack
 /.babelrc
