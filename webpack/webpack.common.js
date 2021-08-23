@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 02:24:10
- * @LastEditTime: 2021-08-14 22:52:47
+ * @LastEditTime: 2021-08-23 16:23:13
  * @LastEditors: mulingyuer
  * @Description: 通用配置
  * @FilePath: \JJ\webpack\webpack.common.js
@@ -148,9 +148,9 @@ module.exports = {
     minimizer: [
       //css压缩优化
       new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: 'advanced', // 需额外安装
-        },
+        // minimizerOptions: {
+        //   preset: 'advanced', // 需额外安装  有bug
+        // },
       }),
       //js压缩优化
       new TerserPlugin({
