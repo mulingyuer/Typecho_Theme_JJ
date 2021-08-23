@@ -41,6 +41,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 
   <?php //登录弹窗?>
   <?php $this->need("components/default/login-dialog.php");?>
+  <?php //搜索抽屉?>
+  <?php $this->need("components/default/drawer-search.php");?>
   <?php //悬浮工具?>
   <?php $this->need("components/default/fixed-tool.php");?>
   <?php //脚本?>

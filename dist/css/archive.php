@@ -1,1 +1,1 @@
-<link rel="stylesheet" href="<?php $this->options->themeUrl('dist/archive/style.25974cde.css'); ?>">
+<link rel="stylesheet" href="<?php $this->options->themeUrl('dist/archive/style.fe4c2201.css'); ?>">
