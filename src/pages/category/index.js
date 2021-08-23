@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 16:55:04
- * @LastEditTime: 2021-08-08 15:52:26
+ * @LastEditTime: 2021-08-23 14:50:32
  * @LastEditors: mulingyuer
  * @Description: 首页
  * @FilePath: \JJ\src\pages\category\index.js
@@ -12,6 +12,7 @@ import "./index.scss";
 //js
 import $ from "jquery";
 import { MainNav, Search, BlogMenu, CollectHeader } from "@/scripts/header"; //header
+import DrawerSearch from "@/scripts/drawer-search";
 import { Nav, CollectNav } from "@/scripts/nav";
 import { specifyParentClass } from "@/utils/tool";
 import ImgLazyload from "@/packages/img-lazyload";
@@ -30,6 +31,8 @@ $(function () {
   const search = new Search();
   //博客功能按钮
   const blogMenu = new BlogMenu();
+  //抽屉搜索
+  new DrawerSearch();
 
   //导航按钮
   const nav = new Nav();

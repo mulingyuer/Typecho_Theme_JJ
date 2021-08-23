@@ -13,7 +13,7 @@
               <img class="panfish-img greeting" src="<?php themeUrl('static/images/login/greeting.png');?>">
             </div>
             <div class="input-group password">
-              <input type="password" name="password" placeholder="请输入密码" required pattern="\S+.*">
+              <input type="password" name="password" placeholder="请输入密码" autocomplete="off" required pattern="\S+.*">
               <img class="panfish-img blindfold" src="<?php themeUrl('static/images/login/blindfold.png');?>">
             </div>
             <div class="input-group">
