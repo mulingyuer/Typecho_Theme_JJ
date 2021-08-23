@@ -154,12 +154,16 @@
         display: flex;
         align-items: center;
         width: 270px;
+        margin-right: 14px;
 
 
         @media screen and (max-width:980px) {
           width: auto;
         }
 
+        @media screen and (max-width:420px) {
+          display: none;
+        }
 
         //表单
         .search-form {
@@ -170,10 +174,6 @@
           background-color: $body-bg;
           border-radius: 2px;
           position: relative;
-
-          @media screen and (max-width:420px) {
-            display: none;
-          }
 
           //选中
           &:focus-within {
