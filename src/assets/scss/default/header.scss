@@ -137,6 +137,18 @@
 
       }
 
+      //搜索按钮
+      .search-icon {
+        display: none;
+        align-items: center;
+        padding: 0 15px;
+        cursor: pointer;
+
+        @media screen and (max-width:420px) {
+          display: flex;
+        }
+      }
+
       //搜索&写文章
       .search-add {
         display: flex;
@@ -284,7 +296,6 @@
       .login-notifi {
         display: flex;
         align-items: center;
-        margin-left: 14px;
 
         //登录按钮
         .login-btn {
@@ -298,6 +309,7 @@
           color: $primary;
           font-size: 16px;
           border-radius: 3px;
+          white-space: nowrap;
         }
 
         //消息
@@ -318,9 +330,9 @@
             font-size: 25px;
           }
 
-          @media screen and (max-width:420px) {
-            display: none;
-          }
+          // @media screen and (max-width:420px) {
+          //   display: none;
+          // }
         }
 
         //博客菜单

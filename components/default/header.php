@@ -22,6 +22,9 @@
           <?php endwhile; ?>
         </ul>
       </div>
+      <div class="nav-item search-icon">
+        <i class="icon icon-search"></i>
+      </div> 
       <div class="nav-item search-add">
         <form class="search-form" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
           <input class="search-input" type="text" id="s" name="s" placeholder="<?php _e('输入关键字搜索'); ?>" autocomplete="off">
