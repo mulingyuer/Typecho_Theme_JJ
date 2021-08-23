@@ -1,12 +1,3 @@
 .sass-cache
 /node_modules
 /.history
-/src
-/webpack
-/.babelrc
-/.browserslistrc
-/jsconfig.json
-/package.json
-/postcss.config.js
-/webpack.config.js
-/yarn.lock
