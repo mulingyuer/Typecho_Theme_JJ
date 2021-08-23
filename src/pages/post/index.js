@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-14 17:30:24
- * @LastEditTime: 2021-08-14 23:41:16
+ * @LastEditTime: 2021-08-23 14:53:17
  * @LastEditors: mulingyuer
  * @Description: 文章页
  * @FilePath: \JJ\src\pages\post\index.js
@@ -12,6 +12,7 @@ import "./index.scss";
 //js
 import $ from "jquery";
 import { Search, BlogMenu, CollectHeader } from "@/scripts/header"; //header
+import DrawerSearch from "@/scripts/drawer-search";
 import LoginDialog from "@/scripts/login-dialog";
 import BackTop from "@/scripts/back-top";
 import Face from "@/scripts/face";
@@ -33,6 +34,8 @@ $(function () {
   const search = new Search();
   //博客功能按钮
   const blogMenu = new BlogMenu();
+  //抽屉搜索
+  new DrawerSearch();
 
 
   //收起动画

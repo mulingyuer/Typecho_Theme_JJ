@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-07-04 18:58:24
- * @LastEditTime: 2021-07-10 21:08:20
+ * @LastEditTime: 2021-08-23 12:01:12
  * @LastEditors: mulingyuer
  * @Description: header脚本
  * @FilePath: \JJ\src\scripts\header.js
@@ -36,11 +36,11 @@ export class MainNav extends Dropdown {
 export class Search {
   options = {
     elForm: "#header .search-form", //form选择器
-    elInput: ".search-form .search-input", //input选择器
-    subBtn: ".search-form .search-btn",  //搜索按钮
-    recordWrap: ".search-form .typehead",  //历史记录容器
-    clearBtn: ".search-form .clear", //清理按钮
-    recordList: ".search-form .typehead .list", //搜索列表
+    elInput: "#header .search-form .search-input", //input选择器
+    subBtn: "#header .search-form .search-btn",  //搜索按钮
+    recordWrap: "#header .search-form .typehead",  //历史记录容器
+    clearBtn: "#header .search-form .clear", //清理按钮
+    recordList: "#header .search-form .typehead .list", //搜索列表
   };
 
   constructor(options = {}) {
