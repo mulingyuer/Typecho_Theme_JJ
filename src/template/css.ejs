@@ -1,0 +1,4 @@
+<% for (var css in htmlWebpackPlugin.files.css) { %>
+  <% const path = htmlWebpackPlugin.files.css[css].replace(/^\.\./,'dist'); %>
+  <link rel="stylesheet" href="<?php $this->options->themeUrl('<%= path %>'); ?>">
+<% } %>

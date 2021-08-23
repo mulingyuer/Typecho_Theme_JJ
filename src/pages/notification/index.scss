@@ -1,0 +1,208 @@
+//header
+@import "@/assets/scss/default/header.scss";
+@import "@/assets/scss/default/nav.scss";
+@import "@/assets/scss/default/login-dialog.scss";
+@import "@/assets/scss/default/fixed-tool.scss";
+@import "@/assets/scss/default/drawer-search.scss";
+
+#main {
+  padding-top: calc(#{$header-h} + #{$main-top});
+
+  .content {
+    position: relative;
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -10px;
+
+
+      .col {
+        width: 50%;
+        padding: 0 10px;
+        margin-bottom: 15px;
+
+        @media screen and (max-width:760px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .card {
+      height: 100%;
+      background-color: #fff;
+      border-radius: 3px;
+      padding: 10px 15px;
+      padding-bottom: 0;
+
+      .card-head {
+        display: flex;
+        align-items: center;
+
+        .left {
+          min-width: 0;
+          flex-grow: 1;
+          display: flex;
+          align-items: center;
+
+          .card-img {
+            flex-shrink: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px;
+
+            img {
+              @include imgFit();
+            }
+          }
+
+          .card-title {
+            .title {
+              font-size: 16px;
+              line-height: 1;
+              font-weight: bold;
+              color: #333;
+
+              a {
+                color: inherit;
+                text-decoration: none;
+              }
+            }
+
+            .subtitle {
+              margin-top: 5px;
+              font-size: 13px;
+              line-height: 1;
+              color: #8a9aa9;
+            }
+          }
+        }
+
+        .right {
+          flex-shrink: 0;
+
+          .btn {
+            display: inline-block;
+            vertical-align: top;
+            width: 55px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            text-decoration: none;
+            border: 1px solid #6cbd45;
+            color: #6cbd45;
+
+            &:hover {
+              opacity: .7;
+            }
+
+            &:active {
+              opacity: .9;
+            }
+          }
+        }
+      }
+
+      .card-body {
+        padding: 10px 15px;
+        padding-left: 57px;
+        font-size: 15px;
+        color: #17181a;
+        line-height: 1.6;
+        word-wrap: break-word;
+        height: 92px;
+
+        .card-text {
+          @include clamp(3);
+
+          img {
+            width: 25px;
+            height: 25px;
+            vertical-align: sub;
+            margin-left: 4px;
+
+            &+img {
+              margin-right: 2px;
+            }
+          }
+        }
+      }
+
+      .card-footer {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #ebebeb;
+        margin: 0 -15px;
+        padding: 5px 0;
+
+        a {
+          min-width: 0;
+          flex-grow: 1;
+          color: #919AA6;
+          height: 24px;
+          font-size: 12px;
+          text-decoration: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+
+          &:first-child {
+            border-right: 1px solid #ebebeb;
+          }
+
+          &:last-child {
+            border-left: 1px solid #ebebeb;
+          }
+
+          &:hover {
+            opacity: .7;
+          }
+
+          .icon {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+
+    //占位
+    .placeholder {
+      height: 600px;
+      background-color: #fff;
+      display: flex;
+
+      .placeholder-content {
+        margin: auto;
+
+        .img-warp {
+          width: 240px;
+          height: 240px;
+          margin: 0 auto;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            vertical-align: top;
+          }
+        }
+
+        .text {
+          text-align: center;
+          color: $text-color;
+          font-size: 16px;
+        }
+      }
+
+
+    }
+  }
+
+}

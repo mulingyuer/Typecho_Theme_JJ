@@ -1,0 +1,154 @@
+// 文章卡片样式
+.min-article-card {
+  padding: 18px 24px;
+  cursor: pointer;
+
+  &+.min-article-card {
+    border-top: 1px solid $border-color;
+  }
+
+  //文章信息-分类啥的
+  .article-info {
+    font-size: 12px;
+    color: darken($icon-color, 20%);
+    word-break: break-all;
+
+    .author {
+      color: lighten($title, 10%)
+    }
+
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover,
+      &:active {
+        color: $primary;
+      }
+    }
+
+    .author::after,
+    .time::after {
+      content: "|";
+      color: lighten($icon-color, 20%);
+      margin: 0 5px;
+    }
+
+    .classify-cut {
+      &::before {
+        content: "·";
+        color: $icon-color;
+        margin: 0 5px;
+      }
+    }
+  }
+
+  //主体内容
+  .article-card-content {
+    display: flex;
+    align-items: center;
+
+    .info-box {
+      min-width: 0;
+      flex-grow: 1;
+
+      .info-center {
+        margin-top: 6px;
+        margin-bottom: 12px;
+
+        .title {
+          display: block;
+          color: $title;
+          text-decoration: none;
+
+          h2 {
+            font-size: 17px;
+            line-height: 1.2;
+            font-weight: bold;
+            @include nowrap();
+          }
+
+          &:hover,
+          &:active {
+            text-decoration: underline;
+          }
+        }
+
+        .description {
+          font-size: 14px;
+          line-height: 22px;
+          color: lighten($title, 35%);
+          margin: 13px 0;
+          @include clamp(2);
+        }
+      }
+
+      .info-bottom {
+        display: flex;
+        align-items: center;
+
+        .btn {
+          font-size: 13px;
+          line-height: 1;
+          color: darken($text-color, 20%);
+          height: 24px;
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+
+          &+.btn {
+            margin-left: 20px;
+          }
+
+          .icon {
+            font-size: 14px;
+            margin-right: 5px;
+            font-weight: normal;
+            color: $icon-color;
+          }
+
+          &:hover {
+            color: $primary;
+
+            .icon {
+              color: $primary;
+            }
+          }
+        }
+
+      }
+    }
+
+    .entry-img {
+      flex-shrink: 0;
+      width: 120px;
+      height: 80px;
+      margin-left: 24px;
+      border-radius: 2px;
+
+      img {
+        @include imgFit();
+      }
+
+      @media screen and (max-width:600px) {
+        width: 80px;
+        height: 54px;
+        margin-left: 14px;
+      }
+
+      @media screen and (max-width:420px) {
+        width: 60px;
+        height: 40px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+
+
+  &:hover {
+    background-color: darken($white, 1%);
+  }
+
+}

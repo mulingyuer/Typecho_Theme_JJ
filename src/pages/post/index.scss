@@ -1,0 +1,21 @@
+//header
+@import "@/assets/scss/default/header.scss";
+@import "@/assets/scss/default/nav.scss";
+@import "@/assets/scss/default/login-dialog.scss";
+@import "@/assets/scss/default/fixed-tool.scss";
+@import "@/assets/scss/comments/index.scss";
+@import "@/assets/scss/default/drawer-search.scss";
+
+
+#main {
+  padding-top: calc(#{$header-h} + #{$main-top});
+
+  .post-content {
+    position: relative;
+
+    @import "@/assets/scss/post/article-tool.scss";
+    @import "@/assets/scss/post/post-left.scss";
+    @import "@/assets/scss/post/post-right.scss";
+  }
+
+}
