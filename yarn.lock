@@ -4199,10 +4199,10 @@ webpack-sources@^3.2.0:
   resolved "https://registry.nlark.com/webpack-sources/download/webpack-sources-3.2.0.tgz?cache=0&sync_timestamp=1627898333297&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fwebpack-sources%2Fdownload%2Fwebpack-sources-3.2.0.tgz#b16973bcf844ebcdb3afde32eda1c04d0b90f89d"
   integrity sha1-sWlzvPhE682zr94y7aHATQuQ+J0=
 
-webpack@^5.50.0:
-  version "5.50.0"
-  resolved "https://registry.nlark.com/webpack/download/webpack-5.50.0.tgz?cache=0&sync_timestamp=1628620367968&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fwebpack%2Fdownload%2Fwebpack-5.50.0.tgz#5562d75902a749eb4d75131f5627eac3a3192527"
-  integrity sha1-VWLXWQKnSetNdRMfVifqw6MZJSc=
+webpack@^5.51.1:
+  version "5.51.1"
+  resolved "https://registry.nlark.com/webpack/download/webpack-5.51.1.tgz?cache=0&sync_timestamp=1629382720712&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fwebpack%2Fdownload%2Fwebpack-5.51.1.tgz#41bebf38dccab9a89487b16dbe95c22e147aac57"
+  integrity sha1-Qb6/ONzKuaiUh7FtvpXCLhR6rFc=
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
