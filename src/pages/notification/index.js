@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-14 23:57:31
- * @LastEditTime: 2021-08-31 22:04:13
+ * @LastEditTime: 2021-08-31 22:05:58
  * @LastEditors: mulingyuer
  * @Description: 评论卡片页
  * @FilePath: \JJ\src\pages\notification\index.js
@@ -39,7 +39,8 @@ $(function () {
   new BackTop();
 
 
-
+  //表情替换
+  new FaceReplace({ el: ["#notification-content"] });
 
 
 

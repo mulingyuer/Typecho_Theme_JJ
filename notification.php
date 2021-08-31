@@ -22,7 +22,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
    
   <main id="main">
     <div class="container">
-      <div class="content">
+      <div class="content" id="notification-content">
         <?php $this->widget('Widget_Comments_Recent', 'pageSize=50&ignoreAuthor=true')->to($comments); ?>
         <?php if($comments->have()): ?>
           <div class="row">
