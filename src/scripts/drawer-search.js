@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2021-08-23 11:51:21
- * @LastEditTime: 2021-08-23 14:38:50
+ * @LastEditTime: 2021-08-31 21:57:31
  * @LastEditors: mulingyuer
  * @Description: 抽屉搜索
  * @FilePath: \JJ\src\scripts\drawer-search.js
@@ -12,7 +12,8 @@ import Mask from "@/packages/mask";
 
 export default class DrawerSearch {
   options = {
-    el: "#drawer-search",
+    wrap: "#drawer-search",
+    content: "#drawer-search .drawer-search-content",
     taggerBnt: "#header .search-icon",
     form: {
       elForm: "#drawer-search .search-form", //form选择器
@@ -41,11 +42,13 @@ export default class DrawerSearch {
 
   //增加点击事件
   addClickEvent() {
-    this.$wrap = document.querySelector(this.options.el);
+    this.$wrap = document.querySelector(this.options.wrap);
+    this.$content = document.querySelector(this.options.content);
     this.$btn = document.querySelector(this.options.taggerBnt);
     if (this.options.allowWrapNone && !this.$wrap && !this.$btn) return;
 
     if (!this.$wrap) throw new Error("抽屉容器不存在");
+    if (!this.$content) throw new Error("抽屉主体容器不存在");
     if (!this.$btn) throw new Error("抽屉触发容器不存在");
 
     this.showDrawer = this.showDrawer.bind(this);  //改变this指向
@@ -59,13 +62,13 @@ export default class DrawerSearch {
     this.addMaskOneClick();
 
     this.$wrap.style.display = "block";
-    this.$wrap.style.opacity = 0;
-    this.$wrap.style.transform = "translateY(-100%)";
+    this.$content.style.opacity = 0;
+    this.$content.style.transform = "translateY(-100%)";
 
     this.$wrap.offsetWidth;
 
-    this.$wrap.style.opacity = 1;
-    this.$wrap.style.transform = "translateY(0)";
+    this.$content.style.opacity = 1;
+    this.$content.style.transform = "translateY(0)";
   }
 
   //隐藏抽屉
@@ -79,12 +82,12 @@ export default class DrawerSearch {
     this.$wrap.addEventListener("transitionend", callback);
 
     this.$wrap.style.display = "block";
-    this.$wrap.style.opacity = 1;
+    this.$content.style.opacity = 1;
 
     this.$wrap.offsetWidth;
 
-    this.$wrap.style.opacity = 0;
-    this.$wrap.style.transform = "translateY(-100%)";
+    this.$content.style.opacity = 0;
+    this.$content.style.transform = "translateY(-100%)";
   }
 
 
