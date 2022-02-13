@@ -1,0 +1,15 @@
+{
+  "name": "typecho_theme_jj",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mulingyuer/Typecho_Theme_JJ.git",
+  "author": "mulingyuer <1321968423@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
