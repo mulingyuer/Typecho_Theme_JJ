@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-03-07 01:44:18
+ * @LastEditTime: 2022-03-08 01:07:44
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -13,17 +13,17 @@ import { resolve } from "path";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 //将CSS提取到单独的文件中
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-//html输出
-import HtmlWebpackPlugin from "html-webpack-plugin";
+
+//入口配置
+import entry from "./auto-load/entry";
+//html模板配置
+import htmlPlugin from "./auto-load/html-plugins";
 
 const baseConfig: Configuration = {
   mode: "development", //等同于 webpack --mode=development
   devtool: "eval", //控制是否生成sourcemap
   //入口
-  entry: {
-    home: resolve(__dirname, "../src/pages/home/index.ts"),
-    about: resolve(__dirname, "../src/pages/home/index.ts"),
-  },
+  entry,
   //输出
   output: {
     clean: true, // 在生成文件之前清空 output 目录
@@ -95,30 +95,8 @@ const baseConfig: Configuration = {
     new MiniCssExtractPlugin({
       filename: `css/[name].[contenthash:8].css`,
     }),
-    new HtmlWebpackPlugin({
-      filename: "head/home.php",
-      template: resolve(__dirname, "./template/test.ejs"), //自定义模板
-      chunks: ["home"],
-      inject: false, //自定义模板不需要自动注入
-      publicPath: "<?php aaa;?>", //拼接php地址
-      minify: {
-        removeComments: true, //去除html注释
-        collapseWhitespace: false, //去除换行
-        minifyCSS: true, //缩小样式元素和样式属性中css
-      },
-    }),
-    new HtmlWebpackPlugin({
-      filename: "head/about.php",
-      template: resolve(__dirname, "./template/test.ejs"), //自定义模板
-      chunks: ["about"],
-      inject: false, //自定义模板不需要自动注入
-      publicPath: "<?php aaa;?>", //拼接php地址
-      minify: {
-        removeComments: true, //去除html注释
-        collapseWhitespace: false, //去除换行
-        minifyCSS: true, //缩小样式元素和样式属性中css
-      },
-    }),
+    //html模板
+    ...htmlPlugin,
   ],
   //解析
   resolve: {

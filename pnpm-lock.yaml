@@ -6,6 +6,7 @@ specifiers:
   '@babel/plugin-proposal-class-properties': ^7.16.7
   '@babel/preset-env': ^7.16.11
   '@babel/preset-typescript': ^7.16.7
+  '@types/glob': ^7.2.0
   '@types/node': ^17.0.21
   '@types/webpack': ^5.28.0
   '@types/webpack-env': ^1.16.3
@@ -14,6 +15,7 @@ specifiers:
   cross-env: ^7.0.3
   css-loader: ^6.7.0
   css-minimizer-webpack-plugin: ^3.4.1
+  glob: ^7.2.0
   html-webpack-plugin: ^5.5.0
   mini-css-extract-plugin: ^2.6.0
   postcss: ^8.4.7
@@ -33,6 +35,7 @@ devDependencies:
   '@babel/plugin-proposal-class-properties': registry.npmmirror.com/@babel/plugin-proposal-class-properties/7.16.7_@babel+core@7.17.5
   '@babel/preset-env': registry.npmmirror.com/@babel/preset-env/7.16.11_@babel+core@7.17.5
   '@babel/preset-typescript': registry.npmmirror.com/@babel/preset-typescript/7.16.7_@babel+core@7.17.5
+  '@types/glob': registry.npmmirror.com/@types/glob/7.2.0
   '@types/node': registry.npmmirror.com/@types/node/17.0.21
   '@types/webpack': registry.npmmirror.com/@types/webpack/5.28.0_webpack-cli@4.9.2
   '@types/webpack-env': registry.npmmirror.com/@types/webpack-env/1.16.3
@@ -41,6 +44,7 @@ devDependencies:
   cross-env: registry.npmmirror.com/cross-env/7.0.3
   css-loader: registry.npmmirror.com/css-loader/6.7.0_webpack@5.70.0
   css-minimizer-webpack-plugin: registry.npmmirror.com/css-minimizer-webpack-plugin/3.4.1_webpack@5.70.0
+  glob: registry.npmmirror.com/glob/7.2.0
   html-webpack-plugin: registry.npmmirror.com/html-webpack-plugin/5.5.0_webpack@5.70.0
   mini-css-extract-plugin: registry.npmmirror.com/mini-css-extract-plugin/2.6.0_webpack@5.70.0
   postcss: registry.npmmirror.com/postcss/8.4.7
@@ -1638,6 +1642,15 @@ packages:
     version: 0.0.51
     dev: true
 
+  registry.npmmirror.com/@types/glob/7.2.0:
+    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/glob/-/glob-7.2.0.tgz}
+    name: '@types/glob'
+    version: 7.2.0
+    dependencies:
+      '@types/minimatch': registry.npmmirror.com/@types/minimatch/3.0.5
+      '@types/node': registry.npmmirror.com/@types/node/17.0.21
+    dev: true
+
   registry.npmmirror.com/@types/html-minifier-terser/6.1.0:
     resolution: {integrity: sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz}
     name: '@types/html-minifier-terser'
@@ -1648,6 +1661,12 @@ packages:
     resolution: {integrity: sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.9.tgz}
     name: '@types/json-schema'
     version: 7.0.9
+    dev: true
+
+  registry.npmmirror.com/@types/minimatch/3.0.5:
+    resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/minimatch/-/minimatch-3.0.5.tgz}
+    name: '@types/minimatch'
+    version: 3.0.5
     dev: true
 
   registry.npmmirror.com/@types/node/17.0.21:
