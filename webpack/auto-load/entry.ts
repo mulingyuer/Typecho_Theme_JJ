@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-07 01:45:56
- * @LastEditTime: 2022-03-08 00:55:54
+ * @LastEditTime: 2022-03-08 01:17:40
  * @LastEditors: mulingyuer
  * @Description: 自动加载入口文件
  * @FilePath: \Typecho_Theme_JJ\webpack\auto-load\entry.ts
@@ -15,7 +15,6 @@ const entryPath = "../../src/pages";
 
 //获取入口
 function getEntry() {
-  console.log(1111);
   let entry: { [key: string]: string } = {};
 
   //获取入口文件数组
