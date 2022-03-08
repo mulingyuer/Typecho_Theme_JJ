@@ -22,6 +22,7 @@ specifiers:
   postcss-loader: ^6.2.1
   sass: ^1.49.9
   sass-loader: ^12.6.0
+  terser-webpack-plugin: ^5.3.1
   ts-loader: ^9.2.7
   ts-node: ^10.7.0
   typescript: ^4.6.2
@@ -51,6 +52,7 @@ devDependencies:
   postcss-loader: registry.npmmirror.com/postcss-loader/6.2.1_postcss@8.4.7+webpack@5.70.0
   sass: registry.npmmirror.com/sass/1.49.9
   sass-loader: registry.npmmirror.com/sass-loader/12.6.0_sass@1.49.9+webpack@5.70.0
+  terser-webpack-plugin: registry.npmmirror.com/terser-webpack-plugin/5.3.1_webpack@5.70.0
   ts-loader: registry.npmmirror.com/ts-loader/9.2.7_typescript@4.6.2+webpack@5.70.0
   ts-node: registry.npmmirror.com/ts-node/10.7.0_e79e62fe450383fd2d418267dc75e645
   typescript: registry.npmmirror.com/typescript/4.6.2

@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-03-08 01:07:44
+ * @LastEditTime: 2022-03-09 00:21:01
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -86,12 +86,35 @@ const baseConfig: Configuration = {
   },
   //优化处理
   optimization: {
-    minimize: true, //是否在开发模式生效
+    minimize: true, //是否在开发模式生效优化（默认开发模式不启用）
     //最小化处理
-    minimizer: [new CssMinimizerPlugin()],
+    minimizer: [
+      //优化和缩小CSS
+      new CssMinimizerPlugin(),
+    ],
+    //拆分代码
+    splitChunks: {
+      minSize: 0, //最小分包要求
+      //分组处理
+      cacheGroups: {
+        //用户自定义的公共代码拆分
+        commons: {
+          name: "commons",
+          chunks: "all", //加入按需加载后，设为all将所有模块包括在优化范围内
+          minChunks: 2, //最小引入次数
+        },
+        //node_modules第三方库拆分
+        vendor: {
+          name: "vendor",
+          test: /node_modules/,
+          chunks: "initial",
+        },
+      },
+    },
   },
   //插件
   plugins: [
+    //提取css
     new MiniCssExtractPlugin({
       filename: `css/[name].[contenthash:8].css`,
     }),
@@ -100,13 +123,14 @@ const baseConfig: Configuration = {
   ],
   //解析
   resolve: {
+    extensions: [".js", ".ts"], //当requrie的模块找不到时,添加这些后缀
     //路径别名
     alias: {
-      "@": resolve(__dirname, "../src"),
-      "@utils": resolve(__dirname, "../src/utils"),
-      "@assets": resolve(__dirname, "../src/assets"),
-      "@components": resolve(__dirname, "../src/components"),
-      "@style": resolve(__dirname, "../src/style"),
+      "@": resolve(__dirname, "../src/"),
+      "@utils": resolve(__dirname, "../src/utils/"),
+      "@assets": resolve(__dirname, "../src/assets/"),
+      "@components": resolve(__dirname, "../src/components/"),
+      "@style": resolve(__dirname, "../src/style/"),
     },
   },
   //实验性功能

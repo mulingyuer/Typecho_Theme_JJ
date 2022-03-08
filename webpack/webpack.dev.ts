@@ -1,14 +1,26 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:46:49
- * @LastEditTime: 2022-03-07 00:17:25
+ * @LastEditTime: 2022-03-08 23:40:01
  * @LastEditors: mulingyuer
  * @Description: 开发模式配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.dev.ts
  * 怎么可能会有bug！！！
  */
+interface DevConfigInterface {
+  mode: "development";
+  devtool: string;
+  watch: boolean;
+  watchOptions: {
+    aggregateTimeout: number;
+    poll: number;
+    ignored: string[];
+  };
+}
 
-export default {
+const devConfig: DevConfigInterface = {
+  mode: "development", //等同于 webpack --mode=development
+  devtool: "eval", //控制是否生成sourcemap
   watch: true, //监听任何已解析文件的更改
   watchOptions: {
     aggregateTimeout: 600, //600ms内可以重复保存
@@ -16,3 +28,5 @@ export default {
     ignored: ["**/node_modules"], //忽略模块文件夹
   },
 };
+
+export default devConfig;

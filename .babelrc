@@ -7,6 +7,7 @@
           //core-js的版本
           "version": 3
         },
+        "useBuiltIns": "usage",
         "targets": {
           "edge": "17",
           "firefox": "60",

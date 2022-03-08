@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 23:50:28
- * @LastEditTime: 2022-03-07 01:31:03
+ * @LastEditTime: 2022-03-08 23:57:37
  * @LastEditors: mulingyuer
  * @Description: 首页入口
  * @FilePath: \Typecho_Theme_JJ\src\pages\home\index.ts
@@ -9,8 +9,10 @@
  */
 import "./test.css";
 import "./tests.scss";
+import { test } from "@utils/tool";
 
 console.log("home");
+test();
 // Promise调用
 Promise.resolve().then((res) => {
   console.log(res, "add");

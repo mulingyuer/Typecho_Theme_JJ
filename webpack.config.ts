@@ -1,13 +1,12 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-02-13 22:47:00
- * @LastEditTime: 2022-03-06 21:53:25
+ * @LastEditTime: 2022-03-08 23:44:25
  * @LastEditors: mulingyuer
  * @Description: webpack配置
  * @FilePath: \Typecho_Theme_JJ\webpack.config.ts
  * 怎么可能会有bug！！！
  */
-import { Configuration } from "webpack";
 import { merge } from "webpack-merge";
 //配置
 import baseConfig from "./webpack/webpack.base";
@@ -24,11 +23,9 @@ module.exports = () => {
   //模式
   switch (nodeEnv) {
     case "development": //开发模式
-      return merge<Configuration>(baseConfig, devConfig);
-      break;
+      return merge(baseConfig, devConfig);
     case "production": //生产模式
-      return merge<Configuration>(baseConfig, prodConfig);
-      break;
+      return merge(baseConfig, prodConfig);
     default:
       throw new Error(`未知的开发环境：${nodeEnv}`);
   }
