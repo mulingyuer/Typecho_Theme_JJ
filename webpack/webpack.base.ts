@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-03-09 00:21:01
+ * @LastEditTime: 2022-03-09 00:59:01
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -13,6 +13,10 @@ import { resolve } from "path";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 //将CSS提取到单独的文件中
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+
+//ui优化
+//进度条
+import WebpackBar from "webpackbar";
 
 //入口配置
 import entry from "./auto-load/entry";
@@ -111,12 +115,21 @@ const baseConfig: Configuration = {
         },
       },
     },
+    //将chunks映射关系的list单独从app.js里提取出来
+    runtimeChunk: {
+      name: (entrypoint: { name: string }) => `manifest-${entrypoint.name}`,
+    },
   },
   //插件
   plugins: [
+    //进度条
+    new WebpackBar({
+      name: `📢 Typecho_Theme_JJ`,
+      color: "#1e80ff",
+    }),
     //提取css
     new MiniCssExtractPlugin({
-      filename: `css/[name].[contenthash:8].css`,
+      filename: `style/[name].[contenthash:8].css`,
     }),
     //html模板
     ...htmlPlugin,
