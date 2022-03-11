@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-03-09 00:59:01
+ * @LastEditTime: 2022-03-11 20:50:10
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -31,7 +31,7 @@ const baseConfig: Configuration = {
   //输出
   output: {
     clean: true, // 在生成文件之前清空 output 目录
-    filename: `entry/[name].[contenthash:8].js`,
+    filename: `pages/[name].[contenthash:8].js`,
     path: resolve(__dirname, "../dist"),
   },
   //模块
@@ -136,7 +136,7 @@ const baseConfig: Configuration = {
   ],
   //解析
   resolve: {
-    extensions: [".js", ".ts"], //当requrie的模块找不到时,添加这些后缀
+    // extensions: [".js", ".ts"], //当requrie的模块找不到时,添加这些后缀
     //路径别名
     alias: {
       "@": resolve(__dirname, "../src/"),

@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-02-13 22:47:00
- * @LastEditTime: 2022-03-08 23:44:25
+ * @LastEditTime: 2022-03-11 20:30:23
  * @LastEditors: mulingyuer
  * @Description: webpack配置
  * @FilePath: \Typecho_Theme_JJ\webpack.config.ts
@@ -17,7 +17,7 @@ import prodConfig from "./webpack/webpack.prod";
 //   return path.resolve(__dirname, myPath);
 // };
 
-module.exports = () => {
+export default () => {
   //环境变量
   const nodeEnv = process.env.NODE_ENV;
   //模式
