@@ -1,21 +1,22 @@
 /*
  * @Author: mulingyuer
- * @Date: 2022-03-06 23:50:28
- * @LastEditTime: 2022-03-13 04:30:26
+ * @Date: 2022-03-13 04:28:29
+ * @LastEditTime: 2022-03-13 04:30:03
  * @LastEditors: mulingyuer
- * @Description: 首页入口
- * @FilePath: \Typecho_Theme_JJ\src\pages\home\index.ts
+ * @Description:
+ * @FilePath: \Typecho_Theme_JJ\src\pages\home\test.ts
  * 怎么可能会有bug！！！
  */
 import EventProxy from "@packages/event-proxy";
-import test from "./test";
 
 const fn = () => {
-  console.log("我运行了1", test);
+  console.log("我运行了2");
   //移除
-  EventProxy.removeEventListener(document.documentElement, "click", fn);
+  // EventProxy.removeEventListener(document.documentElement, "click", fn);
 };
 
 EventProxy.addEventListener(document.documentElement, "click", fn);
 EventProxy.addEventListener(document.documentElement, "click", fn);
 EventProxy.addEventListener(document.documentElement, "click", fn);
+
+export default {};

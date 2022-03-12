@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:46:49
- * @LastEditTime: 2022-03-08 23:40:01
+ * @LastEditTime: 2022-03-13 02:52:45
  * @LastEditors: mulingyuer
  * @Description: 开发模式配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.dev.ts
@@ -10,6 +10,7 @@
 interface DevConfigInterface {
   mode: "development";
   devtool: string;
+  output: {};
   watch: boolean;
   watchOptions: {
     aggregateTimeout: number;
@@ -21,6 +22,9 @@ interface DevConfigInterface {
 const devConfig: DevConfigInterface = {
   mode: "development", //等同于 webpack --mode=development
   devtool: "eval", //控制是否生成sourcemap
+  output: {
+    filename: `pages/[name].js`,
+  },
   watch: true, //监听任何已解析文件的更改
   watchOptions: {
     aggregateTimeout: 600, //600ms内可以重复保存

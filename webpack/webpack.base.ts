@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-03-11 20:50:10
+ * @LastEditTime: 2022-03-13 02:50:24
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -41,7 +41,11 @@ const baseConfig: Configuration = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /(node_modules|bower_components)/, //排除
-        include: resolve(__dirname, "../src"), //只包含
+        //只包含
+        include: [
+          resolve(__dirname, "../src"),
+          resolve(__dirname, "../packages"),
+        ],
         loader: "babel-loader",
       },
       //css|scss
@@ -136,7 +140,7 @@ const baseConfig: Configuration = {
   ],
   //解析
   resolve: {
-    // extensions: [".js", ".ts"], //当requrie的模块找不到时,添加这些后缀
+    extensions: [".js", ".ts"], //当requrie的模块找不到时,添加这些后缀
     //路径别名
     alias: {
       "@": resolve(__dirname, "../src/"),
@@ -144,6 +148,7 @@ const baseConfig: Configuration = {
       "@assets": resolve(__dirname, "../src/assets/"),
       "@components": resolve(__dirname, "../src/components/"),
       "@style": resolve(__dirname, "../src/style/"),
+      "@packages": resolve(__dirname, "../packages/"),
     },
   },
   //实验性功能
