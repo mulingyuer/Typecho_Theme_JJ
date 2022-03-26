@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-03-13 02:50:24
+ * @LastEditTime: 2022-03-26 22:06:54
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -13,6 +13,8 @@ import { resolve } from "path";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 //将CSS提取到单独的文件中
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+//静态资源
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 //ui优化
 //进度条
@@ -26,6 +28,7 @@ import htmlPlugin from "./auto-load/html-plugins";
 const baseConfig: Configuration = {
   mode: "development", //等同于 webpack --mode=development
   devtool: "eval", //控制是否生成sourcemap
+  stats: "errors-only", //控制台输出：只在发生错误时输出
   //入口
   entry,
   //输出
@@ -84,11 +87,17 @@ const baseConfig: Configuration = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+        generator: {
+          filename: "images/[hash][ext][query]",
+        },
       },
       //fonts
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
+        generator: {
+          filename: "fonts/[hash][ext][query]",
+        },
       },
     ],
   },
@@ -133,7 +142,16 @@ const baseConfig: Configuration = {
     }),
     //提取css
     new MiniCssExtractPlugin({
-      filename: `style/[name].[contenthash:8].css`,
+      filename: `css/[name].[contenthash:8].css`,
+    }),
+    //静态资源
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: resolve(__dirname, "../public"),
+          to: resolve(__dirname, "../dist"),
+        },
+      ],
     }),
     //html模板
     ...htmlPlugin,

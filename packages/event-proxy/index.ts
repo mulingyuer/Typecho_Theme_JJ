@@ -1,13 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-13 01:53:20
- * @LastEditTime: 2022-03-13 04:33:15
+ * @LastEditTime: 2022-03-26 22:56:53
  * @LastEditors: mulingyuer
  * @Description: 事件代理
  * @FilePath: \Typecho_Theme_JJ\packages\event-proxy\index.ts
  * 怎么可能会有bug！！！
  */
-import { DomMap, EventList, HTMLElementProxy } from "./type";
+import { DomMap, EventList, HTMLElementProxy } from "./types";
 
 class EventProxy {
   //dom列表
@@ -31,31 +31,21 @@ class EventProxy {
   }
 
   //移除事件
-  public removeEventListener(
-    eventTarget: HTMLElement,
-    type: string,
-    listener: EventListener
-  ) {
+  public removeEventListener(eventTarget: HTMLElement, type: string, listener: EventListener) {
     //判断是否存在dom
     if (!this.hasDom(eventTarget)) {
       return console.warn(`移除事件时没有找到dom，dom为${eventTarget}`);
     }
     //判断是否存在事件代理
     if (!this.hasDomEventProxy(eventTarget, type)) {
-      return console.warn(
-        `移除事件时没有找到事件代理，dom为${eventTarget}，事件类型为${type}`
-      );
+      return console.warn(`移除事件时没有找到事件代理，dom为${eventTarget}，事件类型为${type}`);
     }
     //移除事件
     this.removeDomEvent(eventTarget, type, listener);
   }
 
   //添加一次性事件
-  public addOnceEventListener(
-    eventTarget: HTMLElement,
-    type: string,
-    listener: EventListener
-  ) {
+  public addOnceEventListener(eventTarget: HTMLElement, type: string, listener: EventListener) {
     eventTarget.addEventListener(type, listener, { once: true });
   }
 
@@ -87,12 +77,7 @@ class EventProxy {
   }
 
   //dom添加事件列表
-  protected addDomEvent(
-    dom: HTMLElement,
-    type: string,
-    listener: EventListener,
-    options?: EventListenerOptions
-  ) {
+  protected addDomEvent(dom: HTMLElement, type: string, listener: EventListener, options?: EventListenerOptions) {
     const eventMap = this.domMap.get(dom);
     if (!eventMap) {
       throw new Error(`该dom还未初始化，无法添加事件代理，dom为${dom}`);
@@ -122,20 +107,14 @@ class EventProxy {
     //事件类型没有就返空数组
     const listSet = eventMap.get(type);
     if (!listSet) {
-      console.warn(
-        `触发事件时没有获取到事件类型对应的事件列表，${dom}，${type}`
-      );
+      console.warn(`触发事件时没有获取到事件类型对应的事件列表，${dom}，${type}`);
       return new Set();
     }
     return listSet;
   }
 
   //dom移除事件
-  protected removeDomEvent(
-    dom: HTMLElement,
-    type: string,
-    listener: EventListener
-  ) {
+  protected removeDomEvent(dom: HTMLElement, type: string, listener: EventListener) {
     //获取到evnetMap
     const eventMap = this.domMap.get(dom);
     if (!eventMap) {
@@ -158,10 +137,7 @@ class EventProxy {
     //事件列表为空就删除dom索引
     this.removeDom(dom);
     //移除事件监听
-    dom.removeEventListener(
-      type,
-      (dom as HTMLElementProxy)._eventFunctionProxy
-    );
+    dom.removeEventListener(type, (dom as HTMLElementProxy)._eventFunctionProxy);
   }
 
   //事件函数代理

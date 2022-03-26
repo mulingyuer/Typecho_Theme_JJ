@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-02-13 22:47:00
- * @LastEditTime: 2022-03-11 20:30:23
+ * @LastEditTime: 2022-03-26 21:58:58
  * @LastEditors: mulingyuer
  * @Description: webpack配置
  * @FilePath: \Typecho_Theme_JJ\webpack.config.ts
@@ -12,10 +12,6 @@ import { merge } from "webpack-merge";
 import baseConfig from "./webpack/webpack.base";
 import devConfig from "./webpack/webpack.dev";
 import prodConfig from "./webpack/webpack.prod";
-// const path = require('path');
-// const resolve = function (myPath) {
-//   return path.resolve(__dirname, myPath);
-// };
 
 export default () => {
   //环境变量
