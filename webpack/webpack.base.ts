@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-03-26 22:06:54
+ * @LastEditTime: 2022-03-27 23:27:31
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -45,10 +45,7 @@ const baseConfig: Configuration = {
         test: /\.(ts|js)x?$/,
         exclude: /(node_modules|bower_components)/, //排除
         //只包含
-        include: [
-          resolve(__dirname, "../src"),
-          resolve(__dirname, "../packages"),
-        ],
+        include: [resolve(__dirname, "../src"), resolve(__dirname, "../packages")],
         loader: "babel-loader",
       },
       //css|scss
@@ -139,10 +136,6 @@ const baseConfig: Configuration = {
     new WebpackBar({
       name: `📢 Typecho_Theme_JJ`,
       color: "#1e80ff",
-    }),
-    //提取css
-    new MiniCssExtractPlugin({
-      filename: `css/[name].[contenthash:8].css`,
     }),
     //静态资源
     new CopyWebpackPlugin({

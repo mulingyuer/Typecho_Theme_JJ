@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:23
- * @LastEditTime: 2022-03-26 22:23:47
+ * @LastEditTime: 2022-03-27 23:27:48
  * @LastEditors: mulingyuer
  * @Description: 生产模式配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.prod.ts
@@ -11,6 +11,8 @@ import { Configuration } from "webpack";
 import { resolve } from "path";
 //使用 terser 来压缩 JavaScript
 import TerserPlugin from "terser-webpack-plugin";
+//将CSS提取到单独的文件中
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const prodConfig: Configuration = {
   mode: "production", //等同于 webpack --mode=production
@@ -22,6 +24,12 @@ const prodConfig: Configuration = {
     filename: `pages/[name].[contenthash:8].js`,
     path: resolve(__dirname, "../dist"),
   },
+  plugins: [
+    //提取css
+    new MiniCssExtractPlugin({
+      filename: `css/[name].[contenthash:8].css`,
+    }),
+  ],
   optimization: {
     minimize: true, //是否在开发模式生效优化（默认开发模式不启用）
     minimizer: [
