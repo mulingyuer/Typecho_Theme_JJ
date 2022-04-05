@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-03-27 23:27:31
+ * @LastEditTime: 2022-04-05 18:30:24
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -73,7 +73,8 @@ const baseConfig: Configuration = {
                 //全局scss
                 additionalData: `
                   @import "@style/global/color.scss";
-                  @import "@style/global/mixins.scss"
+                  @import "@style/global/mixins.scss";
+                  @import "@style/global/z-index.scss";
                 `,
               },
             },

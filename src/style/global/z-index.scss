@@ -1,0 +1,12 @@
+// scss处理层级关系
+$zindex: (
+  modal: 9000,
+  overlay: 8000,
+  dropdown: 7000,
+  header: 6000,
+  footer: 5000,
+);
+
+// .header {
+//   z-index: map-get($zindex, header);
+// }
