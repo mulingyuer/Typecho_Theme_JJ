@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-04-05 18:53:55
- * @LastEditTime: 2022-04-06 23:45:51
+ * @LastEditTime: 2022-04-08 00:16:18
  * @LastEditors: mulingyuer
  * @Description: 封装axios
  * @FilePath: \Typecho_Theme_JJ\packages\request\axios.ts
@@ -9,8 +9,8 @@
  */
 import axios from "axios";
 import { AxiosInstance } from "axios";
-import { ApiConfig } from "./types";
-import { loadingInterceptor } from "./interceptor";
+import { ApiConfig, Interceptor, RequestConfig } from "./types";
+import { convertInterceptor, loadingInterceptor } from "./interceptor";
 
 //source
 const source = axios.CancelToken.source();
@@ -22,39 +22,41 @@ class Api {
 
   constructor(apiConfig: ApiConfig = {}) {
     this.config = apiConfig;
-    this.loading = apiConfig.loading ?? true;
+    this.loading = apiConfig.useLoading ?? true;
     //创建axios实例
-    this.instance = axios.create({ ...this.config, cancelToken: source.token });
+    console.log(apiConfig);
+    Object.assign(this.config, { cancelToken: source.token });
+    this.instance = axios.create(this.config);
 
     //拦截器
-    const { interceptor } = apiConfig;
-    if (interceptor) {
-      //请求前拦截器
-      this.instance.interceptors.request.use(interceptor.requestInterceptor, interceptor.requestInterceptorError);
-      //请求后拦截器
-      this.instance.interceptors.response.use(interceptor.responseInterceptor, interceptor.responseInterceptorError);
-    }
-
-    //取消请求
-
+    //数据转换
+    this.useInterceptor(convertInterceptor);
     //全局loading
-    if (this.loading) {
-      //请求前拦截器
-      this.instance.interceptors.request.use(loadingInterceptor.requestInterceptor);
-      //请求后拦截
-      this.instance.interceptors.response.use(
-        loadingInterceptor.responseInterceptor,
-        loadingInterceptor.responseInterceptorError
-      );
-    }
+    if (this.loading) this.useInterceptor(loadingInterceptor);
+    //用户拦截器
+    const { interceptor } = apiConfig;
+    if (interceptor) this.useInterceptor(interceptor);
+  }
+
+  /**
+   * @description: 注册拦截器
+   * @param {Interceptor} interceptor
+   * @Date: 2022-04-07 23:32:23
+   * @Author: mulingyuer
+   */
+  private useInterceptor(interceptor: Interceptor) {
+    //请求前拦截器
+    this.instance.interceptors.request.use(interceptor.requestInterceptor, interceptor.requestInterceptorError);
+    //请求后拦截器
+    this.instance.interceptors.response.use(interceptor.responseInterceptor, interceptor.responseInterceptorError);
   }
 
   //创建请求
-  public request(config: ApiConfig): Promise<any> {
-    const a = this.instance.request(new Error("21w31") as any);
-    setTimeout(() => {
-      source.cancel(JSON.stringify({ ...config, message: "取消请求" }));
-    });
+  public request(config: RequestConfig): Promise<any> {
+    const a = this.instance.request(config);
+    // setTimeout(() => {
+    //   source.cancel();
+    // });
     return a;
   }
 }
