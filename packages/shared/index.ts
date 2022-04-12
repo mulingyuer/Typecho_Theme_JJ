@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-28 22:35:01
- * @LastEditTime: 2022-04-05 05:09:05
+ * @LastEditTime: 2022-04-11 23:23:24
  * @LastEditors: mulingyuer
  * @Description: 通用工具
- * @FilePath: \vue3-receiver\packages\shared\src\index.ts
+ * @FilePath: \Typecho_Theme_JJ\packages\shared\index.ts
  * 怎么可能会有bug！！！
  */
 
@@ -87,4 +87,14 @@ export function hasOwn(target: any, key: string) {
  */
 export function isFunction(val: unknown): val is Function {
   return typeof val === "function";
+}
+
+/**
+ * @description: 是否为symbol
+ * @param {Symbol} val
+ * @Date: 2022-04-11 23:23:17
+ * @Author: mulingyuer
+ */
+export function isSymbol(val: unknown): val is Symbol {
+  return typeof val === "symbol";
 }

@@ -44,6 +44,9 @@
     "webpackbar": "^5.0.2"
   },
   "dependencies": {
-    "axios": "^0.26.1"
+    "@types/spark-md5": "^3.0.2",
+    "axios": "^0.26.1",
+    "mem": "^9.0.2",
+    "spark-md5": "^3.0.2"
   }
 }
