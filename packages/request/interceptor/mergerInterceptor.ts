@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-04-12 22:56:47
- * @LastEditTime: 2022-04-12 23:47:54
+ * @LastEditTime: 2022-04-15 01:37:38
  * @LastEditors: mulingyuer
  * @Description: 合并相同请求：固定时间内同一个请求共用同一个结果
  * @FilePath: \Typecho_Theme_JJ\packages\request\interceptor\MergerInterceptor.ts
@@ -9,6 +9,16 @@
  */
 import { ApiResponse, Interceptor, RequestConfig } from "../types";
 import mem from "mem";
+import AutoDestruction from "@packages/auto-destruction-data";
+
+const autoDestruction = new AutoDestruction({ expiryTime: 10000 });
+
+console.log(autoDestruction.set("a", 1));
+
+setTimeout(() => {
+  autoDestruction.delete("a");
+  console.log(autoDestruction.get("a"));
+}, 3000);
 
 // 全局合并请求拦截器
 const mergerInterceptor: Interceptor = {
