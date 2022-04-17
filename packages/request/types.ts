@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-04-06 21:46:33
- * @LastEditTime: 2022-04-12 23:41:57
+ * @LastEditTime: 2022-04-17 16:48:07
  * @LastEditors: mulingyuer
  * @Description:封装axios类型声明
  * @FilePath: \Typecho_Theme_JJ\packages\request\types.ts
@@ -31,6 +31,8 @@ export interface ApiConfig extends AxiosRequestConfig {
   useLoading?: boolean; //是否开启全局loading拦截器
   useMerger?: boolean; //是否开启全局合并请求拦截器
   useMergerTime?: number; //合并请求的有效时间
+  useRetry?: boolean; //是否开启失败重试拦截器
+  retryTimes?: number; //失败重试次数
   interceptor?: Interceptor;
 }
 

@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-04-11 21:59:34
- * @LastEditTime: 2022-04-12 23:42:31
+ * @LastEditTime: 2022-04-17 16:34:36
  * @LastEditors: mulingyuer
  * @Description:转换器
  * @FilePath: \Typecho_Theme_JJ\packages\request\interceptor\convertInterceptor.ts
@@ -12,7 +12,7 @@ import axios from "axios";
 import { createUniqueValue } from "../tool";
 
 //最初的转换器：转换一些数据
-export function convertInterceptor(instanceConfig: ApiConfig): Interceptor {
+function convertInterceptor(instanceConfig: ApiConfig): Interceptor {
   return {
     //请求前
     requestInterceptor: (config: RequestConfig) => {
@@ -23,7 +23,7 @@ export function convertInterceptor(instanceConfig: ApiConfig): Interceptor {
         loading: config.loading ?? instanceConfig.useLoading ?? false,
         uniqueValue: createUniqueValue(config) ?? "", //唯一值：相当重要
         merger: config.merger ?? instanceConfig.useMerger ?? false,
-        mergerTime: config.mergerTime ?? instanceConfig.useMergerTime ?? 1000,
+        // mergerTime: config.mergerTime ?? instanceConfig.useMergerTime ?? 1000, //时间根据用户来，它传多少，否则使用默认值
       });
 
       return config;

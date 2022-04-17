@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-28 22:35:01
- * @LastEditTime: 2022-04-11 23:23:24
+ * @LastEditTime: 2022-04-16 22:56:06
  * @LastEditors: mulingyuer
  * @Description: 通用工具
  * @FilePath: \Typecho_Theme_JJ\packages\shared\index.ts
@@ -97,4 +97,14 @@ export function isFunction(val: unknown): val is Function {
  */
 export function isSymbol(val: unknown): val is Symbol {
   return typeof val === "symbol";
+}
+
+/**
+ * @description: 是否是数字
+ * @param {unknown} val
+ * @Date: 2022-04-16 22:56:08
+ * @Author: mulingyuer
+ */
+export function isNumber(val: unknown): val is number {
+  return typeof val === "number";
 }

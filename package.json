@@ -14,8 +14,10 @@
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.5",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
+    "@babel/runtime": "^7.17.9",
     "@types/glob": "^7.2.0",
     "@types/node": "^17.0.21",
     "@types/webpack": "^5.28.0",
@@ -46,7 +48,6 @@
   "dependencies": {
     "@types/spark-md5": "^3.0.2",
     "axios": "^0.26.1",
-    "mem": "^9.0.2",
     "spark-md5": "^3.0.2"
   }
 }

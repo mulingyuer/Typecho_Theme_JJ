@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 23:50:28
- * @LastEditTime: 2022-04-14 21:58:45
+ * @LastEditTime: 2022-04-17 17:26:20
  * @LastEditors: mulingyuer
  * @Description: 首页入口
  * @FilePath: \Typecho_Theme_JJ\src\pages\home\index.ts
@@ -11,14 +11,16 @@ import "./tests.scss";
 import Api from "@packages/request";
 
 const api = new Api({
+  baseURL: "http://127.0.0.1:4523/mock",
   // useCancel: true,
   useLoading: true,
   useMerger: true,
+  useRetry: true,
 });
 
 api
   .request({
-    url: "https://mockapi.eolink.com/7yUWfsWb158d7a9523a8d83823b9a9d6c6a6d3e59e48b2f/test",
+    url: "/829654/test",
     loading: true,
     headers: {
       test: 1,
@@ -36,7 +38,7 @@ api
 
 api
   .request({
-    url: "https://mockapi.eolink.com/7yUWfsWb158d7a9523a8d83823b9a9d6c6a6d3e59e48b2f/test",
+    url: "/829654/test",
     loading: true,
     headers: {
       test: 1,
