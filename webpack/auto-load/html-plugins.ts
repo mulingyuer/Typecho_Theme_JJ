@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-07 01:46:54
- * @LastEditTime: 2022-03-08 01:08:35
+ * @LastEditTime: 2022-07-14 01:03:20
  * @LastEditors: mulingyuer
  * @Description: html 模板输出
  * @FilePath: \Typecho_Theme_JJ\webpack\auto-load\html-plugins.ts
@@ -22,7 +22,7 @@ function createHTMLPlugin() {
       template: resolve(__dirname, "../template/html.ejs"), //自定义模板
       chunks: [name], //指定插入的js文件
       inject: false, //自定义模板不需要自动注入
-      publicPath: "<?php aaa;?>", //拼接php地址
+      publicPath: "<?php echo $this->options->themeUrl; ?>/dist", //拼接php地址
       minify: {
         removeComments: true, //去除html注释
         collapseWhitespace: false, //去除换行
