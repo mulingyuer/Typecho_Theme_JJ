@@ -1,0 +1,27 @@
+// 重置样式
+:root {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+  font-family: inherit;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  position: absolute;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--jj-body-bg-color);
+}

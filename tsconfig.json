@@ -38,7 +38,7 @@
       "@utils*": ["./src/utils/*"],
       "@assets*": ["./src/assets/*"],
       "@components*": ["./src/components/*"],
-      "@style*": ["./src/style/*"],
+      "@styles*": ["./src/styles/*"],
       "@packages*": ["./packages/*"]
     },
     /* Specify a set of entries that re-map imports to additional lookup locations. */

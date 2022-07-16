@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-07-07 23:04:28
- * @LastEditTime: 2022-07-14 00:11:03
+ * @LastEditTime: 2022-07-16 21:07:00
  * @LastEditors: mulingyuer
  * @Description: 公共入口
  * @FilePath: \Typecho_Theme_JJ\src\main.ts
@@ -12,6 +12,10 @@ import { createApp } from "vue";
 
 //pinia
 const pinia = createPinia();
+
+//样式
+import "./styles/reset.scss";
+import "./styles/header.scss";
 
 //创建app实例
 const app = createApp({});

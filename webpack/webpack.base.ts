@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-03-06 21:47:42
- * @LastEditTime: 2022-04-05 18:30:24
+ * @LastEditTime: 2022-07-17 01:25:04
  * @LastEditors: mulingyuer
  * @Description: 基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.base.ts
@@ -70,13 +70,17 @@ const baseConfig: Configuration = {
                 // dart-sass 的 charset 选项默认为 true，我们强烈建议你将其改为 false，
                 // 因为 webpack 并不支持 utf-8 以外的文件。
                 charset: false,
-                //全局scss
-                additionalData: `
-                  @import "@style/global/color.scss";
-                  @import "@style/global/mixins.scss";
-                  @import "@style/global/z-index.scss";
-                `,
               },
+            },
+          },
+          {
+            loader: "sass-resources-loader",
+            options: {
+              resources: [
+                resolve(__dirname, "../src/styles/global/color.scss"),
+                resolve(__dirname, "../src/styles/global/mixins.scss"),
+                resolve(__dirname, "../src/styles/global/z-index.scss"),
+              ],
             },
           },
         ],
@@ -159,7 +163,7 @@ const baseConfig: Configuration = {
       "@utils": resolve(__dirname, "../src/utils/"),
       "@assets": resolve(__dirname, "../src/assets/"),
       "@components": resolve(__dirname, "../src/components/"),
-      "@style": resolve(__dirname, "../src/style/"),
+      "@styles": resolve(__dirname, "../src/styles/"),
       "@packages": resolve(__dirname, "../packages/"),
     },
   },

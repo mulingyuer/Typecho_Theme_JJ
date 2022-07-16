@@ -21,25 +21,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 </head>
 
 <body>
-  <header id="header" class="header">
-    <div class="header-container">
-      <div class="header-left">
-        <a class="header-logo" href="<?php $this->options->siteUrl(); ?>">
-          <img class="header-pc-logo" src="<?php themeUrl('dist/images/header/pc-logo.png'); ?>" alt="pc端logo">
-          <img class="header-mobile-logo" src="<?php themeUrl('dist/images/header/mobile-logo.png'); ?>" alt="移动端logo">
-        </a>
-        <nav class="header-nav">
-          <div class="header-mobile-menu">
-            <span>首页</span>
-            <img src="<?php themeUrl('dist/images/header/header-mobile-menu-arrow.svg'); ?>">
-          </div>
-
-        </nav>
-      </div>
-      <div class="header-right"></div>
-    </div>
-  </header>
-
+  <?php $this->need("php_components/header/index.php"); ?>
+  <!-- <div style="height:1200px;"></div> -->
 </body>
 
 </html>

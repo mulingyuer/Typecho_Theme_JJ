@@ -32,3 +32,6 @@
 <link rel="mask-icon" href="<?php themeUrl('dist/images/favicon/safari-pinned-tab.svg'); ?>" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#2b90ff">
 <meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="<?php themeUrl('dist/css/theme/light.css'); ?>" type="text/css" theme="light">
+<link rel="alternate stylesheet" href="<?php themeUrl('dist/css/theme/dark.css'); ?>" theme="dark">
+<link rel="stylesheet" href="<?php themeUrl('dist/css/fonts/iconfont.css'); ?>">
