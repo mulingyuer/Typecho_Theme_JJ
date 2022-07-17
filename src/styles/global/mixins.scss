@@ -1,0 +1,6 @@
+/* 仅1行显示，溢出... */
+@mixin one-line {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

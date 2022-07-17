@@ -1,8 +1,8 @@
 <header id="header" class="visible">
   <div class="container">
     <a class="logo" href="<?php $this->options->siteUrl(); ?>">
-      <img class="pc-logo" src="<?php themeUrl('static/images/header/pc-logo.png'); ?>" alt="pc端logo">
-      <img class="mobile-logo" src="<?php themeUrl('static/images/header/mobile-logo.png'); ?>" alt="移动端logo">
+      <img class="pc-logo" src="<?php themeUrl('static/images/header/pc-logo.png'); ?>" alt="<?php $this->options->title() ?>">
+      <img class="mobile-logo" src="<?php themeUrl('static/images/header/mobile-logo.png'); ?>" alt="<?php $this->options->title() ?>">
     </a>
     <nav class="header-nav">
       <div class="nav-item main-nav-list">
@@ -12,19 +12,23 @@
         </div>
         <ul class="mobile-hide">
           <li>
-            <a class="menu-item <?php if($this->is('index')){echo 'active';}; ?>" href="<?php $this->options->siteUrl(); ?>">首页</a>
+            <a class="menu-item <?php if ($this->is('index')) {
+                                  echo 'active';
+                                }; ?>" href="<?php $this->options->siteUrl(); ?>">首页</a>
           </li>
           <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
           <?php while ($pages->next()) : ?>
             <li>
-              <a  class="menu-item <?php if($this->is('page',$pages->slug)){echo 'active';}; ?>" href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
+              <a class="menu-item <?php if ($this->is('page', $pages->slug)) {
+                                    echo 'active';
+                                  }; ?>" href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
             </li>
           <?php endwhile; ?>
         </ul>
       </div>
       <div class="nav-item search-icon">
         <i class="icon icon-search"></i>
-      </div> 
+      </div>
       <div class="nav-item search-add">
         <form class="search-form" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
           <input class="search-input" type="text" id="s" name="s" placeholder="<?php _e('输入关键字搜索'); ?>" autocomplete="off">
@@ -41,20 +45,20 @@
             </div>
           </div>
         </form>
-        <?php if(!$this->user->hasLogin()): ?> 
+        <?php if (!$this->user->hasLogin()) : ?>
           <a class="add-btn login" href="javascript:;">写文章</a>
-        <?php else: ?>
+        <?php else : ?>
           <a class="add-btn" href="<?php $this->options->siteUrl(); ?>admin/write-post.php">写文章</a>
-         <?php endif; ?>
+        <?php endif; ?>
       </div>
       <div class="nav-item login-notifi">
-        <?php if(!$this->user->hasLogin()): ?>
+        <?php if (!$this->user->hasLogin()) : ?>
           <a class="login-btn" href="#">登录</a>
-        <?php else: ?>
-          <a class="notifi" href="<?php echo getHidePage($page,'notification');?>"><i class="icon icon-bell-fill"></i></a>
+        <?php else : ?>
+          <a class="notifi" href="<?php echo getHidePage($page, 'notification'); ?>"><i class="icon icon-bell-fill"></i></a>
           <div class="blog-menu">
             <div class="avatar">
-              <?php $this->author->gravatar(80);?> 
+              <?php $this->author->gravatar(80); ?>
             </div>
             <ul class="blog-menu-list">
               <div class="menu-item-group">
@@ -78,7 +82,7 @@
                 <li class="menu-item">
                   <a href="<?php $this->options->siteUrl(); ?>admin/manage-comments.php"><i class="icon icon-message-fill"></i>评论管理</a>
                 </li>
-                  <li class="menu-item">
+                <li class="menu-item">
                   <a href="<?php $this->options->siteUrl(); ?>admin/manage-categories.php"><i class="icon icon-appstore-fill"></i>分类管理</a>
                 </li>
               </div>

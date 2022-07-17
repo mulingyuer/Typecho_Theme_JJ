@@ -25,3 +25,13 @@ body {
   overflow: hidden;
   background-color: var(--jj-body-bg-color);
 }
+
+[type="search"] {
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+  }
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
