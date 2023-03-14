@@ -3,47 +3,24 @@
  * 掘金高仿版
  * ---------------------
  * 本主题仅供学习交流使用，严禁用于商业用途，请于24小时内删除
- * 
- * @package JJ V1.0 Beta
+ *
+ * @package JJ V1.1
  * @author 木灵鱼儿
- * @version 1.0 Beta
+ * @version 1.1
  * @link https://www.mulingyuer.com
  */
-
-if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+?>
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) {
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/default/head.php");?>
-    <?php //样式?>
-    <?php $this->need("dist/css/index.php");?>
-    
-  <?php endif; ?>
+  <?php $this->need("./php_modules/default_head.php");?>
+  <?php $this->need("./dist/head/home.php");?>
 </head>
 <body>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/default/header.php");?>
-    <?php $this->need("components/default/nav.php");?>
-  <?php endif; ?>
-   
-  <main id="main">
-    <div class="container">
-      <div class="content">
-        <?php $this->need("components/index/left.php");?>
-        <?php $this->need("components/index/right.php");?>
-      </div>
-    </div>
-  </main>
-  
-
-  <?php //登录弹窗?>
-  <?php $this->need("components/default/login-dialog.php");?>
-  <?php //搜索抽屉?>
-  <?php $this->need("components/default/drawer-search.php");?>
-  <?php //悬浮工具?>
-  <?php $this->need("components/default/fixed-tool.php");?>
-  <?php //脚本?>
-  <?php $this->need("dist/script/index.php");?>
+  这是首页
 </body>
 </html>

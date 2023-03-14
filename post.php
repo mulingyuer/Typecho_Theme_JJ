@@ -1,38 +1,10 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/default/head.php");?>
-    <?php //样式?>
-    <?php $this->need("dist/css/post.php");?>
-    
-  <?php endif; ?>
+  <?php $this->need("./php_modules/default_head.php");?>
+  <?php $this->need("./dist/head/post.php");?>
 </head>
 <body>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/default/header.php");?>
-    <?php //$this->need("components/default/nav.php");?>
-  <?php endif; ?>
-   
-  <main id="main">
-    <div class="container">
-      <div class="post-content">
-        <?php $this->need("components/post/article-tool.php");?>
-        <?php $this->need("components/post/left.php");?>
-        <?php $this->need("components/post/right.php");?>
-      </div>
-    </div>
-  </main>
-  
-
-  <?php //登录弹窗?>
-  <?php $this->need("components/default/login-dialog.php");?>
-  <?php //搜索抽屉?>
-  <?php $this->need("components/default/drawer-search.php");?>
-  <?php //悬浮工具?>
-  <?php $this->need("components/default/fixed-tool.php");?>
-  <?php //脚本?>
-  <?php $this->need("dist/script/post.php");?>
+  这是post页面，是一个文章页面模板文件。
 </body>
 </html>

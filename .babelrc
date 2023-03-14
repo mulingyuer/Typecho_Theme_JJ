@@ -1,14 +1,16 @@
 {
   "presets": [
-    "@babel/preset-env"
-  ],
-  "plugins": [
+    "@babel/preset-typescript",
     [
-      "@babel/plugin-transform-runtime",
+      "@babel/env",
       {
-        "corejs": 3
+        "useBuiltIns": "usage", //babel 会根据你配置的目标环境，自动引入 polyfill
+        "corejs": {
+          "version": 3,
+          "proposals": true // 使用尚在“提议”阶段特性的 polyfill
+        }
       }
-    ],
-    "@babel/plugin-proposal-class-properties"
-  ]
+    ]
+  ],
+  "plugins": ["@babel/plugin-transform-runtime", "@babel/proposal-class-properties", "@babel/proposal-object-rest-spread"]
 }

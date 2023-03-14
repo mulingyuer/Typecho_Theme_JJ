@@ -1,14 +1,13 @@
 /*
  * @Author: mulingyuer
- * @Date: 2021-07-01 23:23:58
- * @LastEditTime: 2021-07-01 23:41:31
+ * @Date: 2023-03-11 14:09:10
+ * @LastEditTime: 2023-03-11 14:09:10
  * @LastEditors: mulingyuer
- * @Description:postcss配置
- * @FilePath: \JJ\postcss.config.js
+ * @Description: postcss.config
+ * @FilePath: \webpack-multiple-entry\postcss.config.js
  * 怎么可能会有bug！！！
  */
+
 module.exports = {
-  plugins: [
-    require('postcss-preset-env')
-  ]
-}
+  plugins: ["autoprefixer"],
+};
