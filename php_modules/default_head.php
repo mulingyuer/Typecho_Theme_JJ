@@ -41,3 +41,7 @@ content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale
 <meta property="twitter:description" content="<?php blogDescription($this);?>">
 <meta property="twitter:image" content="<?php echo seoImage($this); ?>">
 
+<!-- theme -->
+<link href="<?php $this->options->themeUrl('/static/css/theme/light.css');?>" rel="stylesheet" type="text/css" title="light">
+<link href="<?php $this->options->themeUrl('/static/css/theme/dark.css');?>" rel="alternate stylesheet" type="text/css" title="dark">
+

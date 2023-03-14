@@ -21,6 +21,7 @@
   <?php $this->need("./dist/head/home.php");?>
 </head>
 <body>
+  <button id="theme">切换主题</button>
   这是首页
 </body>
 </html>
