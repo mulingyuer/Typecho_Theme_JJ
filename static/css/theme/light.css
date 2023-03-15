@@ -2,4 +2,28 @@
 :root {
   /* 基本色 */
   --jj-body-bg-color: #f4f5f5;
+
+  /** 顶部导航栏 */
+  --jj-header-bg-color: #fff;
+  --jj-header-text-color: #515767;
+  --jj-header-text-hover: #252933;
+  --jj-header-text-active: #1e80ff;
+  --jj-header-nav-border-color: #ebebeb;
+  --jj-header-nav-box-shadow: #ebebeb;
+  --jj-header-article-btn-bg: #1e80ff;
+  --jj-header-article-btn-color: #fff;
+  --jj-header-search-input-border: #c2c8d1;
+  --jj-header-search-input-border-active: #1e80ff;
+  --jj-header-search-input-color: #8a919f;
+  --jj-header-search-placeholder-color: #c0c3cb;
+  --jj-header-search-btn-color: #86909c;
+  --jj-header-search-btn-color-active: #1e80ff;
+  --jj-header-search-btn-bg: #f2f3f5;
+  --jj-header-search-btn-bg-active: #eaf2ff;
+  --jj-header-search-history-title-color: #869aab;
+  --jj-header-search-history-clear-color: #1e80ff;
+  --jj-header-search-history-text-color: #5e6369;
+  --jj-header-search-history-item-bg: #eff2f5;
+  --jj-header-comment-color: #8a919f;
+  --jj-header-comment-color-active: #515767;
 }

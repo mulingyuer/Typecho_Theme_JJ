@@ -1,0 +1,28 @@
+// 重置样式
+:root {
+  box-sizing: border-box;
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+  font-family: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--jj-body-bg-color);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}

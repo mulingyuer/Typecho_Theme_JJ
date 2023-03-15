@@ -1,1 +1,16 @@
 // 全局混入
+
+// 仅一行显示
+@mixin one-line() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// 指定行数显示
+@mixin multi-line($line: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}

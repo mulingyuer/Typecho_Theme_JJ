@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 20:34:21
- * @LastEditTime: 2023-03-14 18:50:15
+ * @LastEditTime: 2023-03-15 18:55:38
  * @LastEditors: mulingyuer
  * @Description: webpack基础配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.common.ts
@@ -33,7 +33,7 @@ export default {
         },
       },
       {
-        test: "/.css$/",
+        test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
