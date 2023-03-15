@@ -1,12 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-14 22:43:07
- * @LastEditTime: 2023-03-14 23:38:59
+ * @LastEditTime: 2023-03-15 16:44:17
  * @LastEditors: mulingyuer
  * @Description: 主题切换
  * @FilePath: \Typecho_Theme_JJ\src\utils\theme.ts
  * 怎么可能会有bug！！！
  */
+import { jjLocal } from "@/utils/storage";
 
 /** 主题map对象 */
 interface ThemeMap {
@@ -21,7 +22,7 @@ class Theme {
   private themeMap: ThemeMap = {};
   private activeTheme = "";
 
-  constructor() {
+  private constructor() {
     const linkList = Array.from(document.querySelectorAll<HTMLLinkElement>('link[type="text/css"][title]'));
 
     linkList.forEach((link) => {
@@ -35,7 +36,7 @@ class Theme {
       }
     });
 
-    const localTheme = localStorage.getItem("theme");
+    const localTheme = jjLocal.getItem<string>("theme");
     if (localTheme && localTheme !== this.activeTheme) {
       this.switchTheme(localTheme);
     }
@@ -57,7 +58,7 @@ class Theme {
     });
 
     this.activeTheme = theme;
-    localStorage.setItem("theme", theme);
+    jjLocal.setItem("theme", theme);
   }
 
   /** 获取主题实例 */
