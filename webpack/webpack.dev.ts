@@ -1,13 +1,14 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 20:49:25
- * @LastEditTime: 2023-03-14 18:50:19
+ * @LastEditTime: 2023-03-15 17:07:13
  * @LastEditors: mulingyuer
  * @Description: webpack dev配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.dev.ts
  * 怎么可能会有bug！！！
  */
 import type { Configuration } from "webpack";
+import { DefinePlugin } from "webpack";
 import { merge } from "webpack-merge";
 import common from "./webpack.common";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
@@ -23,6 +24,11 @@ export default merge(common, {
     new MiniCssExtractPlugin({
       filename: "styles/[name].css", //css文件命名
       chunkFilename: "chunk-[id].css", //异步样式
+    }),
+    //vue
+    new DefinePlugin({
+      __VUE_OPTIONS_API__: false,
+      __VUE_PROD_DEVTOOLS__: true,
     }),
   ],
   watch: true, //监听任何已解析文件的更改
