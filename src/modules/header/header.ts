@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-17 08:14:10
+ * @LastEditTime: 2023-03-17 08:29:30
  * @LastEditors: mulingyuer
  * @Description: header模块
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\header.ts
@@ -11,6 +11,7 @@ import "./header.scss";
 import { useDataStore } from "@/store/data";
 import { watch } from "vue";
 import SearchHistory from "./searchHistory";
+import { lockBodyScroll, unlockBodyScroll } from "@/utils/rollingLock";
 
 //获取数据仓库
 const dataStore = useDataStore();
@@ -172,6 +173,7 @@ class MobileSearch {
   private wrap: HTMLElement; //父级容器
   private searchContent: HTMLElement; //搜索存放容器
   private mask: HTMLElement; //遮罩层
+  private closeBtn: HTMLElement; //关闭按钮
   private searchFromWrap: HTMLElement; //表单容器
   private searchForm: HTMLFormElement; //表单
   private iconBtn: HTMLElement; //搜索按钮
@@ -181,13 +183,16 @@ class MobileSearch {
     this.wrap = document.querySelector(".mobile-search") as HTMLElement;
     this.searchContent = document.querySelector(".mobile-search-body") as HTMLElement;
     this.mask = document.querySelector(".mobile-search-mask") as HTMLElement;
+    this.closeBtn = document.querySelector(".mobile-search-close") as HTMLElement;
     this.searchFromWrap = document.querySelector(".header-search-wrap") as HTMLElement;
     this.searchForm = document.querySelector(".header-search-form") as HTMLFormElement;
     this.iconBtn = document.querySelector(".header-search-icon") as HTMLElement;
 
     //绑定事件
     this.iconBtn.addEventListener("click", this.onIconClick.bind(this));
-    this.mask.addEventListener("click", this.onClickMaskClose.bind(this));
+    this.onClickClose = this.onClickClose.bind(this);
+    this.mask.addEventListener("click", this.onClickClose);
+    this.closeBtn.addEventListener("click", this.onClickClose);
 
     //监听
     watch(() => dataStore.getWindowWidth, this.onResize.bind(this));
@@ -202,13 +207,14 @@ class MobileSearch {
       this.searchContent.appendChild(this.searchForm);
       this.searchForm.style.display = "block";
     }
+    lockBodyScroll();
     this.wrap.style.display = "block";
     getComputedStyle(this.wrap).display;
     this.wrap.classList.add("visible");
   }
 
-  /** 点击遮罩层关闭 */
-  private onClickMaskClose() {
+  /** 关闭 */
+  private onClickClose() {
     this.wrap.addEventListener(
       "transitionend",
       () => {
@@ -217,6 +223,7 @@ class MobileSearch {
       { once: true }
     );
     this.wrap.classList.remove("visible");
+    unlockBodyScroll();
   }
 
   /** 监听窗口变化，在宽度足够的情况下还原搜索 */
