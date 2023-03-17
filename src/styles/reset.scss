@@ -9,6 +9,7 @@
 ::after {
   box-sizing: inherit;
   font-family: inherit;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); //去除移动端点击有背景色
 }
 
 html,

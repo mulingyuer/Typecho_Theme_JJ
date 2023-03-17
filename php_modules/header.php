@@ -36,22 +36,16 @@
         </div>
         <div class="header-search-wrap">
           <form class="header-search-form" method="post" action="<?php $this->options->siteUrl();?>" role="search">
-            <input class="header-search-input" type="text" id="s" name="s" placeholder="<?php _e('输入关键字搜索');?>" autocomplete="off">
-            <div class="header-search-btn">
-              <i class="jj-icon jj-icon-sousuo" tabindex="0"></i>
-            </div>
-            <div class="header-search-history">
-              <div class="header-search-history-head">
-                <span class="header-search-history-head-title">搜索历史</span>
-                <span class="header-search-history-clear-btn">清空</span>
+            <input id="header-search-input" class="header-search-input" type="text" id="s" name="s" placeholder="<?php _e('输入关键字搜索');?>" autocomplete="off">
+            <label for="header-search-input" class="header-search-btn" tabindex="0">
+              <i class="jj-icon jj-icon-sousuo"></i>
+            </label>
+            <div class="search-history">
+              <div class="search-history-head">
+                <span class="search-history-head-title">搜索历史</span>
+                <span class="search-history-clear-btn">清空</span>
               </div>
-              <div class="header-search-history-list">
-                <div class="header-search-history-list-item">asad</div>
-                <div class="header-search-history-list-item">sadasda</div>
-                <div class="header-search-history-list-item">sadasda</div>
-                <div class="header-search-history-list-item">sadasda</div>
-                <div class="header-search-history-list-item">sadasda</div>
-                <div class="header-search-history-list-item">sadasda</div>
+              <div class="search-history-list">
               </div>
             </div>
           </form>
@@ -73,3 +67,12 @@
     </div>
   </div>
 </header>
+<div class="mobile-search">
+  <div class="mobile-search-mask"></div>
+  <div class="mobile-search-content">
+    <div class="mobile-search-close">
+      <i class="jj-icon jj-icon-guanbi mobile-search-close-icon"></i>
+    </div>
+    <div class="mobile-search-body"></div>
+  </div>
+</div>

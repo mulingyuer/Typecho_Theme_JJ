@@ -20,10 +20,10 @@
   --jj-header-search-btn-color-active: #1e80ff;
   --jj-header-search-btn-bg: #f2f3f5;
   --jj-header-search-btn-bg-active: #eaf2ff;
-  --jj-header-search-history-title-color: #869aab;
-  --jj-header-search-history-clear-color: #1e80ff;
-  --jj-header-search-history-text-color: #5e6369;
-  --jj-header-search-history-item-bg: #eff2f5;
+  --jj-search-history-title-color: #869aab;
+  --jj-search-history-clear-color: #1e80ff;
+  --jj-search-history-text-color: #5e6369;
+  --jj-search-history-item-bg: #eff2f5;
   --jj-header-comment-color: #8a919f;
   --jj-header-comment-color-active: #515767;
 }
