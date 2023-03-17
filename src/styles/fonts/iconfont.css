@@ -1,8 +1,8 @@
 @font-face {
   font-family: "jj-icon"; /* Project id 2465190 */
-  src: url('iconfont.woff2?t=1678883933864') format('woff2'),
-       url('iconfont.woff?t=1678883933864') format('woff'),
-       url('iconfont.ttf?t=1678883933864') format('truetype');
+  src: url('iconfont.woff2?t=1679015132497') format('woff2'),
+       url('iconfont.woff?t=1679015132497') format('woff'),
+       url('iconfont.ttf?t=1679015132497') format('truetype');
 }
 
 .jj-icon {
@@ -11,6 +11,34 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.jj-icon-dashboard:before {
+  content: "\e78d";
+}
+
+.jj-icon-setting:before {
+  content: "\e78e";
+}
+
+.jj-icon-appstore:before {
+  content: "\e792";
+}
+
+.jj-icon-user:before {
+  content: "\e7ae";
+}
+
+.jj-icon-file:before {
+  content: "\e7bb";
+}
+
+.jj-icon-file-text:before {
+  content: "\e7b9";
+}
+
+.jj-icon-comment:before {
+  content: "\e8e8";
 }
 
 .jj-icon-down:before {
@@ -55,6 +83,10 @@
 
 .jj-icon-border:before {
   content: "\e7a9";
+}
+
+.jj-icon-info-circle:before {
+  content: "\e77e";
 }
 
 .jj-icon-sync:before {

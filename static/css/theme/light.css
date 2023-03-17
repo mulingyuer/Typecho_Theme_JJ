@@ -2,6 +2,7 @@
 :root {
   /* 基本色 */
   --jj-body-bg-color: #f4f5f5;
+  --jj-img-skeleton-bg: #eeeff2;
 
   /** 顶部导航栏 */
   --jj-header-bg-color: #fff;
@@ -26,4 +27,6 @@
   --jj-search-history-item-bg: #eff2f5;
   --jj-header-comment-color: #8a919f;
   --jj-header-comment-color-active: #515767;
+  --jj-mobile-search-bg: #fff;
+  --jj-mobile-search-mask-bg: rgba(0, 0, 0, 0.6);
 }
