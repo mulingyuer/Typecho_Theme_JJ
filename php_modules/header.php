@@ -58,6 +58,9 @@
         <a class="header-comment" href="" target="_self" title="评论列表">
           <i class="jj-icon jj-icon-tongzhixiaoxi header-comment-icon"></i>
         </a>
+        <?php if (!$this->user->hasLogin()): ?>
+          <button class="header-login-btn">登录</button>
+        <?php else: ?>
         <div class="header-menu-wrap">
           <div class="header-avatar">
             <?php $this->author->gravatar(80);?>
@@ -65,7 +68,9 @@
           <div class="header-menu-body">
             <div class="header-menu-head">
               <div class="header-menu-avatar">
-                <?php $this->author->gravatar(100);?>
+                <a href="http://cn.gravatar.org/" target="_blank" title="修改头像">
+                  <?php $this->author->gravatar(100);?>
+                </a>
               </div>
               <div class="header-menu-username"><?php $this->author();?></div>
             </div>
@@ -124,6 +129,7 @@
             </div>
           </div>
         </div>
+        <?php endif;?>
       </div>
     </div>
   </div>

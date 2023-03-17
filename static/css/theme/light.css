@@ -12,6 +12,7 @@
   --jj-header-nav-border-color: #ebebeb;
   --jj-header-nav-box-shadow: #ebebeb;
   --jj-header-article-btn-bg: #1e80ff;
+  --jj-header-article-btn-bg-hover: #1171ee;
   --jj-header-article-btn-color: #fff;
   --jj-header-search-input-border: #c2c8d1;
   --jj-header-search-input-border-active: #1e80ff;
@@ -29,4 +30,8 @@
   --jj-header-comment-color-active: #515767;
   --jj-mobile-search-bg: #fff;
   --jj-mobile-search-mask-bg: rgba(0, 0, 0, 0.6);
+  --jj-header-login-btn-bg: rgba(30, 128, 255, 0.05);
+  --jj-header-login-btn-bg-hover: rgba(30, 128, 255, 0.1);
+  --jj-header-login-btn-border: rgba(30, 128, 255, 0.3);
+  --jj-header-login-btn-color: #007fff;
 }
