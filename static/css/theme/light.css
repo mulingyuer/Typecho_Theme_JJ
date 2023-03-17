@@ -34,4 +34,13 @@
   --jj-header-login-btn-bg-hover: rgba(30, 128, 255, 0.1);
   --jj-header-login-btn-border: rgba(30, 128, 255, 0.3);
   --jj-header-login-btn-color: #007fff;
+  --jj-header-menu-text-color: #252933;
+  --jj-header-menu-count-title-color: #8a919f;
+  --jj-header-menu-item-bg-hover: #f7f8fa;
+  --jj-header-menu-item-icon: #f7f8fa;
+  --jj-header-menu-footer-text-color: #8a919f;
+  --jj-header-menu-footer-text-color-hover: #1e80ff;
+
+  /* 登录弹窗 */
+  --jj-login-dialog-mask-bg: rgba(0, 0, 0, 0.3);
 }

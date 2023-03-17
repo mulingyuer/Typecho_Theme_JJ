@@ -143,3 +143,46 @@
     <div class="mobile-search-body"></div>
   </div>
 </div>
+<div class="login-dialog">
+  <div class="login-dialog-content-wrap">
+    <div class="login-dialog-mask"></div>
+    <div class="login-dialog-content">
+      <div class="login-dialog-close">
+        <i class="jj-icon jj-icon-guanbi login-dialog-close-icon"></i>
+      </div>
+      <div class="login-dialog-head">
+        <h2 class="login-dialog-title">登录</h2>
+      </div>
+      <div class="login-dialog-body">
+        <div class="login-dialog-body-left">
+          <div class="login-dialog-body-left-title">账号密码登录</div>
+          <form class="login-dialog-form" action="<?php $this->options->loginAction()?>" method="post" name="login" rold="form">
+            <input type="hidden" name="referer" value="<?php echo $this->request->getRequestUrl(); ?>" required>
+            <div class="login-dialog-input-group username">
+              <input type="text" name="name" placeholder="请输入账号" required pattern="\S+.*">
+              <img class="panfish-img greeting" src="<?php $this->options->themeUrl('/static/images/login/greeting.png');?>">
+            </div>
+            <div class="login-dialog-input-group password">
+              <input type="password" name="password" placeholder="请输入密码" autocomplete="off" required pattern="\S+.*">
+              <img class="panfish-img blindfold" src="<?php $this->options->themeUrl('/static/images/login/blindfold.png');?>">
+            </div>
+            <div class="login-dialog-input-group submit">
+              <button class="login-dialog-form-btn">登录</button>
+            </div>
+            <img class="panfish-img normal" src="<?php $this->options->themeUrl('/static/images/login/normal.png');?>">
+          </form>
+        </div>
+        <div class="login-dialog-body-right">
+          <div class="login-dialog-qrcode-title">扫码登录</div>
+          <div class="login-dialog-qrcode">
+            <img class="login-dialog-qrcode-img" src="" alt="扫码登录">
+          </div>
+          <div class="login-dialog-qrcode-tips">请使用手机扫码登录</div>
+        </div>
+      </div>
+      <div class="login-dialog-footer">
+        注册登录即表示同意<a class="login-dialog-link" href="" title="用户协议">用户协议</a>和<a class="login-dialog-link" href="" title="隐私政策">隐私政策</a>
+      </div>
+    </div>
+  </div>
+</div>

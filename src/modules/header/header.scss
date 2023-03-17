@@ -6,6 +6,7 @@
   z-index: 1;
   background-color: var(--jj-header-bg-color);
   transition: transform 0.2s;
+  padding-left: calc(100vw - 100%);
   &.hidden {
     transform: translate3D(0, -100%, 0);
   }
@@ -334,6 +335,10 @@
   border: 1px solid var(--jj-header-nav-border-color);
   border-radius: 4px;
   box-shadow: 0 8px 24px var(--jj-header-nav-box-shadow);
+  display: none;
+  &.visible {
+    display: block;
+  }
 }
 .header-menu-head {
   display: flex;
@@ -357,7 +362,7 @@
   flex-grow: 1;
   min-width: 0;
   font-size: 16px;
-  color: #252933;
+  color: var(--jj-header-menu-text-color);
   @include one-line();
 }
 .header-menu-count {
@@ -378,13 +383,13 @@
 }
 .header-menu-count-item-num {
   font-size: 16px;
-  color: #252933;
+  color: var(--jj-header-menu-text-color);
   margin-bottom: 4px;
   @include one-line();
 }
 .header-menu-count-item-title {
   font-size: 12px;
-  color: #8a919f;
+  color: var(--jj-header-menu-count-title-color);
   @include one-line();
 }
 .header-menu-list {
@@ -400,7 +405,7 @@
   line-height: 40px;
   text-align: center;
   font-size: 14px;
-  color: #252933;
+  color: var(--jj-header-menu-text-color);
   text-decoration: none;
   border-radius: 4px;
   &:nth-child(odd) {
@@ -410,7 +415,7 @@
     margin-left: 10px;
   }
   &:hover {
-    background-color: #f7f8fa;
+    background-color: var(--jj-header-menu-item-bg-hover);
   }
   &:active {
     opacity: 0.7;
@@ -418,7 +423,7 @@
 }
 .header-menu-list-item-icon {
   font-size: 16px;
-  color: #8a919f;
+  color: var(--jj-header-menu-item-icon);
   margin-right: 4px;
   line-height: inherit;
 }
@@ -430,10 +435,10 @@
 }
 .header-menu-footer-btn {
   font-size: 12px;
-  color: #8a919f;
+  color: var(--jj-header-menu-footer-text-color);
   text-decoration: none;
   &:hover {
-    color: #1e80ff;
+    color: var(--jj-header-menu-footer-text-color-hover);
   }
   &:active {
     opacity: 0.7;
@@ -521,6 +526,230 @@
   }
 }
 
+//登录弹窗
+.login-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  overflow: auto;
+  display: none;
+  &.visible {
+    .login-dialog-mask {
+      opacity: 1;
+    }
+    .login-dialog-content {
+      opacity: 1;
+      transform: translate3D(0, 0, 0) scale(1);
+    }
+  }
+}
+.login-dialog-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--jj-login-dialog-mask-bg);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.login-dialog-content-wrap {
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+.login-dialog-content {
+  width: 640px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  position: relative;
+  opacity: 0;
+  transform: translate3D(0, 50%, 0) scale(0.9);
+  transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
+}
+.login-dialog-close {
+  position: absolute;
+  top: 20px;
+  right: 27px;
+  font-size: 18px;
+  color: #8a919f;
+  cursor: pointer;
+  &:active {
+    opacity: 0.7;
+  }
+}
+.login-dialog-close-icon {
+  font-size: inherit;
+}
+.login-dialog-head {
+  padding: 20px 27px;
+  border-bottom: 1px solid rgba(228, 230, 235, 0.5);
+}
+.login-dialog-title {
+  font-size: 20px;
+  font-weight: normal;
+  color: #252933;
+}
+.login-dialog-body {
+  display: flex;
+  padding: 20px 27px 0;
+}
+.login-dialog-body-left {
+  flex-grow: 1;
+  min-width: 0;
+}
+.login-dialog-body-left-title {
+  font-size: 16px;
+  color: #252933;
+  margin-bottom: 16px;
+}
+.login-dialog-input-group {
+  input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    color: #000;
+    background-color: #f2f3f5;
+    border: 1px solid #f2f3f5;
+    border-radius: 4px;
+    outline: none;
+    &::placeholder {
+      color: #c4c7ce;
+    }
+    &:focus {
+      background-color: #fff;
+      border-color: #1e80ff;
+    }
+  }
+  & + & {
+    margin-top: 20px;
+  }
+  &.submit {
+    margin-top: 30px;
+  }
+  //用户名-打招呼熊猫
+  &.username:focus-within {
+    input {
+      border-color: #007fff;
+    }
+
+    .greeting {
+      display: block;
+    }
+
+    & ~ .normal {
+      display: none;
+    }
+  }
+
+  //密码-遮住眼睛熊猫
+  &.password:focus-within {
+    input {
+      border-color: #007fff;
+    }
+
+    .blindfold {
+      display: block;
+    }
+
+    & ~ .normal {
+      display: none;
+    }
+  }
+}
+.login-dialog-form-btn {
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-color: #1e80ff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.1s linear;
+  &:hover {
+    background-color: #1171ee;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+}
+// 熊猫图
+.panfish-img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 120px;
+  display: none;
+
+  &.normal {
+    display: block;
+    transform: translate(-50%, -83%);
+  }
+
+  &.greeting {
+    transform: translate(-50%, -75.8%);
+  }
+
+  &.blindfold {
+    transform: translate(-50%, -75%);
+  }
+}
+.login-dialog-body-right {
+  flex-shrink: 0;
+  width: 230px;
+  padding-left: 36px;
+  margin-left: 36px;
+  border-left: 1px solid #f1f2f5;
+}
+.login-dialog-qrcode-title {
+  font-size: 16px;
+  color: #252933;
+  margin-bottom: 16px;
+}
+.login-dialog-qrcode {
+  margin-bottom: 16px;
+  border: 1px solid #e4e6eb;
+  border-radius: 4px;
+  width: 150px;
+  height: 150px;
+  padding: 5px;
+  overflow: hidden;
+}
+.login-dialog-qrcode-img {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
+.login-dialog-qrcode-tips {
+  font-size: 16px;
+  color: #252933;
+}
+.login-dialog-footer {
+  margin-top: 40px;
+  padding-bottom: 20px;
+  font-size: 14px;
+  color: #8a919f;
+  text-align: center;
+}
+.login-dialog-link {
+  text-decoration: none;
+  color: #1e80ff;
+  margin: 0 5px;
+  &:hover {
+    color: #1171ee;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+}
+
 @media screen and (max-width: 960px) {
   .header-search-wrap {
     width: 300px;
@@ -540,6 +769,12 @@
   .header-article-btn {
     margin-left: 0;
   }
+  .login-dialog-content {
+    width: 420px;
+  }
+  .login-dialog-body-right {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 640px) {
@@ -548,6 +783,9 @@
   }
   .header-logo-mobile {
     display: block;
+  }
+  .login-dialog-content {
+    width: 300px;
   }
 }
 @media screen and (max-width: 600px) {

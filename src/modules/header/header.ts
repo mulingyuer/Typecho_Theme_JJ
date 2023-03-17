@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-17 08:29:30
+ * @LastEditTime: 2023-03-17 12:35:43
  * @LastEditors: mulingyuer
  * @Description: header模块
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\header.ts
@@ -12,6 +12,7 @@ import { useDataStore } from "@/store/data";
 import { watch } from "vue";
 import SearchHistory from "./searchHistory";
 import { lockBodyScroll, unlockBodyScroll } from "@/utils/rollingLock";
+import QRCode from "qrcode";
 
 //获取数据仓库
 const dataStore = useDataStore();
@@ -239,3 +240,93 @@ class MobileSearch {
   }
 }
 new MobileSearch();
+
+//header-menu
+class HeaderMenu {
+  private menuBtn: HTMLElement | null = null; //菜单按钮
+  private menuWrap: HTMLElement | null = null; //菜单容器
+
+  constructor() {
+    this.menuBtn = document.querySelector(".header-avatar");
+    this.menuWrap = document.querySelector(".header-menu-body");
+
+    if (!this.menuBtn || !this.menuWrap) return;
+
+    //绑定事件
+    this.menuBtn.addEventListener("click", this.onClickMenu.bind(this));
+    document.addEventListener("click", this.onClickOtherClose.bind(this));
+  }
+
+  /** 菜单按钮事件 */
+  private onClickMenu() {
+    this.menuWrap && this.menuWrap.classList.toggle("visible");
+  }
+
+  /** 点击其他区域关闭 */
+  private onClickOtherClose(event: MouseEvent) {
+    if (!this.menuBtn || !this.menuWrap) return;
+    if (!this.menuWrap.classList.contains("visible")) return;
+    const target = event.target as HTMLElement;
+    if (this.menuBtn.contains(target) || this.menuWrap.contains(target)) return;
+    this.menuWrap.classList.remove("visible");
+  }
+}
+new HeaderMenu();
+
+//loginDialog
+class LoginDialog {
+  private qrCodeImg: HTMLElement; //二维码容器
+  private loginBtn: HTMLElement; //登录按钮
+  private dialog: HTMLElement; //弹窗容器
+  private closeBtn: HTMLElement; //关闭按钮
+  private mask: HTMLElement; //遮罩层
+
+  constructor() {
+    //二维码
+    this.qrCodeImg = document.querySelector(".login-dialog-qrcode-img") as HTMLElement;
+    this.createQrCode();
+    //弹窗逻辑
+    this.loginBtn = document.querySelector(".header-login-btn") as HTMLElement;
+    this.dialog = document.querySelector(".login-dialog") as HTMLElement;
+    this.closeBtn = document.querySelector(".login-dialog-close") as HTMLElement;
+    this.mask = document.querySelector(".login-dialog-mask") as HTMLElement;
+
+    //绑定事件
+    this.loginBtn.addEventListener("click", this.onClickLogin.bind(this));
+    this.closeBtn.addEventListener("click", this.onClickClose.bind(this));
+    this.mask.addEventListener("click", this.onClickClose.bind(this));
+  }
+
+  /** 生成二维码并丢入html中 */
+  private createQrCode() {
+    QRCode.toDataURL("https://s1.ax1x.com/2023/03/17/ppGkaMd.png", { margin: 1 })
+      .then((url) => {
+        this.qrCodeImg.setAttribute("src", url);
+      })
+      .catch((error) => {
+        console.error("二维码生成失败", error);
+      });
+  }
+
+  /** 登录按钮点击事件 */
+  private onClickLogin() {
+    this.dialog.style.display = "block";
+    getComputedStyle(this.dialog).display;
+    this.dialog.classList.add("visible");
+    lockBodyScroll();
+  }
+
+  /** 关闭弹窗事件 */
+  private onClickClose() {
+    this.dialog.addEventListener(
+      "transitionend",
+      () => {
+        this.dialog.style.display = "none";
+        unlockBodyScroll();
+      },
+      { once: true }
+    );
+    this.dialog.classList.remove("visible");
+  }
+}
+new LoginDialog();
