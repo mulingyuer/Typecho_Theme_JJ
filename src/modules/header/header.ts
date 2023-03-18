@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-17 12:35:43
+ * @LastEditTime: 2023-03-18 11:17:08
  * @LastEditors: mulingyuer
  * @Description: header模块
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\header.ts
@@ -275,26 +275,30 @@ new HeaderMenu();
 
 //loginDialog
 class LoginDialog {
-  private qrCodeImg: HTMLElement; //二维码容器
-  private loginBtn: HTMLElement; //登录按钮
-  private dialog: HTMLElement; //弹窗容器
-  private closeBtn: HTMLElement; //关闭按钮
-  private mask: HTMLElement; //遮罩层
+  private qrCodeImg: HTMLElement | null = null; //二维码容器
+  private loginBtn: HTMLElement | null = null; //登录按钮
+  private dialog: HTMLElement | null = null; //弹窗容器
+  private closeBtn: HTMLElement | null = null; //关闭按钮
+  private mask: HTMLElement | null = null; //遮罩层
+  private articleBtn: HTMLElement | null = null; //写文章按钮
 
   constructor() {
+    this.loginBtn = document.querySelector(".header-login-btn");
+    if (!this.loginBtn) return;
+    this.dialog = document.querySelector(".login-dialog");
+    this.qrCodeImg = document.querySelector(".login-dialog-qrcode-img");
+    this.closeBtn = document.querySelector(".login-dialog-close");
+    this.mask = document.querySelector(".login-dialog-mask");
+    this.articleBtn = document.querySelector(".header-article-btn.login");
     //二维码
-    this.qrCodeImg = document.querySelector(".login-dialog-qrcode-img") as HTMLElement;
     this.createQrCode();
-    //弹窗逻辑
-    this.loginBtn = document.querySelector(".header-login-btn") as HTMLElement;
-    this.dialog = document.querySelector(".login-dialog") as HTMLElement;
-    this.closeBtn = document.querySelector(".login-dialog-close") as HTMLElement;
-    this.mask = document.querySelector(".login-dialog-mask") as HTMLElement;
-
     //绑定事件
     this.loginBtn.addEventListener("click", this.onClickLogin.bind(this));
-    this.closeBtn.addEventListener("click", this.onClickClose.bind(this));
-    this.mask.addEventListener("click", this.onClickClose.bind(this));
+    this.closeBtn && this.closeBtn.addEventListener("click", this.onClickClose.bind(this));
+    this.mask && this.mask.addEventListener("click", this.onClickClose.bind(this));
+    if (this.articleBtn) {
+      this.articleBtn.addEventListener("click", this.onClickLogin.bind(this));
+    }
   }
 
   /** 生成二维码并丢入html中 */
@@ -310,6 +314,7 @@ class LoginDialog {
 
   /** 登录按钮点击事件 */
   private onClickLogin() {
+    if (!this.dialog) return;
     this.dialog.style.display = "block";
     getComputedStyle(this.dialog).display;
     this.dialog.classList.add("visible");
@@ -318,10 +323,11 @@ class LoginDialog {
 
   /** 关闭弹窗事件 */
   private onClickClose() {
+    if (!this.dialog) return;
     this.dialog.addEventListener(
       "transitionend",
       () => {
-        this.dialog.style.display = "none";
+        this.dialog && (this.dialog.style.display = "none");
         unlockBodyScroll();
       },
       { once: true }

@@ -143,6 +143,7 @@
     <div class="mobile-search-body"></div>
   </div>
 </div>
+<?php if (!$this->user->hasLogin()): ?>
 <div class="login-dialog">
   <div class="login-dialog-content-wrap">
     <div class="login-dialog-mask"></div>
@@ -186,3 +187,4 @@
     </div>
   </div>
 </div>
+<?php endif;?>

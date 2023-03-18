@@ -14,10 +14,9 @@
 .header-container {
   max-width: 1440px;
   margin: 0 auto;
-  height: 60px;
 }
 .header-content {
-  height: 60px;
+  height: $headerH;
   padding: 0 24px;
   display: flex;
   align-items: center;
@@ -90,8 +89,8 @@
 .header-nav-list-item {
   position: relative;
   display: block;
-  height: 60px;
-  line-height: 60px;
+  height: $headerH;
+  line-height: $headerH;
   padding: 0 10px;
   font-size: 14px;
   color: var(--jj-header-text-color);
