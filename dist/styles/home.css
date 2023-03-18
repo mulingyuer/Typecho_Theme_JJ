@@ -2,3 +2,104 @@
   !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/pages/home/style.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/nav/nav.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.nav {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-top: 1px solid #f1f1f1;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  padding-left: calc(100vw - 100%);
+  transition: transform 0.2s;
+}
+.nav.sticky {
+  transform: translate3D(0, -60px, 0);
+}
+
+.nav-container {
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+.nav-content {
+  height: 45px;
+  line-height: 45px;
+}
+
+.nav-list {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav-list a {
+  text-decoration: none;
+}
+
+.nav-list-item {
+  height: 100%;
+  padding: 0 12px;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #71777c;
+  cursor: pointer;
+  position: relative;
+}
+.nav-list-item.nav-list-item-parent {
+  padding: 0;
+}
+.nav-list-item:hover, .nav-list-item.active {
+  color: #007fff;
+}
+.nav-list-item:not(.nav-list-item-parent):active, .nav-list-item:active .nav-list-item-parent-name {
+  opacity: 0.7;
+}
+
+.nav-list-item-parent-name {
+  display: block;
+  height: 100%;
+  padding: 0 12px;
+  color: inherit;
+}
+
+.nav-list-secondary {
+  position: absolute;
+  width: max-content;
+  max-width: 360px;
+  white-space: normal;
+  line-height: normal;
+  padding: 14px 14px 2px 14px;
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 2px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.nav-list-secondary.visible {
+  opacity: 1;
+}
+
+.nav-list-secondary-item {
+  margin-right: 12px;
+  margin-bottom: 12px;
+  display: inline-block;
+  vertical-align: top;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 10px;
+  font-size: 13px;
+  color: #71777d;
+  background-color: #f4f5f5;
+  border-radius: 99999px;
+}
+.nav-list-secondary-item:hover, .nav-list-secondary-item.active {
+  color: #007fff;
+}
+.nav-list-secondary-item:active {
+  opacity: 0.7;
+}

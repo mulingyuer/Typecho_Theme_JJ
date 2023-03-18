@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-18 11:17:08
+ * @LastEditTime: 2023-03-18 23:25:38
  * @LastEditors: mulingyuer
  * @Description: header模块
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\header.ts
@@ -13,6 +13,7 @@ import { watch } from "vue";
 import SearchHistory from "./searchHistory";
 import { lockBodyScroll, unlockBodyScroll } from "@/utils/rollingLock";
 import QRCode from "qrcode";
+import eventMitt, { MittEventName } from "@/utils/mittEvent";
 
 //获取数据仓库
 const dataStore = useDataStore();
@@ -37,12 +38,14 @@ class Header {
       if (this.scrollStatus) return;
       this.headerDom.classList.remove("hidden");
       this.scrollStatus = true;
+      eventMitt.emit(MittEventName.HEADER_SHOW, true);
       return;
     }
     if (val >= this.MAX_SCROLL_Y && this.scrollStatus) {
       if (!this.scrollStatus) return;
       this.headerDom.classList.add("hidden");
       this.scrollStatus = false;
+      eventMitt.emit(MittEventName.HEADER_SHOW, false);
       return;
     }
   }

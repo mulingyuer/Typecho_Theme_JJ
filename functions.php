@@ -114,3 +114,25 @@ function get_ArticleThumbnail($that)
         return "";
     }
 };
+
+/**
+ * @description: 父级菜单是否高亮
+ * @param {*} $activeSlug 选中的菜单slug，也就是名称
+ * @param {*} $category 父级分类信息
+ * @param {*} $children 子级分类信息
+ * @Date: 2023-03-18 22:24:19
+ * @Author: mulingyuer
+ */
+function isParentActive($activeSlug, $category, $children)
+{
+
+    $flag = false;
+    foreach ($children as $mid) {
+        $child = $category->getCategory($mid);
+        if ($child['slug'] === $activeSlug) {
+            $flag = true;
+            break;
+        }
+    }
+    return $flag;
+}

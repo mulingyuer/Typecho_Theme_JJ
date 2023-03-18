@@ -14,3 +14,8 @@
   -webkit-line-clamp: $line;
   -webkit-box-orient: vertical;
 }
+
+// 防止scroll导致宽度抖动
+@mixin prevent-scroll-jitter() {
+  padding-left: calc(100vw - 100%);
+}

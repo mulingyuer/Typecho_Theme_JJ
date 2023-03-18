@@ -43,6 +43,8 @@
     "webpackbar": "^5.0.2"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.2.4",
+    "mitt": "^3.0.0",
     "pinia": "^2.0.33",
     "qrcode": "^1.5.1",
     "vue": "^3.2.47"

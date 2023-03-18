@@ -9,6 +9,7 @@ specifiers:
   '@babel/preset-env': ^7.20.2
   '@babel/preset-typescript': ^7.21.0
   '@babel/runtime': ^7.21.0
+  '@floating-ui/dom': ^1.2.4
   '@types/glob': ^8.1.0
   '@types/node': ^18.15.3
   '@types/qrcode': ^1.5.0
@@ -20,6 +21,7 @@ specifiers:
   glob: ^9.3.0
   html-webpack-plugin: ^5.5.0
   mini-css-extract-plugin: ^2.7.3
+  mitt: ^3.0.0
   pinia: ^2.0.33
   postcss: ^8.4.21
   postcss-loader: ^7.0.2
@@ -36,6 +38,8 @@ specifiers:
   webpackbar: ^5.0.2
 
 dependencies:
+  '@floating-ui/dom': registry.npmmirror.com/@floating-ui/dom/1.2.4
+  mitt: registry.npmmirror.com/mitt/3.0.0
   pinia: registry.npmmirror.com/pinia/2.0.33_hmuptsblhheur2tugfgucj7gc4
   qrcode: registry.npmmirror.com/qrcode/1.5.1
   vue: registry.npmmirror.com/vue/3.2.47
@@ -1659,6 +1663,20 @@ packages:
     version: 0.5.7
     engines: {node: '>=10.0.0'}
     dev: true
+
+  registry.npmmirror.com/@floating-ui/core/1.2.4:
+    resolution: {integrity: sha512-SQOeVbMwb1di+mVWWJLpsUTToKfqVNioXys011beCAhyOIFtS+GQoW4EQSneuxzmQKddExDwQ+X0hLl4lJJaSQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@floating-ui/core/-/core-1.2.4.tgz}
+    name: '@floating-ui/core'
+    version: 1.2.4
+    dev: false
+
+  registry.npmmirror.com/@floating-ui/dom/1.2.4:
+    resolution: {integrity: sha512-4+k+BLhtWj+peCU60gp0+rHeR8+Ohqx6kjJf/lHMnJ8JD5Qj6jytcq1+SZzRwD7rvHKRhR7TDiWWddrNrfwQLg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@floating-ui/dom/-/dom-1.2.4.tgz}
+    name: '@floating-ui/dom'
+    version: 1.2.4
+    dependencies:
+      '@floating-ui/core': registry.npmmirror.com/@floating-ui/core/1.2.4
+    dev: false
 
   registry.npmmirror.com/@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz}
@@ -3524,6 +3542,12 @@ packages:
     version: 4.2.5
     engines: {node: '>=8'}
     dev: true
+
+  registry.npmmirror.com/mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mitt/-/mitt-3.0.0.tgz}
+    name: mitt
+    version: 3.0.0
+    dev: false
 
   registry.npmmirror.com/mrmime/1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mrmime/-/mrmime-1.0.1.tgz}
