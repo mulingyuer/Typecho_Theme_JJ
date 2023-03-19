@@ -30,7 +30,7 @@ function blogTitle($that)
 function blogDescription($that, $max = 150)
 {
     $desc = "";
-    if ($that->is('index')) {
+    if ($that->is('index') || $that->is('category')) {
         $desc = Helper::options()->description();
     } else {
         $desc = $that->excerpt($max);
@@ -47,7 +47,7 @@ function blogDescription($that, $max = 150)
 function blogKeywords($that)
 {
     $keywords = "";
-    if ($that->is('index')) {
+    if ($that->is('index') || $that->is('category')) {
         $keywords = Helper::options()->keywords();
     } else {
         $keywords = $that->category(',', false) + $that->tags(',', false);
@@ -83,7 +83,7 @@ function seoUrl($that)
 function seoImage($that)
 {
     $image = "";
-    if ($that->is('index')) {
+    if ($that->is('index') || $that->is('category')) {
         $image = Helper::options()->themeUrl . "/static/images/favicon/android-chrome-512x512.png";
     } else {
         $image = get_ArticleThumbnail($that);
