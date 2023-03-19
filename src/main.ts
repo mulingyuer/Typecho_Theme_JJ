@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:22:40
- * @LastEditTime: 2023-03-17 08:08:17
+ * @LastEditTime: 2023-03-19 15:00:05
  * @LastEditors: mulingyuer
  * @Description: 通用入口文件
  * @FilePath: \Typecho_Theme_JJ\src\main.ts
@@ -13,6 +13,7 @@ import { useDataStore } from "@/store/data";
 //css
 import "@/styles/reset.scss";
 import "@/styles/fonts/iconfont.css";
+import "@/styles/layout.scss";
 
 //modules
 import "@/modules/header/header.ts";

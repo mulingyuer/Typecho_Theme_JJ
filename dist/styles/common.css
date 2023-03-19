@@ -268,6 +268,12 @@ ul {
 }
 
 
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/styles/layout.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.main {
+  padding-top: 105px;
+}
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/header/header.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -880,7 +886,7 @@ ul {
 .login-dialog-content {
   width: 640px;
   margin: auto;
-  background-color: #fff;
+  background-color: var(--jj-login-dialog-content-bg);
   border-radius: 8px;
   position: relative;
   opacity: 0;
@@ -893,7 +899,7 @@ ul {
   top: 20px;
   right: 27px;
   font-size: 18px;
-  color: #8a919f;
+  color: var(--jj-login-dialog-close-color);
   cursor: pointer;
 }
 .login-dialog-close:active {
@@ -906,13 +912,13 @@ ul {
 
 .login-dialog-head {
   padding: 20px 27px;
-  border-bottom: 1px solid rgba(228, 230, 235, 0.5);
+  border-bottom: 1px solid var(--jj-login-dialog-head-border);
 }
 
 .login-dialog-title {
   font-size: 20px;
   font-weight: normal;
-  color: #252933;
+  color: var(--jj-login-dialog-title-color);
 }
 
 .login-dialog-body {
@@ -927,7 +933,7 @@ ul {
 
 .login-dialog-body-left-title {
   font-size: 16px;
-  color: #252933;
+  color: var(--jj-login-dialog-title-color);
   margin-bottom: 16px;
 }
 
@@ -936,18 +942,18 @@ ul {
   width: 100%;
   height: 40px;
   padding: 10px;
-  color: #000;
-  background-color: #f2f3f5;
-  border: 1px solid #f2f3f5;
+  color: var(--jj-login-dialog-input-color);
+  background-color: var(--jj-login-dialog-input-bg);
+  border: 1px solid var(--jj-login-dialog-input-border);
   border-radius: 4px;
   outline: none;
 }
 .login-dialog-input-group input::placeholder {
-  color: #c4c7ce;
+  color: var(--jj-login-dialog-input-placeholder-color);
 }
 .login-dialog-input-group input:focus {
-  background-color: #fff;
-  border-color: #1e80ff;
+  background-color: var(--jj-login-dialog-input-bg-focus);
+  border-color: var(--jj-login-dialog-input-border-focus);
 }
 .login-dialog-input-group + .login-dialog-input-group {
   margin-top: 20px;
@@ -955,17 +961,11 @@ ul {
 .login-dialog-input-group.submit {
   margin-top: 30px;
 }
-.login-dialog-input-group.username:focus-within input {
-  border-color: #007fff;
-}
 .login-dialog-input-group.username:focus-within .greeting {
   display: block;
 }
 .login-dialog-input-group.username:focus-within ~ .normal {
   display: none;
-}
-.login-dialog-input-group.password:focus-within input {
-  border-color: #007fff;
 }
 .login-dialog-input-group.password:focus-within .blindfold {
   display: block;
@@ -978,16 +978,16 @@ ul {
   display: block;
   width: 100%;
   height: 40px;
-  background-color: #1e80ff;
+  background-color: var(--jj-login-dialog-form-btn-bg);
   border: none;
   border-radius: 4px;
   font-size: 14px;
-  color: #fff;
+  color: var(--jj-login-dialog-form-btn-color);
   cursor: pointer;
   transition: background-color 0.1s linear;
 }
 .login-dialog-form-btn:hover {
-  background-color: #1171ee;
+  background-color: var(--jj-login-dialog-form-btn-bg-hover);
 }
 .login-dialog-form-btn:active {
   opacity: 0.7;
@@ -1016,7 +1016,7 @@ ul {
   width: 230px;
   padding-left: 36px;
   margin-left: 36px;
-  border-left: 1px solid #f1f2f5;
+  border-left: 1px solid var(--jj-login-dialog-body-right-border);
 }
 
 .login-dialog-qrcode-title {
@@ -1027,7 +1027,7 @@ ul {
 
 .login-dialog-qrcode {
   margin-bottom: 16px;
-  border: 1px solid #e4e6eb;
+  border: 1px solid var(--jj-login-dialog-qrcode-border);
   border-radius: 4px;
   width: 150px;
   height: 150px;
@@ -1043,24 +1043,24 @@ ul {
 
 .login-dialog-qrcode-tips {
   font-size: 16px;
-  color: #252933;
+  color: var(--jj-login-dialog-title-color);
 }
 
 .login-dialog-footer {
   margin-top: 40px;
   padding-bottom: 20px;
   font-size: 14px;
-  color: #8a919f;
+  color: var(--jj-login-dialog-footer-color);
   text-align: center;
 }
 
 .login-dialog-link {
   text-decoration: none;
-  color: #1e80ff;
+  color: var(--jj-login-dialog-link-color);
   margin: 0 5px;
 }
 .login-dialog-link:hover {
-  color: #1171ee;
+  color: var(--jj-login-dialog-link-color-hover);
 }
 .login-dialog-link:active {
   opacity: 0.7;
@@ -1121,4 +1121,116 @@ ul {
   .header-comment {
     margin-left: 0;
   }
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/nav/nav.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.nav {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: var(--jj-nav-bg-color);
+  border-top: 1px solid var(--jj-nav-border);
+  box-shadow: 0 1px 2px 0 var(--jj-nav-box-shadow);
+  z-index: 1;
+  padding-left: calc(100vw - 100%);
+  transition: transform 0.2s;
+}
+.nav.sticky {
+  transform: translate3D(0, -60px, 0);
+}
+.nav a {
+  text-decoration: none;
+}
+
+.nav-container {
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+.nav-content {
+  height: 45px;
+  line-height: 45px;
+}
+
+.nav-list {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.nav-list a {
+  text-decoration: none;
+}
+
+.nav-list-item {
+  height: 100%;
+  padding: 0 12px;
+  white-space: nowrap;
+  font-size: 14px;
+  color: var(--jj-nav-list-item-color);
+  cursor: pointer;
+  position: relative;
+}
+.nav-list-item.nav-list-item-parent {
+  padding: 0;
+}
+.nav-list-item:hover, .nav-list-item.active {
+  color: var(--jj-nav-list-item-color-active);
+}
+.nav-list-item:not(.nav-list-item-parent):active, .nav-list-item:active .nav-list-item-parent-name {
+  opacity: 0.7;
+}
+
+.nav-list-item-parent-name {
+  display: block;
+  height: 100%;
+  padding: 0 12px;
+  color: inherit;
+}
+
+.nav-list-secondary {
+  position: absolute;
+  width: max-content;
+  max-width: 360px;
+  white-space: normal;
+  line-height: normal;
+  padding: 14px 14px 2px 14px;
+  background-color: var(--jj-nav-list-secondary-bg);
+  border: 1px solid var(--jj-nav-list-secondary-border);
+  border-radius: 2px;
+  box-shadow: 0 1px 5px 0 var(--jj-nav-list-secondary-box-shadow);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.nav-list-secondary.visible {
+  opacity: 1;
+}
+
+.nav-list-secondary-item {
+  margin-right: 12px;
+  margin-bottom: 12px;
+  display: inline-block;
+  vertical-align: top;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 10px;
+  font-size: 13px;
+  color: var(--jj-nav-list-secondary-item-color);
+  background-color: var(--jj-nav-list-secondary-item-bg);
+  border-radius: 99999px;
+}
+.nav-list-secondary-item:hover, .nav-list-secondary-item.active {
+  color: var(--jj-nav-list-secondary-item-color-active);
+}
+.nav-list-secondary-item:active {
+  opacity: 0.7;
+}
+
+.nav-secondary-warp {
+  height: 0;
+  overflow: hidden;
 }

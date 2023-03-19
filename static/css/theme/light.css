@@ -43,4 +43,43 @@
 
   /* 登录弹窗 */
   --jj-login-dialog-mask-bg: rgba(0, 0, 0, 0.3);
+  --jj-login-dialog-content-bg: #fff;
+  --jj-login-dialog-close-color: #8a919f;
+  --jj-login-dialog-head-border: rgba(228, 230, 235, 0.5);
+  --jj-login-dialog-title-color: #252933;
+  --jj-login-dialog-input-color: #000;
+  --jj-login-dialog-input-placeholder-color: #c4c7ce;
+  --jj-login-dialog-input-border: #f2f3f5;
+  --jj-login-dialog-input-bg: #f2f3f5;
+  --jj-login-dialog-input-border-focus: #1e80ff;
+  --jj-login-dialog-input-bg-focus: #fff;
+  --jj-login-dialog-form-btn-bg: #1e80ff;
+  --jj-login-dialog-form-btn-bg-hover: #1171ee;
+  --jj-login-dialog-form-btn-color: #fff;
+  --jj-login-dialog-body-right-border: #f1f2f5;
+  --jj-login-dialog-qrcode-border: #e4e6eb;
+  --jj-login-dialog-footer-color: #8a919f;
+  --jj-login-dialog-link-color: #1e80ff;
+  --jj-login-dialog-link-color-hover: #1171ee;
+
+  /* nav */
+  --jj-nav-bg-color: #fff;
+  --jj-nav-border: #f1f1f1;
+  --jj-nav-box-shadow: rgba(0, 0, 0, 0.05);
+  --jj-nav-list-item-color: #71777c;
+  --jj-nav-list-item-color-active: #007fff;
+  --jj-nav-list-secondary-bg: #fff;
+  --jj-nav-list-secondary-border: #ebebeb;
+  --jj-nav-list-secondary-box-shadow: rgba(0, 0, 0, 0.15);
+  --jj-nav-list-secondary-item-color: #71777d;
+  --jj-nav-list-secondary-item-color-active: #007fff;
+  --jj-nav-list-secondary-item-bg: #f4f5f5;
+
+  /* secondary-nav */
+  --jj-secondary-nav-item-bg: #fff;
+  --jj-secondary-nav-item-bg-active: #007fff;
+  --jj-secondary-nav-item-color: #8a9aa9;
+  --jj-secondary-nav-item-color-hover: #007fff;
+  --jj-secondary-nav-item-color-active: #fff;
+  --jj-secondary-nav-item-box-shadow: rgba(0, 0, 0, 0.05);
 }

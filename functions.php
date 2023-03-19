@@ -136,3 +136,17 @@ function isParentActive($activeSlug, $category, $children)
     }
     return $flag;
 }
+
+/** 二级分类：全部是否高亮 */
+function secondaryAllActive($that, $category, $children)
+{
+    $flag = true;
+    foreach ($children as $mid) {
+        $child = $category->getCategory($mid);
+        if ($that->is('category', $child['slug'])) {
+            $flag = false;
+            break;
+        }
+    }
+    return $flag;
+}

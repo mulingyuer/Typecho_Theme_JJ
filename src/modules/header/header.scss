@@ -563,7 +563,7 @@
 .login-dialog-content {
   width: 640px;
   margin: auto;
-  background-color: #fff;
+  background-color: var(--jj-login-dialog-content-bg);
   border-radius: 8px;
   position: relative;
   opacity: 0;
@@ -575,7 +575,7 @@
   top: 20px;
   right: 27px;
   font-size: 18px;
-  color: #8a919f;
+  color: var(--jj-login-dialog-close-color);
   cursor: pointer;
   &:active {
     opacity: 0.7;
@@ -586,12 +586,12 @@
 }
 .login-dialog-head {
   padding: 20px 27px;
-  border-bottom: 1px solid rgba(228, 230, 235, 0.5);
+  border-bottom: 1px solid var(--jj-login-dialog-head-border);
 }
 .login-dialog-title {
   font-size: 20px;
   font-weight: normal;
-  color: #252933;
+  color: var(--jj-login-dialog-title-color);
 }
 .login-dialog-body {
   display: flex;
@@ -603,7 +603,7 @@
 }
 .login-dialog-body-left-title {
   font-size: 16px;
-  color: #252933;
+  color: var(--jj-login-dialog-title-color);
   margin-bottom: 16px;
 }
 .login-dialog-input-group {
@@ -612,17 +612,17 @@
     width: 100%;
     height: 40px;
     padding: 10px;
-    color: #000;
-    background-color: #f2f3f5;
-    border: 1px solid #f2f3f5;
+    color: var(--jj-login-dialog-input-color);
+    background-color: var(--jj-login-dialog-input-bg);
+    border: 1px solid var(--jj-login-dialog-input-border);
     border-radius: 4px;
     outline: none;
     &::placeholder {
-      color: #c4c7ce;
+      color: var(--jj-login-dialog-input-placeholder-color);
     }
     &:focus {
-      background-color: #fff;
-      border-color: #1e80ff;
+      background-color: var(--jj-login-dialog-input-bg-focus);
+      border-color: var(--jj-login-dialog-input-border-focus);
     }
   }
   & + & {
@@ -633,10 +633,6 @@
   }
   //用户名-打招呼熊猫
   &.username:focus-within {
-    input {
-      border-color: #007fff;
-    }
-
     .greeting {
       display: block;
     }
@@ -648,10 +644,6 @@
 
   //密码-遮住眼睛熊猫
   &.password:focus-within {
-    input {
-      border-color: #007fff;
-    }
-
     .blindfold {
       display: block;
     }
@@ -665,15 +657,15 @@
   display: block;
   width: 100%;
   height: 40px;
-  background-color: #1e80ff;
+  background-color: var(--jj-login-dialog-form-btn-bg);
   border: none;
   border-radius: 4px;
   font-size: 14px;
-  color: #fff;
+  color: var(--jj-login-dialog-form-btn-color);
   cursor: pointer;
   transition: background-color 0.1s linear;
   &:hover {
-    background-color: #1171ee;
+    background-color: var(--jj-login-dialog-form-btn-bg-hover);
   }
   &:active {
     opacity: 0.7;
@@ -705,7 +697,7 @@
   width: 230px;
   padding-left: 36px;
   margin-left: 36px;
-  border-left: 1px solid #f1f2f5;
+  border-left: 1px solid var(--jj-login-dialog-body-right-border);
 }
 .login-dialog-qrcode-title {
   font-size: 16px;
@@ -714,7 +706,7 @@
 }
 .login-dialog-qrcode {
   margin-bottom: 16px;
-  border: 1px solid #e4e6eb;
+  border: 1px solid var(--jj-login-dialog-qrcode-border);
   border-radius: 4px;
   width: 150px;
   height: 150px;
@@ -728,21 +720,21 @@
 }
 .login-dialog-qrcode-tips {
   font-size: 16px;
-  color: #252933;
+  color: var(--jj-login-dialog-title-color);
 }
 .login-dialog-footer {
   margin-top: 40px;
   padding-bottom: 20px;
   font-size: 14px;
-  color: #8a919f;
+  color: var(--jj-login-dialog-footer-color);
   text-align: center;
 }
 .login-dialog-link {
   text-decoration: none;
-  color: #1e80ff;
+  color: var(--jj-login-dialog-link-color);
   margin: 0 5px;
   &:hover {
-    color: #1171ee;
+    color: var(--jj-login-dialog-link-color-hover);
   }
   &:active {
     opacity: 0.7;

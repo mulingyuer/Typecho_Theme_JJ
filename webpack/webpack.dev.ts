@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 20:49:25
- * @LastEditTime: 2023-03-15 17:07:13
+ * @LastEditTime: 2023-03-19 13:21:05
  * @LastEditors: mulingyuer
  * @Description: webpack dev配置
  * @FilePath: \Typecho_Theme_JJ\webpack\webpack.dev.ts
@@ -15,7 +15,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export default merge(common, {
   mode: "development",
-  devtool: "eval", //控制是否生成sourcemap
+  devtool: "eval-cheap-source-map", //控制是否生成sourcemap
   output: {
     filename: `pages/[name].js`,
   },
