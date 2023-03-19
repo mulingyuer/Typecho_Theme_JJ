@@ -23,9 +23,15 @@
 <body>
   <?php $this->need("./php_modules/header.php");?>
   <?php $this->need("./php_modules/nav.php");?>
-  <main class="main">
-    <div style="height:5000px;">
-      <span class="jj-icon jj-icon-tongzhixiaoxi"></span>
+  <main class="main" role="main">
+    <div class="container">
+      <div class="home-content">
+        <div class="home-left">
+          <?php $this->need("./php_modules/home/nav.php");?>
+          <?php $this->need("./php_modules/article_card.php");?>
+        </div>
+        <div class="home-right"></div>
+      </div>
     </div>
   </main>
 </body>

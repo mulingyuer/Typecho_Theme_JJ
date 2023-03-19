@@ -95,26 +95,6 @@ function seoImage($that)
     return $image;
 }
 
-//获取文章缩略图，没有则随机
-function get_ArticleThumbnail($that)
-{
-    $attach = $that->attachments(1)->attachment;
-    $pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
-
-    //如果有自定义缩略图
-    if ($that->fields->titleImg) {
-        return $that->fields->titleImg;
-    } else if ($that->fields->thumb) {
-        return $that->fields->thumb;
-    } else if (preg_match_all($pattern, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
-        return $thumbUrl[1][0];
-    } else if ($attach->isImage) {
-        return $attach->url;
-    } else {
-        return "";
-    }
-};
-
 /**
  * @description: 父级菜单是否高亮
  * @param {*} $activeSlug 选中的菜单slug，也就是名称
@@ -149,4 +129,115 @@ function secondaryAllActive($that, $category, $children)
         }
     }
     return $flag;
+}
+
+/**
+ * @description: 文章发布时间
+ * @param {*} $time 原文章发布时间
+ * @Date: 2023-03-19 16:58:25
+ * @Author: mulingyuer
+ */
+function articleTime($time)
+{
+    if ($time == "no") {return;}
+    $chunks = array(
+        array(31536000, ' 年'),
+        array(2592000, ' 个月'),
+        array(604800, ' 周'),
+        array(86400, ' 天'),
+        array(3600, ' 小时'),
+        array(60, ' 分'),
+        array(1, ' 秒'),
+    );
+    $newer_date = time();
+    $since = abs($newer_date - $time);
+
+    for ($i = 0, $j = count($chunks); $i < $j; $i++) {
+        $seconds = $chunks[$i][0];
+        $name = $chunks[$i][1];
+        if (($count = floor($since / $seconds)) != 0) {
+            break;
+        }
+
+    }
+    $output = $count . $name . '前';
+
+    echo $output;
+}
+
+/**
+ * @description: 获取文章缩略图
+ * @param {*} $that
+ * @Date: 2023-03-19 17:03:31
+ * @Author: mulingyuer
+ */
+function articleThumbnail($that)
+{
+    $attach = $that->attachments(1)->attachment;
+    $pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
+
+    //如果有自定义缩略图
+    if ($that->fields->titleImg) {
+        return $that->fields->titleImg;
+    } else if ($that->fields->thumb) {
+        return $that->fields->thumb;
+    } else if (preg_match_all($pattern, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
+        return $thumbUrl[1][0];
+    } else if ($attach->isImage) {
+        return $attach->url;
+    } else {
+        return "";
+    }
+}
+
+/**
+ * @description: 文章浏览量
+ * @param {*} $that 当前页面对象
+ * @param {*} $format0
+ * @param {*} $format1
+ * @param {*} $formats
+ * @param {*} $return
+ * @param {*} $field
+ * @Date: 2023-03-19 17:07:55
+ * @Author: mulingyuer
+ */
+function articleViews($that, $format0 = "%d", $format1 = "%d", $formats = "%d", $return = false, $field = 'views')
+{
+    $fields = unserialize($that->fields);
+    if (array_key_exists($field, $fields)) {
+        $fieldValue = (!empty($fields[$field])) ? intval($fields[$field]) : 0;
+    } else {
+        $fieldValue = 0;
+    }
+    if ($fieldValue == 0) {
+        $fieldValue = sprintf($format0, $fieldValue);
+    } else if ($fieldValue == 1) {
+        $fieldValue = sprintf($format1, $fieldValue);
+    } else {
+        $fieldValue = sprintf($formats, $fieldValue);
+    }
+    if ($return) {
+        return $fieldValue;
+    } else {
+        echo $fieldValue;
+    }
+}
+
+/**
+ * @description: 文章点赞数
+ * @param {*} $cid 文章cid
+ * @Date: 2023-03-19 17:08:59
+ * @Author: mulingyuer
+ */
+function articleLike($cid)
+{
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+    if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents')))) {
+        $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `likes` INT(10) DEFAULT 0;');
+        return;
+    }
+    $row = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid));
+    $num = $row['likes'];
+    return $num;
 }

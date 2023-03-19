@@ -82,4 +82,12 @@
   --jj-secondary-nav-item-color-hover: #007fff;
   --jj-secondary-nav-item-color-active: #fff;
   --jj-secondary-nav-item-box-shadow: rgba(0, 0, 0, 0.05);
+
+  /* article-nav */
+  --jj-article-nav-bg: #fff;
+  --jj-article-nav-border: #e4e6eb;
+  --jj-article-nav-item-color: #515767;
+  --jj-article-nav-item-color-hover: #007fff;
+  --jj-article-nav-item-color-active: #252933;
+  --jj-article-nav-item-before-bg: #1e80ff;
 }
