@@ -80,7 +80,7 @@
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .article-card {
   padding: 12px 20px;
-  background-color: #fff;
+  background-color: var(--jj-article-card-bg);
   position: relative;
   cursor: pointer;
 }
@@ -92,10 +92,10 @@
   right: 20px;
   height: 1px;
   margin-top: -0.5px;
-  background-color: #e5e6eb;
+  background-color: var(--jj-article-card-border);
 }
 .article-card:hover {
-  background-color: #fafafa;
+  background-color: var(--jj-article-card-bg-hover);
 }
 
 .article-card-hidden-a {
@@ -108,7 +108,7 @@
   align-items: center;
   flex-wrap: wrap;
   font-size: 12px;
-  color: #8a919f;
+  color: var(--jj-article-card-head-color);
 }
 
 .article-card-user,
@@ -117,7 +117,7 @@
 }
 
 .article-card-user {
-  color: #515767;
+  color: var(--jj-article-card-user-color);
 }
 
 .article-card-time {
@@ -131,7 +131,7 @@
   top: 50%;
   width: 1px;
   height: 12px;
-  background-color: #e5e6eb;
+  background-color: var(--jj-article-card-head-border);
   transform: translateY(-50%);
 }
 .article-card-time::before {
@@ -146,7 +146,7 @@
   color: inherit;
 }
 .article-card-tag a:hover {
-  color: #1e80ff;
+  color: var(--jj-article-card-tag-color-hover);
 }
 .article-card-tag a:active {
   opacity: 0.7;
@@ -172,7 +172,7 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: bold;
-  color: #252933;
+  color: var(--jj-article-card-title-color);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -182,7 +182,7 @@
   margin-bottom: 8px;
   font-size: 13px;
   line-height: 22px;
-  color: #8a919f;
+  color: var(--jj-article-card-desc-color);
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -193,7 +193,7 @@
 .article-card-footer {
   font-size: 13px;
   line-height: 20px;
-  color: #8a919f;
+  color: var(--jj-article-card-footer-color);
 }
 
 .article-card-footer-item {
@@ -205,7 +205,7 @@
 }
 
 a.article-card-footer-item:hover {
-  color: #1e80ff;
+  color: var(--jj-article-card-footer-color-hover);
 }
 a.article-card-footer-item:active {
   opacity: 0.7;
@@ -245,4 +245,173 @@ a.article-card-footer-item:active {
     height: 54px;
     margin-left: 12px;
   }
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+toastify-js@1.12.0/node_modules/toastify-js/src/toastify.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!
+ * Toastify js 1.12.0
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */
+
+.toastify {
+    padding: 12px 20px;
+    color: #ffffff;
+    display: inline-block;
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: fixed;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647;
+}
+
+.toastify.on {
+    opacity: 1;
+}
+
+.toast-close {
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    opacity: 0.4;
+    padding: 0 5px;
+}
+
+.toastify-right {
+    right: 15px;
+}
+
+.toastify-left {
+    left: 15px;
+}
+
+.toastify-top {
+    top: -150px;
+}
+
+.toastify-bottom {
+    bottom: -150px;
+}
+
+.toastify-rounded {
+    border-radius: 25px;
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: -7px 5px;
+    border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: fit-content;
+    max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+    .toastify-right, .toastify-left {
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
+    }
+}
+
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/styles/toast.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.jj-toast {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--jj-toast-color);
+  background: var(--jj-toast-bg);
+  border: 1px solid var(--jj-toast-border);
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--jj-toast-box-shadow);
+}
+.jj-toast.info {
+  color: var(--jj-toast-color-info);
+  border-color: var(--jj-toast-border-info);
+  background: var(--jj-toast-bg-info);
+}
+.jj-toast.success {
+  color: var(--jj-toast-color-success);
+  border-color: var(--jj-toast-border-success);
+  background: var(--jj-toast-bg-success);
+}
+.jj-toast.warning {
+  color: var(--jj-toast-color-warning);
+  border-color: var(--jj-toast-border-warning);
+  background: var(--jj-toast-bg-warning);
+}
+.jj-toast.error {
+  color: var(--jj-toast-color-error);
+  border-color: var(--jj-toast-border-error);
+  background: var(--jj-toast-bg-error);
+}
+
+@media only screen and (max-width: 360px) {
+  .jj-toast {
+    width: fit-width;
+    max-width: 300px;
+  }
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/articlePagination/articlePagination.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.article-pagination {
+  padding: 20px;
+  background: var(--jj-article-pagination-bg);
+  border-top: 1px solid var(--jj-article-pagination-border);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin-bottom: 20px;
+}
+.article-pagination.hidden {
+  display: none;
+}
+.article-pagination.no-more .article-pagination-content > a {
+  display: none;
+}
+.article-pagination.no-more .article-pagination-loading {
+  display: none;
+}
+.article-pagination.no-more .article-pagination-no-more {
+  display: inline;
+}
+
+.article-pagination-content {
+  text-align: center;
+}
+.article-pagination-content > a {
+  display: none;
+}
+
+.article-pagination-loading {
+  height: 20px;
+  vertical-align: top;
+}
+
+.article-pagination-no-more {
+  display: none;
+  font-size: 14px;
+  color: var(--jj-article-pagination-no-more-color);
 }

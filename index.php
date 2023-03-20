@@ -14,6 +14,7 @@
     exit;
 }
 ?>
+<?php if (!isAjax()): ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -28,7 +29,10 @@
       <div class="home-content">
         <div class="home-left">
           <?php $this->need("./php_modules/home/nav.php");?>
+<?php endif;?>
           <?php $this->need("./php_modules/article_card.php");?>
+          <?php $this->need("./php_modules/article_pagination.php");?>
+<?php if (!isAjax()): ?>
         </div>
         <div class="home-right"></div>
       </div>
@@ -36,3 +40,4 @@
   </main>
 </body>
 </html>
+<?php endif;?>

@@ -90,4 +90,40 @@
   --jj-article-nav-item-color-hover: #007fff;
   --jj-article-nav-item-color-active: #252933;
   --jj-article-nav-item-before-bg: #1e80ff;
+
+  /* article-card */
+  --jj-article-card-bg: #fff;
+  --jj-article-card-bg-hover: #fafafa;
+  --jj-article-card-border: #e5e6eb;
+  --jj-article-card-head-color: #8a919f;
+  --jj-article-card-head-border: #e5e6eb;
+  --jj-article-card-user-color: #515767;
+  --jj-article-card-tag-color-hover: #1e80ff;
+  --jj-article-card-title-color: #252933;
+  --jj-article-card-desc-color: #8a919f;
+  --jj-article-card-footer-color: #8a919f;
+  --jj-article-card-footer-color-hover: #1e80ff;
+
+  /* article-pagination */
+  --jj-article-pagination-bg: #fff;
+  --jj-article-pagination-border: #e4e6eb;
+  --jj-article-pagination-no-more-color: #8a919f;
+
+  /* toast */
+  --jj-toast-color: #333;
+  --jj-toast-bg: #fff;
+  --jj-toast-border: #ebebeb;
+  --jj-toast-box-shadow: rgba(0, 0, 0, 0.1);
+  --jj-toast-color-info: #909399;
+  --jj-toast-bg-info: #edf2fc;
+  --jj-toast-border-info: #ebeef5;
+  --jj-toast-color-success: #67c23a;
+  --jj-toast-bg-success: #f0f9eb;
+  --jj-toast-border-success: #e1f3d8;
+  --jj-toast-color-warning: #e6a23c;
+  --jj-toast-bg-warning: #fdf6ec;
+  --jj-toast-border-warning: #faecd8;
+  --jj-toast-color-error: #f56c6c;
+  --jj-toast-bg-error: #fef0f0;
+  --jj-toast-border-error: #fde2e2;
 }

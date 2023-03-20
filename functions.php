@@ -241,3 +241,16 @@ function articleLike($cid)
     $num = $row['likes'];
     return $num;
 }
+
+/**
+ * @description: 是否是ajax请求
+ * @Date: 2023-03-21 00:22:09
+ * @Author: mulingyuer
+ */
+function isAjax()
+{
+    if (isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest") {
+        return true;
+    }
+    return false;
+}
