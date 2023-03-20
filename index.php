@@ -29,6 +29,7 @@
       <div class="home-content">
         <div class="home-left">
           <?php $this->need("./php_modules/home/nav.php");?>
+          <?php $this->need("./php_modules/articleSkeleton.php");?>
 <?php endif;?>
           <?php $this->need("./php_modules/article_card.php");?>
           <?php $this->need("./php_modules/article_pagination.php");?>

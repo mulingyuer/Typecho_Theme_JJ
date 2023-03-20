@@ -1,4 +1,4 @@
-<div class="article-pagination">
+<div class="article-pagination hidden">
   <div class="article-pagination-content">
     <?php $this->pageLink("上一页", 'prev');?>
     <?php $this->pageLink("下一页", 'next');?>

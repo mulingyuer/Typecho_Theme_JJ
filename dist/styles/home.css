@@ -78,6 +78,10 @@
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/articleCard/articleCard.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.article-card-wrap.hidden {
+  display: none;
+}
+
 .article-card {
   padding: 12px 20px;
   background-color: var(--jj-article-card-bg);
@@ -414,4 +418,43 @@ a.article-card-footer-item:active {
   display: none;
   font-size: 14px;
   color: var(--jj-article-pagination-no-more-color);
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/articleSkeleton/articleSkeleton.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.article-skeleton {
+  background-color: var(--jj-article-skeleton-bg);
+  padding: 20px;
+}
+.article-skeleton.hidden {
+  display: none;
+}
+
+.article-skeleton-line {
+  height: 14px;
+  background-image: linear-gradient(90deg, var(--jj-article-skeleton-line-bg1), var(--jj-article-skeleton-line-bg2), var(--jj-article-skeleton-line-bg1));
+  background-size: 480px 480px;
+  animation: article-skeleton-animation 0.6s linear infinite;
+}
+.article-skeleton-line + .article-skeleton-line {
+  margin-top: 16px;
+}
+.article-skeleton-line:nth-child(1) {
+  margin-top: 8px;
+  width: 40%;
+}
+.article-skeleton-line:nth-child(3) {
+  width: 80%;
+}
+.article-skeleton-line:nth-child(4) {
+  width: 60%;
+}
+
+@keyframes article-skeleton-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 480px 0;
+  }
 }

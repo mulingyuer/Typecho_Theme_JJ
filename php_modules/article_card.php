@@ -1,4 +1,4 @@
-<div class="article-card-wrap">
+<div class="article-card-wrap hidden">
   <?php while ($this->next()): ?>
   <article class="article-card" data-link="<?php $this->permalink();?>" itemscope itemtype="http://schema.org/BlogPosting">
     <a class="article-card-hidden-a" href="<?php $this->permalink();?>" itemprop="url"><?php $this->title();?></a>

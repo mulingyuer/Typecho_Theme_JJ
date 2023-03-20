@@ -1,3 +1,8 @@
+.article-card-wrap {
+  &.hidden {
+    display: none;
+  }
+}
 .article-card {
   padding: 12px 20px;
   background-color: var(--jj-article-card-bg);
