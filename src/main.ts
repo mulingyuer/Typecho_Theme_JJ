@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:22:40
- * @LastEditTime: 2023-03-20 23:16:20
+ * @LastEditTime: 2023-03-21 17:46:45
  * @LastEditors: mulingyuer
  * @Description: 通用入口文件
  * @FilePath: \Typecho_Theme_JJ\src\main.ts
@@ -16,7 +16,7 @@ import "@/styles/fonts/iconfont.css";
 import "@/styles/layout.scss";
 
 //modules
-import "@/modules/header/header.ts";
+import "@/modules/header";
 
 //监听scroll事件，记录滚动条位置
 const dataStore = useDataStore();

@@ -1,13 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-18 23:27:06
- * @LastEditTime: 2023-03-19 14:03:36
+ * @LastEditTime: 2023-03-21 17:45:38
  * @LastEditors: mulingyuer
  * @Description: nav分类菜单
  * @FilePath: \Typecho_Theme_JJ\src\modules\nav\nav.ts
  * 怎么可能会有bug！！！
  */
-import "./nav.scss";
+import "./style.scss";
 import eventMitt, { MittEventName } from "@/utils/mittEvent";
 import { computePosition, flip, shift } from "@floating-ui/dom";
 

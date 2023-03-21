@@ -1,17 +1,17 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-20 16:31:55
- * @LastEditTime: 2023-03-21 01:55:53
+ * @LastEditTime: 2023-03-21 17:45:07
  * @LastEditors: mulingyuer
  * @Description: 文章分页
- * @FilePath: \Typecho_Theme_JJ\src\modules\articlePagination\articlePagination.ts
+ * @FilePath: \Typecho_Theme_JJ\src\modules\article_pagination\index.ts
  * 怎么可能会有bug！！！
  */
-import "./articlePagination.scss";
+import "./style.scss";
 import { Observer } from "@/utils/observer";
 import { getArticleList } from "@/api/article";
-import ThumbLazy from "@/modules/articleCard/thumbLazy";
-import type { LazyTarget } from "@/modules/articleCard/thumbLazy";
+import ThumbLazy from "@/modules/article_card/thumbLazy";
+import type { LazyTarget } from "@/modules/article_card/thumbLazy";
 
 //利用配置提前100px触发
 const observerOptions: IntersectionObserverInit = {

@@ -11,7 +11,6 @@ import type { Configuration } from "webpack";
 import { DefinePlugin } from "webpack";
 import { merge } from "webpack-merge";
 import common from "./webpack.common";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export default merge(common, {
   mode: "development",
@@ -20,11 +19,6 @@ export default merge(common, {
     filename: `pages/[name].js`,
   },
   plugins: [
-    //css样式抽离
-    new MiniCssExtractPlugin({
-      filename: "styles/[name].css", //css文件命名
-      chunkFilename: "chunk-[id].css", //异步样式
-    }),
     //vue
     new DefinePlugin({
       __VUE_OPTIONS_API__: false,

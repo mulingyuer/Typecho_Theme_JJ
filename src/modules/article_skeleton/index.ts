@@ -1,13 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-21 02:15:38
- * @LastEditTime: 2023-03-21 03:09:05
+ * @LastEditTime: 2023-03-21 17:44:28
  * @LastEditors: mulingyuer
  * @Description: 文章骨架屏
- * @FilePath: \Typecho_Theme_JJ\src\modules\articleSkeleton\articleSkeleton.ts
+ * @FilePath: \Typecho_Theme_JJ\src\modules\article_skeleton\index.ts
  * 怎么可能会有bug！！！
  */
-import "./articleSkeleton.scss";
+import "./style.scss";
 import browserPerformance from "@/utils/browserPerformance";
 
 class ArticleSkeleton {

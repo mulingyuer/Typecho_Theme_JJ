@@ -254,3 +254,62 @@ function isAjax()
     }
     return false;
 }
+
+/**
+ * @description: 获取所有独立页，包括隐藏的
+ * @Date: 2023-03-21 19:43:52
+ * @Author: mulingyuer
+ */
+function getAllPages()
+{
+    $db = Typecho_Db::get();
+    if (class_exists('\Typecho\Widget')) {
+        $widget = \Widget\Contents\Page\Rows::alloc();
+        foreach ([
+            "stack" => [],
+            "row" => [],
+            "length" => 0,
+        ] as $name => $val) {
+            try {
+                $reflect = new ReflectionClass($widget);
+                $property = $reflect->getProperty($name);
+                $property->setAccessible(true);
+                $property->setValue($widget, $val);
+            } catch (ReflectionException $e) {
+            }
+        }
+    } else {
+        $widget = new Widget_Contents_Page_List(Typecho_Request::getInstance(), Typecho_Widget_Helper_Empty::getInstance(), null);
+    }
+    $db->fetchAll($db->select()
+            ->from('table.contents')
+            ->where('table.contents.type = ?', 'page')
+            ->where('table.contents.status = ? or table.contents.status = ?', 'publish', 'hidden')
+            ->where('table.contents.created < ?', Helper::options()->time), array($widget, 'push'));
+    return $widget;
+
+};
+
+/**
+ * @description: 获取指定隐藏分页地址
+ * @param {*} $page 分页对象
+ * @param {*} $name 分页名称
+ * @Date: 2023-03-21 19:32:45
+ * @Author: mulingyuer
+ */
+function getHidePage($page, $name)
+{
+    $href;
+    getAllPages()->to($page);
+    while ($page->next()) {
+        if ($page->slug === $name) {
+            $href = $page->permalink;
+        }
+    }
+    //判断是否存在
+    if (empty($href)) {
+        return $name . "页不存在";
+    } else {
+        return $href;
+    }
+};

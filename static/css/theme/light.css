@@ -131,4 +131,26 @@
   --jj-toast-color-error: #f56c6c;
   --jj-toast-bg-error: #fef0f0;
   --jj-toast-border-error: #fde2e2;
+
+  /* recent-comments */
+  --jj-recent-comments-bg: #fff;
+  --jj-recent-comments-border: #e4e6eb;
+  --jj-recent-comments-head-icon-color: #8a919f;
+  --jj-recent-comments-title-color: #1d2129;
+  --jj-recent-comments-list-placeholder-color: #8a919f;
+  --jj-recent-comments-list-item-bg-hover: rgba(216, 216, 216, 0.1);
+  --jj-recent-comments-list-item-title-color: #252933;
+  --jj-recent-comments-list-item-msg-color: #8a919f;
+  --jj-recent-comments-management-btn-color: #1e80ff;
+  --jj-recent-comments-management-btn-color-hover: #1171ee;
+
+  /* theme-tool */
+  --jj-theme-tool-bg: #fff;
+  --jj-theme-tool-item-bg-hover: rgba(216, 216, 216, 0.1);
+  --jj-theme-tool-item-img-bg: #f2f3f5;
+  --jj-theme-tool-item-title-color: #333;
+
+  /* footer */
+  --jj-footer-color: #8a919f;
+  --jj-footer-color-hover: #1d7dfa;
 }

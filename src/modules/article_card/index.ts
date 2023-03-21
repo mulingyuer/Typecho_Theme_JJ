@@ -1,13 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-19 17:59:36
- * @LastEditTime: 2023-03-21 01:47:23
+ * @LastEditTime: 2023-03-21 17:44:45
  * @LastEditors: mulingyuer
  * @Description: 文章卡片
- * @FilePath: \Typecho_Theme_JJ\src\modules\articleCard\articleCard.ts
+ * @FilePath: \Typecho_Theme_JJ\src\modules\article_card\index.ts
  * 怎么可能会有bug！！！
  */
-import "./articleCard.scss";
+import "./style.scss";
 import toast from "@/utils/toast";
 import ThumbLazy from "./thumbLazy";
 import type { LazyTarget } from "./thumbLazy";

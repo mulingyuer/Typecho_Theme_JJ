@@ -1,13 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-18 23:25:38
+ * @LastEditTime: 2023-03-21 17:46:15
  * @LastEditors: mulingyuer
  * @Description: header模块
- * @FilePath: \Typecho_Theme_JJ\src\modules\header\header.ts
+ * @FilePath: \Typecho_Theme_JJ\src\modules\header\index.ts
  * 怎么可能会有bug！！！
  */
-import "./header.scss";
+import "./style.scss";
 import { useDataStore } from "@/store/data";
 import { watch } from "vue";
 import SearchHistory from "./searchHistory";
@@ -308,7 +308,7 @@ class LoginDialog {
   private createQrCode() {
     QRCode.toDataURL("https://s1.ax1x.com/2023/03/17/ppGkaMd.png", { margin: 1 })
       .then((url) => {
-        this.qrCodeImg.setAttribute("src", url);
+        this.qrCodeImg?.setAttribute("src", url);
       })
       .catch((error) => {
         console.error("二维码生成失败", error);

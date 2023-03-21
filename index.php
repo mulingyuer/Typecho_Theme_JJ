@@ -29,13 +29,17 @@
       <div class="home-content">
         <div class="home-left">
           <?php $this->need("./php_modules/home/nav.php");?>
-          <?php $this->need("./php_modules/articleSkeleton.php");?>
+          <?php $this->need("./php_modules/article_skeleton.php");?>
 <?php endif;?>
           <?php $this->need("./php_modules/article_card.php");?>
           <?php $this->need("./php_modules/article_pagination.php");?>
 <?php if (!isAjax()): ?>
         </div>
-        <div class="home-right"></div>
+        <div class="home-right">
+          <?php $this->need("./php_modules/home/recent_comments.php");?>
+          <?php $this->need("./php_modules/home/theme_tool.php");?>
+          <?php $this->need("./php_modules/footer.php");?>
+        </div>
       </div>
     </div>
   </main>
