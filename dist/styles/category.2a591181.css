@@ -93,3 +93,31 @@
   line-height: inherit;
   transition: transform 0.2s;
 }
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/category/tips/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.category-tips {
+  padding: 12px 20px;
+  background-color: var(--jj-article-nav-bg);
+  border-bottom: 1px solid var(--jj-article-nav-border);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.category-tips-content {
+  font-size: 14px;
+  color: var(--jj-category-tips-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.category-tips-content strong {
+  font-size: 16px;
+  color: var(--jj-category-tips-strong-color);
+}
+
+@media screen and (max-width: 640px) {
+  .category-tips {
+    padding: 12px;
+  }
+}

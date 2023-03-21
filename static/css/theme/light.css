@@ -161,4 +161,8 @@
   --jj-fixed-tool-item-border: #f1f1f1;
   --jj-fixed-tool-item-box-shadow: rgba(50, 50, 50, 0.04);
   --jj-fixed-tool-item-box-shadow-hover: #ddd;
+
+  /* category-tips */
+  --jj-category-tips-color: #71777c;
+  --jj-category-tips-strong-color: #007fff;
 }

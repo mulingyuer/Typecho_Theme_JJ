@@ -7,3 +7,23 @@
   max-width: 1140px;
   margin: 0 auto;
 }
+.main-content {
+  padding-top: $headerGap;
+  display: flex;
+  align-items: flex-start;
+}
+.main-left {
+  flex-grow: 1;
+  min-width: 0;
+}
+.main-right {
+  flex-shrink: 0;
+  width: 300px;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .main-right {
+    display: none;
+  }
+}

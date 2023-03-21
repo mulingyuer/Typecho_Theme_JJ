@@ -292,6 +292,29 @@ ul {
   max-width: 1140px;
   margin: 0 auto;
 }
+
+.main-content {
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.main-left {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.main-right {
+  flex-shrink: 0;
+  width: 300px;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .main-right {
+    display: none;
+  }
+}
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/header/style.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -1313,4 +1336,589 @@ ul {
 .nav-secondary-warp {
   height: 0;
   overflow: hidden;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_card/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.article-card-wrap.hidden {
+  display: none;
+}
+
+.article-card {
+  padding: 12px 20px;
+  background-color: var(--jj-article-card-bg);
+  position: relative;
+  cursor: pointer;
+}
+.article-card + .article-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  margin-top: -0.5px;
+  background-color: var(--jj-article-card-border);
+}
+.article-card:hover {
+  background-color: var(--jj-article-card-bg-hover);
+}
+
+.article-card-hidden-a {
+  display: none;
+}
+
+.article-card-head {
+  height: 22px;
+  line-height: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--jj-article-card-head-color);
+}
+
+.article-card-user,
+.article-card-time {
+  flex-shrink: 0;
+}
+
+.article-card-user {
+  color: var(--jj-article-card-user-color);
+}
+
+.article-card-time {
+  position: relative;
+  padding: 0 12px;
+  margin: 0 12px;
+}
+.article-card-time::before, .article-card-time::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 1px;
+  height: 12px;
+  background-color: var(--jj-article-card-head-border);
+  transform: translateY(-50%);
+}
+.article-card-time::before {
+  left: 0;
+}
+.article-card-time::after {
+  right: 0;
+}
+
+.article-card-tag a {
+  text-decoration: none;
+  color: inherit;
+}
+.article-card-tag a:hover {
+  color: var(--jj-article-card-tag-color-hover);
+}
+.article-card-tag a:active {
+  opacity: 0.7;
+}
+
+.article-card-tag-separator {
+  margin: 0 8px;
+}
+
+.article-card-body {
+  display: flex;
+  align-items: center;
+}
+
+.article-card-main {
+  flex-grow: 1;
+  min-width: 0;
+  padding: 10px 0;
+}
+
+.article-card-title {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+  color: var(--jj-article-card-title-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-card-desc {
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 22px;
+  color: var(--jj-article-card-desc-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.article-card-footer {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--jj-article-card-footer-color);
+}
+
+.article-card-footer-item {
+  color: inherit;
+  text-decoration: none;
+}
+.article-card-footer-item + .article-card-footer-item {
+  margin-left: 20px;
+}
+
+a.article-card-footer-item:hover {
+  color: var(--jj-article-card-footer-color-hover);
+}
+a.article-card-footer-item:active {
+  opacity: 0.7;
+}
+
+.article-card-footer-item-icon {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.article-card-thumb {
+  flex-shrink: 0;
+  margin-left: 24px;
+  width: 120px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.article-card-thumb-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 640px) {
+  .article-card {
+    padding: 12px;
+  }
+  .article-card + .article-card::before {
+    left: 12px;
+    right: 12px;
+  }
+  .article-card-thumb {
+    width: 80px;
+    height: 54px;
+    margin-left: 12px;
+  }
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+toastify-js@1.12.0/node_modules/toastify-js/src/toastify.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!
+ * Toastify js 1.12.0
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */
+
+.toastify {
+    padding: 12px 20px;
+    color: #ffffff;
+    display: inline-block;
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: fixed;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647;
+}
+
+.toastify.on {
+    opacity: 1;
+}
+
+.toast-close {
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    opacity: 0.4;
+    padding: 0 5px;
+}
+
+.toastify-right {
+    right: 15px;
+}
+
+.toastify-left {
+    left: 15px;
+}
+
+.toastify-top {
+    top: -150px;
+}
+
+.toastify-bottom {
+    bottom: -150px;
+}
+
+.toastify-rounded {
+    border-radius: 25px;
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: -7px 5px;
+    border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: fit-content;
+    max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+    .toastify-right, .toastify-left {
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
+    }
+}
+
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/styles/toast.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.jj-toast {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--jj-toast-color);
+  background: var(--jj-toast-bg);
+  border: 1px solid var(--jj-toast-border);
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--jj-toast-box-shadow);
+}
+.jj-toast.info {
+  color: var(--jj-toast-color-info);
+  border-color: var(--jj-toast-border-info);
+  background: var(--jj-toast-bg-info);
+}
+.jj-toast.success {
+  color: var(--jj-toast-color-success);
+  border-color: var(--jj-toast-border-success);
+  background: var(--jj-toast-bg-success);
+}
+.jj-toast.warning {
+  color: var(--jj-toast-color-warning);
+  border-color: var(--jj-toast-border-warning);
+  background: var(--jj-toast-bg-warning);
+}
+.jj-toast.error {
+  color: var(--jj-toast-color-error);
+  border-color: var(--jj-toast-border-error);
+  background: var(--jj-toast-bg-error);
+}
+
+@media only screen and (max-width: 360px) {
+  .jj-toast {
+    width: fit-width;
+    max-width: 300px;
+  }
+}
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_pagination/style.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.article-pagination {
+  padding: 20px;
+  background: var(--jj-article-pagination-bg);
+  border-top: 1px solid var(--jj-article-pagination-border);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin-bottom: 20px;
+}
+.article-pagination.hidden {
+  display: none;
+}
+.article-pagination.no-more .article-pagination-content > a {
+  display: none;
+}
+.article-pagination.no-more .article-pagination-loading {
+  display: none;
+}
+.article-pagination.no-more .article-pagination-no-more {
+  display: inline;
+}
+
+.article-pagination-content {
+  text-align: center;
+}
+.article-pagination-content > a {
+  display: none;
+}
+
+.article-pagination-loading {
+  height: 20px;
+  vertical-align: top;
+}
+
+.article-pagination-no-more {
+  display: none;
+  font-size: 14px;
+  color: var(--jj-article-pagination-no-more-color);
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_skeleton/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.article-skeleton {
+  background-color: var(--jj-article-skeleton-bg);
+  padding: 20px;
+}
+.article-skeleton.hidden {
+  display: none;
+}
+
+.article-skeleton-line {
+  height: 14px;
+  background-image: linear-gradient(90deg, var(--jj-article-skeleton-line-bg1), var(--jj-article-skeleton-line-bg2), var(--jj-article-skeleton-line-bg1));
+  background-size: 480px 480px;
+  animation: article-skeleton-animation 0.6s linear infinite;
+}
+.article-skeleton-line + .article-skeleton-line {
+  margin-top: 16px;
+}
+.article-skeleton-line:nth-child(1) {
+  margin-top: 8px;
+  width: 40%;
+}
+.article-skeleton-line:nth-child(3) {
+  width: 80%;
+}
+.article-skeleton-line:nth-child(4) {
+  width: 60%;
+}
+
+@keyframes article-skeleton-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 480px 0;
+  }
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/home/recent_comments/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.recent-comments {
+  margin-bottom: 20px;
+}
+
+.recent-comments-content {
+  background-color: var(--jj-recent-comments-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.recent-comments-head {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--jj-recent-comments-border);
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.recent-comments-head-icon {
+  flex-shrink: 0;
+  margin-right: 10px;
+  font-size: inherit;
+  font-weight: inherit;
+  color: var(--jj-recent-comments-head-icon-color);
+}
+
+.recent-comments-title {
+  flex-grow: 1;
+  min-width: 0;
+  font-weight: normal;
+  font-size: inherit;
+  color: var(--jj-recent-comments-title-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-comments-list-placeholder {
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--jj-recent-comments-list-placeholder-color);
+}
+
+.recent-comments-list-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: inherit;
+  text-decoration: none;
+}
+.recent-comments-list-item:hover {
+  background-color: var(--jj-recent-comments-list-item-bg-hover);
+}
+.recent-comments-list-item:active {
+  opacity: 0.7;
+}
+
+.recent-comments-list-item-avatar {
+  flex-shrink: 0;
+  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+}
+.recent-comments-list-item-avatar > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  vertical-align: top;
+}
+
+.recent-comments-list-item-content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.recent-comments-list-item-title {
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--jj-recent-comments-list-item-title-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-comments-list-item-msg {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--jj-recent-comments-list-item-msg-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.recent-comments-footer {
+  border-top: 1px solid var(--jj-recent-comments-border);
+}
+
+.recent-comments-management-btn {
+  display: block;
+  padding: 15px 20px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--jj-recent-comments-management-btn-color);
+  transition: color 0.2s;
+}
+.recent-comments-management-btn:hover {
+  color: var(--jj-recent-comments-management-btn-color-hover);
+}
+.recent-comments-management-btn:active {
+  opacity: 0.7;
+}
+
+.recent-comments-management-btn-icon {
+  font-size: inherit;
+  line-height: inherit;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/home/theme_tool/style.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.theme-tool {
+  margin-bottom: 20px;
+}
+
+.theme-tool-content {
+  padding: 12px 0;
+  background-color: var(--jj-theme-tool-bg);
+  border-radius: 4px;
+}
+
+.theme-tool-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.theme-tool-item:hover {
+  background-color: var(--jj-theme-tool-item-bg-hover);
+}
+.theme-tool-item:active {
+  opacity: 0.7;
+}
+
+.theme-tool-item-img-wrap {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--jj-theme-tool-item-img-bg);
+  margin-right: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.theme-tool-item-img {
+  width: 80%;
+  height: 80%;
+}
+
+.theme-tool-item-title {
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--jj-theme-tool-item-title-color);
+}
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/footer/style.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.footer-content {
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--jj-footer-color);
+}
+
+.footer-content a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer-content a + a {
+  margin-left: 10px;
+}
+.footer-content a:hover {
+  color: var(--jj-footer-color-hover);
+}
+.footer-content a:active {
+  opacity: 0.7;
+}
+
+.footer-item + .footer-item {
+  margin-top: 5px;
 }

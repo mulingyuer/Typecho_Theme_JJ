@@ -1,12 +1,5 @@
-.home-content {
-  padding-top: $headerGap;
-  display: flex;
-  align-items: flex-start;
-}
-.home-left {
-  flex-grow: 1;
-  min-width: 0;
-}
+// .home-content {
+// }
 .article-nav {
   background-color: var(--jj-article-nav-bg);
   border-top-left-radius: 4px;
@@ -47,18 +40,6 @@
     &::before {
       display: block;
     }
-  }
-}
-
-.home-right {
-  flex-shrink: 0;
-  width: 300px;
-  margin-left: 20px;
-}
-
-@media screen and (max-width: 1000px) {
-  .home-right {
-    display: none;
   }
 }
 
