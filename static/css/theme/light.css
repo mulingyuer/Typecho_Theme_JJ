@@ -153,4 +153,12 @@
   /* footer */
   --jj-footer-color: #8a919f;
   --jj-footer-color-hover: #1d7dfa;
+
+  /* fixed-tool */
+  --jj-fixed-tool-item-bg: #fff;
+  --jj-fixed-tool-item-color: #909090;
+  --jj-fixed-tool-item-color-hover: #1e80ff;
+  --jj-fixed-tool-item-border: #f1f1f1;
+  --jj-fixed-tool-item-box-shadow: rgba(50, 50, 50, 0.04);
+  --jj-fixed-tool-item-box-shadow-hover: #ddd;
 }

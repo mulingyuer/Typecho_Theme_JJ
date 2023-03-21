@@ -43,6 +43,7 @@
       </div>
     </div>
   </main>
+  <?php $this->need("./php_modules/fixed_tool.php");?>
 </body>
 </html>
 <?php endif;?>

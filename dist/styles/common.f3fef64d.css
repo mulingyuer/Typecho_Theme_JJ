@@ -42,9 +42,9 @@ ul {
   \***********************************************************************************************************************************************************************************************************************************************************************************************/
 @font-face {
   font-family: "jj-icon"; /* Project id 2465190 */
-  src: url(../fonts/de7592a2868ee2ceda23.woff2?t=1679015132497) format('woff2'),
-       url(../fonts/26f1b3f9c997c50d1b87.woff?t=1679015132497) format('woff'),
-       url(../fonts/7f66d8eab6ffdc1a66b0.ttf?t=1679015132497) format('truetype');
+  src: url(../fonts/da420f3074d6eb2e4f74.woff2?t=1679410658761) format('woff2'),
+       url(../fonts/5950b34c90e35d13fecf.woff?t=1679410658761) format('woff'),
+       url(../fonts/3109ba274f22fb596ee7.ttf?t=1679410658761) format('truetype');
 }
 
 .jj-icon {
@@ -53,6 +53,18 @@ ul {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.jj-icon-arrow_up_fill:before {
+  content: "\e817";
+}
+
+.jj-icon-daytime-mode:before {
+  content: "\e839";
+}
+
+.jj-icon-daytime-mode-fill:before {
+  content: "\e83a";
 }
 
 .jj-icon-dashboard:before {
@@ -1126,6 +1138,68 @@ ul {
   }
   .header-comment {
     margin-left: 0;
+  }
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/fixed_tool/style.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.fixed-tool {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1;
+}
+
+.fixed-tool-item {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--jj-fixed-tool-item-color);
+  background-color: var(--jj-fixed-tool-item-bg);
+  border: 1px solid var(--jj-fixed-tool-item-border);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px var(--jj-fixed-tool-item-box-shadow);
+  cursor: pointer;
+}
+.fixed-tool-item + .fixed-tool-item {
+  margin-top: 12px;
+}
+.fixed-tool-item:hover {
+  color: var(--jj-fixed-tool-item-color-hover);
+  box-shadow: 0 0 5px var(--jj-fixed-tool-item-box-shadow-hover);
+}
+.fixed-tool-item:active {
+  opacity: 0.7;
+}
+
+.fixed-tool-item .dark-icon {
+  display: none;
+}
+.fixed-tool-item .light-icon {
+  display: block;
+  color: var(--jj-fixed-tool-item-color-hover);
+}
+.fixed-tool-item.dark .dark-icon {
+  display: block;
+}
+.fixed-tool-item.dark .light-icon {
+  display: none;
+}
+
+.fixed-tool-item.back-to-top {
+  display: none;
+}
+.fixed-tool-item.back-to-top.visible {
+  display: flex;
+}
+
+@media screen and (max-width: 480px) {
+  .fixed-tool {
+    right: 12px;
+    bottom: 36px;
   }
 }
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
