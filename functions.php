@@ -18,8 +18,16 @@ function themeConfig($form)
         _t('备案信息'),
         _t('例子：&lt;div class=&quot;footer-item&quot;&gt;&lt;a href=&quot;备案跳转的链接&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;备案号&lt;/a&gt;&lt;/div&gt;')
     );
-
     $form->addInput($filing);
+
+    $customScript = new \Typecho\Widget\Helper\Form\Element\Textarea(
+        'customScript',
+        null,
+        null,
+        _t('站点统计代码（自定义脚本）'),
+        _t('放入站点统计代码或者自定义脚本')
+    );
+    $form->addInput($customScript);
 
     $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
         'sidebarBlock',

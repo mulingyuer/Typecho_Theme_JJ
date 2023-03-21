@@ -44,6 +44,8 @@
     </div>
   </main>
   <?php $this->need("./php_modules/fixed_tool.php");?>
+  <?php //自定义脚本 ?>
+  <?php $this->options->customScript();?>
 </body>
 </html>
 <?php endif;?>
