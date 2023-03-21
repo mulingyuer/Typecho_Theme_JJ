@@ -17,9 +17,14 @@
       <div class="main-content category-content">
         <div class="main-left">
           <?php $this->need("./php_modules/category/tips.php");?>
-          <?php $this->need("./php_modules/article_skeleton.php");?>
 <?php endif;?>
-          <?php $this->need("./php_modules/article_card.php");?>
+          <?php //是否有内容?>
+          <?php if ($this->have()): ?>
+            <?php $this->need("./php_modules/article_skeleton.php");?>
+            <?php $this->need("./php_modules/article_card.php");?>
+          <?php else: ?>
+            <?php $this->need("./php_modules/article_empty.php");?>
+          <?php endif;?>
           <?php $this->need("./php_modules/article_pagination.php");?>
 <?php if (!isAjax()): ?>
         </div>

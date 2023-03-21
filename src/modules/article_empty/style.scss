@@ -1,0 +1,14 @@
+.article-empty {
+  background-color: var(--jj-article-empty-bg);
+  & + .article-pagination {
+    display: none;
+  }
+}
+.article-empty-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  font-size: 14px;
+  color: var(--jj-article-empty-color);
+}

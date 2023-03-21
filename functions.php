@@ -64,6 +64,21 @@ function blogTitle($that)
 }
 
 /**
+ * @description: 固定的一些其他页面
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-22 00:40:07
+ * @Author: mulingyuer
+ */
+function isOtherPage($that)
+{
+    $isIndex = $that->is('index');
+    $isCategory = $that->is('category');
+    $isArchive = $that->is('archive');
+
+    return $isIndex || $isCategory || $isArchive;
+}
+
+/**
  * @description: 获取当前页面描述
  * @param {*} $that 当前页面对象
  * @Date: 2023-03-14 20:51:55
@@ -72,7 +87,7 @@ function blogTitle($that)
 function blogDescription($that, $max = 150)
 {
     $desc = "";
-    if ($that->is('index') || $that->is('category')) {
+    if (isOtherPage($that)) {
         $desc = Helper::options()->description();
     } else {
         $desc = $that->excerpt($max);
@@ -89,7 +104,7 @@ function blogDescription($that, $max = 150)
 function blogKeywords($that)
 {
     $keywords = "";
-    if ($that->is('index') || $that->is('category')) {
+    if (isOtherPage($that)) {
         $keywords = Helper::options()->keywords();
     } else {
         $keywords = $that->category(',', false) + $that->tags(',', false);
@@ -125,7 +140,7 @@ function seoUrl($that)
 function seoImage($that)
 {
     $image = "";
-    if ($that->is('index') || $that->is('category')) {
+    if (isOtherPage($that)) {
         $image = Helper::options()->themeUrl . "/static/images/favicon/android-chrome-512x512.png";
     } else {
         $image = get_ArticleThumbnail($that);

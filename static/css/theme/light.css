@@ -114,6 +114,10 @@
   --jj-article-pagination-border: #e4e6eb;
   --jj-article-pagination-no-more-color: #8a919f;
 
+  /* article-empty */
+  --jj-article-empty-bg: #fff;
+  --jj-article-empty-color: #8a919f;
+
   /* toast */
   --jj-toast-color: #333;
   --jj-toast-bg: #fff;

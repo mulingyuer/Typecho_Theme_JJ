@@ -36,7 +36,7 @@
         </div>
         <div class="header-search-wrap">
           <form class="header-search-form" method="post" action="<?php $this->options->siteUrl();?>" role="search">
-            <input id="header-search-input" class="header-search-input" type="text" id="s" name="s" placeholder="<?php _e('输入关键字搜索');?>" autocomplete="off">
+            <input id="header-search-input" class="header-search-input" type="text" id="s" name="s" maxlength="40" placeholder="<?php _e('输入关键字搜索');?>" autocomplete="off">
             <label for="header-search-input" class="header-search-btn" tabindex="0">
               <i class="jj-icon jj-icon-sousuo"></i>
             </label>
