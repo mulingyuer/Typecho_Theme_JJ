@@ -169,4 +169,9 @@
   /* category-tips */
   --jj-category-tips-color: #71777c;
   --jj-category-tips-strong-color: #007fff;
+
+  /** 404 */
+  --jj-error-card-logo-bg: #dde7ff;
+  --jj-error-card-title-color: #71777c;
+  --jj-error-card-strong-color: #333;
 }
