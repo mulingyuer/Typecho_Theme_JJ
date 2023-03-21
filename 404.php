@@ -4,6 +4,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
+  <?php $this->need("./php_modules/notes.php");?>
 <head>
   <?php $this->need("./php_modules/default_head.php");?>
   <link href="<?php $this->options->themeUrl('/static/game/fonts.css');?>" rel="stylesheet" type="text/css">

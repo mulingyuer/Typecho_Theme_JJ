@@ -1,10 +1,12 @@
 .secondary-nav {
-  @include prevent-scroll-jitter();
+  & + .category-content {
+    padding-top: 0;
+  }
 }
-.secondary-nav-container {
-  max-width: 1260px;
-  margin: 0 auto;
-}
+// .secondary-nav-container {
+//   max-width: 1260px;
+//   margin: 0 auto;
+// }
 .secondary-nav-content {
   height: 48px;
   overflow: hidden;

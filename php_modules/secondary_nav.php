@@ -4,7 +4,6 @@
     <?php $children = $this->widget('Widget_Metas_Category_List')->getAllChildren($category->parent);?>
       <?php if (count($children)): ?>
       <div class="secondary-nav">
-        <div class="secondary-nav-container">
           <div class="secondary-nav-content">
             <div class="secondary-nav-fold">
               <div class="secondary-nav-left">
@@ -25,7 +24,6 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
     <?php endif;?>
   <?php endif;?>

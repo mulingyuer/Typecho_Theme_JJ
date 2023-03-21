@@ -5,6 +5,7 @@
 <?php if (!isAjax()): ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
+  <?php $this->need("./php_modules/notes.php");?>
 <head>
   <?php $this->need("./php_modules/default_head.php");?>
   <?php $this->need("./dist/head/category.php");?>
@@ -14,6 +15,7 @@
   <?php $this->need("./php_modules/nav.php");?>
   <main class="main" role="main">
     <div class="container">
+      <?php $this->need("./php_modules/secondary_nav.php");?>
       <div class="main-content category-content">
         <div class="main-left">
           <?php $this->need("./php_modules/category/tips.php");?>
