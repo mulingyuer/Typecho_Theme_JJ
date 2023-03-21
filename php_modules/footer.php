@@ -17,9 +17,7 @@
     <div class="footer-item">
       <a href="<?php $this->options->siteUrl();?>" target="_self" title="<?php $this->options->title();?>">&copy;2021 <?php $this->options->title();?></a>
     </div>
-    <div class="footer-item">
-      <a href="https://ourl.co/icp" target="_blank" rel="noopener nofollow">浙ICP备19001095号-11</a>
-    </div>
+    <?php $this->options->filing();?>
     <div class="footer-item">
       Blog By <a href="http://typecho.org" target="_blank" title="Typecho">Typecho</a>
     </div>

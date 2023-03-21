@@ -4,6 +4,40 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 /**
+ * @description: 主题可视化配置
+ * @param {*} $form
+ * @Date: 2023-03-21 23:48:01
+ * @Author: mulingyuer
+ */
+function themeConfig($form)
+{
+    $filing = new \Typecho\Widget\Helper\Form\Element\Textarea(
+        'filing',
+        null,
+        null,
+        _t('备案信息'),
+        _t('例子：&lt;div class=&quot;footer-item&quot;&gt;&lt;a href=&quot;备案跳转的链接&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;备案号&lt;/a&gt;&lt;/div&gt;')
+    );
+
+    $form->addInput($filing);
+
+    $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
+        'sidebarBlock',
+        [
+            'ShowRecentPosts' => _t('显示最新文章'),
+            'ShowRecentComments' => _t('显示最近回复'),
+            'ShowCategory' => _t('显示分类'),
+            'ShowArchive' => _t('显示归档'),
+            'ShowOther' => _t('显示其它杂项'),
+        ],
+        ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'],
+        _t('侧边栏显示')
+    );
+
+    $form->addInput($sidebarBlock->multiMode());
+}
+
+/**
  * @description: 获取当前页面标题
  * @param {*} $that 当前页面对象
  * @Date: 2023-03-14 20:50:07
