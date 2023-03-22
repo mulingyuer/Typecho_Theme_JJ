@@ -20,7 +20,8 @@
           <?php $this->need("./php_modules/article_content.php");?>
         </div>
         <div class="main-right">
-
+          <?php $this->need("./php_modules/article_author.php");?>
+          <?php $this->need("./php_modules/post/latest_posts.php");?>
         </div>
       </div>
     </div>

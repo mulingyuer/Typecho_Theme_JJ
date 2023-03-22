@@ -174,4 +174,29 @@
   --jj-error-card-logo-bg: #dde7ff;
   --jj-error-card-title-color: #71777c;
   --jj-error-card-strong-color: #333;
+
+  /* article-content */
+  --jj-article-content-bg: #fff;
+  --jj-article-content-title: #252933;
+  --jj-article-content-author-name: #515767;
+  --jj-article-content-author-other: #8a919f;
+  --jj-article-content-edit-btn: #1e80ff;
+  --jj-article-content-end-time: #8a919f;
+
+  /* article-author */
+  --jj-article-author-bg: #fff;
+  --jj-article-author-head-border: #e4e6eb;
+  --jj-article-author-name-color: #252933;
+  --jj-article-author-group-color: #8a919f;
+  --jj-article-author-item-color: #252933;
+  --jj-article-author-item-icon: #7bb9ff;
+  --jj-article-author-item-icon-bg: #e1efff;
+
+  /* latest-posts */
+  --jj-latest-posts-bg: #fff;
+  --jj-latest-posts-title: #1d2129;
+  --jj-latest-posts-title-border: #e4e6eb;
+  --jj-latest-posts-item-title: #252933;
+  --jj-latest-posts-item-title-hover: #007fff;
+  --jj-latest-posts-item-icon: #8a919f;
 }

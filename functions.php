@@ -432,3 +432,51 @@ function getArticleTheme($that)
     }
     return $theme;
 };
+
+/**
+ * @description: 获取用户组
+ * @Date: 2023-03-23 05:10:27
+ * @Author: mulingyuer
+ */
+function getGroup($uid = 0)
+{
+    $db = Typecho_Db::get();
+    $prow = $db->fetchRow($db->select('group')->from('table.users')->where('uid = ?', $uid));
+    $group = $prow['group'];
+    if (empty($group)) {$group = "visitor";}
+
+    return $group;
+}
+
+/**
+ * @description: 中文转义用户组
+ * @param {*} $uid 用户id
+ * @Date: 2023-03-23 05:09:12
+ * @Author: mulingyuer
+ */
+function chineseUserGroup($uid = null)
+{
+    $userGroup = getGroup($uid);
+    $zhUserGroup;
+    switch ($userGroup) {
+        case "administrator":
+            $zhUserGroup = "博主";
+            break;
+        case "editor":
+            $zhUserGroup = "编辑";
+            break;
+        case "contributor":
+            $zhUserGroup = "贡献者";
+            break;
+        case "subscriber":
+            $zhUserGroup = "粉丝";
+            break;
+        default:
+            $zhUserGroup = "访客";
+    }
+
+    if (empty($zhUserGroup)) {
+        $zhUserGroup = "未知用户";
+    }
+    return $zhUserGroup;
+};

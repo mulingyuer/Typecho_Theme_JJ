@@ -8,7 +8,7 @@
   !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_content/style.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .article-content {
-  background-color: #fff;
+  background-color: var(--jj-article-content-bg);
   padding: 32px;
   border-radius: 4px;
 }
@@ -20,7 +20,7 @@
 .article-content-title {
   font-size: 32px;
   line-height: 1.3;
-  color: #252933;
+  color: var(--jj-article-content-title);
   margin-bottom: 20px;
 }
 
@@ -54,7 +54,7 @@
 .article-content-author-name {
   font-size: 16px;
   line-height: 24px;
-  color: #515767;
+  color: var(--jj-article-content-author-name);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -63,12 +63,12 @@
 .article-content-author-other {
   font-size: 14px;
   line-height: 22px;
-  color: #8a919f;
+  color: var(--jj-article-content-author-other);
 }
 
 .article-content-edit-btn {
   margin-left: 16px;
-  color: #1e80ff;
+  color: var(--jj-article-content-edit-btn);
   text-decoration: none;
 }
 .article-content-edit-btn:hover {
@@ -80,7 +80,7 @@
 
 .article-content-end-time {
   font-size: 12px;
-  color: #8a919f;
+  color: var(--jj-article-content-end-time);
   text-align: right;
 }
 
@@ -130,4 +130,163 @@
   transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
   cursor: zoom-in;
   z-index: 1;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_author/style.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.article-author {
+  margin-bottom: 20px;
+}
+
+.article-author-content {
+  background-color: var(--jj-article-author-bg);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.article-author-head {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--jj-article-author-head-border);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.article-author-avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
+}
+.article-author-avatar img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  vertical-align: top;
+}
+
+.article-author-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.article-author-name {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--jj-article-author-name-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-author-group {
+  font-size: 12px;
+  color: var(--jj-article-author-group-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-author-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--jj-article-author-item-color);
+}
+.article-author-item + .article-author-item {
+  margin-top: 8px;
+}
+
+.article-author-item-icon {
+  flex-shrink: 0;
+  margin-right: 12px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  background-color: var(--jj-article-author-item-icon-bg);
+  border-radius: 50%;
+  font-size: 16px;
+  color: var(--jj-article-author-item-icon);
+}
+
+.article-author-item-text {
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/post/latest_posts/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.latest-posts {
+  margin-bottom: 20px;
+}
+
+.latest-posts-content {
+  background-color: var(--jj-latest-posts-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.latest-posts-head {
+  padding: 0 20px;
+  margin-bottom: 8px;
+}
+
+.latest-posts-title {
+  padding: 16px 0;
+  font-size: 16px;
+  font-weight: none;
+  line-height: 24px;
+  color: var(--jj-latest-posts-title);
+  border-bottom: 1px solid var(--jj-latest-posts-title-border);
+}
+
+.latest-posts-body {
+  padding-bottom: 16px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--jj-latest-posts-item-title);
+}
+
+.latest-posts-item {
+  display: flex;
+  padding: 8px 20px;
+  color: inherit;
+  text-decoration: none;
+}
+.latest-posts-item .latest-posts-item-icon2 {
+  display: none;
+}
+.latest-posts-item:hover {
+  color: var(--jj-latest-posts-item-title-hover);
+}
+.latest-posts-item:hover .latest-posts-item-icon1 {
+  display: none;
+}
+.latest-posts-item:hover .latest-posts-item-icon2 {
+  display: block;
+  color: inherit;
+}
+
+.latest-posts-item-icon1,
+.latest-posts-item-icon2 {
+  flex-shrink: 0;
+  margin-right: 5px;
+  color: var(--jj-latest-posts-item-icon);
+}
+
+.latest-posts-item-title {
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
