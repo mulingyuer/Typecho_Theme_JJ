@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-23 04:41:03
+ * @LastEditTime: 2023-03-23 06:11:33
  * @LastEditors: mulingyuer
  * @Description: header模块
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\index.ts
@@ -14,6 +14,7 @@ import SearchHistory from "./searchHistory";
 import { lockBodyScroll, unlockBodyScroll } from "@/utils/rollingLock";
 import QRCode from "qrcode";
 import eventMitt, { MittEventName } from "@/utils/mittEvent";
+import toast from "@/utils/toast";
 
 //获取数据仓库
 const dataStore = useDataStore();
@@ -304,6 +305,11 @@ class LoginDialog {
     if (this.articleBtn) {
       this.articleBtn.addEventListener("click", this.onClickLogin.bind(this));
     }
+    //协议按钮
+    const protocolBtn = Array.from(document.querySelectorAll(".login-dialog-footer .login-dialog-link"));
+    protocolBtn.forEach((btn) => {
+      btn.addEventListener("click", this.onProtocolBtnClick);
+    });
   }
 
   /** 生成二维码并丢入html中 */
@@ -343,5 +349,10 @@ class LoginDialog {
     this.mask?.classList.remove("visible");
     this.dialogContent.classList.add("hidden");
   }
+
+  /** 协议按钮事件 */
+  private onProtocolBtnClick = () => {
+    toast.info({ text: "真的一滴都没有了", position: "center" });
+  };
 }
 new LoginDialog();

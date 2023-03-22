@@ -49,3 +49,18 @@
   top: 2px;
   right: 15px;
 }
+.markdown-body iframe {
+  display: block;
+  width: 100%;
+  height: 430px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(128, 128, 128, 0.4);
+  margin: 15px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .markdown-body iframe {
+    height: 110vw;
+    min-height: 390px;
+  }
+}

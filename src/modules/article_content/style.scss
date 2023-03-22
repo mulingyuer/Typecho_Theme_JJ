@@ -67,7 +67,6 @@
 }
 .article-content-title-img {
   width: 100%;
-  margin-bottom: 20px;
   vertical-align: top;
 }
 
@@ -76,5 +75,15 @@
   a {
     margin-left: 5px;
     margin-right: 5px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .article-content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .article-content-title {
+    font-size: 24px;
   }
 }

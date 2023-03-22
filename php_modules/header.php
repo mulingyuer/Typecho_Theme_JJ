@@ -182,7 +182,7 @@
         </div>
       </div>
       <div class="login-dialog-footer">
-        注册登录即表示同意<a class="login-dialog-link" href="" title="用户协议">用户协议</a>和<a class="login-dialog-link" href="" title="隐私政策">隐私政策</a>
+        注册登录即表示同意<a class="login-dialog-link" href="javascript:;" title="用户协议">用户协议</a>和<a class="login-dialog-link" href="javascript:;" title="隐私政策">隐私政策</a>
       </div>
     </div>
   </div>
