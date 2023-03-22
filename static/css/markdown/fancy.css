@@ -1,0 +1,323 @@
+.markdown-body {
+  color: #383838;
+  font-size: 15px;
+  line-height: 30px;
+  letter-spacing: 2px;
+  word-break: break-word;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  scroll-behavior: smooth;
+  background-image: linear-gradient(
+      0deg,
+      transparent 24%,
+      rgba(201, 195, 195, 0.329) 25%,
+      hsla(0, 8%, 80.4%, 0.05) 26%,
+      transparent 27%,
+      transparent 74%,
+      hsla(0, 5.2%, 81%, 0.185) 75%,
+      rgba(180, 176, 176, 0.05) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      rgba(204, 196, 196, 0.226) 25%,
+      hsla(0, 4%, 66.1%, 0.05) 26%,
+      transparent 27%,
+      transparent 74%,
+      hsla(0, 5.2%, 81%, 0.185) 75%,
+      rgba(180, 176, 176, 0.05) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-color: #fff;
+  background-size: 50px 50px;
+  padding-bottom: 60px;
+}
+.markdown-body ::selection {
+  color: #fff;
+  background-color: #a862ea;
+}
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin: 24px 0 12px;
+  color: #a862ea;
+}
+.markdown-body h1 {
+  line-height: 2;
+  font-size: 1.4em;
+}
+.markdown-body h1 ~ p:first-of-type:first-letter {
+  color: #a862ea;
+  float: left;
+  font-size: 2em;
+  margin-right: 0.4em;
+  font-weight: bolder;
+}
+.markdown-body h2 {
+  font-size: 1.2em;
+}
+.markdown-body h3 {
+  font-size: 1.1em;
+}
+.markdown-body ol,
+.markdown-body ul {
+  padding-left: 2em;
+}
+.markdown-body ol li,
+.markdown-body ul li {
+  margin-bottom: 0;
+  padding-left: 0.2em;
+}
+.markdown-body ol li::marker,
+.markdown-body ul li::marker {
+  color: #a862ea;
+}
+.markdown-body ol li.task-list-item,
+.markdown-body ul li.task-list-item {
+  list-style: none;
+}
+.markdown-body ol li.task-list-item ol,
+.markdown-body ol li.task-list-item ul,
+.markdown-body ul li.task-list-item ol,
+.markdown-body ul li.task-list-item ul {
+  margin-top: 0;
+}
+.markdown-body ol ol,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ul ul {
+  margin-top: 10px;
+}
+.markdown-body a,
+.markdown-body code,
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6,
+.markdown-body li,
+.markdown-body p {
+  opacity: 0.85;
+  vertical-align: baseline;
+  transition: all 0.1s ease;
+}
+.markdown-body a:hover,
+.markdown-body code:hover,
+.markdown-body h1:hover,
+.markdown-body h2:hover,
+.markdown-body h3:hover,
+.markdown-body h4:hover,
+.markdown-body h5:hover,
+.markdown-body h6:hover,
+.markdown-body li:hover,
+.markdown-body p:hover {
+  opacity: 1;
+}
+.markdown-body a {
+  display: inline-block;
+  color: #a862ea;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+.markdown-body a:after {
+  content: "";
+  position: absolute;
+  width: 98%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  background-color: #a862ea;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out;
+}
+.markdown-body a:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.markdown-body a:active,
+.markdown-body a:link {
+  color: #a862ea;
+}
+.markdown-body img {
+  max-width: 100%;
+  user-select: none;
+  margin: 1em 0;
+  transition: transform 0.2s ease 0s;
+  background-color: #f8f5ff;
+  box-shadow: 0 0 10px #e7daff;
+}
+.markdown-body img:hover {
+  opacity: 1;
+  box-shadow: 0 0 20px #e7daff;
+  transform: translateY(-1px);
+}
+.markdown-body blockquote {
+  padding: 0.5em 1em;
+  margin: 12px 0;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-left: 3px solid #a862ea;
+  background-color: #f8f5ff;
+}
+.markdown-body blockquote > p {
+  margin: 0;
+}
+.markdown-body .math {
+  font-style: italic;
+  margin: 12px 0;
+  padding: 0.5em 1em;
+  background-color: #f8f5ff;
+}
+.markdown-body .math > p {
+  margin: 0;
+}
+.markdown-body code {
+  padding: 2px 0.4em;
+  overflow-x: auto;
+  color: #a862ea;
+  font-weight: 700;
+  word-break: break-word;
+  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  background-color: #f8f5ff;
+}
+.markdown-body pre {
+  margin: 2em 0;
+}
+.markdown-body pre > code {
+  display: block;
+  padding: 1.5em;
+  word-break: normal;
+  font-size: 0.9em;
+  font-style: normal;
+  font-weight: 400;
+  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  line-height: 18px;
+  color: #383838;
+  border-radius: 2px;
+  scroll-behavior: smooth;
+  box-shadow: 0 0 10px #e7daff;
+}
+.markdown-body pre > code:hover {
+  box-shadow: 0 0 20px #e7daff;
+}
+.markdown-body pre > code::-webkit-scrollbar {
+  height: 6px;
+  background-color: #f8f5ff;
+}
+.markdown-body pre > code::-webkit-scrollbar-thumb {
+  background-color: #e7daff;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.markdown-body hr {
+  margin: 2em 0;
+  border-top: 1px solid #a862ea;
+}
+.markdown-body table {
+  width: 100%;
+  font-size: 12px;
+  max-width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+}
+.markdown-body thead {
+  color: #a862ea;
+  background: #f8f5ff;
+}
+.markdown-body td,
+.markdown-body th {
+  padding: 0.5em;
+  border: 1px solid #e7daff;
+}
+.markdown-body tr {
+  background-color: #f8f5ff;
+}
+@media (max-width: 720px) {
+  .markdown-body {
+    font-size: 12px;
+  }
+}
+/* code */
+.markdown-body pre,
+.markdown-body pre > code.hljs {
+  color: #333;
+  background: #f8f8f8;
+}
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: 700;
+}
+.hljs-literal,
+.hljs-number,
+.hljs-tag .hljs-attr,
+.hljs-template-variable,
+.hljs-variable {
+  color: teal;
+}
+.hljs-doctag,
+.hljs-string {
+  color: #d14;
+}
+.hljs-section,
+.hljs-selector-id,
+.hljs-title {
+  color: #900;
+  font-weight: 700;
+}
+.hljs-subst {
+  font-weight: 400;
+}
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #458;
+  font-weight: 700;
+}
+.hljs-attribute,
+.hljs-name,
+.hljs-tag {
+  color: navy;
+  font-weight: 400;
+}
+.hljs-link,
+.hljs-regexp {
+  color: #009926;
+}
+.hljs-bullet,
+.hljs-symbol {
+  color: #990073;
+}
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+.hljs-meta {
+  color: #999;
+  font-weight: 700;
+}
+.hljs-deletion {
+  background: #fdd;
+}
+.hljs-addition {
+  background: #dfd;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 700;
+}

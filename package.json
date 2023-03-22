@@ -46,6 +46,7 @@
   "dependencies": {
     "@floating-ui/dom": "^1.2.4",
     "axios": "^1.3.4",
+    "highlight.js": "^11.7.0",
     "mitt": "^3.0.0",
     "pinia": "^2.0.33",
     "qrcode": "^1.5.1",

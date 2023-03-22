@@ -21,6 +21,13 @@ body {
   background-color: var(--jj-body-bg-color);
 }
 
+html {
+  font-size: 12px;
+  color: #333;
+  word-break: break-word;
+  text-rendering: optimizeLegibility;
+}
+
 ul,
 ol,
 h1,
@@ -286,6 +293,9 @@ ul {
 .main {
   padding-top: 105px;
   padding-left: calc(100vw - 100%);
+}
+.main.no-nav {
+  padding-top: 60px;
 }
 
 .container {

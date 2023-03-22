@@ -1,0 +1,80 @@
+.article-content {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 4px;
+}
+// .article-content-card {
+
+// }
+.article-content-card-head {
+  margin-bottom: 20px;
+}
+.article-content-title {
+  font-size: 32px;
+  line-height: 1.3;
+  color: #252933;
+  margin-bottom: 20px;
+}
+.article-content-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.article-content-author-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  margin-right: 12px;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: top;
+    border-radius: 50%;
+  }
+}
+.article-content-author-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+.article-content-author-name {
+  font-size: 16px;
+  line-height: 24px;
+  color: #515767;
+  @include one-line();
+}
+.article-content-author-other {
+  font-size: 14px;
+  line-height: 22px;
+  color: #8a919f;
+}
+.article-content-edit-btn {
+  margin-left: 16px;
+  color: #1e80ff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+}
+.article-content-end-time {
+  font-size: 12px;
+  color: #8a919f;
+  text-align: right;
+}
+.article-content-title-img {
+  width: 100%;
+  margin-bottom: 20px;
+  vertical-align: top;
+}
+
+// 回复可见
+.respond-visible {
+  a {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}

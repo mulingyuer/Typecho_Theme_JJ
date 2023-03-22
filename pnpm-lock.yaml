@@ -21,6 +21,7 @@ specifiers:
   core-js: 3.29.1
   css-loader: ^6.7.3
   glob: ^9.3.0
+  highlight.js: ^11.7.0
   html-webpack-plugin: ^5.5.0
   mini-css-extract-plugin: ^2.7.3
   mitt: ^3.0.0
@@ -43,6 +44,7 @@ specifiers:
 dependencies:
   '@floating-ui/dom': registry.npmmirror.com/@floating-ui/dom/1.2.4
   axios: registry.npmmirror.com/axios/1.3.4
+  highlight.js: registry.npmmirror.com/highlight.js/11.7.0
   mitt: registry.npmmirror.com/mitt/3.0.0
   pinia: registry.npmmirror.com/pinia/2.0.33_hmuptsblhheur2tugfgucj7gc4
   qrcode: registry.npmmirror.com/qrcode/1.5.1
@@ -3202,6 +3204,13 @@ packages:
     version: 1.2.0
     hasBin: true
     dev: true
+
+  registry.npmmirror.com/highlight.js/11.7.0:
+    resolution: {integrity: sha512-1rRqesRFhMO/PRF+G86evnyJkCgaZFOI+Z6kdj15TA18funfoqJXvgPCLSf0SWq3SRfg1j3HlDs8o4s3EGq1oQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/highlight.js/-/highlight.js-11.7.0.tgz}
+    name: highlight.js
+    version: 11.7.0
+    engines: {node: '>=12.0.0'}
+    dev: false
 
   registry.npmmirror.com/html-minifier-terser/6.1.0:
     resolution: {integrity: sha512-YXxSlJBZTP7RS3tWnQw74ooKa6L9b9i9QYXY21eUEvhZ3u9XLfv6OnFsQq6RxkhHygsaUMvYsZRV5rU/OVNZxw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz}

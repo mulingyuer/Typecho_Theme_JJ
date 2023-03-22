@@ -2,6 +2,9 @@
 .main {
   padding-top: $headerH + $navH;
   @include prevent-scroll-jitter();
+  &.no-nav {
+    padding-top: $headerH;
+  }
 }
 .container {
   max-width: 1140px;
