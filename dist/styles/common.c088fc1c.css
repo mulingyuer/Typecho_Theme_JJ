@@ -909,12 +909,8 @@ ul {
   overflow: auto;
   display: none;
 }
-.login-dialog.visible .login-dialog-mask {
-  opacity: 1;
-}
-.login-dialog.visible .login-dialog-content {
-  opacity: 1;
-  transform: translate3D(0, 0, 0) scale(1);
+.login-dialog.visible {
+  display: block;
 }
 
 .login-dialog-mask {
@@ -926,6 +922,9 @@ ul {
   background-color: var(--jj-login-dialog-mask-bg);
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
+}
+.login-dialog-mask.visible {
+  opacity: 1;
 }
 
 .login-dialog-content-wrap {
@@ -941,8 +940,17 @@ ul {
   border-radius: 8px;
   position: relative;
   opacity: 0;
-  transform: translate3D(0, 50%, 0) scale(0.9);
-  transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
+  transform: translate3D(0, -50%, 0);
+  transform-origin: center bottom;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.login-dialog-content.visible {
+  opacity: 1;
+  transform: translate3D(0, 0, 0);
+}
+.login-dialog-content.hidden {
+  opacity: 0;
+  transform: translate3D(0, 50%, 0);
 }
 
 .login-dialog-close {

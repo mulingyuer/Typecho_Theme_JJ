@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-22 04:41:06
+ * @LastEditTime: 2023-03-23 04:41:03
  * @LastEditors: mulingyuer
  * @Description: header模块
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\index.ts
@@ -283,6 +283,7 @@ class LoginDialog {
   private dialog: HTMLElement | null = null; //弹窗容器
   private closeBtn: HTMLElement | null = null; //关闭按钮
   private mask: HTMLElement | null = null; //遮罩层
+  private dialogContent: HTMLElement | null = null; //弹窗内容
   private articleBtn: HTMLElement | null = null; //写文章按钮
 
   constructor() {
@@ -292,6 +293,7 @@ class LoginDialog {
     this.qrCodeImg = document.querySelector(".login-dialog-qrcode-img");
     this.closeBtn = document.querySelector(".login-dialog-close");
     this.mask = document.querySelector(".login-dialog-mask");
+    this.dialogContent = document.querySelector(".login-dialog-content");
     this.articleBtn = document.querySelector(".header-article-btn.login");
     //二维码
     this.createQrCode();
@@ -318,24 +320,28 @@ class LoginDialog {
   /** 登录按钮点击事件 */
   private onClickLogin() {
     if (!this.dialog) return;
-    this.dialog.style.display = "block";
-    getComputedStyle(this.dialog).display;
     this.dialog.classList.add("visible");
+    getComputedStyle(this.dialog).display;
+    this.mask?.classList.add("visible");
+    this.dialogContent?.classList.add("visible");
     lockBodyScroll();
   }
 
   /** 关闭弹窗事件 */
   private onClickClose() {
-    if (!this.dialog) return;
-    this.dialog.addEventListener(
+    if (!this.dialog || !this.dialogContent) return;
+    this.dialogContent.addEventListener(
       "transitionend",
       () => {
-        this.dialog && (this.dialog.style.display = "none");
+        this.dialog?.classList.remove("visible");
+        this.dialogContent?.classList.remove("hidden");
+        this.dialogContent?.classList.remove("visible");
         unlockBodyScroll();
       },
       { once: true }
     );
-    this.dialog.classList.remove("visible");
+    this.mask?.classList.remove("visible");
+    this.dialogContent.classList.add("hidden");
   }
 }
 new LoginDialog();
