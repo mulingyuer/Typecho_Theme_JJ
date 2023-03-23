@@ -85,3 +85,9 @@
   line-height: inherit;
   margin-right: 5px;
 }
+.directory-tree-list-empty {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--jj-directory-tree-list-empty);
+}
