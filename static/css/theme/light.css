@@ -199,4 +199,14 @@
   --jj-latest-posts-item-title: #252933;
   --jj-latest-posts-item-title-hover: #007fff;
   --jj-latest-posts-item-icon: #8a919f;
+  --jj-latest-posts-empty: #8a919f;
+
+  /* directory-tree */
+  --jj-directory-tree-bg: #fff;
+  --jj-directory-tree-title: #1d2129;
+  --jj-directory-tree-title-border: #e4e6eb;
+  --jj-directory-tree-body-scroll: #e4e6eb;
+  --jj-directory-tree-item: #000;
+  --jj-directory-tree-item-active: #007fff;
+  --jj-directory-tree-list-item-link-bg-hover: #f7f8fa;
 }

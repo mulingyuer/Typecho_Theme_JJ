@@ -18,10 +18,12 @@
       <div class="main-content post-content">
         <div class="main-left">
           <?php $this->need("./php_modules/article_content.php");?>
+          <div style="height:1200px;"></div>
         </div>
         <div class="main-right">
           <?php $this->need("./php_modules/article_author.php");?>
           <?php $this->need("./php_modules/post/latest_posts.php");?>
+          <?php $this->need("./php_modules/post/directory_tree.php");?>
         </div>
       </div>
     </div>

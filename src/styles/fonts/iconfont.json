@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "9230696",
+      "name": "send",
+      "font_class": "send",
+      "unicode": "e916",
+      "unicode_decimal": 59670
+    },
+    {
       "icon_id": "5858607",
       "name": "arrow_up_fill",
       "font_class": "arrow_up_fill",

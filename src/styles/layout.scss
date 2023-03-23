@@ -13,7 +13,7 @@
 .main-content {
   padding-top: $headerGap;
   display: flex;
-  align-items: flex-start;
+  // align-items: flex-start;  //为了文章右侧目录树浮动
 }
 .main-left {
   flex-grow: 1;

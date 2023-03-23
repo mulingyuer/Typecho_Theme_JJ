@@ -49,9 +49,9 @@ ul {
   \***********************************************************************************************************************************************************************************************************************************************************************************************/
 @font-face {
   font-family: "jj-icon"; /* Project id 2465190 */
-  src: url(../fonts/da420f3074d6eb2e4f74.woff2?t=1679410658761) format('woff2'),
-       url(../fonts/5950b34c90e35d13fecf.woff?t=1679410658761) format('woff'),
-       url(../fonts/3109ba274f22fb596ee7.ttf?t=1679410658761) format('truetype');
+  src: url(../fonts/a546c92c5cd5c30b3f8e.woff2?t=1679588327637) format('woff2'),
+       url(../fonts/2b7cde67969b15147f37.woff?t=1679588327637) format('woff'),
+       url(../fonts/3e34725740f022de18b2.ttf?t=1679588327637) format('truetype');
 }
 
 .jj-icon {
@@ -60,6 +60,10 @@ ul {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.jj-icon-send:before {
+  content: "\e916";
 }
 
 .jj-icon-arrow_up_fill:before {
@@ -306,7 +310,6 @@ ul {
 .main-content {
   padding-top: 20px;
   display: flex;
-  align-items: flex-start;
 }
 
 .main-left {

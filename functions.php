@@ -480,3 +480,95 @@ function chineseUserGroup($uid = null)
     }
     return $zhUserGroup;
 };
+
+/**
+ * @description: 给文章内容标题添加锚点
+ * @param {*} $content 文章内容
+ * @Date: 2023-03-23 20:43:02
+ * @Author: mulingyuer
+ */
+function addAnchorPoint($content)
+{
+    global $catalog;
+    global $catalog_count;
+    $catalog = array();
+    $catalog_count = 0;
+    $content = preg_replace_callback('/<h([1-6])(.*?)>(.*?)<\/h\1>/i', function ($content) {
+        global $catalog;
+        global $catalog_count;
+        $catalog_count++;
+        $catalog[] = array('text' => trim(strip_tags($content[3])), 'depth' => $content[1], 'count' => $catalog_count);
+        return '<h' . $content[1] . $content[2] . ' id="heading-' . $catalog_count . '">' . $content[3] . '</h' . $content[1] . '>';
+    }, $content);
+    return $content;
+}
+
+/**
+ * @description: 获取文章目录树
+ * @Date: 2023-03-23 20:36:47
+ * @Author: mulingyuer
+ */
+function getDirectoryTree()
+{
+    global $catalog;
+    $index = '';
+    if ($catalog) {
+        $index = '<ul class="directory-tree-list">' . "\n";
+        $prev_depth = '';
+        $to_depth = 0;
+        foreach ($catalog as $catalog_item) {
+            $catalog_depth = $catalog_item['depth'];
+            if ($prev_depth) {
+                if ($catalog_depth == $prev_depth) {
+                    $index .= '' . "\n";
+                } elseif ($catalog_depth > $prev_depth) {
+                    $to_depth++;
+                    $index .= '<ul class="directory-tree-sub-list">' . "\n";
+                } else {
+                    $to_depth2 = ($to_depth > ($prev_depth - $catalog_depth)) ? ($prev_depth - $catalog_depth) : $to_depth;
+                    if ($to_depth2) {
+                        for ($i = 0; $i < $to_depth2; $i++) {
+                            $index .= '' . "\n" . '</ul>' . "\n";
+                            $to_depth--;
+                        }
+                    }
+                    $index .= '';
+                }
+            }
+            $index .= '<li class="directory-tree-list-item"><div class="directory-tree-list-item-container"><a class="directory-tree-list-item-link" href="#heading-' . $catalog_item['count'] . '" data-scroll="#heading-' . $catalog_item['count'] . '" title="' . $catalog_item['text'] . '"><i class="jj-icon jj-icon-send directory-tree-list-item-icon"></i>' . $catalog_item['text'] . '</a></div>';
+            $prev_depth = $catalog_item['depth'];
+        }
+        for ($i = 0; $i <= $to_depth; $i++) {
+            $index .= '' . "\n" . '</li></ul>' . "\n";
+        }
+        // $index = '<div id="toc-container">'."\n".'<div id="toc">'."\n".'<strong>文章目录</strong>'."\n".$index.'</div>'."\n".'</div>'."\n";
+    }
+    if (!$index) {
+        echo '<ul class="directory-tree-list"><div class="directory-tree-list-empty">暂无目录</div></ul>';
+    } else {
+        echo $index;
+    }
+};
+
+//主题themeInit函数
+function themeInit($archive)
+{
+    //评论回复楼层最高999层.这个正常设置最高只有7层
+    Helper::options()->commentsMaxNestingLevels = 999;
+    //自动增加浏览次数
+    // if ($archive->is('single') || $archive->is('page')) {viewsCounter($archive);}
+    ;
+    //目录树
+    if ($archive->is('single')) {
+        $archive->content = addAnchorPoint($archive->content);
+    }
+
+    //点赞请求接口
+    if ($archive->request->isPost() && $archive->request->likeup && $archive->request->do_action) {
+        Typecho_widget::widget('Widget_Security')->to($security);
+        $security->protect();
+        likeup($archive->request->likeup, $archive->request->do_action);
+        exit;
+    }
+    ;
+}
