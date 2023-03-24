@@ -256,4 +256,10 @@
   --jj-comment-pagination-a-hover: #fff;
   --jj-comment-pagination-a-bg: #f7f8fa;
   --jj-comment-pagination-a-bg-hover: #1e80ff;
+
+  /* copyright */
+  --jj-copyright-bg: #f7f8fa;
+  --jj-copyright-title: #252933;
+  --jj-copyright-desc: #8a919f;
+  --jj-copyright-a-hover: #1e80ff;
 }

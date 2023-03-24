@@ -197,6 +197,57 @@ html {
     display: block;
   }
 }
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/copyright/style.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.copyright {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.copyright-content {
+  padding: 16px;
+  background-color: var(--jj-copyright-bg);
+  border-radius: 4px;
+  position: relative;
+}
+.copyright-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/9f971df663e70b60a04a.png);
+  background-repeat: no-repeat;
+  background-position: right -15px top -15px;
+  background-size: contain;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.copyright-title {
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--jj-copyright-title);
+  margin-bottom: 12px;
+}
+
+.copyright-desc {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--jj-copyright-desc);
+}
+.copyright-desc a {
+  color: inherit;
+  text-decoration: none;
+}
+.copyright-desc a:hover {
+  color: var(--jj-copyright-a-hover);
+}
+.copyright-desc a:active {
+  opacity: 0.7;
+}
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_author/style.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

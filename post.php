@@ -20,6 +20,7 @@
           <div class="article-content-wrapper">
             <?php $this->need("./php_modules/article_content.php");?>
             <?php $this->need("./php_modules/article_relevant_info.php");?>
+            <?php $this->need("./php_modules/copyright.php");?>
           </div>
           <?php $this->need("./php_modules/comment/comment.php");?>
           <div style="height:1200px;"></div>
