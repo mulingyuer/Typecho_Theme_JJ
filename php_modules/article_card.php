@@ -6,7 +6,7 @@
       <span class="article-card-user" itemprop="author">
         <span itemprop="name" rel="author"><?php $this->author();?></span>
       </span>
-      <time class="article-card-time" datetime="<?php $this->date('c');?>" itemprop="datePublished"><?php articleTime($this->created);?></time>
+      <time class="article-card-time" datetime="<?php $this->date('c');?>" itemprop="datePublished"><?php timeFormatting($this->created);?></time>
       <span class="article-card-tag">
         <?php $this->category('<span class="article-card-tag-separator">·</span>');?>
       </span>

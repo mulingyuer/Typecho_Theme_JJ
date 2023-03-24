@@ -18,6 +18,7 @@
       <div class="main-content post-content">
         <div class="main-left">
           <?php $this->need("./php_modules/article_content.php");?>
+          <?php $this->need("./php_modules/comment/comment.php");?>
           <div style="height:1200px;"></div>
         </div>
         <div class="main-right">

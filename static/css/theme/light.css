@@ -210,4 +210,39 @@
   --jj-directory-tree-item-active: #007fff;
   --jj-directory-tree-list-item-link-bg-hover: #f7f8fa;
   --jj-directory-tree-list-empty: #8a919f;
+
+  /* comment */
+  --jj-comment-bg: #fff;
+  --jj-comment-title: #252933;
+  --jj-comment-off: #8a919f;
+
+  /* comment-form */
+  --jj-comment-form-input: #252933;
+  --jj-comment-form-input-placeholder: #8a919f;
+  --jj-comment-form-input-border: #f2f3f5;
+  --jj-comment-form-input-border-focus: #1e80ff;
+  --jj-comment-form-input-border-error: #f64242;
+  --jj-comment-form-input-bg: #f2f3f5;
+  --jj-comment-form-input-bg-focus: #fff;
+  --jj-comment-form-btn: #fff;
+  --jj-comment-form-submit-bg: #abcdff;
+  --jj-comment-form-submit-bg-success: #1e80ff;
+  --jj-comment-form-submit-bg-success-hover: #388eff;
+  --jj-comment-form-cancel-bg: #ff5e54;
+
+  /* comments-list */
+  --jj-comments-list-title: #252933;
+  --jj-comment-list-item-author: #252933;
+  --jj-comment-list-item-secondary: #8a919f;
+  --jj-comment-list-item-comment: #515767;
+  --jj-comment-list-item-relation: #1e80ff;
+  --jj-comment-list-item-relation-hover: #388eff;
+  --jj-comment-list-item-reply: #8a919f;
+  --jj-comment-list-item-bg: rgba(247, 248, 250, 0.7);
+
+  /* comment-pagination */
+  --jj-comment-pagination-a: #8a919f;
+  --jj-comment-pagination-a-hover: #fff;
+  --jj-comment-pagination-a-bg: #f7f8fa;
+  --jj-comment-pagination-a-bg-hover: #1e80ff;
 }

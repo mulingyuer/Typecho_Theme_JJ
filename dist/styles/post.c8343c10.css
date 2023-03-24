@@ -15,6 +15,7 @@ html {
   background-color: var(--jj-article-content-bg);
   padding: 32px;
   border-radius: 4px;
+  margin-bottom: 20px;
 }
 
 .article-content-card-head {
@@ -418,4 +419,393 @@ html {
   text-align: center;
   font-size: 14px;
   color: var(--jj-directory-tree-list-empty);
+}
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.comment {
+  margin-bottom: 20px;
+}
+
+.comment-content {
+  padding: 24px 32px;
+  background-color: var(--jj-comment-bg);
+  border-radius: 4px;
+}
+
+.comment-title {
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: bold;
+  color: var(--jj-comment-title);
+}
+
+.comment-off {
+  padding: 16px 0;
+  font-size: 16px;
+  text-align: center;
+  color: var(--jj-comment-off);
+}
+
+@media screen and (max-width: 600px) {
+  .comment-content {
+    padding: 24px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .comment-content {
+    padding: 12px;
+  }
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/comment_form/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.comment-form-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+.comment-form-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+.comment-form-avatar img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  vertical-align: top;
+}
+
+.comment-form-content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.comment-form-input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.comment-form-input,
+.comment-form-textarea {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--jj-comment-form-input);
+  background-color: var(--jj-comment-form-input-bg);
+  border: 1px solid var(--jj-comment-form-input-border);
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s;
+}
+.comment-form-input::placeholder,
+.comment-form-textarea::placeholder {
+  color: var(--jj-comment-form-input-placeholder);
+}
+.comment-form-input:focus,
+.comment-form-textarea:focus {
+  border-color: var(--jj-comment-form-input-border-focus);
+  background-color: var(--jj-comment-form-input-bg-focus);
+}
+
+.comment-form-input {
+  width: 1px;
+  flex-grow: 1;
+  line-height: 1;
+  height: 30px;
+}
+.comment-form-input + .comment-form-input {
+  margin-left: 8px;
+}
+
+.comment-form-textarea-wrap {
+  margin-bottom: 8px;
+}
+
+.comment-form-textarea {
+  display: block;
+  width: 100%;
+  resize: vertical;
+}
+
+.comment-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-form-btn {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+  color: var(--jj-comment-form-btn);
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.comment-form-submit {
+  background-color: var(--jj-comment-form-submit-bg);
+}
+
+.comment-form-cancel {
+  background-color: var(--jj-comment-form-cancel-bg);
+}
+
+.comment-form input[required]:not(:placeholder-shown),
+.comment-form textarea[required]:not(:placeholder-shown) {
+  border-color: var(--jj-comment-form-input-border-error);
+}
+.comment-form input[required]:valid,
+.comment-form textarea[required]:valid {
+  border-color: var(--jj-comment-form-input-border-focus);
+}
+.comment-form:valid .comment-form-submit {
+  background-color: var(--jj-comment-form-submit-bg-success);
+}
+.comment-form:valid .comment-form-submit:hover {
+  background-color: var(--jj-comment-form-submit-bg-success-hover);
+}
+.comment-form:valid .comment-form-submit:active {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 600px) {
+  .comment-form-avatar {
+    display: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .comment-form-input-group {
+    flex-wrap: wrap;
+  }
+  .comment-form-input {
+    width: 100%;
+  }
+  .comment-form-input + .comment-form-input {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+  .comment-form-btn {
+    height: 30px;
+    padding: 0 12px;
+  }
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/comment_list/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.comment-list-wrapper {
+  padding: 40px 0 16px;
+}
+
+.comments-list-title {
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: bold;
+  color: var(--jj-comments-list-title);
+  margin-bottom: 8px;
+}
+
+.comment-list {
+  list-style: none;
+}
+
+.comment-list-item {
+  padding: 16px 0;
+}
+
+.comment-list-media-wrapper > .comment-form-wrap {
+  margin-top: 12px;
+}
+.comment-list-media-wrapper > .comment-form-wrap .comment-form-avatar {
+  display: none;
+}
+.comment-list-media-wrapper > .comment-form-wrap .comment-form-content {
+  padding-left: 56px;
+}
+
+.comment-list-media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.comment-list-media-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+.comment-list-media-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  vertical-align: top;
+}
+
+.comment-list-media-content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.comment-list-media-head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.comment-list-media-head-left {
+  flex-grow: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.comment-list-item-author {
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 26px;
+  color: var(--jj-comment-list-item-author);
+  margin-right: 8px;
+  max-width: 128px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.comment-list-item-author a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.comment-list-item-browser,
+.comment-list-item-system {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--jj-comment-list-item-secondary);
+}
+
+.comment-list-item-browser + .comment-list-item-system {
+  margin-left: 4px;
+}
+
+.comment-list-media-head-right {
+  margin-left: 20px;
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--jj-comment-list-item-secondary);
+}
+
+.comment-list-item-comment {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--jj-comment-list-item-comment);
+  word-wrap: break-word;
+}
+
+.comment-list-item-relation {
+  float: left;
+  color: var(--jj-comment-list-item-relation);
+  text-decoration: none;
+  margin-right: 4px;
+}
+.comment-list-item-relation:hover {
+  color: var(--jj-comment-list-item-relation-hover);
+}
+.comment-list-item-relation:active {
+  opacity: 0.7;
+}
+
+.comment-list-item-reply {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--jj-comment-list-item-reply);
+}
+.comment-list-item-reply a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.comment-list-item-reply-icon {
+  font-size: inherit;
+  line-height: inherit;
+  margin-right: 4px;
+}
+
+.comment-children .comment-list-item {
+  padding: 16px;
+  background-color: var(--jj-comment-list-item-bg);
+  margin-left: 56px;
+  border-radius: 4px;
+}
+
+.comment-pagination .page-navigator {
+  padding: 10px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comment-pagination li + li {
+  margin-left: 8px;
+}
+.comment-pagination li.current a {
+  color: var(--jj-comment-pagination-a-hover);
+  background-color: var(--jj-comment-pagination-a-bg-hover);
+}
+.comment-pagination a {
+  display: block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background-color: var(--jj-comment-pagination-a-bg);
+  font-size: 14px;
+  color: var(--jj-comment-pagination-a);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.comment-pagination a:hover {
+  color: var(--jj-comment-pagination-a-hover);
+  background-color: var(--jj-comment-pagination-a-bg-hover);
+}
+.comment-pagination a:active {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 480px) {
+  .comment-list-item {
+    padding: 12px 0;
+  }
+  .comment-list-media-avatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+  }
+  .comment-children .comment-list-item {
+    padding: 5px;
+    margin-left: 38px;
+  }
+  .comment-list-item-browser,
+  .comment-list-item-system {
+    display: none;
+  }
+  .comment-list-media-wrapper > .comment-form-wrap {
+    margin-top: 10px;
+  }
+  .comment-list-media-wrapper > .comment-form-wrap .comment-form-content {
+    padding-left: 38px;
+  }
+  .comment-pagination .page-navigator a {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
 }

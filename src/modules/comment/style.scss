@@ -1,0 +1,32 @@
+.comment {
+  margin-bottom: 20px;
+}
+.comment-content {
+  padding: 24px 32px;
+  background-color: var(--jj-comment-bg);
+  border-radius: 4px;
+}
+.comment-title {
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: bold;
+  color: var(--jj-comment-title);
+}
+.comment-off {
+  padding: 16px 0;
+  font-size: 16px;
+  text-align: center;
+  color: var(--jj-comment-off);
+}
+
+@media screen and (max-width: 600px) {
+  .comment-content {
+    padding: 24px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .comment-content {
+    padding: 12px;
+  }
+}

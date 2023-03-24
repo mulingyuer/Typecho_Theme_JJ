@@ -194,7 +194,7 @@ function secondaryAllActive($that, $category, $children)
  * @Date: 2023-03-19 16:58:25
  * @Author: mulingyuer
  */
-function articleTime($time)
+function timeFormatting($time)
 {
     if ($time == "no") {return;}
     $chunks = array(
@@ -203,7 +203,7 @@ function articleTime($time)
         array(604800, ' 周'),
         array(86400, ' 天'),
         array(3600, ' 小时'),
-        array(60, ' 分'),
+        array(60, ' 分钟'),
         array(1, ' 秒'),
     );
     $newer_date = time();
@@ -572,3 +572,131 @@ function themeInit($archive)
     }
     ;
 }
+
+/**
+ * @description: 获取浏览器信息
+ * @param {*} $agent 浏览器信息
+ * @Date: 2023-03-24 13:33:39
+ * @Author: mulingyuer
+ */
+function getBrowser($agent)
+{
+    if (preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
+        $outputer = 'Internet Explore';
+    } else if (preg_match('/FireFox\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Firefox/', $regs[0]);
+        $FireFox_vern = explode('.', $str1[1]);
+        $outputer = 'FireFox';
+    } else if (preg_match('/Maxthon([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Maxthon/', $agent);
+        $Maxthon_vern = explode('.', $str1[1]);
+        $outputer = 'MicroSoft Edge';
+    } else if (preg_match('#360([a-zA-Z0-9.]+)#i', $agent, $regs)) {
+        $outputer = '360 Fast Browser';
+    } else if (preg_match('/Edge([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Edge/', $regs[0]);
+        $Edge_vern = explode('.', $str1[1]);
+        $outputer = 'MicroSoft Edge';
+    } else if (preg_match('/UC/i', $agent)) {
+        $str1 = explode('rowser/', $agent);
+        $UCBrowser_vern = explode('.', $str1[1]);
+        $outputer = 'UC Browser';
+    } else if (preg_match('/QQ/i', $agent, $regs) || preg_match('/QQ Browser\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('rowser/', $agent);
+        $QQ_vern = explode('.', $str1[1]);
+        $outputer = 'QQ Browser';
+    } else if (preg_match('/UBrowser/i', $agent, $regs)) {
+        $str1 = explode('rowser/', $agent);
+        $UCBrowser_vern = explode('.', $str1[1]);
+        $outputer = 'UC Browser';
+    } else if (preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'Opera';
+    } else if (preg_match('/Chrome([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Chrome/', $agent);
+        $chrome_vern = explode('.', $str1[1]);
+        $outputer = 'Google Chrome';
+    } else if (preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Version/', $agent);
+        $safari_vern = explode('.', $str1[1]);
+        $outputer = 'Safari';
+    } else {
+        $outputer = 'Google Chrome';
+    }
+    echo $outputer;
+};
+
+/**
+ * @description: 获取操作系统信息
+ * @param {*} $agent 浏览器信息
+ * @Date: 2023-03-24 13:34:12
+ * @Author: mulingyuer
+ */
+function getOs($agent)
+{
+    $os = false;
+    if (preg_match('/win/i', $agent)) {
+        if (preg_match('/nt 6.0/i', $agent)) {
+            $os = 'Windows Vista';
+        } else if (preg_match('/nt 6.1/i', $agent)) {
+            $os = 'Windows 7';
+        } else if (preg_match('/nt 6.2/i', $agent)) {
+            $os = 'Windows 8';
+        } else if (preg_match('/nt 6.3/i', $agent)) {
+            $os = 'Windows 8.1';
+        } else if (preg_match('/nt 5.1/i', $agent)) {
+            $os = 'Windows XP';
+        } else if (preg_match('/nt 10.0/i', $agent)) {
+            $os = 'Windows 10';
+        } else {
+            $os = 'Windows X64';
+        }
+    } else if (preg_match('/android/i', $agent)) {
+        if (preg_match('/android 9/i', $agent)) {
+            $os = 'Android Pie';
+        } else if (preg_match('/android 8/i', $agent)) {
+            $os = 'Android Oreo';
+        } else {
+            $os = 'Android';
+        }
+    } else if (preg_match('/ubuntu/i', $agent)) {
+        $os = 'Ubuntu';
+    } else if (preg_match('/linux/i', $agent)) {
+        $os = 'Linux';
+    } else if (preg_match('/iPhone/i', $agent)) {
+        $os = 'iPhone';
+    } else if (preg_match('/mac/i', $agent)) {
+        $os = 'MacOS';
+    } else if (preg_match('/fusion/i', $agent)) {
+        $os = 'Android';
+    } else {
+        $os = 'Linux';
+    }
+    echo $os;
+};
+
+/**
+ * @description: 子评论回复@
+ * @param {*} $coid 评论id
+ * @Date: 2023-03-24 13:36:10
+ * @Author: mulingyuer
+ */
+function get_comment_at($coid)
+{
+    $db = Typecho_Db::get();
+    $prow = $db->fetchRow($db->select('parent')->from('table.comments')
+            ->where('coid = ? AND status = ?', $coid, 'approved'));
+    $parent = $prow['parent'];
+    if ($parent != "0") {
+        $arow = $db->fetchRow($db->select('author')->from('table.comments')
+                ->where('coid = ? AND status = ?', $parent, 'approved'));
+        $author = $arow['author'];
+        if ($author) {
+            $href = '<a class="comment-list-item-relation" href="#comment-' . $parent . '">@' . $author . '</a>';
+            echo $href;
+        } else {
+            echo '';
+        }
+    } else {
+        echo '';
+    }
+};
