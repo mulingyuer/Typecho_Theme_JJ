@@ -17,7 +17,10 @@
     <div class="container">
       <div class="main-content post-content">
         <div class="main-left">
-          <?php $this->need("./php_modules/article_content.php");?>
+          <div class="article-content-wrapper">
+            <?php $this->need("./php_modules/article_content.php");?>
+            <?php $this->need("./php_modules/article_relevant_info.php");?>
+          </div>
           <?php $this->need("./php_modules/comment/comment.php");?>
           <div style="height:1200px;"></div>
         </div>

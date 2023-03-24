@@ -5,3 +5,9 @@ html {
 .post-content {
   margin-bottom: 20px;
 }
+.article-content-wrapper {
+  background-color: var(--jj-article-content-wrapper-bg);
+  padding: 32px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}

@@ -118,6 +118,15 @@
   --jj-article-empty-bg: #fff;
   --jj-article-empty-color: #8a919f;
 
+  /* article-relevant-info */
+  --jj-article-relevant-info: #515767;
+  --jj-article-relevant-info-a-color1: #515767;
+  --jj-article-relevant-info-a-bg1: #f2f3f5;
+  --jj-article-relevant-info-a-bg1-hover: #e4e6eb;
+  --jj-article-relevant-info-a-color2: #1e80ff;
+  --jj-article-relevant-info-a-bg2: #eaf2ff;
+  --jj-article-relevant-info-a-bg2-hover: rgba(30, 128, 255, 0.16);
+
   /* toast */
   --jj-toast-color: #333;
   --jj-toast-bg: #fff;
@@ -175,8 +184,10 @@
   --jj-error-card-title-color: #71777c;
   --jj-error-card-strong-color: #333;
 
+  /* article-content-wrapper */
+  --jj-article-content-wrapper-bg: #fff;
+
   /* article-content */
-  --jj-article-content-bg: #fff;
   --jj-article-content-title: #252933;
   --jj-article-content-author-name: #515767;
   --jj-article-content-author-other: #8a919f;
