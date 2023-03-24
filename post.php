@@ -23,7 +23,7 @@
             <?php $this->need("./php_modules/copyright.php");?>
           </div>
           <?php $this->need("./php_modules/comment/comment.php");?>
-          <div style="height:1200px;"></div>
+          <?php $this->need("./php_modules/post/articles_related.php");?>
         </div>
         <div class="main-right">
           <?php $this->need("./php_modules/article_author.php");?>

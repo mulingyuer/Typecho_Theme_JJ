@@ -262,4 +262,10 @@
   --jj-copyright-title: #252933;
   --jj-copyright-desc: #8a919f;
   --jj-copyright-a-hover: #1e80ff;
+
+  /* articles-related */
+  --jj-articles-related-bg: #fff;
+  --jj-articles-related-title: #252933;
+  --jj-articles-related-head-border: #e5e6eb;
+  --jj-articles-related-empty: #8a919f;
 }
