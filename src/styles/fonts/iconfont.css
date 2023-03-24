@@ -1,8 +1,8 @@
 @font-face {
   font-family: "jj-icon"; /* Project id 2465190 */
-  src: url('iconfont.woff2?t=1679588327637') format('woff2'),
-       url('iconfont.woff?t=1679588327637') format('woff'),
-       url('iconfont.ttf?t=1679588327637') format('truetype');
+  src: url('iconfont.woff2?t=1679651488144') format('woff2'),
+       url('iconfont.woff?t=1679651488144') format('woff'),
+       url('iconfont.ttf?t=1679651488144') format('truetype');
 }
 
 .jj-icon {
@@ -11,6 +11,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.jj-icon-fenxiang:before {
+  content: "\e72f";
+}
+
+.jj-icon-bg-fullscreen:before {
+  content: "\e649";
 }
 
 .jj-icon-send:before {

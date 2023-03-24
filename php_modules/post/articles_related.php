@@ -1,4 +1,4 @@
-<div class="articles-related">
+<div class="articles-related immersion-hide">
   <div class="articles-related-content">
     <div class="articles-related-head">
       <h3 class="articles-related-title">相关推荐</h3>
@@ -27,7 +27,7 @@
               </span>
               <span class="articles-related-list-item-footer-item">
                 <i class="jj-icon jj-icon-like articles-related-list-item-footer-item-icon"></i>
-                <span><?php echo articleLike($relatedPosts->cid); ?></span>
+                <span><?php echo getLikeCount($relatedPosts); ?></span>
               </span>
               <a class="articles-related-list-item-footer-item comments" href="<?php $relatedPosts->permalink()?>#comments" target="_self" title="文章评论">
                 <i class="jj-icon jj-icon-message articles-related-list-item-footer-item-icon"></i>

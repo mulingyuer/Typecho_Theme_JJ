@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7193676",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e72f",
+      "unicode_decimal": 59183
+    },
+    {
+      "icon_id": "11882937",
+      "name": "bg-fullscreen",
+      "font_class": "bg-fullscreen",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
       "icon_id": "9230696",
       "name": "send",
       "font_class": "send",

@@ -49,9 +49,9 @@ ul {
   \***********************************************************************************************************************************************************************************************************************************************************************************************/
 @font-face {
   font-family: "jj-icon"; /* Project id 2465190 */
-  src: url(../fonts/a546c92c5cd5c30b3f8e.woff2?t=1679588327637) format('woff2'),
-       url(../fonts/2b7cde67969b15147f37.woff?t=1679588327637) format('woff'),
-       url(../fonts/3e34725740f022de18b2.ttf?t=1679588327637) format('truetype');
+  src: url(../fonts/72ddac13a6b04433ebf2.woff2?t=1679651488144) format('woff2'),
+       url(../fonts/b42716d153e5ea9c5ffd.woff?t=1679651488144) format('woff'),
+       url(../fonts/2bfbfa8c0f92894b3dcb.ttf?t=1679651488144) format('truetype');
 }
 
 .jj-icon {
@@ -60,6 +60,14 @@ ul {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.jj-icon-fenxiang:before {
+  content: "\e72f";
+}
+
+.jj-icon-bg-fullscreen:before {
+  content: "\e649";
 }
 
 .jj-icon-send:before {

@@ -268,4 +268,22 @@
   --jj-articles-related-title: #252933;
   --jj-articles-related-head-border: #e5e6eb;
   --jj-articles-related-empty: #8a919f;
+
+  /* article-tool */
+  --jj-article-tool-item-bg: #fff;
+  --jj-article-tool-item-color: #8a919f;
+  --jj-article-tool-item-color-hover: #515767;
+  --jj-article-tool-item-color-active: #1e80ff;
+  --jj-article-tool-item-box-shadow: rgba(0, 0, 0, 0.04);
+  --jj-article-tool-item-badge: #fff;
+  --jj-article-tool-item-badge-bg: #c2c8d1;
+  --jj-article-tool-item-badge-bg-active: #1e80ff;
+  --jj-article-tool-dividing-bg: #e4e6eb;
+  --jj-article-tool-share-bg: #fff;
+  --jj-article-tool-share-box-shadow: rgba(81, 87, 103, 0.16);
+  --jj-article-tool-share-item: #515767;
+  --jj-article-tool-share-item-bg-hover: #f2f3f5;
+  --jj-article-tool-wx-qrcode-bg: #fff;
+  --jj-article-tool-wx-qrcode-box-shadow: rgba(81, 87, 103, 0.16);
+  --jj-article-tool-wx-qrcode-info: #515767;
 }

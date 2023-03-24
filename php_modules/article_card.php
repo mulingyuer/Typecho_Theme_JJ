@@ -22,7 +22,7 @@
           </span>
           <span class="article-card-footer-item">
             <i class="jj-icon jj-icon-like article-card-footer-item-icon"></i>
-            <span><?php echo articleLike($this->cid); ?></span>
+            <span><?php echo getLikeCount($this); ?></span>
           </span>
           <a class="article-card-footer-item comments" href="<?php $this->permalink()?>#comments" target="_self" title="文章评论">
             <i class="jj-icon jj-icon-message article-card-footer-item-icon"></i>

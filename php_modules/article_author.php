@@ -1,4 +1,4 @@
-<div class="article-author">
+<div class="article-author immersion-hide">
   <div class="article-author-content" itemscope itemtype="http://schema.org/Person">
     <a class="article-author-head" href="<?php $this->author->permalink();?>" target="_self" rel="author">
       <div class="article-author-avatar">
@@ -12,7 +12,7 @@
     <div class="article-author-body">
       <div class="article-author-item">
         <i class="jj-icon jj-icon-like-fill article-author-item-icon"></i>
-        <span class="article-author-item-text">获得点赞 <?php echo articleLike($this->cid); ?></span>
+        <span class="article-author-item-text">获得点赞 <?php echo getLikeCount($this); ?></span>
       </div>
       <div class="article-author-item">
         <i class="jj-icon jj-icon-eye-fill article-author-item-icon"></i>

@@ -17,6 +17,7 @@
     <div class="container">
       <div class="main-content post-content">
         <div class="main-left">
+          <?php $this->need("./php_modules/article_tool.php");?>
           <div class="article-content-wrapper">
             <?php $this->need("./php_modules/article_content.php");?>
             <?php $this->need("./php_modules/article_relevant_info.php");?>

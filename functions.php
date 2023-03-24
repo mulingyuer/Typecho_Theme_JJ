@@ -282,21 +282,79 @@ function articleViews($that, $format0 = "%d", $format1 = "%d", $formats = "%d", 
 
 /**
  * @description: 文章点赞数
- * @param {*} $cid 文章cid
- * @Date: 2023-03-19 17:08:59
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-24 23:19:56
  * @Author: mulingyuer
  */
-function articleLike($cid)
+function getLikeCount($that)
 {
-    $db = Typecho_Db::get();
-    $prefix = $db->getPrefix();
-    if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents')))) {
-        $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `likes` INT(10) DEFAULT 0;');
-        return;
+
+    $linkCount = $that->fields->likes;
+    if (empty($linkCount)) {
+        return 0;
     }
-    $row = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid));
-    $num = $row['likes'];
-    return $num;
+    return $linkCount;
+}
+
+/**
+ * Post Action AJAX接口 点赞接口
+ *
+ * @param Widget_Archive $widget
+ * @return void
+ * @date 2020-05-04
+ */
+function promo($widget)
+{
+
+    $user = $widget->widget('Widget_User');
+    $db = Typecho_Db::get();
+    $fields = unserialize($widget->fields);
+    $allowOperates = array('get', 'set', 'inc', 'dec'); // 这里可以扩展操作，建议屏蔽get/set
+    $allowFields = array('likes'); // 这里可以扩展修改字段
+
+    // 获取操作
+    $operate = $widget->request->get('operate');
+    $field = $widget->request->get('field');
+    $value = $widget->request->filter('int')->get('value');
+    $value = $value === null ? 100 : $value; // 100 起步
+
+    $result = array('cid' => $widget->cid);
+
+    if ($operate === "get") {
+        $result['operate'] = 'get';
+        if (array_key_exists($field, $fields)) {
+            $result[$field] = $fields[$field];
+        } else {
+            $result[$field] = -1;
+        }
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已获取参数'), 'result' => json_encode($result)));
+    } elseif ($operate === "set") {
+        $result['operate'] = 'set';
+        if ($value > 0) {
+            $widget->setField($field, 'str', $value, $widget->cid);
+        } else {
+            $db->query($db->delete('table.fields')
+                    ->where('cid = ? AND name = ?', $widget->cid, $field));
+        }
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
+    } elseif ($operate === "inc") {
+        $result['operate'] = 'inc';
+        $value = intval($fields[$field]) + 1;
+        $widget->setField($field, 'str', $value, $widget->cid);
+        $result[$field] = $value;
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
+    } elseif ($operate === "dec") {
+        $result['operate'] = 'dec';
+        $value = intval($fields[$field]) - 1;
+        $result[$field] = $value;
+        if ($value > 0) {
+            $widget->setField($field, 'str', $value, $widget->cid);
+        } else {
+            $db->query($db->delete('table.fields')
+                    ->where('cid = ? AND name = ?', $widget->cid, $field));
+        }
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
+    }
 }
 
 /**
@@ -550,28 +608,39 @@ function getDirectoryTree()
     }
 };
 
-//主题themeInit函数
-function themeInit($archive)
+/**
+ * 增加浏览次数
+ * 使用方法: 在<code>themeInit</code>函数中添加代码
+ * <pre>if($archive->is('single') || $archive->is('page')){ viewsCounter($archive);}</pre>
+ *
+ * @param Widget_Archive $widget
+ * @return boolean
+ */
+
+function viewsCounter($widget, $field = 'views')
 {
-    //评论回复楼层最高999层.这个正常设置最高只有7层
-    Helper::options()->commentsMaxNestingLevels = 999;
-    //自动增加浏览次数
-    // if ($archive->is('single') || $archive->is('page')) {viewsCounter($archive);}
-    ;
-    //目录树
-    if ($archive->is('single')) {
-        $archive->content = addAnchorPoint($archive->content);
+    if (!$widget instanceof Widget_Archive) {
+        return false;
     }
 
-    //点赞请求接口
-    if ($archive->request->isPost() && $archive->request->likeup && $archive->request->do_action) {
-        Typecho_widget::widget('Widget_Security')->to($security);
-        $security->protect();
-        likeup($archive->request->likeup, $archive->request->do_action);
-        exit;
+    $fieldValue = articleViews($widget, "%d", "%d", "%d", true, $field);
+    $fieldRecords = Typecho_Cookie::get('__typecho_' . $field);
+    if (empty($fieldRecords)) {
+        $fieldRecords = array();
+    } else {
+        $fieldRecords = explode(',', $fieldRecords);
     }
-    ;
-}
+
+    if (!in_array($widget->cid, $fieldRecords)) {
+        $fieldValue = $fieldValue + 1;
+        $widget->setField($field, 'str', strval($fieldValue), $widget->cid);
+        $fieldRecords[] = $widget->cid;
+        $fieldRecords = implode(',', $fieldRecords);
+        Typecho_Cookie::set('__typecho_' . $field, $fieldRecords);
+        return true;
+    }
+    return false;
+};
 
 /**
  * @description: 获取浏览器信息
@@ -700,3 +769,49 @@ function get_comment_at($coid)
         echo '';
     }
 };
+
+/**
+ * @description:  获取文章摘要
+ * @param {*} $that 文章对象
+ * @param {*} $maxLength 最大长度
+ * @Date: 2023-03-25 00:12:20
+ * @Author: mulingyuer
+ */
+function getArticleSummary($that, $maxLength = 120)
+{
+    $content = $that->excerpt;
+    $abstract = Typecho_Common::fixHtml(Typecho_Common::subStr($content, 0, $maxLength, "..."));
+    if (empty($abstract)) {
+        $abstract = _t("暂无简介");
+    }
+    return urlencode($abstract);
+}
+
+//主题themeInit函数
+function themeInit($archive)
+{
+    //评论回复楼层最高999层.这个正常设置最高只有7层
+    Helper::options()->commentsMaxNestingLevels = 999;
+    //自动增加浏览次数
+    if ($archive->is('single') || $archive->is('page')) {viewsCounter($archive);}
+    ;
+    //目录树
+    if ($archive->is('single')) {
+        $archive->content = addAnchorPoint($archive->content);
+    }
+
+    //点赞请求接口
+    // if ($archive->request->isPost() && $archive->request->likeup && $archive->request->do_action) {
+    //     likeup($archive->request->likeup, $archive->request->do_action);
+    //     exit;
+    // }
+
+    if ($archive->is('single')) {
+        if ($archive->request->isPost()) {
+            if ($archive->request->is('themeAction=promo')) {
+                promo($archive);
+            }
+        }
+    }
+
+}

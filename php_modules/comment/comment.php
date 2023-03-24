@@ -1,4 +1,4 @@
-<div class="comment" id="comments">
+<div class="comment immersion-hide" id="comments">
   <div class="comment-content">
     <h3 class="comment-title">评论</h3>
     <?php //开启评论?>

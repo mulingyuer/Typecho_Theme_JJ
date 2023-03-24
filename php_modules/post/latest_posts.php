@@ -1,4 +1,4 @@
-<div class="latest-posts" role="complementary">
+<div class="latest-posts immersion-hide" role="complementary">
   <div class="latest-posts-content">
     <div class="latest-posts-head">
       <h3 class="latest-posts-title">最新文章</h3>

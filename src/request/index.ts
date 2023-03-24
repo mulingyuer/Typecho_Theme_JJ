@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-20 19:28:51
- * @LastEditTime: 2023-03-21 01:01:07
+ * @LastEditTime: 2023-03-25 03:06:24
  * @LastEditors: mulingyuer
  * @Description: 请求封装
  * @FilePath: \Typecho_Theme_JJ\src\request\index.ts
@@ -55,6 +55,19 @@ service.interceptors.response.use(
 
 /** get请求封装：用于类型推断 */
 export function apiGet<T = any>(options: AxiosRequestConfig): Promise<T> {
+  return new Promise((resolve, reject) => {
+    service(options)
+      .then((res: unknown) => {
+        return resolve(res as T);
+      })
+      .catch((error) => {
+        return reject(error);
+      });
+  });
+}
+
+/** post请求封装：用于类型推断 */
+export function apiPost<T = any>(options: AxiosRequestConfig): Promise<T> {
   return new Promise((resolve, reject) => {
     service(options)
       .then((res: unknown) => {
