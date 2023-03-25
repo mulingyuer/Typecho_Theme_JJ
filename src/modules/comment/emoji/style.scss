@@ -33,6 +33,7 @@
   display: none;
   transition: opacity 0.2s;
   filter: drop-shadow(0 8px 24px var(--jj-emoji-picker-box-shadow));
+  z-index: 1;
   &.visible {
     opacity: 1;
   }
@@ -91,7 +92,6 @@
     font-size: 14px;
     color: var(--jj-emoji-picker-head-item);
   }
-
   &:hover {
     background-color: var(--jj-emoji-picker-head-item-bg-hover);
   }
@@ -160,6 +160,12 @@
   }
   > span {
     padding: 6px 10px;
+  }
+}
+.emoji-picker-body-item.hot-word {
+  .emoji-picker-body-item-scroll > img {
+    width: 72px;
+    height: 72px;
   }
 }
 

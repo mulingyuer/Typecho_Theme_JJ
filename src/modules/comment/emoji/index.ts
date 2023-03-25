@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-25 22:25:07
- * @LastEditTime: 2023-03-26 04:23:07
+ * @LastEditTime: 2023-03-26 04:49:27
  * @LastEditors: mulingyuer
  * @Description: 表情
  * @FilePath: \Typecho_Theme_JJ\src\modules\comment\emoji\index.ts
@@ -98,7 +98,7 @@ class Emoji {
   private emojiRender(emojiWrap: HTMLElement) {
     let html = "";
     emojiData.forEach((item) => {
-      const { icon, data } = item;
+      const { icon, data, className } = item;
       let itemHtml = "";
       if (icon) {
         Object.keys(data).forEach((key) => {
@@ -111,7 +111,7 @@ class Emoji {
           itemHtml += `<span data-value="${value}">${value}</span>`;
         });
       }
-      html += `<div class="emoji-picker-body-item"><div class="emoji-picker-body-item-scroll">${itemHtml}</div></div>`;
+      html += `<div class="emoji-picker-body-item${className ? " " + className : ""}"><div class="emoji-picker-body-item-scroll">${itemHtml}</div></div>`;
     });
     emojiWrap.innerHTML = html;
 

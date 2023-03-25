@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-26 04:06:58
- * @LastEditTime: 2023-03-26 04:25:43
+ * @LastEditTime: 2023-03-26 05:03:44
  * @LastEditors: mulingyuer
  * @Description: 文本替换成表情
  * @FilePath: \Typecho_Theme_JJ\src\modules\comment\emoji\faceReplace.ts
@@ -9,36 +9,16 @@
  */
 import { emojiData, getEmojiPrefix } from "./data";
 
-/** 所有表情键值对对象 */
-interface EmojiMap {
-  [key: string]: string;
-}
-
 /** 文本替换成表情 */
 class FaceReplace {
   /** 需要替换的dom元素 */
   private domList: Array<HTMLElement> = [];
-  /** 所有表情键值对对象 */
-  private static emojiMap: EmojiMap = {};
-  /** 是否初始化了emojiMap */
-  private static isInitEmojiMap: boolean = false;
 
   constructor(dom: HTMLElement | Array<HTMLElement>) {
     if (Array.isArray(dom)) {
       this.domList = dom;
     } else {
       this.domList.push(dom);
-    }
-
-    //初始化表情键值对对象
-    if (!FaceReplace.isInitEmojiMap) {
-      emojiData.forEach((item) => {
-        const { data } = item;
-        Object.keys(data).forEach((key) => {
-          FaceReplace.emojiMap[key] = data[key as keyof typeof data];
-        });
-      });
-      FaceReplace.isInitEmojiMap = true;
     }
   }
 
@@ -56,15 +36,35 @@ class FaceReplace {
     const emojiPrefix = getEmojiPrefix();
 
     html = html.replace(reg, (match, param) => {
-      const faceSrc = FaceReplace.emojiMap[param];
-      if (faceSrc) {
-        return `<img src="${emojiPrefix}${faceSrc}">`;
+      const data = this.getEmojiData(param);
+      if (data.src) {
+        return `<img class="${data.isHotWord ? "hot-word-emoji-img" : ""}" src="${emojiPrefix}${data.src}">`;
       }
       return match;
     });
 
     //更新
     dom.innerHTML = html;
+  }
+
+  /** 获取表情对应的数据 */
+  private getEmojiData(emoji: string) {
+    let src = "";
+    let isHotWord = false;
+    for (let i = 0, len = emojiData.length; i < len; i++) {
+      const { id, data } = emojiData[i];
+      if (id === "hotWord") isHotWord = true;
+      const val = data[emoji as keyof typeof data];
+      if (typeof val === "string") {
+        src = val;
+        break;
+      }
+    }
+
+    return {
+      src,
+      isHotWord,
+    };
   }
 }
 
