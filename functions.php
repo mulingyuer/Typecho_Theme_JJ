@@ -29,20 +29,20 @@ function themeConfig($form)
     );
     $form->addInput($customScript);
 
-    $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
-        'sidebarBlock',
-        [
-            'ShowRecentPosts' => _t('显示最新文章'),
-            'ShowRecentComments' => _t('显示最近回复'),
-            'ShowCategory' => _t('显示分类'),
-            'ShowArchive' => _t('显示归档'),
-            'ShowOther' => _t('显示其它杂项'),
-        ],
-        ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'],
-        _t('侧边栏显示')
-    );
+    // $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
+    //     'sidebarBlock',
+    //     [
+    //         'ShowRecentPosts' => _t('显示最新文章'),
+    //         'ShowRecentComments' => _t('显示最近回复'),
+    //         'ShowCategory' => _t('显示分类'),
+    //         'ShowArchive' => _t('显示归档'),
+    //         'ShowOther' => _t('显示其它杂项'),
+    //     ],
+    //     ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'],
+    //     _t('侧边栏显示')
+    // );
 
-    $form->addInput($sidebarBlock->multiMode());
+    // $form->addInput($sidebarBlock->multiMode());
 }
 
 /**
@@ -434,15 +434,19 @@ function getHidePage($page, $name)
  * @Date: 2023-03-22 20:28:04
  * @Author: mulingyuer
  */
-if ($_SERVER['SCRIPT_NAME'] == "/admin/write-post.php") {
+if ($_SERVER['SCRIPT_NAME'] == "/admin/write-post.php" || $_SERVER['SCRIPT_NAME'] == "/admin/write-page.php") {
     function themeFields($layout)
     {
-        //自定义文章缩略图
-        $thumb = new Typecho_Widget_Helper_Form_Element_Text('thumb', null, null, _t('自定义缩略图'), _t('输入缩略图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
-        $layout->addItem($thumb);
-        //文章内容标题图
-        $titleImg = new Typecho_Widget_Helper_Form_Element_Text('titleImg', null, null, _t('自定义文章内容标题图'), _t('输入文章内容标题图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
-        $layout->addItem($titleImg);
+        //文章独享关键字
+        if ($_SERVER['SCRIPT_NAME'] == "/admin/write-post.php") {
+
+            //自定义文章缩略图
+            $thumb = new Typecho_Widget_Helper_Form_Element_Text('thumb', null, null, _t('自定义缩略图'), _t('输入缩略图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
+            $layout->addItem($thumb);
+            //文章内容标题图
+            $titleImg = new Typecho_Widget_Helper_Form_Element_Text('titleImg', null, null, _t('自定义文章内容标题图'), _t('输入文章内容标题图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
+            $layout->addItem($titleImg);
+        }
         // 文章主题
         $markdownTheme = new Typecho_Widget_Helper_Form_Element_Select('markdownTheme', array(
             'juejin' => _t('掘金'),

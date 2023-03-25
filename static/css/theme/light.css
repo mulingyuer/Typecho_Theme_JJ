@@ -300,4 +300,15 @@
   --jj-emoji-picker-head-item-bg-active: #e5e6eb;
   --jj-emoji-picker-scroll-bg: #e5e6eb;
   --jj-emoji-picker-body-item-bg: #e3e5e7;
+
+  /* links */
+  --jj-links-bg: #fff;
+  --jj-links-title: #000;
+  --jj-links-edit-btn: #1e80ff;
+  --jj-links-item: #333;
+  --jj-links-item-bg: #fff;
+  --jj-links-item-border: #f1f1f1;
+  --jj-links-item-border-hover: #45b4ff;
+  --jj-links-blockquote: #515767;
+  --jj-links-blockquote-bg: #f7f8fa;
 }
