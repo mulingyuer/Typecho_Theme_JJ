@@ -1,8 +1,12 @@
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/pages/post/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/pages/post/style.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 html {
   scroll-padding-top: 80px;
+}
+
+.header {
+  box-shadow: 0 1px 2px 0 var(--jj-header-box-shadow);
 }
 
 .article-content-wrapper {
@@ -11,8 +15,14 @@ html {
   border-radius: 4px;
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 600px) {
+  .article-content-wrapper {
+    padding: 24px 12px;
+  }
+}
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_content/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_content/style.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .article-content-card-head {
   margin-bottom: 20px;
@@ -96,16 +106,12 @@ html {
 }
 
 @media screen and (max-width: 640px) {
-  .article-content {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
   .article-content-title {
     font-size: 24px;
   }
 }
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_content/lightBox/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_content/lightBox/style.scss ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .jj-light-box {
   position: fixed;
@@ -142,7 +148,7 @@ html {
   z-index: 1;
 }
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_relevant_info/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_relevant_info/style.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .article-relevant-info {
   margin-top: 16px;
@@ -194,7 +200,7 @@ html {
   }
 }
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/copyright/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/copyright/style.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .copyright {
   margin-top: 20px;
@@ -245,7 +251,7 @@ html {
   opacity: 0.7;
 }
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_author/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_author/style.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .article-author {
   margin-bottom: 20px;
@@ -334,7 +340,7 @@ html {
   white-space: nowrap;
 }
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/post/latest_posts/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/post/latest_posts/style.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .latest-posts {
   margin-bottom: 20px;
@@ -413,7 +419,7 @@ html {
   -webkit-box-orient: vertical;
 }
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/post/directory_tree/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/post/directory_tree/style.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .directory-tree {
   position: sticky;
@@ -520,7 +526,7 @@ html {
   color: var(--jj-directory-tree-list-empty);
 }
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/style.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .comment {
   margin-bottom: 20px;
@@ -558,7 +564,7 @@ html {
   }
 }
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/comment_form/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/comment_form/style.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .comment-form-body {
   display: flex;
@@ -616,7 +622,7 @@ html {
   width: 1px;
   flex-grow: 1;
   line-height: 1;
-  height: 30px;
+  height: 36px;
 }
 .comment-form-input + .comment-form-input {
   margin-left: 8px;
@@ -697,7 +703,7 @@ html {
   }
 }
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/comment_list/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/comment_list/style.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .comment-list-wrapper {
   padding: 40px 0 16px;
@@ -807,6 +813,14 @@ html {
   color: var(--jj-comment-list-item-comment);
   word-wrap: break-word;
 }
+.comment-list-item-comment img {
+  width: auto;
+  height: 20px;
+  vertical-align: sub;
+  margin: 0 2px;
+  position: relative;
+  top: 1px;
+}
 
 .comment-list-item-relation {
   float: left;
@@ -908,8 +922,208 @@ html {
     line-height: 30px;
   }
 }
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/comment/emoji/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.emoji-content {
+  position: relative;
+}
+
+.emoji-btn {
+  height: 28px;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--jj-emoji-btn);
+  transition: color 0.3s;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.emoji-btn:hover {
+  color: var(--jj-emoji-btn-hover);
+}
+.emoji-btn:active {
+  opacity: 0.7;
+}
+.emoji-btn.active {
+  color: var(--jj-emoji-btn-hover);
+}
+
+.emoji-btn-icon {
+  margin-right: 4px;
+  font-size: inherit;
+}
+
+.emoji-picker {
+  position: absolute;
+  opacity: 0;
+  display: none;
+  transition: opacity 0.2s;
+  filter: drop-shadow(0 8px 24px var(--jj-emoji-picker-box-shadow));
+}
+.emoji-picker.visible {
+  opacity: 1;
+}
+
+.emoji-picker-arrow {
+  position: absolute;
+  border: 10px solid transparent;
+}
+.emoji-picker-arrow.top {
+  border-top-color: var(--jj-emoji-picker-arrow-bg);
+  bottom: -18px;
+  left: 20px;
+}
+.emoji-picker-arrow.bottom {
+  border-bottom-color: var(--jj-emoji-picker-arrow-bg);
+  top: -18px;
+  left: 20px;
+}
+
+.emoji-picker-content {
+  width: 388px;
+  height: 340px;
+  background-color: var(--jj-emoji-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.emoji-picker-head {
+  flex-shrink: 0;
+  height: 45px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--jj-emoji-picker-head-border);
+  display: flex;
+  align-items: center;
+}
+
+.emoji-picker-head-item {
+  min-width: 48px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.emoji-picker-head-item + .emoji-picker-head-item {
+  margin-left: 16px;
+}
+.emoji-picker-head-item > img {
+  width: 24px;
+  height: 24px;
+}
+.emoji-picker-head-item > span {
+  font-size: 14px;
+  color: var(--jj-emoji-picker-head-item);
+}
+.emoji-picker-head-item:hover {
+  background-color: var(--jj-emoji-picker-head-item-bg-hover);
+}
+.emoji-picker-head-item:active {
+  opacity: 0.7;
+}
+.emoji-picker-head-item.active {
+  background-color: var(--jj-emoji-picker-head-item-bg-active);
+}
+
+.emoji-picker-body {
+  flex-grow: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.emoji-picker-slide {
+  height: 100%;
+  white-space: nowrap;
+  transition: transform 0.1s;
+}
+
+.emoji-picker-body-item {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  height: 100%;
+  white-space: normal;
+  padding: 8px 4px 8px 8px;
+}
+
+.emoji-picker-body-item-scroll {
+  height: 100%;
+  padding-right: 4px;
+  overflow: auto;
+}
+.emoji-picker-body-item-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.emoji-picker-body-item-scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--jj-emoji-picker-scroll-bg);
+}
+@supports (scrollbar-width: thin) {
+  .emoji-picker-body-item-scroll {
+    scrollbar-color: var(--jj-emoji-picker-scroll-bg) transparent;
+  }
+}
+
+.emoji-picker-body-item-scroll > img,
+.emoji-picker-body-item-scroll > span {
+  display: inline-block;
+  vertical-align: top;
+  padding: 6px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+.emoji-picker-body-item-scroll > img:hover,
+.emoji-picker-body-item-scroll > span:hover {
+  background-color: var(--jj-emoji-picker-body-item-bg);
+}
+.emoji-picker-body-item-scroll > img {
+  width: 40px;
+  height: 40px;
+}
+.emoji-picker-body-item-scroll > span {
+  padding: 6px 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .emoji-btn {
+    height: 20px;
+  }
+  .emoji-picker-content {
+    width: 308px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .emoji-btn {
+    height: 20px;
+  }
+  .emoji-picker-head-item + .emoji-picker-head-item {
+    margin-left: 8px;
+  }
+  .emoji-picker-content {
+    width: 268px;
+  }
+}
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/post/articles_related/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/post/articles_related/style.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .articles-related {
   margin-bottom: 20px;
@@ -1071,7 +1285,7 @@ a.articles-related-list-item-footer-item:active {
   }
 }
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.0.2_mquw4qchulb5tpkmg3p2j6qala/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.59.3+webpack@5.76.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_tool/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/article_tool/style.scss ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .article-tool {
   position: fixed;

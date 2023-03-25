@@ -91,6 +91,14 @@
   line-height: 24px;
   color: var(--jj-comment-list-item-comment);
   word-wrap: break-word;
+  img {
+    width: auto;
+    height: 20px;
+    vertical-align: sub;
+    margin: 0 2px;
+    position: relative;
+    top: 1px;
+  }
 }
 .comment-list-item-relation {
   float: left;

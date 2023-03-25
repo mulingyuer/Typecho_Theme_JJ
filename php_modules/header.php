@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header" class="header">
   <div class="header-container">
     <div class="header-content">
       <div class="header-left">

@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-18 23:27:06
- * @LastEditTime: 2023-03-21 17:45:38
+ * @LastEditTime: 2023-03-26 03:44:25
  * @LastEditors: mulingyuer
  * @Description: nav分类菜单
- * @FilePath: \Typecho_Theme_JJ\src\modules\nav\nav.ts
+ * @FilePath: \Typecho_Theme_JJ\src\modules\nav\index.ts
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
@@ -116,8 +116,8 @@ class Nav {
       middleware: [flip(), shift({ padding: 5 })],
     }).then(({ x, y }) => {
       Object.assign(childWrap.style, {
-        left: `${x}px`,
-        top: `${y}px`,
+        left: `${x ?? 0}px`,
+        top: `${y ?? 0}px`,
       });
     });
   }

@@ -19,3 +19,11 @@
 @mixin prevent-scroll-jitter() {
   padding-left: calc(100vw - 100%);
 }
+
+// 禁止选中
+@mixin no-select() {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}

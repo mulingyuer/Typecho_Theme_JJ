@@ -78,6 +78,14 @@
   line-height: 18px;
   color: var(--jj-recent-comments-list-item-msg-color);
   @include multi-line(2);
+  img {
+    width: auto;
+    height: 20px;
+    vertical-align: sub;
+    margin: 0 2px;
+    position: relative;
+    top: 1px;
+  }
 }
 .recent-comments-footer {
   border-top: 1px solid var(--jj-recent-comments-border);
