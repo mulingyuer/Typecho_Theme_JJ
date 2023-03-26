@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-23 19:58:22
- * @LastEditTime: 2023-03-24 02:04:29
+ * @LastEditTime: 2023-03-26 09:40:25
  * @LastEditors: mulingyuer
  * @Description: 目录树
  * @FilePath: \Typecho_Theme_JJ\src\modules\post\directory_tree\index.ts
@@ -9,7 +9,7 @@
  */
 import "./style.scss";
 import emitter, { MittEventName } from "@/utils/mittEvent";
-import { debounce } from "@/utils/tool";
+import { throttle } from "@/utils/tool";
 
 class DirectoryTree {
   /** 目录树容器 */
@@ -34,7 +34,7 @@ class DirectoryTree {
     //获取标题元素
     this.titles = Array.from(document.querySelectorAll(".markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6"));
     //监听滚动事件
-    this.onScroll = debounce(this.onScroll, 150);
+    this.onScroll = throttle(this.onScroll, 80);
     window.addEventListener("scroll", this.onScroll);
     this.onScroll();
   }
