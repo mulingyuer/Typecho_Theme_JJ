@@ -31,6 +31,11 @@
 }
 // .recent-comments-body {
 // }
+.recent-comments-list {
+  &.hidden {
+    display: none;
+  }
+}
 .recent-comments-list-placeholder {
   padding: 20px;
   text-align: center;

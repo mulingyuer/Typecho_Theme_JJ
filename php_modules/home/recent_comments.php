@@ -5,7 +5,8 @@
       <h3 class="recent-comments-title">最近评论</h3>
     </div>
     <div class="recent-comments-body">
-      <div class="recent-comments-list">
+      <?php $this->need("/php_modules/home/recent_comments_skeleton.php");?>
+      <div class="recent-comments-list hidden">
         <?php $this->widget('Widget_Comments_Recent', 'pageSize=6')->to($comments);?>
         <?php if (!$comments->have()): ?>
           <div class="recent-comments-list-placeholder">暂无评论</div>

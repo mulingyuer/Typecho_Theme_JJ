@@ -1,0 +1,117 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.1_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/pages/home/style.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@keyframes article-skeleton-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 480px 0;
+  }
+}
+.article-nav {
+  background-color: var(--jj-article-nav-bg);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom: 1px solid var(--jj-article-nav-border);
+}
+
+.article-nav-content {
+  display: flex;
+}
+
+.article-nav-item {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+  font-size: 16px;
+  color: var(--jj-article-nav-item-color);
+  text-decoration: none;
+  position: relative;
+}
+.article-nav-item::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 22%;
+  height: 3px;
+  background-color: var(--jj-article-nav-item-before-bg);
+  border-radius: 9999px;
+  transform: translateX(-50%);
+  display: none;
+}
+.article-nav-item:hover {
+  color: var(--jj-article-nav-item-color-hover);
+}
+.article-nav-item:active {
+  opacity: 0.7;
+}
+.article-nav-item.active {
+  color: var(--jj-article-nav-item-color-active);
+}
+.article-nav-item.active::before {
+  display: block;
+}
+
+@media screen and (max-width: 640px) {
+  .article-nav-item {
+    padding: 0 12px;
+  }
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.1_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/home/recent_comments_skeleton/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@keyframes article-skeleton-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 480px 0;
+  }
+}
+.recent-comments-skeleton.hidden {
+  display: none;
+}
+
+.recent-comments-skeleton-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.recent-comments-skeleton-item-left {
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.recent-comments-skeleton-item-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-image: linear-gradient(90deg, var(--jj-skeleton-line-bg1), var(--jj-skeleton-line-bg2), var(--jj-skeleton-line-bg1));
+  background-size: 480px 480px;
+  animation: article-skeleton-animation 0.6s linear infinite;
+}
+
+.recent-comments-skeleton-item-right {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.recent-comments-skeleton-item-line {
+  background-image: linear-gradient(90deg, var(--jj-skeleton-line-bg1), var(--jj-skeleton-line-bg2), var(--jj-skeleton-line-bg1));
+  background-size: 480px 480px;
+  animation: article-skeleton-animation 0.6s linear infinite;
+}
+.recent-comments-skeleton-item-line + .recent-comments-skeleton-item-line {
+  margin-top: 4px;
+}
+.recent-comments-skeleton-item-line:nth-child(1) {
+  width: 40%;
+  height: 16px;
+}
+.recent-comments-skeleton-item-line:nth-child(2) {
+  width: 100%;
+  height: 13px;
+}

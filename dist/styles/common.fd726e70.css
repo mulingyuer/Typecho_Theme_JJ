@@ -2342,6 +2342,10 @@ a.article-card-footer-item:active {
   white-space: nowrap;
 }
 
+.recent-comments-list.hidden {
+  display: none;
+}
+
 .recent-comments-list-placeholder {
   padding: 20px;
   text-align: center;
