@@ -4,7 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "JJ 主题使用文档",
   description: "Typecho_Theme_JJ 使用文档",
-  srcDir: "docs",
+  srcDir: "src",
   base: "/Typecho_Theme_JJ/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
