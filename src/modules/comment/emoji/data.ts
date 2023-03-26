@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-26 02:47:15
- * @LastEditTime: 2023-03-26 04:59:56
+ * @LastEditTime: 2023-03-27 00:23:56
  * @LastEditors: mulingyuer
  * @Description: 表情数据
  * @FilePath: \Typecho_Theme_JJ\src\modules\comment\emoji\data.ts
@@ -18,14 +18,14 @@ export const emojiData = [
   {
     id: "yellowFace",
     name: "小黄脸",
-    icon: "/yellow_face/fa6dda8b876ed38609de38aa604be5ad109b8591.png",
+    icon: "/emoji/yellow_face/fa6dda8b876ed38609de38aa604be5ad109b8591.png",
     data: yellowFace,
   },
   /** 热词 */
   {
     id: "hotWord",
     name: "热词",
-    icon: "/hot_word/8d962fcf0b18761d5f4315a49b7ae428da08cf4a.png",
+    icon: "/emoji/hot_word/8d962fcf0b18761d5f4315a49b7ae428da08cf4a.png",
     data: hotWord,
     className: "hot-word",
   },
@@ -33,7 +33,7 @@ export const emojiData = [
   {
     id: "bTv",
     name: "小电视",
-    icon: "/b_tv/c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+    icon: "/emoji/b_tv/c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
     data: bTv,
   },
   /** 颜文字 */

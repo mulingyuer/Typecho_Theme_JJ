@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-20 17:27:49
- * @LastEditTime: 2023-03-21 01:27:46
+ * @LastEditTime: 2023-03-27 01:15:26
  * @LastEditors: mulingyuer
  * @Description: 监听元素是否进入视口
  * @FilePath: \Typecho_Theme_JJ\src\utils\observer.ts
@@ -11,7 +11,7 @@
 /** 监听dom参数 */
 export type ObserverTarget = Element | Array<Element>;
 /** 监听dom的回调 */
-export type ObserverCallback = (entries: IntersectionObserverEntry) => void;
+export type ObserverCallback = (entries: IntersectionObserverEntry, observer: Observer) => void;
 /** 事件存储对象 */
 export type EventMapValue = {
   /** 回调数组 */
@@ -39,7 +39,7 @@ export class Observer {
       if (!events) return;
       events.forEach((item) => {
         const { callback, that } = item;
-        callback.call(that, entry);
+        callback.call(that, entry, this);
       });
     });
   };

@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-25 22:25:07
- * @LastEditTime: 2023-03-26 04:49:27
+ * @LastEditTime: 2023-03-27 01:35:27
  * @LastEditors: mulingyuer
  * @Description: 表情
  * @FilePath: \Typecho_Theme_JJ\src\modules\comment\emoji\index.ts
@@ -11,6 +11,7 @@ import "./style.scss";
 import { emojiData, getEmojiPrefix } from "./data";
 import { computePosition, flip, shift, arrow, offset } from "@floating-ui/dom";
 import FaceReplace from "./faceReplace";
+import { Observer } from "@/utils/observer";
 
 class Emoji {
   /** head容器 */
@@ -35,6 +36,8 @@ class Emoji {
   private arrow: HTMLElement | null = document.querySelector(".emoji-picker-arrow");
   /** 评论列表 */
   private commentList: HTMLElement | null = document.querySelector(".comment-list");
+  /** 已经懒加载处理的scroll数组 */
+  private lazyLoadScrollArr: Array<HTMLElement> = [];
 
   constructor() {
     if (!this.headWrap || !this.emojiWrap) return;
@@ -47,7 +50,14 @@ class Emoji {
     this.emojiBtn?.addEventListener("click", this.onEmojiBtnClick);
     document.addEventListener("click", this.onDocumentClick);
 
-    //表情替换
+    //默认第一个表情scroll容器做懒加载
+    const firstScrollWrap: HTMLElement | null = document.querySelector(".emoji-picker-body-item-scroll");
+    if (firstScrollWrap) {
+      this.initLazyLoad(firstScrollWrap);
+      this.lazyLoadScrollArr.push(firstScrollWrap);
+    }
+
+    //评论列表表情替换
     if (this.commentList) {
       new FaceReplace(this.commentList).start();
     }
@@ -87,6 +97,12 @@ class Emoji {
     });
     //添加选中
     this.headItemArr[Number(index)]?.classList.add("active");
+    //对应的scroll容器添加懒加载
+    const scrollWrap: HTMLElement | null = this.emojiItemArr[Number(index)]?.querySelector(".emoji-picker-body-item-scroll");
+    if (scrollWrap && !this.lazyLoadScrollArr.includes(scrollWrap)) {
+      this.initLazyLoad(scrollWrap);
+      this.lazyLoadScrollArr.push(scrollWrap);
+    }
     //切换表情
     const width = this.emojiItemArr[0].offsetWidth;
     if (this.emojiWrap) {
@@ -103,7 +119,7 @@ class Emoji {
       if (icon) {
         Object.keys(data).forEach((key) => {
           const value: string = data[key as keyof typeof data];
-          itemHtml += `<img src="${getEmojiPrefix() + value}" alt="${key}" data-value="${key}" title="${key}">`;
+          itemHtml += `<img src="${getEmojiPrefix()}/loading2.gif" data-src="${getEmojiPrefix() + value}" alt="${key}" data-value="${key}" title="${key}">`;
         });
       } else {
         Object.keys(data).forEach((key) => {
@@ -223,6 +239,43 @@ class Emoji {
         arrowWrap.classList.add(side);
       }
     });
+  }
+
+  /**
+   * @description: 初始化图片懒加载
+   * @param {Array} scrollWrapArr 图片容器（滚动条容器）
+   * @Date: 2023-03-27 01:05:57
+   * @Author: mulingyuer
+   */
+  private initLazyLoad(scrollWrap: HTMLElement) {
+    const imgArr = Array.from(scrollWrap.querySelectorAll("img[data-src]"));
+    if (imgArr.length <= 0) return;
+    //创建observer实例
+    const observer = new Observer({
+      root: scrollWrap,
+    });
+    imgArr.forEach((img) => {
+      observer.observe(img, this.lazyLoadCallback, this);
+    });
+  }
+
+  /** 图片懒加载回调 */
+  private lazyLoadCallback(entry: IntersectionObserverEntry, observer: Observer) {
+    const target = entry.target as HTMLImageElement;
+    if (!entry.isIntersecting) return;
+    const src = target.dataset.src;
+    target.removeAttribute("data-src"); //拿到就删除，防止重复加载
+    if (typeof src === "string" && src.trim() !== "") {
+      const img = new Image();
+      img.addEventListener("load", () => {
+        target.src = src;
+        //打入标记
+        target.dataset.lazy = "true";
+        //移除监听
+        observer.unobserve(target, this.lazyLoadCallback, this);
+      });
+      img.src = src;
+    }
   }
 }
 new Emoji();

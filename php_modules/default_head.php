@@ -11,7 +11,7 @@ content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale
 <meta name="description" content="<?php blogDescription($this);?>">
 <meta name="keywords" content="<?php blogKeywords($this);?>">
 <meta name="title" content="<?php blogTitle($this);?>">
-<meta name="path" content="<?php $this->options->themeUrl("/static/images/emoji");?>">
+<meta name="path" content="<?php $this->options->themeUrl("/static/images");?>">
 <!-- RSS 订阅 -->
 <?php $this->header('keywords=&description=&generator=&template=&pingback=&xmlrpc=&wlw=');?>
 
