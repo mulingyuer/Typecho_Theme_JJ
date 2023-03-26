@@ -5,9 +5,9 @@
   --jj-img-skeleton-bg: #eeeff2;
 
   /* 文章骨架 */
-  --jj-article-skeleton-bg: #fff;
-  --jj-article-skeleton-line-bg1: #e4e6eb;
-  --jj-article-skeleton-line-bg2: rgba(228, 230, 235, 0.5);
+  --jj-skeleton-bg: #fff;
+  --jj-skeleton-line-bg1: #e4e6eb;
+  --jj-skeleton-line-bg2: rgba(228, 230, 235, 0.5);
 
   /** 顶部导航栏 */
   --jj-header-bg-color: #fff;

@@ -1,6 +1,14 @@
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.0_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/pages/page/style.scss ***!
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.7.3_webpack@5.76.3/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.1.0_twwyhqqim6liv4fz2ggv7g4m5a/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.2.1_sass@1.60.0+webpack@5.76.3/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/pages/page/style.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@keyframes article-skeleton-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 480px 0;
+  }
+}
 html {
   scroll-padding-top: 80px;
 }
