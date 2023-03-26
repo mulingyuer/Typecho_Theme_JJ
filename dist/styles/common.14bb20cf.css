@@ -629,7 +629,7 @@ ol {
 }
 
 .header-comment {
-  margin: 0 10px;
+  margin-left: 10px;
   width: 40px;
   height: 100%;
   display: flex;
@@ -651,6 +651,7 @@ ol {
 }
 
 .header-login-btn {
+  margin-left: 10px;
   height: 36px;
   padding: 4px 16px;
   background-color: var(--jj-header-login-btn-bg);
@@ -670,6 +671,7 @@ ol {
 }
 
 .header-menu-wrap {
+  margin-left: 10px;
   height: 100%;
   position: relative;
 }

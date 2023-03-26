@@ -55,9 +55,11 @@
           <a class="header-article-btn login" href="javascript:;" target="_self" title="写文章">写文章</a>
           <?php endif;?>
         </div>
-        <a class="header-comment" href="" target="_self" title="评论列表">
+        <?php if ($this->user->hasLogin()): ?>
+        <a class="header-comment" href="<?php echo getHidePage($page, 'notification'); ?>" target="_self" title="评论列表">
           <i class="jj-icon jj-icon-tongzhixiaoxi header-comment-icon"></i>
         </a>
+        <?php endif;?>
         <?php if (!$this->user->hasLogin()): ?>
           <button class="header-login-btn">登录</button>
         <?php else: ?>

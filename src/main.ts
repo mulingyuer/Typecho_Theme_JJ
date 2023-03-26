@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:22:40
- * @LastEditTime: 2023-03-21 23:00:15
+ * @LastEditTime: 2023-03-26 08:04:31
  * @LastEditors: mulingyuer
  * @Description: 通用入口文件
  * @FilePath: \Typecho_Theme_JJ\src\main.ts
@@ -9,6 +9,7 @@
  */
 import "@/store/install";
 import { useDataStore } from "@/store/data";
+import asciiEmoji from "@/utils/ascii";
 
 //css
 import "@/styles/reset.scss";
@@ -34,3 +35,6 @@ function updateWindowSize() {
 }
 updateWindowSize();
 window.addEventListener("resize", updateWindowSize);
+
+//ascii
+asciiEmoji();

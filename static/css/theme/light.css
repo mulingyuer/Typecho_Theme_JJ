@@ -311,4 +311,14 @@
   --jj-links-item-border-hover: #45b4ff;
   --jj-links-blockquote: #515767;
   --jj-links-blockquote-bg: #f7f8fa;
+
+  /* notification */
+  --jj-notification-bg: #fff;
+  --jj-notification-item-title: #2e3135;
+  --jj-notification-list-item-link: #007fff;
+  --jj-notification-list-item-msg: #333;
+  --jj-notification-list-item-msg-border: #f1f1f2;
+  --jj-notification-list-item-msg-bg: #fafbfc;
+  --jj-notification-list-item-footer: #8a9aa9;
+  --jj-notification-list-item-time: #8a9aa9;
 }

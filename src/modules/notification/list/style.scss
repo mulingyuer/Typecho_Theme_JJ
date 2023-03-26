@@ -1,0 +1,118 @@
+.notification-list {
+  max-width: 960px;
+  margin: 0 auto 20px;
+}
+.notification-list-content {
+  &.hidden {
+    display: none;
+  }
+}
+.notification-list-item {
+  padding: 20px;
+  background-color: var(--jj-notification-bg);
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+  & + & {
+    margin-top: 8px;
+  }
+}
+.notification-list-item-avatar {
+  flex-shrink: 0;
+  margin-right: 24px;
+  width: 45px;
+  height: 45px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: top;
+    border-radius: 50%;
+  }
+}
+.notification-list-item-content {
+  flex-grow: 1;
+  min-width: 0;
+}
+.notification-list-item-title {
+  margin-bottom: 10px;
+  word-break: break-all;
+  font-size: 15px;
+  color: var(--jj-notification-item-title);
+  strong a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.notification-list-item-link {
+  color: var(--jj-notification-list-item-link);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.notification-list-item-msg {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--jj-notification-list-item-msg-border);
+  background-color: var(--jj-notification-list-item-msg-bg);
+  border-radius: 4px;
+  font-size: 15px;
+  color: var(--jj-notification-list-item-msg);
+  word-wrap: break-word;
+  img {
+    width: auto;
+    height: 20px;
+    vertical-align: sub;
+    margin: 0 2px;
+    position: relative;
+    top: 1px;
+    &.hot-word-emoji-img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+.notification-list-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--jj-notification-list-item-footer);
+}
+.notification-list-item-footer-left,
+.notification-list-item-footer-right {
+  flex-shrink: 0;
+}
+.notification-list-item-time {
+  font-size: 14px;
+  color: var(--jj-notification-list-item-time);
+}
+.notification-list-item-manage,
+.notification-list-item-comment {
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    color: var(--jj-notification-list-item-link);
+  }
+}
+.notification-list-item-comment {
+  margin-left: 5px;
+}
+.notification-list-item-manage-icon,
+.notification-list-item-comment-icon {
+  font-size: inherit;
+  line-height: inherit;
+}
+.notification-list-empty {
+  padding: 50px 20px;
+  background-color: var(--jj-notification-bg);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--jj-notification-list-item-msg);
+  margin-bottom: 8px;
+}

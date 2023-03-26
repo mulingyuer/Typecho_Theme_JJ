@@ -791,6 +791,50 @@ function getArticleSummary($that, $maxLength = 120)
     return urlencode($abstract);
 }
 
+/**
+ * @description: 获取评论所属文章标题及链接
+ * @param {*} $id
+ * @Date: 2023-03-26 08:30:14
+ * @Author: mulingyuer
+ */
+function getIdPosts($id)
+{
+    $permalink = "";
+    $title = "";
+
+    if ($id) {
+        $getid = explode(',', $id);
+        $db = Typecho_Db::get();
+        $result = $db->fetchAll($db->select()->from('table.contents')
+                ->where('status = ?', 'publish')
+                ->where('type = ?', 'post')
+                ->where('cid in ?', $getid)
+                ->order('cid', Typecho_Db::SORT_DESC)
+        );
+        if (!$result) {
+            $result = $db->fetchAll($db->select()->from('table.contents')
+                    ->where('status = ?', 'publish')
+                    ->where('type = ?', 'page')
+                    ->where('cid in ?', $getid)
+                    ->order('cid', Typecho_Db::SORT_DESC)
+            );
+        }
+        if ($result) {
+            $i = 1;
+            foreach ($result as $val) {
+                $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
+                $title = htmlspecialchars($val['title']);
+                $permalink = $val['permalink'];
+            }
+        }
+    }
+
+    return array(
+        'title' => $title,
+        'permalink' => $permalink,
+    );
+}
+
 //主题themeInit函数
 function themeInit($archive)
 {
