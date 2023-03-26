@@ -1,1 +1,0 @@
-<link rel="stylesheet" href="<?php $this->options->themeUrl('dist/links/style.1b6be1e9.css'); ?>">
