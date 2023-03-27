@@ -1,5 +1,324 @@
-/* 暗黑主题颜色变量 */
+/* 亮色主题颜色变量 */
 :root {
   /* 基本色 */
-  --jj-body-bg-color: red;
+  --jj-body-bg-color: #f4f5f5;
+  --jj-img-skeleton-bg: #eeeff2;
+
+  /* 文章骨架 */
+  --jj-skeleton-bg: #fff;
+  --jj-skeleton-line-bg1: #e4e6eb;
+  --jj-skeleton-line-bg2: rgba(228, 230, 235, 0.5);
+
+  /** 顶部导航栏 */
+  --jj-header-bg-color: #fff;
+  --jj-header-box-shadow: rgba(0, 0, 0, 0.05);
+  --jj-header-text-color: #515767;
+  --jj-header-text-hover: #252933;
+  --jj-header-text-active: #1e80ff;
+  --jj-header-nav-border-color: #ebebeb;
+  --jj-header-nav-box-shadow: #ebebeb;
+  --jj-header-article-btn-bg: #1e80ff;
+  --jj-header-article-btn-bg-hover: #1171ee;
+  --jj-header-article-btn-color: #fff;
+  --jj-header-search-input-border: #c2c8d1;
+  --jj-header-search-input-border-active: #1e80ff;
+  --jj-header-search-input-color: #8a919f;
+  --jj-header-search-placeholder-color: #c0c3cb;
+  --jj-header-search-btn-color: #86909c;
+  --jj-header-search-btn-color-active: #1e80ff;
+  --jj-header-search-btn-bg: #f2f3f5;
+  --jj-header-search-btn-bg-active: #eaf2ff;
+  --jj-search-history-title-color: #869aab;
+  --jj-search-history-clear-color: #1e80ff;
+  --jj-search-history-text-color: #5e6369;
+  --jj-search-history-item-bg: #eff2f5;
+  --jj-header-comment-color: #8a919f;
+  --jj-header-comment-color-active: #515767;
+  --jj-mobile-search-bg: #fff;
+  --jj-mobile-search-mask-bg: rgba(0, 0, 0, 0.6);
+  --jj-header-login-btn-bg: rgba(30, 128, 255, 0.05);
+  --jj-header-login-btn-bg-hover: rgba(30, 128, 255, 0.1);
+  --jj-header-login-btn-border: rgba(30, 128, 255, 0.3);
+  --jj-header-login-btn-color: #007fff;
+  --jj-header-menu-text-color: #252933;
+  --jj-header-menu-count-title-color: #8a919f;
+  --jj-header-menu-item-bg-hover: #f7f8fa;
+  --jj-header-menu-item-icon: #8a919f;
+  --jj-header-menu-footer-text-color: #8a919f;
+  --jj-header-menu-footer-text-color-hover: #1e80ff;
+
+  /* 登录弹窗 */
+  --jj-login-dialog-mask-bg: rgba(0, 0, 0, 0.3);
+  --jj-login-dialog-content-bg: #fff;
+  --jj-login-dialog-close-color: #8a919f;
+  --jj-login-dialog-head-border: rgba(228, 230, 235, 0.5);
+  --jj-login-dialog-title-color: #252933;
+  --jj-login-dialog-input-color: #000;
+  --jj-login-dialog-input-placeholder-color: #c4c7ce;
+  --jj-login-dialog-input-border: #f2f3f5;
+  --jj-login-dialog-input-bg: #f2f3f5;
+  --jj-login-dialog-input-border-focus: #1e80ff;
+  --jj-login-dialog-input-bg-focus: #fff;
+  --jj-login-dialog-form-btn-bg: #1e80ff;
+  --jj-login-dialog-form-btn-bg-hover: #1171ee;
+  --jj-login-dialog-form-btn-color: #fff;
+  --jj-login-dialog-body-right-border: #f1f2f5;
+  --jj-login-dialog-qrcode-border: #e4e6eb;
+  --jj-login-dialog-footer-color: #8a919f;
+  --jj-login-dialog-link-color: #1e80ff;
+  --jj-login-dialog-link-color-hover: #1171ee;
+
+  /* nav */
+  --jj-nav-bg-color: #fff;
+  --jj-nav-border: #f1f1f1;
+  --jj-nav-box-shadow: rgba(0, 0, 0, 0.05);
+  --jj-nav-list-item-color: #71777c;
+  --jj-nav-list-item-color-active: #007fff;
+  --jj-nav-list-secondary-bg: #fff;
+  --jj-nav-list-secondary-border: #ebebeb;
+  --jj-nav-list-secondary-box-shadow: rgba(0, 0, 0, 0.15);
+  --jj-nav-list-secondary-item-color: #71777d;
+  --jj-nav-list-secondary-item-color-active: #007fff;
+  --jj-nav-list-secondary-item-bg: #f4f5f5;
+
+  /* secondary-nav */
+  --jj-secondary-nav-item-bg: #fff;
+  --jj-secondary-nav-item-bg-active: #007fff;
+  --jj-secondary-nav-item-color: #8a9aa9;
+  --jj-secondary-nav-item-color-hover: #007fff;
+  --jj-secondary-nav-item-color-active: #fff;
+  --jj-secondary-nav-item-box-shadow: rgba(0, 0, 0, 0.05);
+
+  /* article-nav */
+  --jj-article-nav-bg: #fff;
+  --jj-article-nav-border: #e4e6eb;
+  --jj-article-nav-item-color: #515767;
+  --jj-article-nav-item-color-hover: #007fff;
+  --jj-article-nav-item-color-active: #252933;
+  --jj-article-nav-item-before-bg: #1e80ff;
+
+  /* article-card */
+  --jj-article-card-bg: #fff;
+  --jj-article-card-bg-hover: #fafafa;
+  --jj-article-card-border: #e5e6eb;
+  --jj-article-card-head-color: #8a919f;
+  --jj-article-card-head-border: #e5e6eb;
+  --jj-article-card-user-color: #515767;
+  --jj-article-card-tag-color-hover: #1e80ff;
+  --jj-article-card-title-color: #252933;
+  --jj-article-card-desc-color: #8a919f;
+  --jj-article-card-footer-color: #8a919f;
+  --jj-article-card-footer-color-hover: #1e80ff;
+
+  /* article-pagination */
+  --jj-article-pagination-bg: #fff;
+  --jj-article-pagination-border: #e4e6eb;
+  --jj-article-pagination-no-more-color: #8a919f;
+
+  /* article-empty */
+  --jj-article-empty-bg: #fff;
+  --jj-article-empty-color: #8a919f;
+
+  /* article-relevant-info */
+  --jj-article-relevant-info: #515767;
+  --jj-article-relevant-info-a-color1: #515767;
+  --jj-article-relevant-info-a-bg1: #f2f3f5;
+  --jj-article-relevant-info-a-bg1-hover: #e4e6eb;
+  --jj-article-relevant-info-a-color2: #1e80ff;
+  --jj-article-relevant-info-a-bg2: #eaf2ff;
+  --jj-article-relevant-info-a-bg2-hover: rgba(30, 128, 255, 0.16);
+
+  /* toast */
+  --jj-toast-color: #333;
+  --jj-toast-bg: #fff;
+  --jj-toast-border: #ebebeb;
+  --jj-toast-box-shadow: rgba(0, 0, 0, 0.1);
+  --jj-toast-color-info: #909399;
+  --jj-toast-bg-info: #edf2fc;
+  --jj-toast-border-info: #ebeef5;
+  --jj-toast-color-success: #67c23a;
+  --jj-toast-bg-success: #f0f9eb;
+  --jj-toast-border-success: #e1f3d8;
+  --jj-toast-color-warning: #e6a23c;
+  --jj-toast-bg-warning: #fdf6ec;
+  --jj-toast-border-warning: #faecd8;
+  --jj-toast-color-error: #f56c6c;
+  --jj-toast-bg-error: #fef0f0;
+  --jj-toast-border-error: #fde2e2;
+
+  /* recent-comments */
+  --jj-recent-comments-bg: #fff;
+  --jj-recent-comments-border: #e4e6eb;
+  --jj-recent-comments-head-icon-color: #8a919f;
+  --jj-recent-comments-title-color: #1d2129;
+  --jj-recent-comments-list-placeholder-color: #8a919f;
+  --jj-recent-comments-list-item-bg-hover: rgba(216, 216, 216, 0.1);
+  --jj-recent-comments-list-item-title-color: #252933;
+  --jj-recent-comments-list-item-msg-color: #8a919f;
+  --jj-recent-comments-management-btn-color: #1e80ff;
+  --jj-recent-comments-management-btn-color-hover: #1171ee;
+
+  /* theme-tool */
+  --jj-theme-tool-bg: #fff;
+  --jj-theme-tool-item-bg-hover: rgba(216, 216, 216, 0.1);
+  --jj-theme-tool-item-img-bg: #f2f3f5;
+  --jj-theme-tool-item-title-color: #333;
+
+  /* footer */
+  --jj-footer-color: #8a919f;
+  --jj-footer-color-hover: #1d7dfa;
+
+  /* fixed-tool */
+  --jj-fixed-tool-item-bg: #fff;
+  --jj-fixed-tool-item-color: #909090;
+  --jj-fixed-tool-item-color-hover: #1e80ff;
+  --jj-fixed-tool-item-border: #f1f1f1;
+  --jj-fixed-tool-item-box-shadow: rgba(50, 50, 50, 0.04);
+  --jj-fixed-tool-item-box-shadow-hover: #ddd;
+
+  /* category-tips */
+  --jj-category-tips-color: #71777c;
+  --jj-category-tips-strong-color: #007fff;
+
+  /** 404 */
+  --jj-error-card-logo-bg: #dde7ff;
+  --jj-error-card-title-color: #71777c;
+  --jj-error-card-strong-color: #333;
+
+  /* article-content-wrapper */
+  --jj-article-content-wrapper-bg: #fff;
+
+  /* article-content */
+  --jj-article-content-title: #252933;
+  --jj-article-content-author-name: #515767;
+  --jj-article-content-author-other: #8a919f;
+  --jj-article-content-edit-btn: #1e80ff;
+  --jj-article-content-end-time: #8a919f;
+
+  /* article-author */
+  --jj-article-author-bg: #fff;
+  --jj-article-author-head-border: #e4e6eb;
+  --jj-article-author-name-color: #252933;
+  --jj-article-author-group-color: #8a919f;
+  --jj-article-author-item-color: #252933;
+  --jj-article-author-item-icon: #7bb9ff;
+  --jj-article-author-item-icon-bg: #e1efff;
+
+  /* latest-posts */
+  --jj-latest-posts-bg: #fff;
+  --jj-latest-posts-title: #1d2129;
+  --jj-latest-posts-title-border: #e4e6eb;
+  --jj-latest-posts-item-title: #252933;
+  --jj-latest-posts-item-title-hover: #007fff;
+  --jj-latest-posts-item-icon: #8a919f;
+  --jj-latest-posts-empty: #8a919f;
+
+  /* directory-tree */
+  --jj-directory-tree-bg: #fff;
+  --jj-directory-tree-title: #1d2129;
+  --jj-directory-tree-title-border: #e4e6eb;
+  --jj-directory-tree-body-scroll: #e4e6eb;
+  --jj-directory-tree-item: #000;
+  --jj-directory-tree-item-active: #007fff;
+  --jj-directory-tree-list-item-link-bg-hover: #f7f8fa;
+  --jj-directory-tree-list-empty: #8a919f;
+
+  /* comment */
+  --jj-comment-bg: #fff;
+  --jj-comment-title: #252933;
+  --jj-comment-off: #8a919f;
+
+  /* comment-form */
+  --jj-comment-form-input: #252933;
+  --jj-comment-form-input-placeholder: #8a919f;
+  --jj-comment-form-input-border: #f2f3f5;
+  --jj-comment-form-input-border-focus: #1e80ff;
+  --jj-comment-form-input-border-error: #f64242;
+  --jj-comment-form-input-bg: #f2f3f5;
+  --jj-comment-form-input-bg-focus: #fff;
+  --jj-comment-form-btn: #fff;
+  --jj-comment-form-submit-bg: #abcdff;
+  --jj-comment-form-submit-bg-success: #1e80ff;
+  --jj-comment-form-submit-bg-success-hover: #388eff;
+  --jj-comment-form-cancel-bg: #ff5e54;
+
+  /* comments-list */
+  --jj-comments-list-title: #252933;
+  --jj-comment-list-item-author: #252933;
+  --jj-comment-list-item-secondary: #8a919f;
+  --jj-comment-list-item-comment: #515767;
+  --jj-comment-list-item-relation: #1e80ff;
+  --jj-comment-list-item-relation-hover: #388eff;
+  --jj-comment-list-item-reply: #8a919f;
+  --jj-comment-list-item-bg: rgba(247, 248, 250, 0.7);
+
+  /* comment-pagination */
+  --jj-comment-pagination-a: #8a919f;
+  --jj-comment-pagination-a-hover: #fff;
+  --jj-comment-pagination-a-bg: #f7f8fa;
+  --jj-comment-pagination-a-bg-hover: #1e80ff;
+
+  /* copyright */
+  --jj-copyright-bg: #f7f8fa;
+  --jj-copyright-title: #252933;
+  --jj-copyright-desc: #8a919f;
+  --jj-copyright-a-hover: #1e80ff;
+
+  /* articles-related */
+  --jj-articles-related-bg: #fff;
+  --jj-articles-related-title: #252933;
+  --jj-articles-related-head-border: #e5e6eb;
+  --jj-articles-related-empty: #8a919f;
+
+  /* article-tool */
+  --jj-article-tool-item-bg: #fff;
+  --jj-article-tool-item-color: #8a919f;
+  --jj-article-tool-item-color-hover: #515767;
+  --jj-article-tool-item-color-active: #1e80ff;
+  --jj-article-tool-item-box-shadow: rgba(0, 0, 0, 0.04);
+  --jj-article-tool-item-badge: #fff;
+  --jj-article-tool-item-badge-bg: #c2c8d1;
+  --jj-article-tool-item-badge-bg-active: #1e80ff;
+  --jj-article-tool-dividing-bg: #e4e6eb;
+  --jj-article-tool-share-bg: #fff;
+  --jj-article-tool-share-box-shadow: rgba(81, 87, 103, 0.16);
+  --jj-article-tool-share-item: #515767;
+  --jj-article-tool-share-item-bg-hover: #f2f3f5;
+  --jj-article-tool-wx-qrcode-bg: #fff;
+  --jj-article-tool-wx-qrcode-box-shadow: rgba(81, 87, 103, 0.16);
+  --jj-article-tool-wx-qrcode-info: #515767;
+
+  /* emoji */
+  --jj-emoji-bg: #fff;
+  --jj-emoji-btn: #4e5969;
+  --jj-emoji-btn-hover: #1e80ff;
+  --jj-emoji-picker-box-shadow: rgba(0, 0, 0, 0.1);
+  --jj-emoji-picker-arrow-bg: #fff;
+  --jj-emoji-picker-head-border: #e5e6eb;
+  --jj-emoji-picker-head-item: #252933;
+  --jj-emoji-picker-head-item-bg-hover: #f1f3f6;
+  --jj-emoji-picker-head-item-bg-active: #e5e6eb;
+  --jj-emoji-picker-scroll-bg: #e5e6eb;
+  --jj-emoji-picker-body-item-bg: #e3e5e7;
+
+  /* links */
+  --jj-links-bg: #fff;
+  --jj-links-title: #000;
+  --jj-links-edit-btn: #1e80ff;
+  --jj-links-item: #333;
+  --jj-links-item-bg: #fff;
+  --jj-links-item-border: #f1f1f1;
+  --jj-links-item-border-hover: #45b4ff;
+  --jj-links-blockquote: #515767;
+  --jj-links-blockquote-bg: #f7f8fa;
+
+  /* notification */
+  --jj-notification-bg: #fff;
+  --jj-notification-item-title: #2e3135;
+  --jj-notification-list-item-link: #007fff;
+  --jj-notification-list-item-msg: #333;
+  --jj-notification-list-item-msg-border: #f1f1f2;
+  --jj-notification-list-item-msg-bg: #fafbfc;
+  --jj-notification-list-item-footer: #8a9aa9;
+  --jj-notification-list-item-time: #8a9aa9;
 }
