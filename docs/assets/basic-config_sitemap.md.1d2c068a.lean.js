@@ -1,0 +1,1 @@
+import{_ as a,o as e,c as t,N as o}from"./chunks/framework.90e2d99a.js";const u=JSON.parse('{"title":"网站地图","description":"","frontmatter":{},"headers":[],"relativePath":"basic-config/sitemap.md"}'),i={name:"basic-config/sitemap.md"},r=o("",6),s=[r];function c(n,_,p,h,d,l){return e(),t("div",null,s)}const f=a(i,[["render",c]]);export{u as __pageData,f as default};
