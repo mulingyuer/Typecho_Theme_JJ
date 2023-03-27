@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-16 00:12:43
- * @LastEditTime: 2023-03-17 07:44:29
+ * @LastEditTime: 2023-03-27 22:32:03
  * @LastEditors: mulingyuer
  * @Description: 搜索记录类
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\searchHistory.ts
@@ -29,7 +29,7 @@ class SearchHistory {
   private wrap: HTMLElement; //容器
   private list: HTMLElement; //列表
   private clearBtn: HTMLElement; //清空按钮
-  private history: Set<string> = new Set(); //历史记录
+  private history: Array<string> = []; //历史记录
   private historyKey: string = "search_history"; //历史记录key
   private maxCount: number = 6; //最大历史记录数
   private closeBlacklist: Array<HTMLElement> = []; //黑名单
@@ -47,7 +47,7 @@ class SearchHistory {
     // jjLocal.setItem(this.historyKey, [1, 2, 3, 4, 5, 6, 7, 8]);
     const historyArr = jjLocal.getItem<Array<string> | null>(this.historyKey);
     if (historyArr) {
-      this.history = new Set(historyArr.splice(0, this.maxCount));
+      this.history = historyArr.slice(0, this.maxCount); //防止有人篡改本地存储超出上限
     }
 
     this.clear = this.clear.bind(this);
@@ -115,31 +115,35 @@ class SearchHistory {
 
   /** 添加一条搜索记录 */
   public addHistory(val: string): this {
-    if (this.history.has(val)) return this;
-    if (this.history.size >= this.maxCount) {
-      const newArr = [...this.history].slice(0, this.maxCount);
-      newArr.pop(); //尾出栈
-      this.history = new Set(newArr);
+    const findIndex = this.history.findIndex((str) => str === val);
+    if (findIndex !== -1) {
+      //先删除，在首插入
+      this.history.splice(findIndex, 1);
+      this.history.unshift(val);
+    } else {
+      if (this.history.length >= this.maxCount) {
+        this.history.pop();
+      }
+      this.history.unshift(val);
     }
-    this.history.add(val);
     this.saveHistory();
     return this;
   }
 
   /** 清空搜索记录 */
   private clearHistory() {
-    this.history.clear();
+    this.history = [];
     this.saveHistory();
   }
 
   /** 获取记录条数 */
   public getHistoryLength(): number {
-    return this.history.size;
+    return this.history.length;
   }
 
   /** 本地保存搜索记录 */
   private saveHistory() {
-    jjLocal.setItem(this.historyKey, [...this.history]);
+    jjLocal.setItem(this.historyKey, this.history);
   }
 }
 
