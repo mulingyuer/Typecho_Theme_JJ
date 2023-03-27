@@ -1,0 +1,66 @@
+.markdown-body embed,
+.markdown-body iframe,
+.markdown-body img:not(.equation),
+.markdown-body video {
+  max-width: 100% !important;
+  margin: 0;
+}
+.markdown-body li {
+  list-style: inherit;
+}
+.markdown-body img.equation {
+  margin: 0 0.1em;
+  max-width: 100% !important;
+  vertical-align: middle;
+}
+.markdown-body pre {
+  position: relative;
+}
+.markdown-body pre > code.hljs[lang]:before {
+  content: attr(lang);
+  position: absolute;
+  right: 15px;
+  top: 2px;
+  color: hsla(0, 0%, 54.9%, 0.8);
+}
+.markdown-body pre > code.hljs[lang][lang="bash"]:before {
+  content: "";
+}
+.markdown-body pre > code.copyable .copy-code-btn {
+  position: absolute;
+  top: 6px;
+  right: 15px;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  color: hsla(0, 0%, 54.9%, 0.8);
+  transition: color 0.1s;
+}
+.markdown-body pre > code.copyable .copy-code-btn:hover {
+  color: #8c8c8c;
+}
+.markdown-body pre > code.copyable.hljs[lang]:before {
+  right: 70px;
+}
+.markdown-body pre pre > code .copy-code-btn {
+  display: none;
+}
+.markdown-body pre pre > code.hljs[lang]:before {
+  top: 2px;
+  right: 15px;
+}
+.markdown-body iframe {
+  display: block;
+  width: 100%;
+  height: 430px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(128, 128, 128, 0.4);
+  margin: 15px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .markdown-body iframe {
+    height: 110vw;
+    min-height: 390px;
+  }
+}

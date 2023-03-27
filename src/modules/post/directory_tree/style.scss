@@ -1,0 +1,93 @@
+.directory-tree {
+  position: sticky;
+  top: $headerGap;
+  margin-bottom: 20px;
+  transition: top 0.2s;
+  &.heighten {
+    top: $headerH + $headerGap;
+  }
+}
+.directory-tree-content {
+  background-color: var(--jj-directory-tree-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  padding-bottom: 12px;
+}
+.directory-tree-head {
+  padding: 0 20px;
+  margin-bottom: 8px;
+}
+.directory-tree-title {
+  padding: 16px 0;
+  font-size: 16px;
+  font-weight: none;
+  line-height: 24px;
+  color: var(--jj-directory-tree-title);
+  border-bottom: 1px solid var(--jj-directory-tree-title-border);
+}
+.directory-tree-body {
+  max-height: 460px;
+  overflow: auto;
+  margin-right: 4px;
+  position: relative;
+  // 谷歌浏览器
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--jj-directory-tree-body-scroll);
+  }
+  // 火狐浏览器
+  @supports (scrollbar-width: thin) {
+    // scrollbar-width: thin; // Firefox 显示有问题
+    scrollbar-color: var(--jj-directory-tree-body-scroll) transparent;
+    .directory-tree-list-item-container {
+      padding-right: 16px;
+    }
+  }
+}
+.directory-tree-list li > ul li {
+  padding-left: 15px;
+}
+.directory-tree-list-item {
+  font-size: 14px;
+  color: var(--jj-directory-tree-item);
+  &.active {
+    color: var(--jj-directory-tree-item-active);
+    > .directory-tree-list-item-container .directory-tree-list-item-icon {
+      display: inline;
+    }
+  }
+}
+.directory-tree-list-item-container {
+  padding-right: 10px;
+  padding-left: 20px;
+}
+.directory-tree-list-item-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 8px;
+  border-radius: 4px;
+  @include one-line();
+  &:hover {
+    color: var(--jj-directory-tree-item-active);
+    background-color: var(--jj-directory-tree-list-item-link-bg-hover);
+  }
+}
+.directory-tree-list-item-icon {
+  display: none;
+  font-size: inherit;
+  line-height: inherit;
+  margin-right: 5px;
+}
+.directory-tree-list-empty {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--jj-directory-tree-list-empty);
+}

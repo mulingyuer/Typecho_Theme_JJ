@@ -1,0 +1,45 @@
+.copyright {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.copyright-content {
+  padding: 16px;
+  background-color: var(--jj-copyright-bg);
+  border-radius: 4px;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/static/images/copyright.png");
+    background-repeat: no-repeat;
+    background-position: right -15px top -15px;
+    background-size: contain;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+}
+.copyright-title {
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--jj-copyright-title);
+  margin-bottom: 12px;
+}
+.copyright-desc {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--jj-copyright-desc);
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      color: var(--jj-copyright-a-hover);
+    }
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}

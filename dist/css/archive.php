@@ -1,1 +1,0 @@
-<link rel="stylesheet" href="<?php $this->options->themeUrl('dist/archive/style.7faf61c5.css'); ?>">

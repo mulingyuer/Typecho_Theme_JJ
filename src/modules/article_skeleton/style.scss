@@ -1,0 +1,24 @@
+.article-skeleton {
+  background-color: var(--jj-skeleton-bg);
+  padding: 20px;
+  &.hidden {
+    display: none;
+  }
+}
+.article-skeleton-line {
+  height: 14px;
+  @include skeleton-animation();
+  & + & {
+    margin-top: 16px;
+  }
+  &:nth-child(1) {
+    margin-top: 8px;
+    width: 40%;
+  }
+  &:nth-child(3) {
+    width: 80%;
+  }
+  &:nth-child(4) {
+    width: 60%;
+  }
+}

@@ -1,0 +1,32 @@
+// 布局样式
+.main {
+  padding-top: $headerH + $navH;
+  @include prevent-scroll-jitter();
+  &.no-nav {
+    padding-top: $headerH;
+  }
+}
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.main-content {
+  padding-top: $headerGap;
+  display: flex;
+  // align-items: flex-start;  //为了文章右侧目录树浮动
+}
+.main-left {
+  flex-grow: 1;
+  min-width: 0;
+}
+.main-right {
+  flex-shrink: 0;
+  width: 300px;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .main-right {
+    display: none;
+  }
+}

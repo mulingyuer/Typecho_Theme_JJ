@@ -4,70 +4,32 @@
  *
  * @package custom
  */
-if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
+  <?php $this->need("./php_modules/notes.php");?>
 <head>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/default/head.php");?>
-    <?php //样式?>
-    <?php $this->need("dist/css/links.php");?>
-    
-  <?php endif; ?>
+  <?php $this->need("./php_modules/default_head.php");?>
+  <?php $this->need("./dist/head/links.php");?>
 </head>
 <body>
-  <?php if(!is_ajax()): ?>
-    <?php $this->need("components/default/header.php");?>
-    <?php $this->need("components/default/nav.php");?>
-  <?php endif; ?>
-   
-  <main id="main">
+  <?php $this->need("./php_modules/header.php");?>
+  <main class="main no-nav" role="main">
     <div class="container">
-      <div class="links-content">
-        <div class="links-head">
-          <h1 class="title"><?php $this->title() ?><?php if ($this->user->hasLogin()) : ?><a href="<?php $this->options->adminUrl(); ?>write-<?php if ($this->is('post')) : ?>post<?php else : ?>page<?php endif; ?>.php?cid=<?php echo $this->cid; ?>" class="icon icon-edit" target="_blank"></a><?php endif; ?></h1>
-        </div>
-        <div class="links-body">
-          <?php
-            $db = Typecho_Db::get();
-            $sql = $db->select()->from('table.comments')
-              ->where('cid = ?', $this->cid)
-              ->where('mail = ?', $this->remember('mail', true))
-              ->where('status = ?', 'approved')
-              //只有通过审核的评论才能看回复可见内容
-              ->limit(1);
-            $result = $db->fetchAll($sql);
-            $content = $this->content;
-            //a链接增加_blank                
-            $content = preg_replace('/<a href=\"(.*?)\">(.*?)<\/a>/sm', '<a href="$1" target="_blank">$2</a>', $content);
-            echo $content
-            ?>
-        </div>
-        <div class="links-declaration">
-          <div class="left">
-            <i class="icon icon-warning-circle-fill"></i>
-          </div>
-          <div class="right">
-            <h2 class="title">友链声明</h2>
-            <p class="subtitle">寻求志同道合的技术博主，我们的目标是星辰大海！</p>
-            <p class="subtitle">要求：技术博客、长期稳定</p>
-          </div>
-        </div>
-        <div class="links-footer">
-          <?php $this->need("components/comments/index.php");?>
+      <div class="main-content links-content">
+        <div class="main-left">
+          <?php $this->need("./php_modules/links/content.php");?>
+          <?php $this->need("./php_modules/comment/comment.php");?>
+          <?php $this->need("./php_modules/post/articles_related.php");?>
         </div>
       </div>
     </div>
   </main>
-  
-
-  <?php //登录弹窗?>
-  <?php $this->need("components/default/login-dialog.php");?>
-  <?php //搜索抽屉?>
-  <?php $this->need("components/default/drawer-search.php");?>
-  <?php //悬浮工具?>
-  <?php $this->need("components/default/fixed-tool.php");?>
-  <?php //脚本?>
-  <?php $this->need("dist/script/links.php");?>
+  <?php $this->need("./php_modules/fixed_tool.php");?>
+  <?php //自定义脚本 ?>
+  <?php $this->options->customScript();?>
 </body>
 </html>

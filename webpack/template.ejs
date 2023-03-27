@@ -1,0 +1,1 @@
+<%= htmlWebpackPlugin.tags.headTags %>

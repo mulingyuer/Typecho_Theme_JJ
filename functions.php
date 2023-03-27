@@ -1,344 +1,615 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-?>
-
-<?php
-//主题设置
-function themeConfig($form) {
-?>
-  <!-- 设置的ui样式 -->
-  <style>
-    input[type="text"] {width:100%;}
-    .list-unstyled {list-style: none;padding-left:0 !important;}
-    .muflow-half label { display:block;margin-bottom: .5em;font-weight: bold;}
-    .muflow-half select {width:150px;}
-    .muflow-half .multiline {display:flex;align-items: center;margin-bottom: .5em;}
-    .muflow-half .multiline label {font-weight: normal;margin-bottom: 0;}
-    .muflow-half .multiline input {margin-right:.5em;}
-    
-    .muflow-clear {clear: both;}
-  </style>
-<?php
-  //统计代码
-  $statisticalCode = new Typecho_Widget_Helper_Form_Element_Textarea('statisticalCode', NULL, NULL, _t('统计代码'), _t('统计代码是带&lt;script&gt;标签的，不要漏了。'));
-  $statisticalCode->setAttribute('class', 'list-unstyled muflow-half muflow-clear typecho-option');
-  $form->addInput($statisticalCode); 
-
-  //备案号
-  $recordNumber = new Typecho_Widget_Helper_Form_Element_Text('recordNumber', NULL, NULL, _t('备案号'), _t('默认：无，例：湘ICP备xxxxxx号'));
-  $form->addInput($recordNumber);
-  //备案跳转的链接
-  $recordLink = new Typecho_Widget_Helper_Form_Element_Text('recordLink', NULL, NULL, _t('备案跳转的链接'), _t('默认：无，例：https://xxxx.xxx'));
-  $form->addInput($recordLink);
-
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+    exit;
 }
 
-// 主题目录path
-function themeUrl($path) {
-  return  Helper::options()->themeUrl($path);
+/**
+ * @description: 主题可视化配置
+ * @param {*} $form
+ * @Date: 2023-03-21 23:48:01
+ * @Author: mulingyuer
+ */
+function themeConfig($form)
+{
+    $filing = new \Typecho\Widget\Helper\Form\Element\Textarea(
+        'filing',
+        null,
+        null,
+        _t('备案信息'),
+        _t('例子：&lt;div class=&quot;footer-item&quot;&gt;&lt;a href=&quot;备案跳转的链接&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;备案号&lt;/a&gt;&lt;/div&gt;')
+    );
+    $form->addInput($filing);
+
+    $customScript = new \Typecho\Widget\Helper\Form\Element\Textarea(
+        'customScript',
+        null,
+        null,
+        _t('站点统计代码（自定义脚本）'),
+        _t('放入站点统计代码或者自定义脚本')
+    );
+    $form->addInput($customScript);
+
+    // $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
+    //     'sidebarBlock',
+    //     [
+    //         'ShowRecentPosts' => _t('显示最新文章'),
+    //         'ShowRecentComments' => _t('显示最近回复'),
+    //         'ShowCategory' => _t('显示分类'),
+    //         'ShowArchive' => _t('显示归档'),
+    //         'ShowOther' => _t('显示其它杂项'),
+    //     ],
+    //     ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'],
+    //     _t('侧边栏显示')
+    // );
+
+    // $form->addInput($sidebarBlock->multiMode());
 }
 
-// 自定义关键字
-if ($_SERVER['SCRIPT_NAME'] == "/admin/write-post.php") {
-  function themeFields($layout){
-    //自定义文章缩略图
-    $thumb = new Typecho_Widget_Helper_Form_Element_Text('thumb', NULL, NULL, _t('自定义缩略图'), _t('输入缩略图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
-    $layout->addItem($thumb);
-    //文章内容标题图
-    $titleImg = new Typecho_Widget_Helper_Form_Element_Text('titleImg', NULL, NULL, _t('自定义文章内容标题图'), _t('输入文章内容标题图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
-    $layout->addItem($titleImg);
-  }
-};
-
-
-//筛选多余的ajax获取的内容
-function is_ajax(){
-  if(isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=="xmlhttprequest"){
-    return true;
-  }
-  return false;
+/**
+ * @description: 获取当前页面标题
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-14 20:50:07
+ * @Author: mulingyuer
+ */
+function blogTitle($that)
+{
+    $before = $that->archiveTitle(array(
+        'category' => _t('分类 %s 下的文章'),
+        'search' => _t('包含关键字 %s 的文章'),
+        'tag' => _t('标签 %s 下的文章'),
+        'author' => _t('%s 发布的文章'),
+    ), '', ' - ');
+    $title = Helper::options()->title();
+    return $before . $title;
 }
 
+/**
+ * @description: 固定的一些其他页面
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-22 00:40:07
+ * @Author: mulingyuer
+ */
+function isOtherPage($that)
+{
+    $isIndex = $that->is('index');
+    $isCategory = $that->is('category');
+    $isArchive = $that->is('archive');
 
-//判断数组中是否存在mid
-function isMidInArray($arr,$mids) {
-  $flag = false;
-  foreach($mids as $mid){
-    if(in_array($mid['mid'],$arr)){
-      $flag = true;
-      break;
-    }
-  }
-  return $flag;
+    return $isIndex || $isCategory || $isArchive;
 }
 
-/**输出作者文章总数，可以指定*/
-function authArticleTotal($authorId){
-  $users = Typecho_Widget::widget('Widget_Users_Admin')->to($users); 
-  //循环用户列表
-  while($users->next()) {
-    if( $users->uid == $authorId){ 
-      $users->postsNum(); 
-      break;
+/**
+ * @description: 获取当前页面描述
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-14 20:51:55
+ * @Author: mulingyuer
+ */
+function blogDescription($that, $max = 150)
+{
+    $desc = "";
+    if (isOtherPage($that)) {
+        $desc = Helper::options()->description();
+    } else {
+        $desc = $that->excerpt($max);
     }
-  }
+    return $desc;
+}
+
+/**
+ * @description: 获取当前页面关键词
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-14 21:02:23
+ * @Author: mulingyuer
+ */
+function blogKeywords($that)
+{
+    $keywords = "";
+    if (isOtherPage($that)) {
+        $keywords = Helper::options()->keywords();
+    } else {
+        $keywords = $that->category(',', false) + $that->tags(',', false);
+    }
+    return $keywords;
+}
+
+/**
+ * @description: seo链接
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-14 21:20:53
+ * @Author: mulingyuer
+ */
+function seoUrl($that)
+{
+    // 旧版
+    // $url = "";
+    // if ($that->is('index')) {
+    //     $url = Helper::options()->siteUrl();
+    // } else {
+    //     $url = $that->permalink();
+    // }
+    // return $url;
+    echo $that->request->getRequestUrl();
+}
+
+/**
+ * @description: seo图片
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-14 21:30:30
+ * @Author: mulingyuer
+ */
+function seoImage($that)
+{
+    $image = "";
+    if (isOtherPage($that)) {
+        $image = Helper::options()->themeUrl . "/static/images/favicon/android-chrome-512x512.png";
+    } else {
+        $image = articleThumbnail($that);
+    }
+    //保底图片
+    if (!$image) {
+        $image = Helper::options()->themeUrl . "/static/images/seo_img_null.jpg";
+    }
+    return $image;
+}
+
+/**
+ * @description: 父级菜单是否高亮
+ * @param {*} $activeSlug 选中的菜单slug，也就是名称
+ * @param {*} $category 父级分类信息
+ * @param {*} $children 子级分类信息
+ * @Date: 2023-03-18 22:24:19
+ * @Author: mulingyuer
+ */
+function isParentActive($activeSlug, $category, $children)
+{
+
+    $flag = false;
+    foreach ($children as $mid) {
+        $child = $category->getCategory($mid);
+        if ($child['slug'] === $activeSlug) {
+            $flag = true;
+            break;
+        }
+    }
+    return $flag;
+}
+
+/** 二级分类：全部是否高亮 */
+function secondaryAllActive($that, $category, $children)
+{
+    $flag = true;
+    foreach ($children as $mid) {
+        $child = $category->getCategory($mid);
+        if ($that->is('category', $child['slug'])) {
+            $flag = false;
+            break;
+        }
+    }
+    return $flag;
+}
+
+/**
+ * @description: 文章发布时间
+ * @param {*} $time 原文章发布时间
+ * @Date: 2023-03-19 16:58:25
+ * @Author: mulingyuer
+ */
+function timeFormatting($time)
+{
+    if ($time == "no") {return;}
+    $chunks = array(
+        array(31536000, ' 年'),
+        array(2592000, ' 个月'),
+        array(604800, ' 周'),
+        array(86400, ' 天'),
+        array(3600, ' 小时'),
+        array(60, ' 分钟'),
+        array(1, ' 秒'),
+    );
+    $newer_date = time();
+    $since = abs($newer_date - $time);
+
+    for ($i = 0, $j = count($chunks); $i < $j; $i++) {
+        $seconds = $chunks[$i][0];
+        $name = $chunks[$i][1];
+        if (($count = floor($since / $seconds)) != 0) {
+            break;
+        }
+
+    }
+    $output = $count . $name . '前';
+
+    echo $output;
+}
+
+/**
+ * @description: 获取文章缩略图
+ * @param {*} $that
+ * @Date: 2023-03-19 17:03:31
+ * @Author: mulingyuer
+ */
+function articleThumbnail($that)
+{
+    $attach = $that->attachments(1)->attachment;
+    $pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
+
+    //如果有自定义缩略图
+    if ($that->fields->titleImg) {
+        return $that->fields->titleImg;
+    } else if ($that->fields->thumb) {
+        return $that->fields->thumb;
+    } else if (preg_match_all($pattern, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
+        return $thumbUrl[1][0];
+    } else if ($attach->isImage) {
+        return $attach->url;
+    } else {
+        return "";
+    }
+}
+
+/**
+ * @description: 文章浏览量
+ * @param {*} $that 当前页面对象
+ * @param {*} $format0
+ * @param {*} $format1
+ * @param {*} $formats
+ * @param {*} $return
+ * @param {*} $field
+ * @Date: 2023-03-19 17:07:55
+ * @Author: mulingyuer
+ */
+function articleViews($that, $format0 = "%d", $format1 = "%d", $formats = "%d", $return = false, $field = 'views')
+{
+    $fields = unserialize($that->fields);
+    if (array_key_exists($field, $fields)) {
+        $fieldValue = (!empty($fields[$field])) ? intval($fields[$field]) : 0;
+    } else {
+        $fieldValue = 0;
+    }
+    if ($fieldValue == 0) {
+        $fieldValue = sprintf($format0, $fieldValue);
+    } else if ($fieldValue == 1) {
+        $fieldValue = sprintf($format1, $fieldValue);
+    } else {
+        $fieldValue = sprintf($formats, $fieldValue);
+    }
+    if ($return) {
+        return $fieldValue;
+    } else {
+        echo $fieldValue;
+    }
+}
+
+/**
+ * @description: 文章点赞数
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-24 23:19:56
+ * @Author: mulingyuer
+ */
+function getLikeCount($that)
+{
+
+    $linkCount = $that->fields->likes;
+    if (empty($linkCount)) {
+        return 0;
+    }
+    return $linkCount;
+}
+
+/**
+ * Post Action AJAX接口 点赞接口
+ *
+ * @param Widget_Archive $widget
+ * @return void
+ * @date 2020-05-04
+ */
+function promo($widget)
+{
+
+    $user = $widget->widget('Widget_User');
+    $db = Typecho_Db::get();
+    $fields = unserialize($widget->fields);
+    $allowOperates = array('get', 'set', 'inc', 'dec'); // 这里可以扩展操作，建议屏蔽get/set
+    $allowFields = array('likes'); // 这里可以扩展修改字段
+
+    // 获取操作
+    $operate = $widget->request->get('operate');
+    $field = $widget->request->get('field');
+    $value = $widget->request->filter('int')->get('value');
+    $value = $value === null ? 100 : $value; // 100 起步
+
+    $result = array('cid' => $widget->cid);
+
+    if ($operate === "get") {
+        $result['operate'] = 'get';
+        if (array_key_exists($field, $fields)) {
+            $result[$field] = $fields[$field];
+        } else {
+            $result[$field] = -1;
+        }
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已获取参数'), 'result' => json_encode($result)));
+    } elseif ($operate === "set") {
+        $result['operate'] = 'set';
+        if ($value > 0) {
+            $widget->setField($field, 'str', $value, $widget->cid);
+        } else {
+            $db->query($db->delete('table.fields')
+                    ->where('cid = ? AND name = ?', $widget->cid, $field));
+        }
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
+    } elseif ($operate === "inc") {
+        $result['operate'] = 'inc';
+        $value = intval($fields[$field]) + 1;
+        $widget->setField($field, 'str', $value, $widget->cid);
+        $result[$field] = $value;
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
+    } elseif ($operate === "dec") {
+        $result['operate'] = 'dec';
+        $value = intval($fields[$field]) - 1;
+        $result[$field] = $value;
+        if ($value > 0) {
+            $widget->setField($field, 'str', $value, $widget->cid);
+        } else {
+            $db->query($db->delete('table.fields')
+                    ->where('cid = ? AND name = ?', $widget->cid, $field));
+        }
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
+    }
+}
+
+/**
+ * @description: 是否是ajax请求
+ * @Date: 2023-03-21 00:22:09
+ * @Author: mulingyuer
+ */
+function isAjax()
+{
+    if (isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest") {
+        return true;
+    }
+    return false;
+}
+
+/**
+ * @description: 获取所有独立页，包括隐藏的
+ * @Date: 2023-03-21 19:43:52
+ * @Author: mulingyuer
+ */
+function getAllPages()
+{
+    $db = Typecho_Db::get();
+    if (class_exists('\Typecho\Widget')) {
+        $widget = \Widget\Contents\Page\Rows::alloc();
+        foreach ([
+            "stack" => [],
+            "row" => [],
+            "length" => 0,
+        ] as $name => $val) {
+            try {
+                $reflect = new ReflectionClass($widget);
+                $property = $reflect->getProperty($name);
+                $property->setAccessible(true);
+                $property->setValue($widget, $val);
+            } catch (ReflectionException $e) {
+            }
+        }
+    } else {
+        $widget = new Widget_Contents_Page_List(Typecho_Request::getInstance(), Typecho_Widget_Helper_Empty::getInstance(), null);
+    }
+    $db->fetchAll($db->select()
+            ->from('table.contents')
+            ->where('table.contents.type = ?', 'page')
+            ->where('table.contents.status = ? or table.contents.status = ?', 'publish', 'hidden')
+            ->where('table.contents.created < ?', Helper::options()->time), array($widget, 'push'));
+    return $widget;
+
 };
 
-// 获取浏览器信息
-function getBrowser($agent) {
-  if (preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
-    $outputer = 'Internet Explore';
-  } else if (preg_match('/FireFox\/([^\s]+)/i', $agent, $regs)) {
-    $str1 = explode('Firefox/', $regs[0]);
-    $FireFox_vern = explode('.', $str1[1]);
-    $outputer = 'FireFox';
-  } else if (preg_match('/Maxthon([\d]*)\/([^\s]+)/i', $agent, $regs)) {
-    $str1 = explode('Maxthon/', $agent);
-    $Maxthon_vern = explode('.', $str1[1]);
-    $outputer = 'MicroSoft Edge';
-  } else if (preg_match('#360([a-zA-Z0-9.]+)#i', $agent, $regs)) {
-    $outputer = '360 Fast Browser';
-  } else if (preg_match('/Edge([\d]*)\/([^\s]+)/i', $agent, $regs)) {
-    $str1 = explode('Edge/', $regs[0]);
-    $Edge_vern = explode('.', $str1[1]);
-    $outputer = 'MicroSoft Edge';
-  } else if (preg_match('/UC/i', $agent)) {
-    $str1 = explode('rowser/',  $agent);
-    $UCBrowser_vern = explode('.', $str1[1]);
-    $outputer = 'UC Browser';
-  } else if (preg_match('/QQ/i', $agent, $regs)||preg_match('/QQ Browser\/([^\s]+)/i', $agent, $regs)) {
-    $str1 = explode('rowser/',  $agent);
-    $QQ_vern = explode('.', $str1[1]);
-    $outputer = 'QQ Browser';
-  } else if (preg_match('/UBrowser/i', $agent, $regs)) {
-    $str1 = explode('rowser/',  $agent);
-    $UCBrowser_vern = explode('.', $str1[1]);
-    $outputer = 'UC Browser';
-  } else if (preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
-    $outputer = 'Opera';
-  } else if (preg_match('/Chrome([\d]*)\/([^\s]+)/i', $agent, $regs)) {
-    $str1 = explode('Chrome/', $agent);
-    $chrome_vern = explode('.', $str1[1]);
-    $outputer = 'Google Chrome';
-  } else if (preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
-    $str1 = explode('Version/',  $agent);
-    $safari_vern = explode('.', $str1[1]);
-    $outputer = 'Safari';
-  } else{
-    $outputer = 'Google Chrome';
-  }
-  echo $outputer;
+/**
+ * @description: 获取指定隐藏分页地址
+ * @param {*} $page 分页对象
+ * @param {*} $name 分页名称
+ * @Date: 2023-03-21 19:32:45
+ * @Author: mulingyuer
+ */
+function getHidePage($page, $name)
+{
+    $href;
+    getAllPages()->to($page);
+    while ($page->next()) {
+        if ($page->slug === $name) {
+            $href = $page->permalink;
+        }
+    }
+    //判断是否存在
+    if (empty($href)) {
+        return $name . "页不存在";
+    } else {
+        return $href;
+    }
 };
 
+/**
+ * @description: 自定义关键字
+ * @Date: 2023-03-22 20:28:04
+ * @Author: mulingyuer
+ */
+if ($_SERVER['SCRIPT_NAME'] == "/admin/write-post.php" || $_SERVER['SCRIPT_NAME'] == "/admin/write-page.php") {
+    function themeFields($layout)
+    {
+        //文章独享关键字
+        if ($_SERVER['SCRIPT_NAME'] == "/admin/write-post.php") {
 
-// 获取操作系统信息
-function getOs($agent) {
-  $os = false;
-  if (preg_match('/win/i', $agent)) {
-    if (preg_match('/nt 6.0/i', $agent)) {
-      $os = 'Windows Vista';
-    } else if (preg_match('/nt 6.1/i', $agent)) {
-      $os = 'Windows 7';
-    } else if (preg_match('/nt 6.2/i', $agent)) {
-      $os = 'Windows 8';
-    } else if(preg_match('/nt 6.3/i', $agent)) {
-      $os = 'Windows 8.1';
-    } else if(preg_match('/nt 5.1/i', $agent)) {
-      $os = 'Windows XP';
-    } else if (preg_match('/nt 10.0/i', $agent)) {
-      $os = 'Windows 10';
-    } else{
-      $os = 'Windows X64';
+            //自定义文章缩略图
+            $thumb = new Typecho_Widget_Helper_Form_Element_Text('thumb', null, null, _t('自定义缩略图'), _t('输入缩略图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
+            $layout->addItem($thumb);
+            //文章内容标题图
+            $titleImg = new Typecho_Widget_Helper_Form_Element_Text('titleImg', null, null, _t('自定义文章内容标题图'), _t('输入文章内容标题图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
+            $layout->addItem($titleImg);
+        }
+        // 文章主题
+        $markdownTheme = new Typecho_Widget_Helper_Form_Element_Select('markdownTheme', array(
+            'juejin' => _t('掘金'),
+            'github' => _t('github'),
+            'smartblue' => _t('smartblue'),
+            'cyanosis' => _t('cyanosis'),
+            'channing-cyan' => _t('channing-cyan'),
+            'fancy' => _t('fancy'),
+            'v-green' => _t('v-green'),
+            'mk-cute' => _t('mk-cute'),
+            'qklhk-chocolate' => _t('qklhk-chocolate'),
+            'orange' => _t('orange'),
+            'scrolls-light' => _t('scrolls-light'),
+            'vuepress' => _t('vuepress'),
+            'nico' => _t('nico'),
+            'devui-blue' => _t('devui-blue'),
+        ), 'juejin', _t('文章主题'), _t('默认使用掘金主题'));
+        $layout->addItem($markdownTheme);
     }
-  } else if (preg_match('/android/i', $agent)) {
-    if (preg_match('/android 9/i', $agent)) {
-      $os = 'Android Pie';
-    } else if (preg_match('/android 8/i', $agent)) {
-      $os = 'Android Oreo';
-    } else{
-      $os = 'Android';
-    }
-  } else if (preg_match('/ubuntu/i', $agent)) {
-    $os = 'Ubuntu';
-  } else if (preg_match('/linux/i', $agent)) {
-    $os = 'Linux';
-  } else if (preg_match('/iPhone/i', $agent)) {
-    $os = 'iPhone';
-  } else if (preg_match('/mac/i', $agent)) {
-    $os = 'MacOS';
-  }else if (preg_match('/fusion/i', $agent)) {
-    $os = 'Android';
-  } else {
-    $os = 'Linux';
-  }
-  echo $os;
+}
+;
+
+/**
+ * @description: 获取文章title图片
+ * @param {*} $that
+ * @Date: 2023-03-22 20:28:15
+ * @Author: mulingyuer
+ */
+function getArticleTitleImg($that)
+{
+    return $that->fields->titleImg;
 };
 
-//目录树
-function createCatalog($obj) {    //为文章标题添加锚点
-  global $catalog;
-  global $catalog_count;
-  $catalog = array();
-  $catalog_count = 0;
-  $obj = preg_replace_callback('/<h([1-6])(.*?)>(.*?)<\/h\1>/i', function($obj) {
+/**
+ * @description: 获取文章主题
+ * @param {*} $that
+ * @Date: 2023-03-23 00:44:46
+ * @Author: mulingyuer
+ */
+function getArticleTheme($that)
+{
+    $theme = $that->fields->markdownTheme;
+    if (empty($theme)) {
+        return 'juejin';
+    }
+    return $theme;
+};
+
+/**
+ * @description: 获取用户组
+ * @Date: 2023-03-23 05:10:27
+ * @Author: mulingyuer
+ */
+function getGroup($uid = 0)
+{
+    $db = Typecho_Db::get();
+    $prow = $db->fetchRow($db->select('group')->from('table.users')->where('uid = ?', $uid));
+    $group = $prow['group'];
+    if (empty($group)) {$group = "visitor";}
+
+    return $group;
+}
+
+/**
+ * @description: 中文转义用户组
+ * @param {*} $uid 用户id
+ * @Date: 2023-03-23 05:09:12
+ * @Author: mulingyuer
+ */
+function chineseUserGroup($uid = null)
+{
+    $userGroup = getGroup($uid);
+    $zhUserGroup;
+    switch ($userGroup) {
+        case "administrator":
+            $zhUserGroup = "博主";
+            break;
+        case "editor":
+            $zhUserGroup = "编辑";
+            break;
+        case "contributor":
+            $zhUserGroup = "贡献者";
+            break;
+        case "subscriber":
+            $zhUserGroup = "粉丝";
+            break;
+        default:
+            $zhUserGroup = "访客";
+    }
+
+    if (empty($zhUserGroup)) {
+        $zhUserGroup = "未知用户";
+    }
+    return $zhUserGroup;
+};
+
+/**
+ * @description: 给文章内容标题添加锚点
+ * @param {*} $content 文章内容
+ * @Date: 2023-03-23 20:43:02
+ * @Author: mulingyuer
+ */
+function addAnchorPoint($content)
+{
     global $catalog;
     global $catalog_count;
-    $catalog_count ++;
-    $catalog[] = array('text' => trim(strip_tags($obj[3])), 'depth' => $obj[1], 'count' => $catalog_count);
-    return '<h'.$obj[1].$obj[2].' id="mu-post-title-'.$catalog_count.'">'.$obj[3].'</h'.$obj[1].'>';
-  }, $obj);
-  return $obj;
+    $catalog = array();
+    $catalog_count = 0;
+    $content = preg_replace_callback('/<h([1-6])(.*?)>(.*?)<\/h\1>/i', function ($content) {
+        global $catalog;
+        global $catalog_count;
+        $catalog_count++;
+        $catalog[] = array('text' => trim(strip_tags($content[3])), 'depth' => $content[1], 'count' => $catalog_count);
+        return '<h' . $content[1] . $content[2] . ' id="heading-' . $catalog_count . '">' . $content[3] . '</h' . $content[1] . '>';
+    }, $content);
+    return $content;
 }
 
-//输出文章目录容器
-function getCatalog() {    
-  global $catalog;
-  $index = '';
-  if ($catalog) {
-    $index = '<nav class="catalog-nav">'."\n";
-    $prev_depth = '';
-    $to_depth = 0;
-    foreach($catalog as $catalog_item) {
-      $catalog_depth = $catalog_item['depth'];
-      if ($prev_depth) {
-        if ($catalog_depth == $prev_depth) {
-          $index .= ''."\n";
-        } elseif ($catalog_depth > $prev_depth) {
-          $to_depth++;
-            $index .= '<nav class="catalog-nav catalog-nav-sub">'."\n";
-        } else {
-          $to_depth2 = ($to_depth > ($prev_depth - $catalog_depth)) ? ($prev_depth - $catalog_depth) : $to_depth;
-            if ($to_depth2) {
-              for ($i=0; $i<$to_depth2; $i++) {
-                $index .= ''."\n".'</nav>'."\n";
-                $to_depth--;
+/**
+ * @description: 获取文章目录树
+ * @Date: 2023-03-23 20:36:47
+ * @Author: mulingyuer
+ */
+function getDirectoryTree()
+{
+    global $catalog;
+    $index = '';
+    if ($catalog) {
+        $index = '<ul class="directory-tree-list">' . "\n";
+        $prev_depth = '';
+        $to_depth = 0;
+        foreach ($catalog as $catalog_item) {
+            $catalog_depth = $catalog_item['depth'];
+            if ($prev_depth) {
+                if ($catalog_depth == $prev_depth) {
+                    $index .= '' . "\n";
+                } elseif ($catalog_depth > $prev_depth) {
+                    $to_depth++;
+                    $index .= '<ul class="directory-tree-sub-list">' . "\n";
+                } else {
+                    $to_depth2 = ($to_depth > ($prev_depth - $catalog_depth)) ? ($prev_depth - $catalog_depth) : $to_depth;
+                    if ($to_depth2) {
+                        for ($i = 0; $i < $to_depth2; $i++) {
+                            $index .= '' . "\n" . '</ul>' . "\n";
+                            $to_depth--;
+                        }
+                    }
+                    $index .= '';
                 }
             }
-          $index .= '';
+            $index .= '<li class="directory-tree-list-item"><div class="directory-tree-list-item-container"><a class="directory-tree-list-item-link" href="#heading-' . $catalog_item['count'] . '" data-scroll="#heading-' . $catalog_item['count'] . '" title="' . $catalog_item['text'] . '"><i class="jj-icon jj-icon-send directory-tree-list-item-icon"></i>' . $catalog_item['text'] . '</a></div>';
+            $prev_depth = $catalog_item['depth'];
         }
-      }
-        $index .= '<a class="nav-link" href="#mu-post-title-'.$catalog_item['count'].'" data-scroll="#mu-post-title-'.$catalog_item['count'].'">'.$catalog_item['text'].'</a>';
-        $prev_depth = $catalog_item['depth'];
+        for ($i = 0; $i <= $to_depth; $i++) {
+            $index .= '' . "\n" . '</li></ul>' . "\n";
+        }
+        // $index = '<div id="toc-container">'."\n".'<div id="toc">'."\n".'<strong>文章目录</strong>'."\n".$index.'</div>'."\n".'</div>'."\n";
     }
-    for ($i=0; $i<=$to_depth; $i++) {
-      $index .= ''."\n".'</nav>'."\n";
+    if (!$index) {
+        echo '<ul class="directory-tree-list"><div class="directory-tree-list-empty">暂无目录</div></ul>';
+    } else {
+        echo $index;
     }
-    // $index = '<div id="toc-container">'."\n".'<div id="toc">'."\n".'<strong>文章目录</strong>'."\n".$index.'</div>'."\n".'</div>'."\n";
-  }
-  if(!$index) {
-    echo '<nav class="navbar catalog-nav"><a href="##">暂无目录</a></nav>';
-  }else {
-    echo $index;
-  }
-};
-
-//获取隐藏独立页
-function getAllPages() {
-	$db = Typecho_Db::get();
-	$widget = new Widget_Contents_Page_List(Typecho_Request::getInstance(), Typecho_Widget_Helper_Empty::getInstance(), null);
-	$db->fetchAll($db->select()
-		->from('table.contents')
-		->where('table.contents.type = ?', 'page')
-		->where('table.contents.status = ? or table.contents.status = ?', 'publish', 'hidden')
-		->where('table.contents.created < ?', Helper::options()->time), array($widget, 'push'));
-	return $widget;
-};
-
-//获取指定隐藏分页地址
-function getHidePage($pages,$name){
-  $href;
-  getAllPages()->to($pages);
-  while ($pages->next()){
-    if($pages->slug === $name){
-      $href = $pages->permalink;
-    }
-  }
-  //判断是否存在
-  if(empty($href)){
-    return $name."页不存在";
-  }else {
-    return $href;
-  }
-};
-
-
-
-//获取当前页面完整URL,用于登录后回到当前页
-function curPageURL(){
-  $pageURL = 'http';
-  if ($_SERVER["HTTPS"] == "on") {
-    $pageURL .= "s";
-  }
-  $pageURL .= "://";
-
-  if ($_SERVER["SERVER_PORT"] != "80") {
-    $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
-  } else {
-    $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-  }
-  return $pageURL;
-};
-
-
-
-//获取文章缩略图，没有则随机
-function get_ArticleThumbnail($widget){
-  // 当文章无图片时的随机缩略图
-  $rand = mt_rand(1, 45); // 随机 1-9 张缩略图
-  // 缩略图加速
-  $rand_url;
-  if(!empty(Helper::options()->articleImgSpeed)){
-    $rand_url = Helper::options()->articleImgSpeed;
-  }else {
-    $rand_url = $widget->widget('Widget_Options')->themeUrl . '/images/articles/';
-  }
-  $random =  $rand_url . $rand . '.jpg'; // 随机缩略图路径
-
-  $attach = $widget->attachments(1)->attachment;
-  $pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
-
-  //如果有自定义缩略图
-  if($widget->fields->titleImg){
-     return $widget->fields->titleImg;
-  }else if($widget->fields->thumb) {
-    return $widget->fields->thumb;
-  }else if (preg_match_all($pattern, $widget->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
-      return $thumbUrl[1][0];
-  } else if ($attach->isImage) {
-      return $attach->url;
-  } else {
-      return "";
-  }
-};
-
-
-//获取文章title图片
-function getArticleTitleImg($widget) {
-  return $widget->fields->titleImg;
-}
-
-
-
-//获取访问次数
-function views($widget, $format0 = "%d", $format1 = "%d", $formats = "%d", $return = false, $field = 'views') {
-	$fields = unserialize($widget->fields);
-	if (array_key_exists($field, $fields)) {
-		$fieldValue = (!empty($fields[$field])) ? intval($fields[$field]) : 0;
-	} else {
-		$fieldValue = 0;
-	}
-	if ($fieldValue == 0) {
-		$fieldValue = sprintf($format0, $fieldValue);
-	} else if ($fieldValue == 1) {
-		$fieldValue = sprintf($format1, $fieldValue);
-	} else {
-		$fieldValue = sprintf($formats, $fieldValue);
-	}
-	if ($return) {
-		return $fieldValue;
-	} else {
-		echo $fieldValue;
-	}
 };
 
 /**
@@ -350,352 +621,245 @@ function views($widget, $format0 = "%d", $format1 = "%d", $formats = "%d", $retu
  * @return boolean
  */
 
-function viewsCounter($widget, $field = 'views'){
-  if (!$widget instanceof Widget_Archive) {
+function viewsCounter($widget, $field = 'views')
+{
+    if (!$widget instanceof Widget_Archive) {
+        return false;
+    }
+
+    $fieldValue = articleViews($widget, "%d", "%d", "%d", true, $field);
+    $fieldRecords = Typecho_Cookie::get('__typecho_' . $field);
+    if (empty($fieldRecords)) {
+        $fieldRecords = array();
+    } else {
+        $fieldRecords = explode(',', $fieldRecords);
+    }
+
+    if (!in_array($widget->cid, $fieldRecords)) {
+        $fieldValue = $fieldValue + 1;
+        $widget->setField($field, 'str', strval($fieldValue), $widget->cid);
+        $fieldRecords[] = $widget->cid;
+        $fieldRecords = implode(',', $fieldRecords);
+        Typecho_Cookie::set('__typecho_' . $field, $fieldRecords);
+        return true;
+    }
     return false;
-  }
-
-  $fieldValue = views($widget, "%d", "%d", "%d", true, $field);
-  $fieldRecords = Typecho_Cookie::get('__typecho_' . $field);
-  if (empty($fieldRecords)) {
-    $fieldRecords = array();
-  } else {
-    $fieldRecords = explode(',', $fieldRecords);
-  }
-
-  if (!in_array($widget->cid, $fieldRecords)) {
-    $fieldValue = $fieldValue + 1;
-    $widget->setField($field, 'str', strval($fieldValue), $widget->cid);
-    $fieldRecords[] = $widget->cid;
-    $fieldRecords = implode(',', $fieldRecords);
-    Typecho_Cookie::set('__typecho_' . $field, $fieldRecords);
-    return true;
-  }
-  return false;
-};
-
-
-//随机文章cid
-function randomPostMid($limit = 10){
-  $db = Typecho_Db::get();
-  $result = $db->fetchAll(
-      $db->select()->from('table.contents')
-          ->where('status = ?', 'publish')
-          ->where('type = ?', 'post')
-          ->where('created <= unix_timestamp(now())', 'post')
-          ->limit($limit)
-          ->order('RAND()')
-  );
-  $array = array();
-  if ($result) {
-      $i = 1;
-      foreach ($result as $val) {
-          $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
-          array_push($array, $val['cid']);
-          $i++;
-      }
-  }
-  return implode(',', $array);
-};
-
-//调用指定文章集合
-class Widget_Post_fanjubiao extends Widget_Abstract_Contents{
-  public function __construct($request, $response, $params = NULL){
-    parent::__construct($request, $response, $params);
-    $this->parameter->setDefault(array('pageSize' => $this->options->commentsListSize, 'parentId' => 0, 'ignoreAuthor' => false));
-  }
-  public function execute(){
-    $select  = $this->select()->from('table.contents')
-        ->where("table.contents.password IS NULL OR table.contents.password = ''")
-        ->where('table.contents.type = ?', 'post')
-        ->limit($this->parameter->pageSize)
-        ->order('table.contents.modified', Typecho_Db::SORT_DESC);
-
-    if ($this->parameter->fanjubiao) {
-        $fanju = explode(",", $this->parameter->fanjubiao);
-        $select->where('table.contents.cid in ?', $fanju);
-    }
-    $this->db->fetchAll($select, array($this, 'push'));
-  }
-};
-
-
-//获取推荐文章数组
-function getRecommendArr() {
-  $recommendID = explode(",", trim(Helper::options()->recommendID));
-  return $recommendID;
-};
-
-//个性时间
-function timesince($older_date,$comment_date = false) {
-  if($older_date=="no"){return;}
-  $chunks = array(
-  array(31536000 , ' 年'),
-  array(2592000 , ' 个月'),
-  array(604800 , ' 周'),
-  array(86400 , ' 天'),
-  array(3600 , ' 小时'),
-  array(60 , ' 分'),
-  array(1 , ' 秒'),
-  );
-  $newer_date = time();
-  $since = abs($newer_date - $older_date);
-
-  for ($i = 0, $j = count($chunks); $i < $j; $i++){
-    $seconds = $chunks[$i][0];
-    $name = $chunks[$i][1];
-    if (($count = floor($since / $seconds)) != 0) break;
-  }
-  $output = $count.$name.'前';
-
-  echo $output;
-};
-
-
-//点赞函数
-function likeup($ccid,$kg) {
-	$cid = $ccid;
-	$action = false;
-	$db = Typecho_Db::get();
-	$prefix = $db->getPrefix();
-	if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents')))) {
-		$db->query('ALTER TABLE `' . $prefix . 'contents` ADD `likes` INT(10) DEFAULT 0;');
-		return;
-	}
-	$row = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid));
-	$num=$row['likes'];
-
-	if($kg=="do"){
-		$db->query($db->update('table.contents')->rows(array('likes' => (int)$row['likes']+1))->where('cid = ?', $cid));
-		$num=$num+1;
-		$action = true;
-		// setcookie("like_".$cid, $cid, time()+31536000);
-	}
-	if($kg=="undo"){
-		$db->query($db->update('table.contents')->rows(array('likes' => (int)$row['likes']-1))->where('cid = ?', $cid));
-		$num=$num-1;
-		$action=false;
-		// setcookie("like_".$cid, "");
-	}
-	$arr = array('id'=>$cid,'count'=>$num,'active'=>$action);  
-	echo json_encode($arr);
-};
-//获取点赞数
-function getLikeCount($cid){
-	$db = Typecho_Db::get();
-	$prefix = $db->getPrefix();
-	if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents')))) {
-		$db->query('ALTER TABLE `' . $prefix . 'contents` ADD `likes` INT(10) DEFAULT 0;');
-		return;
-	}
-	$row = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid));
-	$num=$row['likes'];
-	return $num;
-};
-
-
-/**
-* 显示上一篇
-*
-* @access public
-* @param string $default 如果没有下一篇,返回null
-* @return void
-*/
-function thePrevCid($widget, $default = NULL) {
-  $db = Typecho_Db::get();
-  $sql = $db->select()->from('table.contents')
-  ->where('table.contents.created < ?', $widget->created)
-  ->where('table.contents.status = ?', 'publish')
-  ->where('table.contents.type = ?', $widget->type)
-  ->where('table.contents.password IS NULL')
-  ->order('table.contents.created', Typecho_Db::SORT_DESC)
-  ->limit(1);
-  $content = $db->fetchRow($sql);
-
-  if ($content) {
-    return $content["cid"];
-  } else {
-    return $default;
-  }
 };
 
 /**
-* 获取下一篇文章mid
-*
-* @access public
-* @param string $default 如果没有下一篇,返回null
-* @return void
-*/
-function theNextCid($widget, $default = NULL) {
-  $db = Typecho_Db::get();
-  $sql = $db->select()->from('table.contents')
-  ->where('table.contents.created > ?', $widget->created)
-  ->where('table.contents.status = ?', 'publish')
-  ->where('table.contents.type = ?', $widget->type)
-  ->where('table.contents.password IS NULL')
-  ->order('table.contents.created', Typecho_Db::SORT_ASC)
-  ->limit(1);
-  $content = $db->fetchRow($sql);
-
-  if ($content) {
-    return $content["cid"];
-  } else {
-    return $default;
-  }
-};
-
-//查询用户组 
-function yonghuzu($uid=0) {
-  $db   = Typecho_Db::get();
-  $prow = $db->fetchRow($db->select('group')->from('table.users')->where('uid = ?', $uid));
-  $group = $prow['group'];
-  if(empty($group)){$group="visitor";}
-
-  return $group;
-};
-
-//中文转义用户组
-function zhGroup($uid=NULL) {
-  $userGroup = yonghuzu($uid);
-  $zhUserGroup;
-  switch ($userGroup) {
-    case "administrator":
-      $zhUserGroup = "博主";
-      break;
-    case "editor":
-      $zhUserGroup = "编辑";
-      break;
-    case "contributor":
-      $zhUserGroup = "贡献者";
-      break;
-    case "subscriber":
-      $zhUserGroup = "粉丝";
-      break;
-    default:
-      $zhUserGroup = "访客";
-  }
-
-  if(empty($zhUserGroup)) {
-    $zhUserGroup = "未知用户";
-  }
-  echo $zhUserGroup;
-};
-
-//子评论回复@
-function get_comment_at($coid){
-  $db   = Typecho_Db::get();
-  $prow = $db->fetchRow($db->select('parent')->from('table.comments')
-  ->where('coid = ? AND status = ?', $coid, 'approved'));
-  $parent = $prow['parent'];
-  if ($parent != "0") {
-    $arow = $db->fetchRow($db->select('author')->from('table.comments')
-      ->where('coid = ? AND status = ?', $parent, 'approved'));
-    $author = $arow['author'];
-    if ($author) {
-      $href   = '<a class="relation" href="#comment-' . $parent . '">@' . $author . '</a>';
-      echo $href;
+ * @description: 获取浏览器信息
+ * @param {*} $agent 浏览器信息
+ * @Date: 2023-03-24 13:33:39
+ * @Author: mulingyuer
+ */
+function getBrowser($agent)
+{
+    if (preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
+        $outputer = 'Internet Explore';
+    } else if (preg_match('/FireFox\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Firefox/', $regs[0]);
+        $FireFox_vern = explode('.', $str1[1]);
+        $outputer = 'FireFox';
+    } else if (preg_match('/Maxthon([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Maxthon/', $agent);
+        $Maxthon_vern = explode('.', $str1[1]);
+        $outputer = 'MicroSoft Edge';
+    } else if (preg_match('#360([a-zA-Z0-9.]+)#i', $agent, $regs)) {
+        $outputer = '360 Fast Browser';
+    } else if (preg_match('/Edge([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Edge/', $regs[0]);
+        $Edge_vern = explode('.', $str1[1]);
+        $outputer = 'MicroSoft Edge';
+    } else if (preg_match('/UC/i', $agent)) {
+        $str1 = explode('rowser/', $agent);
+        $UCBrowser_vern = explode('.', $str1[1]);
+        $outputer = 'UC Browser';
+    } else if (preg_match('/QQ/i', $agent, $regs) || preg_match('/QQ Browser\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('rowser/', $agent);
+        $QQ_vern = explode('.', $str1[1]);
+        $outputer = 'QQ Browser';
+    } else if (preg_match('/UBrowser/i', $agent, $regs)) {
+        $str1 = explode('rowser/', $agent);
+        $UCBrowser_vern = explode('.', $str1[1]);
+        $outputer = 'UC Browser';
+    } else if (preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'Opera';
+    } else if (preg_match('/Chrome([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Chrome/', $agent);
+        $chrome_vern = explode('.', $str1[1]);
+        $outputer = 'Google Chrome';
+    } else if (preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
+        $str1 = explode('Version/', $agent);
+        $safari_vern = explode('.', $str1[1]);
+        $outputer = 'Safari';
     } else {
-      echo '';
+        $outputer = 'Google Chrome';
     }
-  } else {
-    echo '';
-  }
+    echo $outputer;
 };
 
-
-//防止xss
-/* 进行安全字段和xss跨站脚本攻击过滤(通用版) -xzz  */
-function escape($string) {
-	global $_POST;
-	$search = array ('/</i','/>/i','/\">/i','/\bunion\b/i','/load_file(\s*(\/\*.*\*\/)?\s*)+\(/i','/into(\s*(\/\*.*\*\/)?\s*)+outfile/i',
-	'/\bor\b/i','/\<([\/]?)script([^\>]*?)\>/si','/\<([\/]?)iframe([^\>]*?)\>/si','/\<([\/]?)frame([^\>]*?)\>/si'
-	);
-	$replace = array ('&lt;','&gt;','&quot;&gt;','union&nbsp;','load_file&nbsp; (','into&nbsp; outfile','or&nbsp;','&lt;\\1script\\2&gt;',
-	'&lt;\\1iframe\\2&gt;','&lt;\\1frame\\2&gt;');
-	if (is_array ( $string )) {
-		$key = array_keys ( $string );
-		$size = sizeof ( $key );
-		for($i = 0; $i < $size; $i ++) {
-			$string [$key [$i]] = escape ( $string [$key [$i]] );
-		}
-	} else {
-		if (! $_POST ['stats_code'] && ! $_POST ['ad_type_code_content']) {
-			$string = str_replace ( array ('\n','\r'), array (chr ( 10 ),chr ( 13 )), preg_replace ( $search, $replace, $string ) );
-			$string = remove_xss ( $string );
+/**
+ * @description: 获取操作系统信息
+ * @param {*} $agent 浏览器信息
+ * @Date: 2023-03-24 13:34:12
+ * @Author: mulingyuer
+ */
+function getOs($agent)
+{
+    $os = false;
+    if (preg_match('/win/i', $agent)) {
+        if (preg_match('/nt 6.0/i', $agent)) {
+            $os = 'Windows Vista';
+        } else if (preg_match('/nt 6.1/i', $agent)) {
+            $os = 'Windows 7';
+        } else if (preg_match('/nt 6.2/i', $agent)) {
+            $os = 'Windows 8';
+        } else if (preg_match('/nt 6.3/i', $agent)) {
+            $os = 'Windows 8.1';
+        } else if (preg_match('/nt 5.1/i', $agent)) {
+            $os = 'Windows XP';
+        } else if (preg_match('/nt 10.0/i', $agent)) {
+            $os = 'Windows 10';
+        } else {
+            $os = 'Windows X64';
+        }
+    } else if (preg_match('/android/i', $agent)) {
+        if (preg_match('/android 9/i', $agent)) {
+            $os = 'Android Pie';
+        } else if (preg_match('/android 8/i', $agent)) {
+            $os = 'Android Oreo';
+        } else {
+            $os = 'Android';
+        }
+    } else if (preg_match('/ubuntu/i', $agent)) {
+        $os = 'Ubuntu';
+    } else if (preg_match('/linux/i', $agent)) {
+        $os = 'Linux';
+    } else if (preg_match('/iPhone/i', $agent)) {
+        $os = 'iPhone';
+    } else if (preg_match('/mac/i', $agent)) {
+        $os = 'MacOS';
+    } else if (preg_match('/fusion/i', $agent)) {
+        $os = 'Android';
     } else {
-			$string = $string;
-		}
-	}
-	return $string;
-};
-/* 进行安全字段和xss跨站脚本攻击过滤(通用版2) -xzz  */
-function remove_xss($val) {
-	$val = preg_replace ( '/([\x00-\x08\x0b-\x0c\x0e-\x19])/', '', $val );
-	$search = 'abcdefghijklmnopqrstuvwxyz';
-	$search .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$search .= '1234567890!@#$%^&*()';
-	$search .= '~`";:?+/={}[]-_|\'\\';
-	for($i = 0; $i < strlen ( $search ); $i ++) {
-		$val = preg_replace ( '/(&#[xX]0{0,8}' . dechex ( ord ( $search [$i] ) ) . ';?)/i', $search [$i], $val );
-		$val = preg_replace ( '/(&#0{0,8}' . ord ( $search [$i] ) . ';?)/', $search [$i], $val );
-	}
-	$ra1 = array ('javascript','vbscript','expression','applet','meta','xml','blink','script','object','iframe','frame',
-	'frameset','ilayer','bgsound');
-	$ra2 = array ('onabort','onactivate','onafterprint','onafterupdate','onbeforeactivate','onbeforecopy','onbeforecut',
-	'onbeforedeactivate','onbeforeeditfocus','onbeforepaste','onbeforeprint','onbeforeunload','onbeforeupdate','onblur',
-	'onbounce','oncellchange','onchange','onclick','oncontextmenu','oncontrolselect','oncopy','oncut','ondataavailable',
-	'ondatasetchanged','ondatasetcomplete','ondblclick','ondeactivate','ondrag','ondragend','ondragenter','ondragleave',
-	'ondragover','ondragstart','ondrop','onerror','onerrorupdate','onfilterchange','onfinish','onfocus','onfocusin','onfocusout',
-	'onhelp','onkeydown','onkeypress','onkeyup','onlayoutcomplete','onload','onlosecapture','onmousedown','onmouseenter',
-	'onmouseleave','onmousemove','onmouseout','onmouseover','onmouseup','onmousewheel','onmove','onmoveend','onmovestart',
-	'onpaste','onpropertychange','onreadystatechange','onreset','onresize','onresizeend','onresizestart','onrowenter','onrowexit',
-	'onrowsdelete','onrowsinserted','onscroll','onselect','onselectionchange','onselectstart','onstart','onstop','onsubmit','onunload'
-	);
-	$ra = array_merge ( $ra1, $ra2 );
-	$found = true;
-	while ( $found == true ) {
-		$val_before = $val;
-		for($i = 0; $i < sizeof ( $ra ); $i ++) {
-			$pattern = '/';
-			for($j = 0; $j < strlen ( $ra [$i] ); $j ++) {
-				if ($j > 0) {
-					$pattern .= '(';
-					$pattern .= '(&#[xX]0{0,8}([9ab]);)';
-					$pattern .= '|';
-					$pattern .= '|(&#0{0,8}([9|10|13]);)';
-					$pattern .= ')*';
-				}
-				$pattern .= $ra [$i] [$j];
-			}
-			$pattern .= '/i';
-			$replacement = substr ( $ra [$i], 0, 2 ) . ' ' . substr ( $ra [$i], 2 );
-			$val = preg_replace ( $pattern, $replacement, $val );
-			if ($val_before == $val) {
-				$found = false;
-			}
-		}
-	}
-	return $val;
+        $os = 'Linux';
+    }
+    echo $os;
 };
 
+/**
+ * @description: 子评论回复@
+ * @param {*} $coid 评论id
+ * @Date: 2023-03-24 13:36:10
+ * @Author: mulingyuer
+ */
+function get_comment_at($coid)
+{
+    $db = Typecho_Db::get();
+    $prow = $db->fetchRow($db->select('parent')->from('table.comments')
+            ->where('coid = ? AND status = ?', $coid, 'approved'));
+    $parent = $prow['parent'];
+    if ($parent != "0") {
+        $arow = $db->fetchRow($db->select('author')->from('table.comments')
+                ->where('coid = ? AND status = ?', $parent, 'approved'));
+        $author = $arow['author'];
+        if ($author) {
+            $href = '<a class="comment-list-item-relation" href="#comment-' . $parent . '">@' . $author . '</a>';
+            echo $href;
+        } else {
+            echo '';
+        }
+    } else {
+        echo '';
+    }
+};
 
-
-
-//主题themeInit函数
-function themeInit($archive){
-  //评论回复楼层最高999层.这个正常设置最高只有7层
-  Helper::options()->commentsMaxNestingLevels = 999; 
-  //自动增加浏览次数
-  if($archive->is('single') || $archive->is('page')){ viewsCounter($archive);};
-  //目录树
-  if ($archive->is('single'))  $archive->content = createCatalog($archive->content);
-
-  //点赞请求接口
-	if($archive->request->isPost() && $archive->request->likeup && $archive->request->do_action){
-		Typecho_widget::widget('Widget_Security')->to($security);
-		$security->protect(); 
-		likeup($archive->request->likeup, $archive->request->do_action);
-		exit;
-	};
+/**
+ * @description:  获取文章摘要
+ * @param {*} $that 文章对象
+ * @param {*} $maxLength 最大长度
+ * @Date: 2023-03-25 00:12:20
+ * @Author: mulingyuer
+ */
+function getArticleSummary($that, $maxLength = 120)
+{
+    $content = $that->excerpt;
+    $abstract = Typecho_Common::fixHtml(Typecho_Common::subStr($content, 0, $maxLength, "..."));
+    if (empty($abstract)) {
+        $abstract = _t("暂无简介");
+    }
+    return urlencode($abstract);
 }
 
+/**
+ * @description: 获取评论所属文章标题及链接
+ * @param {*} $id
+ * @Date: 2023-03-26 08:30:14
+ * @Author: mulingyuer
+ */
+function getIdPosts($id)
+{
+    $permalink = "";
+    $title = "";
+
+    if ($id) {
+        $getid = explode(',', $id);
+        $db = Typecho_Db::get();
+        $result = $db->fetchAll($db->select()->from('table.contents')
+                ->where('status = ?', 'publish')
+                ->where('type = ?', 'post')
+                ->where('cid in ?', $getid)
+                ->order('cid', Typecho_Db::SORT_DESC)
+        );
+        if (!$result) {
+            $result = $db->fetchAll($db->select()->from('table.contents')
+                    ->where('status = ?', 'publish')
+                    ->where('type = ?', 'page')
+                    ->where('cid in ?', $getid)
+                    ->order('cid', Typecho_Db::SORT_DESC)
+            );
+        }
+        if ($result) {
+            $i = 1;
+            foreach ($result as $val) {
+                $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
+                $title = htmlspecialchars($val['title']);
+                $permalink = $val['permalink'];
+            }
+        }
+    }
+
+    return array(
+        'title' => $title,
+        'permalink' => $permalink,
+    );
+}
+
+//主题themeInit函数
+function themeInit($archive)
+{
+    //评论回复楼层最高999层.这个正常设置最高只有7层
+    Helper::options()->commentsMaxNestingLevels = 999;
+    //自动增加浏览次数
+    if ($archive->is('single') || $archive->is('page')) {viewsCounter($archive);}
+    ;
+    //目录树
+    if ($archive->is('single')) {
+        $archive->content = addAnchorPoint($archive->content);
+    }
+
+    //点赞请求接口
+    // if ($archive->request->isPost() && $archive->request->likeup && $archive->request->do_action) {
+    //     likeup($archive->request->likeup, $archive->request->do_action);
+    //     exit;
+    // }
+
+    if ($archive->is('single')) {
+        if ($archive->request->isPost()) {
+            if ($archive->request->is('themeAction=promo')) {
+                promo($archive);
+            }
+        }
+    }
+
+}

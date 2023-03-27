@@ -1,0 +1,106 @@
+.nav {
+  position: fixed;
+  top: $headerH;
+  left: 0;
+  right: 0;
+  background-color: var(--jj-nav-bg-color);
+  border-top: 1px solid var(--jj-nav-border);
+  box-shadow: 0 1px 2px 0 var(--jj-nav-box-shadow);
+  z-index: 1;
+  @include prevent-scroll-jitter();
+  transition: transform 0.2s;
+  &.sticky {
+    transform: translate3D(0, -$headerH, 0);
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.nav-container {
+  max-width: 1260px;
+  margin: 0 auto;
+}
+.nav-content {
+  height: $navH;
+  line-height: $navH;
+}
+.nav-list {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  a {
+    text-decoration: none;
+  }
+}
+.nav-list-item {
+  height: 100%;
+  padding: 0 12px;
+  white-space: nowrap;
+  font-size: 14px;
+  color: var(--jj-nav-list-item-color);
+  cursor: pointer;
+  position: relative;
+  &.nav-list-item-parent {
+    padding: 0;
+  }
+  &:hover,
+  &.active {
+    color: var(--jj-nav-list-item-color-active);
+  }
+  &:not(.nav-list-item-parent):active,
+  &:active .nav-list-item-parent-name {
+    opacity: 0.7;
+  }
+}
+.nav-list-item-parent-name {
+  display: block;
+  height: 100%;
+  padding: 0 12px;
+  color: inherit;
+}
+.nav-list-secondary {
+  position: absolute;
+  // top: 100%;
+  // left: 0;
+  width: max-content;
+  max-width: 360px;
+  white-space: normal;
+  line-height: normal;
+  padding: 14px 14px 2px 14px;
+  background-color: var(--jj-nav-list-secondary-bg);
+  border: 1px solid var(--jj-nav-list-secondary-border);
+  border-radius: 2px;
+  box-shadow: 0 1px 5px 0 var(--jj-nav-list-secondary-box-shadow);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  &.visible {
+    opacity: 1;
+  }
+}
+.nav-list-secondary-item {
+  margin-right: 12px;
+  margin-bottom: 12px;
+  display: inline-block;
+  vertical-align: top;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 10px;
+  font-size: 13px;
+  color: var(--jj-nav-list-secondary-item-color);
+  background-color: var(--jj-nav-list-secondary-item-bg);
+  border-radius: 99999px;
+  &:hover,
+  &.active {
+    color: var(--jj-nav-list-secondary-item-color-active);
+  }
+  &:active {
+    opacity: 0.7;
+  }
+}
+.nav-secondary-warp {
+  height: 0;
+  overflow: hidden;
+}

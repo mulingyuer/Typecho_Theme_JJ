@@ -1,0 +1,19 @@
+// hash跳转增加offset偏移量，防止导航挡住
+html {
+  scroll-padding-top: $headerH + $headerGap;
+}
+.header {
+  box-shadow: 0 1px 2px 0 var(--jj-header-box-shadow);
+}
+.article-content-wrapper {
+  background-color: var(--jj-article-content-wrapper-bg);
+  padding: 32px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .article-content-wrapper {
+    padding: 24px 12px;
+  }
+}
