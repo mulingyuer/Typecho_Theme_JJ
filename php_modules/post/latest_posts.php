@@ -4,8 +4,8 @@
       <h3 class="latest-posts-title">最新文章</h3>
     </div>
     <div class="latest-posts-body">
-      <?php if (!empty($this->options->sidebarBlock)): ?>
-        <?php \Widget\Contents\Post\Recent::alloc()->to($posts);?>
+      <?php \Widget\Contents\Post\Recent::alloc()->to($posts);?>
+      <?php if ($posts->have()): ?>
         <?php while ($posts->next()): ?>
           <a class="latest-posts-item" href="<?php $posts->permalink();?>" target="_self" title="<?php $posts->title();?>">
           <span class="latest-posts-item-icon1">✧</span>
