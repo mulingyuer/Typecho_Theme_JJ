@@ -4,9 +4,9 @@
  * ---------------------
  * 本主题仅供学习交流使用，严禁用于商业用途，请于24小时内删除
  *
- * @package JJ V1.1
+ * @package JJ
  * @author 木灵鱼儿
- * @version 1.1
+ * @version 2.0.0
  * @link https://www.mulingyuer.com
  */
 ?>
