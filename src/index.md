@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 开始教程
-      link: /markdown-examples
+      link: /start/introduce-theme
     # - theme: alt
     #   text: API Examples
     #   link: /api-examples
@@ -24,4 +24,3 @@ features:
   - title: webpack-multiple-entry
     details: 我写的Typecho主题多页面打包框架（得意洋洋）
 ---
-
