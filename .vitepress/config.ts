@@ -50,6 +50,10 @@ export default defineConfig({
             text: "站点LOGO",
             link: "/basic-config/logo",
           },
+          {
+            text: "头像换源",
+            link: "/basic-config/avatar",
+          },
         ],
       },
       {
