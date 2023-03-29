@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-24 17:37:54
- * @LastEditTime: 2023-03-25 03:34:51
+ * @LastEditTime: 2023-03-29 21:02:13
  * @LastEditors: mulingyuer
  * @Description: 文章工具栏
  * @FilePath: \Typecho_Theme_JJ\src\modules\article_tool\index.ts
@@ -55,7 +55,7 @@ class ArticleTool {
       .then((res) => {
         const { status, result } = res;
         if (status !== 1) {
-          toast.error({ text: `点赞失败:${res.msg}`, position: "center" });
+          toast.error({ text: `点赞失败：请勿重复点击`, position: "center" });
           return;
         }
         const resultObj: LikeResultObj = JSON.parse(result);
@@ -66,7 +66,7 @@ class ArticleTool {
       })
       .catch((error) => {
         console.log(error);
-        toast.error({ text: `点赞失败:${error.message}`, position: "center" });
+        toast.error({ text: `点赞失败：${error.message}`, position: "center" });
       });
   };
 
