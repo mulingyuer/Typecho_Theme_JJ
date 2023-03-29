@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 16:56:16
- * @LastEditTime: 2023-03-17 08:07:53
+ * @LastEditTime: 2023-03-29 20:28:05
  * @LastEditors: mulingyuer
  * @Description: 数据仓库
  * @FilePath: \Typecho_Theme_JJ\src\store\data.ts
@@ -16,6 +16,7 @@ export const useDataStore = defineStore("data", {
       windowWidth: 0, //窗口宽度
       windowHeight: 0, //窗口高度
       enableMobileSearch: false, //是否启用移动端搜索
+      isDomContentLoaded: false, //是否dom已经解析，无需等待样式表、图像和子框架的完全加载
     };
   },
   getters: {
@@ -31,6 +32,9 @@ export const useDataStore = defineStore("data", {
     getEnableMobileSearch(state) {
       return state.enableMobileSearch;
     },
+    getIsDomContentLoaded(state) {
+      return state.isDomContentLoaded;
+    },
   },
   actions: {
     setScrollY(y: number) {
@@ -44,6 +48,9 @@ export const useDataStore = defineStore("data", {
     },
     setEnableMobileSearch(status: boolean) {
       this.enableMobileSearch = status;
+    },
+    setIsDomContentLoaded(status: boolean) {
+      this.isDomContentLoaded = status;
     },
   },
 });

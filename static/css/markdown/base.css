@@ -26,7 +26,7 @@
 .markdown-body pre > code.hljs[lang][lang="bash"]:before {
   content: "";
 }
-.markdown-body pre > code.copyable .copy-code-btn {
+.markdown-body pre > code.copyable + .copy-code-btn {
   position: absolute;
   top: 6px;
   right: 15px;
@@ -36,7 +36,10 @@
   color: hsla(0, 0%, 54.9%, 0.8);
   transition: color 0.1s;
 }
-.markdown-body pre > code.copyable .copy-code-btn:hover {
+.markdown-body pre > code.copyable + .copy-code-btn:active {
+  opacity: 0.7;
+}
+.markdown-body pre > code.copyable + .copy-code-btn:hover {
   color: #8c8c8c;
 }
 .markdown-body pre > code.copyable.hljs[lang]:before {

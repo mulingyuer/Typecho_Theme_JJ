@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-26 08:04:13
- * @LastEditTime: 2023-03-26 08:04:13
+ * @LastEditTime: 2023-03-29 23:14:34
  * @LastEditors: mulingyuer
  * @Description: ASCII 表情
  * @FilePath: \Typecho_Theme_JJ\src\utils\ascii.ts
@@ -9,7 +9,8 @@
  */
 
 export default function asciiEmoji() {
-  console.log(`
+  console.log(
+    `%c
                             voonna  uuuu!!                                          
                             ~onnn     8auii                           -  *    *^    
                            i1uaz%   i&$i81i8                               ^   *    
@@ -52,5 +53,7 @@ a1$      @8+^;;-;;-;;;;novv+vvzz*zzzozzzzzaaaaaa~311u31;au~~~~~~~~~86@          
                      ^;nz$$$$$&&&zo---nnnnnnnn-------&#&&&&$&i3o.3                  
                      6;8i1$$$&&&~o~;^--%nnn%n-------&&&##!ii!                       
                          1#&#&#&n------%$%%$------%$$&&&#1                          
-`);
+`,
+    "color:#71D1DB"
+  );
 }

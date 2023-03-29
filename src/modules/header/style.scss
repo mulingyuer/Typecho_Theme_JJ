@@ -555,7 +555,8 @@
   }
 }
 .login-dialog-content-wrap {
-  height: 100%;
+  min-height: 100%;
+  padding: 120px 0 20px;
   display: flex;
   position: relative;
 }
