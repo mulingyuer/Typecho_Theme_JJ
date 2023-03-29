@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-26 04:06:58
- * @LastEditTime: 2023-03-26 05:03:44
+ * @LastEditTime: 2023-03-30 00:52:46
  * @LastEditors: mulingyuer
  * @Description: 文本替换成表情
  * @FilePath: \Typecho_Theme_JJ\src\modules\comment\emoji\faceReplace.ts
@@ -53,10 +53,10 @@ class FaceReplace {
     let isHotWord = false;
     for (let i = 0, len = emojiData.length; i < len; i++) {
       const { id, data } = emojiData[i];
-      if (id === "hotWord") isHotWord = true;
       const val = data[emoji as keyof typeof data];
       if (typeof val === "string") {
         src = val;
+        if (id === "hotWord") isHotWord = true;
         break;
       }
     }
