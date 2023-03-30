@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-23 06:11:33
+ * @LastEditTime: 2023-03-30 12:07:43
  * @LastEditors: mulingyuer
  * @Description: header模块
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\index.ts
@@ -160,6 +160,7 @@ class HeaderSearch {
   private onListClick(val: string) {
     this.searchInput.setAttribute("value", val);
     this.searchHistory.hide();
+    this.searchHistory.addHistory(val);
     this.searchForm.submit();
   }
 
