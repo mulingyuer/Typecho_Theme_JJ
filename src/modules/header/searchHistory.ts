@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-16 00:12:43
- * @LastEditTime: 2023-03-27 22:32:03
+ * @LastEditTime: 2023-03-30 12:07:22
  * @LastEditors: mulingyuer
  * @Description: 搜索记录类
  * @FilePath: \Typecho_Theme_JJ\src\modules\header\searchHistory.ts
@@ -119,13 +119,12 @@ class SearchHistory {
     if (findIndex !== -1) {
       //先删除，在首插入
       this.history.splice(findIndex, 1);
-      this.history.unshift(val);
     } else {
       if (this.history.length >= this.maxCount) {
         this.history.pop();
       }
-      this.history.unshift(val);
     }
+    this.history.unshift(val);
     this.saveHistory();
     return this;
   }
