@@ -5,6 +5,12 @@
   max-width: 100% !important;
   margin: 0;
 }
+.markdown-body ul {
+  list-style: disc;
+}
+.markdown-body ol {
+  list-style: decimal;
+}
 .markdown-body li {
   list-style: inherit;
 }
