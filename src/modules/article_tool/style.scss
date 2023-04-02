@@ -43,6 +43,7 @@
     color: var(--jj-article-tool-item-badge);
     background-color: var(--jj-article-tool-item-badge-bg);
     border-radius: 9999px;
+    white-space: nowrap;
     transition: all 0.15s linear;
   }
   &:active {
