@@ -104,6 +104,12 @@
     }
   }
 }
+.comment-list-item-check {
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--jj-comment-list-item-check);
+}
 .comment-list-item-relation {
   float: left;
   color: var(--jj-comment-list-item-relation);

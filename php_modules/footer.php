@@ -15,7 +15,7 @@
       <span>联系邮箱：</span><a href="mailto:<?php $this->author->mail();?>" target="_self"><?php $this->author->mail();?></a>
     </div>
     <div class="footer-item">
-      <a href="<?php $this->options->siteUrl();?>" target="_self" title="<?php $this->options->title();?>">&copy;2021 <?php $this->options->title();?></a>
+      <a href="<?php $this->options->siteUrl();?>" target="_self" title="<?php $this->options->title();?>">&copy;<?php echo date("Y"); ?> <?php $this->options->title();?></a>
     </div>
     <?php $this->options->filing();?>
     <div class="footer-item">
