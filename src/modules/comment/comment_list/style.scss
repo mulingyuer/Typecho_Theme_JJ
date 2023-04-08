@@ -111,7 +111,7 @@
   color: var(--jj-comment-list-item-check);
 }
 .comment-list-item-relation {
-  float: left;
+  display: inline;
   color: var(--jj-comment-list-item-relation);
   text-decoration: none;
   margin-right: 4px;

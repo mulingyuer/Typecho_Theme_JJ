@@ -14,6 +14,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
   <?php $this->need("./php_modules/default_head.php");?>
   <?php $this->need("./dist/head/links.php");?>
+  <?php //head标签底部插入代码 ?>
+  <?php $this->options->headInsertCode();?>
 </head>
 <body>
   <?php $this->need("./php_modules/header.php");?>
@@ -23,13 +25,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
         <div class="main-left">
           <?php $this->need("./php_modules/links/content.php");?>
           <?php $this->need("./php_modules/comment/comment.php");?>
-          <?php $this->need("./php_modules/post/articles_related.php");?>
         </div>
       </div>
     </div>
   </main>
   <?php $this->need("./php_modules/fixed_tool.php");?>
-  <?php //自定义脚本 ?>
-  <?php $this->options->customScript();?>
+  <?php //body标签底部插入代码 ?>
+  <?php $this->options->bodyInsertCode();?>
 </body>
 </html>
