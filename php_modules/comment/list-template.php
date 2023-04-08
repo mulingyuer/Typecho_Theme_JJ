@@ -34,7 +34,7 @@
           </div>
           <div class="comment-list-media-body">
             <div class="comment-list-item-comment">
-              <?php get_comment_at($comments->coid);?><?php $comments->content();?>
+              <?php get_comment_at($comments->coid);?><?php echo remove_comment_p($comments->content); ?>
               <?php if ('waiting' == $comments->status): ?>
                 <div class="comment-list-item-check">╮(╯▽╰)╭ <?php $options->commentStatus();?></div>
               <?php endif;?>

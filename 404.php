@@ -11,6 +11,8 @@
   <link href="<?php $this->options->themeUrl('/static/game/game.css');?>" rel="stylesheet" type="text/css">
   <script src="<?php $this->options->themeUrl('/static/game/game.js');?>"></script>
   <?php $this->need("./dist/head/404.php");?>
+  <?php //head标签底部插入代码 ?>
+  <?php $this->options->headInsertCode();?>
 </head>
 <body>
   <?php $this->need("./php_modules/header.php");?>
@@ -38,7 +40,7 @@
     <?php $this->need("./php_modules/404/game.php");?>
   </div>
   <?php $this->need("./php_modules/fixed_tool.php");?>
-  <?php //自定义脚本 ?>
-  <?php $this->options->customScript();?>
+  <?php //body标签底部插入代码 ?>
+  <?php $this->options->bodyInsertCode();?>
 </body>
 </html>

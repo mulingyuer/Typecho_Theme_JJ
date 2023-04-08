@@ -11,6 +11,25 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
  */
 function themeConfig($form)
 {
+
+    $headInsertCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
+        'headInsertCode',
+        null,
+        null,
+        _t('head标签底部插入代码'),
+        _t('放入自定义样式link或者脚本script')
+    );
+    $form->addInput($headInsertCode);
+
+    $bodyInsertCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
+        'bodyInsertCode',
+        null,
+        null,
+        _t('body标签底部插入代码'),
+        _t('放入站点统计代码或者自定义脚本')
+    );
+    $form->addInput($bodyInsertCode);
+
     $filing = new \Typecho\Widget\Helper\Form\Element\Textarea(
         'filing',
         null,
@@ -19,15 +38,6 @@ function themeConfig($form)
         _t('例子：&lt;div class=&quot;footer-item&quot;&gt;&lt;a href=&quot;备案跳转的链接&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;备案号&lt;/a&gt;&lt;/div&gt;')
     );
     $form->addInput($filing);
-
-    $customScript = new \Typecho\Widget\Helper\Form\Element\Textarea(
-        'customScript',
-        null,
-        null,
-        _t('站点统计代码（自定义脚本）'),
-        _t('放入站点统计代码或者自定义脚本')
-    );
-    $form->addInput($customScript);
 
     // $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
     //     'sidebarBlock',
@@ -773,6 +783,18 @@ function get_comment_at($coid)
         echo '';
     }
 };
+
+/**
+ * @description: 去除评论内容的p容器标签
+ * @param {*} $content 评论内容
+ * @Date: 2023-04-08 09:06:16
+ * @Author: mulingyuer
+ */
+function remove_comment_p($content)
+{
+    $content = preg_replace("/^<p>(.*)<\/p>$/", "$1", $content);
+    return $content;
+}
 
 /**
  * @description:  获取文章摘要

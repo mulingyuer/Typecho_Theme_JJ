@@ -6,7 +6,7 @@
  *
  * @package JJ
  * @author 木灵鱼儿
- * @version 2.1.5
+ * @version 2.1.6
  * @link https://www.mulingyuer.com
  */
 ?>
@@ -21,6 +21,8 @@
 <head>
   <?php $this->need("./php_modules/default_head.php");?>
   <?php $this->need("./dist/head/home.php");?>
+  <?php //head标签底部插入代码 ?>
+  <?php $this->options->headInsertCode();?>
 </head>
 <body>
   <?php $this->need("./php_modules/header.php");?>
@@ -50,8 +52,8 @@
     </div>
   </main>
   <?php $this->need("./php_modules/fixed_tool.php");?>
-  <?php //自定义脚本 ?>
-  <?php $this->options->customScript();?>
+  <?php //body标签底部插入代码 ?>
+  <?php $this->options->bodyInsertCode();?>
 </body>
 </html>
 <?php endif;?>
