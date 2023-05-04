@@ -35,3 +35,77 @@
   font-size: 14px;
   color: var(--jj-article-pagination-no-more-color);
 }
+
+// 按钮分页
+.pagination-button {
+  padding: 20px;
+  background: var(--jj-article-pagination-bg);
+  border-top: 1px solid var(--jj-article-pagination-border);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  &.hidden {
+    display: none;
+  }
+  > li {
+    flex-shrink: 0;
+    & + li {
+      margin-left: 8px;
+    }
+  }
+  a,
+  span {
+    display: block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background-color: var(--jj-pagination-button-item-bg);
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    color: var(--jj-pagination-button-item-color);
+  }
+  .prev a,
+  .next a {
+    width: auto;
+    padding: 0 10px;
+    white-space: nowrap;
+  }
+  a {
+    transition: all 0.2s;
+    &:active {
+      opacity: 0.7;
+    }
+  }
+  > li.active a,
+  a:hover {
+    background-color: var(--jj-pagination-button-item-bg-hover);
+    color: var(--jj-pagination-button-item-color-hover);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .pagination-button {
+    padding: 20px 12px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .pagination-button {
+    > li + li {
+      margin-left: 6px;
+    }
+    a,
+    span {
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+    }
+    .prev a,
+    .next a {
+      padding: 0 6px;
+    }
+  }
+}

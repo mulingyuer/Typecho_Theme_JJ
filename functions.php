@@ -39,6 +39,38 @@ function themeConfig($form)
     );
     $form->addInput($filing);
 
+    $defaultMarkdownTheme = new \Typecho\Widget\Helper\Form\Element\Select(
+        'defaultMarkdownTheme',
+        array(
+            'juejin' => _t('掘金'),
+            'github' => _t('github'),
+            'smartblue' => _t('smartblue'),
+            'cyanosis' => _t('cyanosis'),
+            'channing-cyan' => _t('channing-cyan'),
+            'fancy' => _t('fancy'),
+            'v-green' => _t('v-green'),
+            'mk-cute' => _t('mk-cute'),
+            'qklhk-chocolate' => _t('qklhk-chocolate'),
+            'orange' => _t('orange'),
+            'scrolls-light' => _t('scrolls-light'),
+            'vuepress' => _t('vuepress'),
+            'nico' => _t('nico'),
+            'devui-blue' => _t('devui-blue'),
+        ),
+        'juejin', _t('默认文章和独立页主题'), _t('默认使用掘金主题，非默认选项时优先级大于文章和独立页的默认值')
+    );
+    $form->addInput($defaultMarkdownTheme);
+
+    $paginationType = new \Typecho\Widget\Helper\Form\Element\Select(
+        'paginationType',
+        array(
+            'infinite' => _t('无限滚动'),
+            'button' => _t('按钮翻页'),
+        ),
+        'button', _t('文章翻页类型'), _t('默认使用无限滚动')
+    );
+    $form->addInput($paginationType);
+
     // $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
     //     'sidebarBlock',
     //     [
@@ -498,10 +530,20 @@ function getArticleTitleImg($that)
  */
 function getArticleTheme($that)
 {
-    $theme = $that->fields->markdownTheme;
-    if (empty($theme)) {
-        return 'juejin';
+    $defaultTheme = Helper::options()->defaultMarkdownTheme;
+    $fieldsTheme = $that->fields->markdownTheme;
+    if (empty($fieldsTheme)) {
+        $fieldsTheme = "juejin";
     }
+
+    $theme = "juejin";
+
+    if ($defaultTheme !== "juejin" && $fieldsTheme === "juejin") {
+        $theme = $defaultTheme;
+    } else {
+        $theme = $fieldsTheme;
+    }
+
     return $theme;
 };
 
