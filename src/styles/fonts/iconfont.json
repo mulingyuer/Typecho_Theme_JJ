@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4765969",
+      "name": "control",
+      "font_class": "control",
+      "unicode": "e794",
+      "unicode_decimal": 59284
+    },
+    {
+      "icon_id": "4766482",
+      "name": "snippets",
+      "font_class": "snippets",
+      "unicode": "e7bc",
+      "unicode_decimal": 59324
+    },
+    {
       "icon_id": "7193676",
       "name": "分享",
       "font_class": "fenxiang",

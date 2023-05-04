@@ -92,17 +92,21 @@
               </div>
             </div>
             <div class="header-menu-list">
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/write-post.php" target="_self" title="撰写文章">
-                <i class="jj-icon jj-icon-edit header-menu-list-item-icon"></i>
-                <span class="header-menu-list-item-text">撰写文章</span>
-              </a>
               <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/write-page.php" target="_self" title="新建分页">
                 <i class="jj-icon jj-icon-file header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">新建分页</span>
               </a>
-              <a class="header-menu-list-item" href="<?php $this->options->profileUrl();?>" target="_self" title="我的主页">
-                <i class="jj-icon jj-icon-user header-menu-list-item-icon"></i>
-                <span class="header-menu-list-item-text">我的主页</span>
+              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/manage-pages.php" target="_self" title="新建分页">
+                <i class="jj-icon jj-icon-snippets header-menu-list-item-icon"></i>
+                <span class="header-menu-list-item-text">分页管理</span>
+              </a>
+              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/category.php" target="_self" title="分类管理">
+                <i class="jj-icon jj-icon-control header-menu-list-item-icon"></i>
+                <span class="header-menu-list-item-text">新建分类</span>
+              </a>
+              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/manage-categories.php" target="_self" title="分类管理">
+                <i class="jj-icon jj-icon-appstore header-menu-list-item-icon"></i>
+                <span class="header-menu-list-item-text">分类管理</span>
               </a>
               <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/manage-posts.php" target="_self" title="文章管理">
                 <i class="jj-icon jj-icon-file-text header-menu-list-item-icon"></i>
@@ -112,17 +116,13 @@
                 <i class="jj-icon jj-icon-comment header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">评论管理</span>
               </a>
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/manage-categories.php" target="_self" title="分类管理">
-                <i class="jj-icon jj-icon-appstore header-menu-list-item-icon"></i>
-                <span class="header-menu-list-item-text">分类管理</span>
+              <a class="header-menu-list-item" href="<?php $this->options->profileUrl();?>" target="_self" title="我的主页">
+                <i class="jj-icon jj-icon-user header-menu-list-item-icon"></i>
+                <span class="header-menu-list-item-text">我的主页</span>
               </a>
               <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin" target="_self" title="进入后台">
                 <i class="jj-icon jj-icon-dashboard header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">进入后台</span>
-              </a>
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/options-general.php" target="_self" title="博客设置">
-                <i class="jj-icon jj-icon-setting header-menu-list-item-icon"></i>
-                <span class="header-menu-list-item-text">博客设置</span>
               </a>
             </div>
             <div class="header-menu-footer">

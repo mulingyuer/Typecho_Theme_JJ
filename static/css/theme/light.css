@@ -115,6 +115,12 @@
   --jj-article-pagination-border: #e4e6eb;
   --jj-article-pagination-no-more-color: #8a919f;
 
+  /* pagination-button */
+  --jj-pagination-button-item-color: #86909c;
+  --jj-pagination-button-item-color-hover: #fff;
+  --jj-pagination-button-item-bg: #f2f3f5;
+  --jj-pagination-button-item-bg-hover: #1e80ff;
+
   /* article-empty */
   --jj-article-empty-bg: #fff;
   --jj-article-empty-color: #8a919f;
