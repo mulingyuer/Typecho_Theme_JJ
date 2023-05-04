@@ -67,7 +67,7 @@ function themeConfig($form)
             'infinite' => _t('无限滚动'),
             'button' => _t('按钮翻页'),
         ),
-        'button', _t('文章翻页类型'), _t('默认使用无限滚动')
+        'infinite', _t('文章翻页类型'), _t('默认使用无限滚动')
     );
     $form->addInput($paginationType);
 
