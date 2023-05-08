@@ -1,1 +1,0 @@
-import{_ as a,o as s,c as n,N as e}from"./chunks/framework.90e2d99a.js";const F=JSON.parse('{"title":"头像换源","description":"","frontmatter":{},"headers":[],"relativePath":"basic-config/avatar.md"}'),t={name:"basic-config/avatar.md"},o=e("",5),p=[o];function l(c,r,i,_,d,D){return s(),n("div",null,p)}const y=a(t,[["render",l]]);export{F as __pageData,y as default};
