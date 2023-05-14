@@ -1,7 +1,7 @@
 <!--
  * @Author: mulingyuer
  * @Date: 2023-03-28 01:07:25
- * @LastEditTime: 2023-03-28 01:33:11
+ * @LastEditTime: 2023-05-14 23:53:45
  * @LastEditors: mulingyuer
  * @Description: 主题安装
  * @FilePath: \Typecho_Theme_JJ\src\start\install-theme.md
@@ -28,8 +28,9 @@
 
 ## 使用要求
 
-1. PHP 7.2 版本 其他版本没有测试，往高走应该没问题
+1. PHP 7.2 - 7.4 版本，测试 8.0 版本不支持
 2. Typecho 1.2 版本，有些语法低版本不支持
+3. MySql 5.6 - 5.7 版本
 
 ## 启用
 

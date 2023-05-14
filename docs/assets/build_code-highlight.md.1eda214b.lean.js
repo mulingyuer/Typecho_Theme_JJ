@@ -1,1 +1,0 @@
-import{_ as s,o as l,c as a,N as n}from"./chunks/framework.90e2d99a.js";const A=JSON.parse('{"title":"代码高亮","description":"","frontmatter":{},"headers":[],"relativePath":"build/code-highlight.md"}'),p={name:"build/code-highlight.md"},o=n("",10),e=[o];function t(c,i,r,D,y,F){return l(),a("div",null,e)}const h=s(p,[["render",t]]);export{A as __pageData,h as default};
