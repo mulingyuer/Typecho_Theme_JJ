@@ -70,6 +70,25 @@ function themeConfig($form) {
     );
     $form->addInput($paginationType);
 
+    $errorType = new \Typecho\Widget\Helper\Form\Element\Select(
+        'errorType',
+        array(
+            'chrome' => _t('谷歌浏览器小恐龙'),
+            'juejin' => _t('掘金404'),
+        ),
+        'chrome', _t('404页面类型'), _t('默认使用谷歌浏览器小恐龙')
+    );
+    $form->addInput($errorType);
+
+    $address = new \Typecho\Widget\Helper\Form\Element\Text(
+        'address',
+        null,
+        '东之国中远离人里的边境之地',
+        _t('底部联系地址'),
+        _t('默认幻想乡')
+    );
+    $form->addInput($address);
+
     // $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
     //     'sidebarBlock',
     //     [

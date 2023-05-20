@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-23 19:58:22
- * @LastEditTime: 2023-03-26 09:40:25
+ * @LastEditTime: 2023-05-20 16:56:34
  * @LastEditors: mulingyuer
  * @Description: 目录树
  * @FilePath: \Typecho_Theme_JJ\src\modules\post\directory_tree\index.ts
@@ -33,8 +33,8 @@ class DirectoryTree {
 
     //获取标题元素
     this.titles = Array.from(document.querySelectorAll(".markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6"));
-    //监听滚动事件
-    this.onScroll = throttle(this.onScroll, 80);
+    //监听滚动事件，悬浮导航、滚动动画等，推荐的间隔时间为50ms或更短
+    this.onScroll = throttle(this.onScroll, 50);
     window.addEventListener("scroll", this.onScroll);
     this.onScroll();
   }
@@ -84,11 +84,14 @@ class DirectoryTree {
     for (let i = 0, len = this.titles.length; i < len; i++) {
       const title = this.titles[i];
       const rect = title.getBoundingClientRect();
-      if (rect.top >= 0) {
+      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
         lastShowTitle = title;
         break;
       }
+      //当文章滚动到底部时，最后一个title应该被认为是选中的
+      if (i === len - 1) lastShowTitle = title;
     }
+
     if (!lastShowTitle) return;
     //找到id对应的a元素
     const id = lastShowTitle.getAttribute("id");

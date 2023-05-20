@@ -18,7 +18,16 @@
 }
 
 @media screen and (max-width: 640px) {
+  .category-tips {
+    border: none;
+    margin-bottom: 10px;
+  }
   .category-tips-content {
     padding: 12px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .category-tips {
+    margin-bottom: 8px;
   }
 }

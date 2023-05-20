@@ -11,7 +11,7 @@ content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale
 <meta name="description" content="<?php blogDescription($this);?>">
 <meta name="keywords" content="<?php blogKeywords($this);?>">
 <meta name="title" content="<?php blogTitle($this);?>">
-<meta name="path" content="<?php $this->options->themeUrl("/static/images");?>">
+<meta name="path" content="<?php $this->options->themeUrl();?>">
 <!-- RSS 订阅 -->
 <?php $this->header('keywords=&description=&generator=&template=&pingback=&xmlrpc=&wlw=');?>
 
@@ -45,3 +45,8 @@ content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale
 <!-- theme -->
 <link href="<?php $this->options->themeUrl('/static/css/theme/light.css');?>" rel="stylesheet" type="text/css" title="light">
 <link href="<?php $this->options->themeUrl('/static/css/theme/dark.css');?>" rel="alternate stylesheet" type="text/css" title="dark">
+
+<!-- globalError -->
+<script src="<?php $this->options->themeUrl('/static/scripts/globalError.js');?>"></script>
+
+<!-- dist -->

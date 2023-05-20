@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-25 21:33:01
- * @LastEditTime: 2023-03-27 00:22:49
+ * @LastEditTime: 2023-05-20 16:26:33
  * @LastEditors: mulingyuer
  * @Description: 小黄脸
  * @FilePath: \Typecho_Theme_JJ\src\constant\emoji\yellowFace.ts
@@ -136,6 +136,12 @@ const YellowFace = {
   黎明觉醒_摊手鸦: "/emoji/yellow_face/883e4caa8e1745f48de0671c6441810faa4a56ed.png",
   黎明觉醒_比心鸦: "/emoji/yellow_face/e25f5442c5bce2a54b9c757e3032f44398f1a7df.png",
   黎明觉醒_哼白眼鸦: "/emoji/yellow_face/36de90dbaffeb32477dffdac612ad69da4e19b76.png",
+  "以闪亮之名_哎？！": "/emoji/yellow_face/5fafe7d9992e12c756da909a545ddb27486987af.png",
+  以闪亮之名_爱你哦: "/emoji/yellow_face/835c3bff4fc686a78f49db1eb68e4d04c0963195.png",
+  以闪亮之名_吃瓜: "/emoji/yellow_face/ebfdda8501e48c2434297e4a9f15218aadf07747.png",
+  "以闪亮之名_好耶!": "/emoji/yellow_face/fd0c2bbb806265c468eca83b7a90b0d5fcaa4cec.png",
+  以闪亮之名_星星眼: "/emoji/yellow_face/a44a291ffe9334712ba130aa3fca0b940f32908d.png",
+  以闪亮之名_针不戳: "/emoji/yellow_face/cad39e954972bbd93f0a777978b2f77078b8cf4a.png",
 };
 
 export default YellowFace;

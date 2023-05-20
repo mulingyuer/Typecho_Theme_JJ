@@ -140,16 +140,28 @@ a.article-card-footer-item {
 }
 
 @media screen and (max-width: 640px) {
+  .article-nav {
+    display: none;
+  }
   .article-card {
     padding: 12px;
+    & + & {
+      margin-top: 10px;
+    }
     & + &::before {
-      left: 12px;
-      right: 12px;
+      display: none;
     }
   }
   .article-card-thumb {
     width: 80px;
     height: 54px;
     margin-left: 12px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .article-card {
+    & + & {
+      margin-top: 8px;
+    }
   }
 }
