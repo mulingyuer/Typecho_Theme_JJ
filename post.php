@@ -21,7 +21,6 @@
         <div class="main-left">
           <?php $this->need('./php_modules/article_tool.php');?>
           <div class="article-content-wrapper">
-            <div style="height:1200px;"></div>
             <?php $this->need('./php_modules/article_content.php');?>
             <?php $this->need('./php_modules/article_relevant_info.php');?>
             <?php $this->need('./php_modules/copyright.php');?>
