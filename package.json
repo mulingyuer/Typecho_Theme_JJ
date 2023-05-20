@@ -1,13 +1,13 @@
 {
   "name": "webpack-multiple-entry",
-  "version": "1.0.0",
+  "version": "2.2.0",
   "repository": "https://github.com/mulingyuer/Typecho_Theme_JJ.git",
   "author": "mulingyuer <1321968423@qq.com>",
   "license": "bsd 3.0",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --config=./webpack/webpack.dev.ts",
-    "build": "webpack --config=./webpack/webpack.prod.ts",
+    "build": "webpack --config=./webpack/webpack.prod.ts && bumpp",
     "analyze": "webpack --config=./webpack/webpack.prod.ts --analyze"
   },
   "devDependencies": {
@@ -25,6 +25,7 @@
     "@types/toastify-js": "^1.11.1",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
+    "bumpp": "^9.1.0",
     "compression-webpack-plugin": "^10.0.0",
     "core-js": "3.30.2",
     "css-loader": "^6.7.3",
