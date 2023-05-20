@@ -88,11 +88,20 @@
 }
 
 @media screen and (max-width: 640px) {
+  .article-pagination,
+  .pagination-button {
+    border: none;
+    margin-top: 10px;
+  }
   .pagination-button {
     padding: 20px 12px;
   }
 }
 @media screen and (max-width: 420px) {
+  .article-pagination,
+  .pagination-button {
+    margin-top: 8px;
+  }
   .pagination-button {
     > li + li {
       margin-left: 6px;

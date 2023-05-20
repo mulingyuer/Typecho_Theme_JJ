@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-26 02:47:15
- * @LastEditTime: 2023-03-27 00:23:56
+ * @LastEditTime: 2023-05-20 13:20:34
  * @LastEditors: mulingyuer
  * @Description: 表情数据
  * @FilePath: \Typecho_Theme_JJ\src\modules\comment\emoji\data.ts
@@ -11,6 +11,7 @@ import yellowFace from "@/constant/emoji/yellowFace";
 import hotWord from "@/constant/emoji/hotWord";
 import bTv from "@/constant/emoji/bTv";
 import yanWen from "@/constant/emoji/yanWen";
+import { joinThemePath } from "@/utils/tool";
 
 /** 表情数据 */
 export const emojiData = [
@@ -46,14 +47,7 @@ export const emojiData = [
 ];
 
 /** 表情地址前缀 */
-let emojiPrefix = "";
-const metaPath: HTMLElement | null = document.querySelector("meta[name=path]");
-if (metaPath) {
-  const str = metaPath.getAttribute("content");
-  if (typeof str === "string" && str.trim() !== "") {
-    emojiPrefix = str;
-  }
-}
+let emojiPrefix = joinThemePath("static/images");
 
 /** 获取表情地址前缀 */
 export function getEmojiPrefix() {

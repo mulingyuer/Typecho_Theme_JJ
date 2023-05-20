@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:22:40
- * @LastEditTime: 2023-03-26 08:04:31
+ * @LastEditTime: 2023-05-20 12:43:30
  * @LastEditors: mulingyuer
  * @Description: 通用入口文件
  * @FilePath: \Typecho_Theme_JJ\src\main.ts
@@ -10,6 +10,7 @@
 import "@/store/install";
 import { useDataStore } from "@/store/data";
 import asciiEmoji from "@/utils/ascii";
+import { initGlobalImgLoadError } from "@/utils/error";
 
 //css
 import "@/styles/reset.scss";
@@ -19,6 +20,9 @@ import "@/styles/layout.scss";
 //modules
 import "@/modules/header";
 import "@/modules/fixed_tool";
+
+//错误处理
+initGlobalImgLoadError();
 
 //监听scroll事件，记录滚动条位置
 const dataStore = useDataStore();

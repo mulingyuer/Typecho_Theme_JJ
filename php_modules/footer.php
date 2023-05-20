@@ -9,13 +9,13 @@
       版权所有：<?php $this->options->title();?>
     </div>
     <div class="footer-item">
-      联系地址：东之国中远离人里的边境之地
+      联系地址：<?php $this->options->address();?>
     </div>
     <div class="footer-item">
       <span>联系邮箱：</span><a href="mailto:<?php $this->author->mail();?>" target="_self"><?php $this->author->mail();?></a>
     </div>
     <div class="footer-item">
-      <a href="<?php $this->options->siteUrl();?>" target="_self" title="<?php $this->options->title();?>">&copy;<?php echo date("Y"); ?> <?php $this->options->title();?></a>
+      <a href="<?php $this->options->siteUrl();?>" target="_self" title="<?php $this->options->title();?>">&copy;<?php echo date('Y'); ?> <?php $this->options->title();?></a>
     </div>
     <?php $this->options->filing();?>
     <div class="footer-item">

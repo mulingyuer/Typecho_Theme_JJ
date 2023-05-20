@@ -18,7 +18,16 @@
 }
 
 @media screen and (max-width: 640px) {
+  .archive-tips {
+    border: none;
+    margin-bottom: 10px;
+  }
   .archive-tips-content {
     padding: 12px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .archive-tips {
+    margin-bottom: 8px;
   }
 }

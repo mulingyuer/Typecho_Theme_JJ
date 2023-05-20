@@ -16,7 +16,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--jj-body-bg-color);
 }
 
 html {
@@ -24,6 +23,10 @@ html {
   color: #333;
   word-break: break-word;
   text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--jj-body-bg-color);
 }
 
 ul,
