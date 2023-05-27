@@ -60,7 +60,7 @@
           <i class="jj-icon jj-icon-tongzhixiaoxi header-comment-icon"></i>
         </a>
         <?php endif;?>
-        <?php if (!$this->user->hasLogin()): ?>
+        <?php if ( ! $this->user->hasLogin()): ?>
           <button class="header-login-btn">登录</button>
         <?php else: ?>
         <div class="header-menu-wrap">
@@ -145,7 +145,7 @@
     <div class="mobile-search-body"></div>
   </div>
 </div>
-<?php if (!$this->user->hasLogin()): ?>
+<?php if ( ! $this->user->hasLogin()): ?>
 <div class="login-dialog">
   <div class="login-dialog-content-wrap">
     <div class="login-dialog-mask"></div>

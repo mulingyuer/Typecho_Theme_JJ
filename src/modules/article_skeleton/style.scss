@@ -22,3 +22,9 @@
     width: 60%;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .article-skeleton {
+    padding: 12px 10px;
+  }
+}

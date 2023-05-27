@@ -79,11 +79,11 @@
 .article-card-body {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 .article-card-main {
   flex-grow: 1;
   min-width: 0;
-  padding: 10px 0;
 }
 .article-card-title {
   margin-bottom: 8px;
@@ -158,6 +158,12 @@ a.article-card-footer-item {
     margin-left: 12px;
   }
 }
+@media screen and (max-width: 480px) {
+  .article-card {
+    padding: 12px 10px;
+  }
+}
+
 @media screen and (max-width: 420px) {
   .article-card {
     & + & {
