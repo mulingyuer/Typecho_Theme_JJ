@@ -104,3 +104,8 @@
   height: 0;
   overflow: hidden;
 }
+@media screen and (max-width: 480px) {
+  .nav-list-item {
+    padding: 0 10px;
+  }
+}
