@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-23 02:42:53
- * @LastEditTime: 2023-03-23 04:23:54
+ * @LastEditTime: 2023-06-04 04:13:59
  * @LastEditors: mulingyuer
  * @Description: 灯箱
  * @FilePath: \Typecho_Theme_JJ\src\modules\article_content\lightBox\index.ts
@@ -47,6 +47,12 @@ class LightBox {
 		this.wrapper.addEventListener("click", this.onWrapperClick);
 		window.addEventListener("resize", this.closeLightBox);
 		window.addEventListener("scroll", this.closeLightBox);
+		//监听esc键
+		window.addEventListener("keydown", (event) => {
+			if (event.key === "Escape") {
+				this.closeLightBox();
+			}
+		});
 	}
 
 	/** 容器点击事件 */
