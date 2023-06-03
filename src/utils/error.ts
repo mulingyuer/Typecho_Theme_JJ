@@ -16,18 +16,18 @@ import { findParentElementByClass, joinThemePath } from "@/utils/tool";
  * @Author: mulingyuer
  */
 function linksImgError(event: ErrorEvent) {
-  const target = event.target as HTMLImageElement;
-  const isImg = target.tagName.toLocaleLowerCase() === "img";
-  if (!isImg) return;
-  //判断是不是友链图片
-  const isLinkImg = !!findParentElementByClass(target, "links-page-body");
-  if (!isLinkImg) return;
+	const target = event.target as HTMLImageElement;
+	const isImg = target.tagName.toLocaleLowerCase() === "img";
+	if (!isImg) return;
+	//判断是不是友链图片
+	const isLinkImg = !!findParentElementByClass(target, "links-page-body");
+	if (!isLinkImg) return;
 
-  const defaultImgSrc = joinThemePath("static/images/links/default.png");
-  //防止重复替换
-  if (target.src !== defaultImgSrc) {
-    target.src = defaultImgSrc;
-  }
+	const defaultImgSrc = joinThemePath("static/images/links/default.png");
+	//防止重复替换
+	if (target.src !== defaultImgSrc) {
+		target.src = defaultImgSrc;
+	}
 }
 
 /**
@@ -37,8 +37,8 @@ function linksImgError(event: ErrorEvent) {
  * @Author: mulingyuer
  */
 function globalErrorCallback(event: ErrorEvent) {
-  //友链图片错误
-  linksImgError(event);
+	//友链图片错误
+	linksImgError(event);
 }
 
 /**
@@ -47,15 +47,15 @@ function globalErrorCallback(event: ErrorEvent) {
  * @Author: mulingyuer
  */
 export function initGlobalImgLoadError() {
-  if (!window.$globalError) return;
-  //有错误先处理完
-  if (window.$globalError.list.length > 0) {
-    window.$globalError.list.forEach((event) => {
-      globalErrorCallback(event);
-    });
-    //清空数组
-    window.$globalError.list = [];
-  }
-  //挂载全局错误处理
-  window.$globalError.callback = globalErrorCallback;
+	if (!window.$globalError) return;
+	//有错误先处理完
+	if (window.$globalError.list.length > 0) {
+		window.$globalError.list.forEach((event) => {
+			globalErrorCallback(event);
+		});
+		//清空数组
+		window.$globalError.list = [];
+	}
+	//挂载全局错误处理
+	window.$globalError.callback = globalErrorCallback;
 }

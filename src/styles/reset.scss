@@ -1,32 +1,33 @@
 // 重置样式
 :root {
-  box-sizing: border-box;
-  font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
+	box-sizing: border-box;
+	font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
+		Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
 }
 
 *,
 ::before,
 ::after {
-  box-sizing: inherit;
-  font-family: inherit;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); //去除移动端点击有背景色
+	box-sizing: inherit;
+	font-family: inherit;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0); //去除移动端点击有背景色
 }
 
 html,
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 html {
-  font-size: 12px;
-  color: #333;
-  word-break: break-word;
-  text-rendering: optimizeLegibility;
+	font-size: 12px;
+	color: #333;
+	word-break: break-word;
+	text-rendering: optimizeLegibility;
 }
 
 body {
-  background-color: var(--jj-body-bg-color);
+	background-color: var(--jj-body-bg-color);
 }
 
 ul,
@@ -38,11 +39,11 @@ h4,
 h5,
 h6,
 p {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 ul,
 ol {
-  list-style: none;
+	list-style: none;
 }

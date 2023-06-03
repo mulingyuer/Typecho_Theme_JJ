@@ -24,18 +24,18 @@ const entryPath = resolve(__dirname, "../src/pages");
  * @Author: mulingyuer
  */
 export function createEntry() {
-  const entryObj: EntryObject = {};
+	const entryObj: EntryObject = {};
 
-  //获取入口文件数组
-  const entryArr = globSync("**/index.ts", {
-    cwd: resolve(__dirname, entryPath),
-  });
-  //遍历得到对象
-  entryArr.forEach((filePath: string) => {
-    const fileName = filePath.split(/(\/|\\)/i)[0];
-    entryObj[fileName] = [mainEntryPath, resolve(__dirname, entryPath, filePath)];
-  });
-  return entryObj;
+	//获取入口文件数组
+	const entryArr = globSync("**/index.ts", {
+		cwd: resolve(__dirname, entryPath)
+	});
+	//遍历得到对象
+	entryArr.forEach((filePath: string) => {
+		const fileName = filePath.split(/(\/|\\)/i)[0];
+		entryObj[fileName] = [mainEntryPath, resolve(__dirname, entryPath, filePath)];
+	});
+	return entryObj;
 }
 
 /**
@@ -45,25 +45,25 @@ export function createEntry() {
  * @Author: mulingyuer
  */
 export function createHtml(entry: EntryObject) {
-  const htmlArr: Array<HtmlWebpackPlugin> = [];
-  const keys = Object.keys(entry);
+	const htmlArr: Array<HtmlWebpackPlugin> = [];
+	const keys = Object.keys(entry);
 
-  keys.forEach((key) => {
-    htmlArr.push(
-      new HtmlWebpackPlugin({
-        template: resolve(__dirname, "./template.ejs"),
-        filename: `head/${key}.php`,
-        chunks: [key],
-        inject: false, //自定义模板不需要自动注入
-        publicPath: "<?php echo $this->options->themeUrl; ?>/dist", //拼接php地址
-        minify: {
-          removeComments: true, //去除html注释
-          collapseWhitespace: false, //去除换行
-          minifyCSS: true, //缩小样式元素和样式属性中css
-        },
-      })
-    );
-  });
+	keys.forEach((key) => {
+		htmlArr.push(
+			new HtmlWebpackPlugin({
+				template: resolve(__dirname, "./template.ejs"),
+				filename: `head/${key}.php`,
+				chunks: [key],
+				inject: false, //自定义模板不需要自动注入
+				publicPath: "<?php echo $this->options->themeUrl; ?>/dist", //拼接php地址
+				minify: {
+					removeComments: true, //去除html注释
+					collapseWhitespace: false, //去除换行
+					minifyCSS: true //缩小样式元素和样式属性中css
+				}
+			})
+		);
+	});
 
-  return htmlArr;
+	return htmlArr;
 }

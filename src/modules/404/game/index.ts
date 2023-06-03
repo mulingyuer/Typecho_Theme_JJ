@@ -11,33 +11,33 @@ import "./style.scss";
 
 /** 监听按键触发游戏 */
 class Game {
-  /** 游戏开始提示 */
-  private errorCard: HTMLElement | null = document.querySelector(".error-card");
+	/** 游戏开始提示 */
+	private errorCard: HTMLElement | null = document.querySelector(".error-card");
 
-  constructor() {
-    document.addEventListener("keydown", this.onKeyDown);
-    document.addEventListener("touchstart", this.onTouchStart);
-  }
+	constructor() {
+		document.addEventListener("keydown", this.onKeyDown);
+		document.addEventListener("touchstart", this.onTouchStart);
+	}
 
-  /** 按键事件 */
-  private onKeyDown = (event: KeyboardEvent) => {
-    event = event || window.event;
-    if (event.key.toLocaleLowerCase().trim() === "") {
-      this.hiddenBox();
-    }
-  };
+	/** 按键事件 */
+	private onKeyDown = (event: KeyboardEvent) => {
+		event = event || window.event;
+		if (event.key.toLocaleLowerCase().trim() === "") {
+			this.hiddenBox();
+		}
+	};
 
-  /** 移动端点击 */
-  private onTouchStart = (event: TouchEvent) => {
-    this.hiddenBox();
-  };
+	/** 移动端点击 */
+	private onTouchStart = (event: TouchEvent) => {
+		this.hiddenBox();
+	};
 
-  /** 隐藏开始信息 */
-  private hiddenBox() {
-    if (this.errorCard) {
-      this.errorCard.style.display = "none";
-    }
-  }
+	/** 隐藏开始信息 */
+	private hiddenBox() {
+		if (this.errorCard) {
+			this.errorCard.style.display = "none";
+		}
+	}
 }
 
 new Game();

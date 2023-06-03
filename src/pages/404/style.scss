@@ -1,80 +1,80 @@
 .error-content {
-  padding-top: $headerGap;
-  text-align: center;
+	padding-top: $headerGap;
+	text-align: center;
 }
 .error-card {
-  margin-top: 30px;
-  display: inline-block;
-  vertical-align: top;
+	margin-top: 30px;
+	display: inline-block;
+	vertical-align: top;
 }
 .error-card-head {
-  margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 .error-card-logo-wrap {
-  margin: 0 auto;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--jj-error-card-logo-bg);
-  border-radius: 50%;
-  overflow: hidden;
+	margin: 0 auto;
+	width: 64px;
+	height: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--jj-error-card-logo-bg);
+	border-radius: 50%;
+	overflow: hidden;
 }
 .error-card-logo {
-  flex-shrink: 0;
-  width: 54px;
-  height: 54px;
+	flex-shrink: 0;
+	width: 54px;
+	height: 54px;
 }
 .error-title {
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: var(--jj-error-card-title-color);
-  strong {
-    margin-right: 5px;
-    color: var(--jj-error-card-strong-color);
-  }
+	margin-bottom: 15px;
+	font-size: 16px;
+	color: var(--jj-error-card-title-color);
+	strong {
+		margin-right: 5px;
+		color: var(--jj-error-card-strong-color);
+	}
 }
 .error-desc {
-  font-size: 14px;
-  color: var(--jj-error-card-title-color);
+	font-size: 14px;
+	color: var(--jj-error-card-title-color);
 }
 
 // 掘金404页面
 .juejin-error {
-  background-color: var(--jj-juejin-error-bg);
+	background-color: var(--jj-juejin-error-bg);
 }
 .juejin-error-card {
-  padding: 50px 20px;
+	padding: 50px 20px;
 }
 .juejin-error-card-head {
-  max-width: 362px;
-  margin: auto;
+	max-width: 362px;
+	margin: auto;
 }
 .juejin-error-card-img {
-  width: 100%;
-  vertical-align: top;
+	width: 100%;
+	vertical-align: top;
 }
 .juejin-error-card-footer {
-  margin-top: 50px;
-  text-align: center;
+	margin-top: 50px;
+	text-align: center;
 }
 .juejin-error-card-btn {
-  display: inline-block;
-  padding: 8px 16px;
-  font-size: 16px;
-  color: var(--jj-juejin-error-card-btn-color);
-  text-decoration: none;
-  border-radius: 2px;
-  border: 1px solid;
-  &:active {
-    opacity: 0.7;
-  }
+	display: inline-block;
+	padding: 8px 16px;
+	font-size: 16px;
+	color: var(--jj-juejin-error-card-btn-color);
+	text-decoration: none;
+	border-radius: 2px;
+	border: 1px solid;
+	&:active {
+		opacity: 0.7;
+	}
 }
 
 @media screen and (max-width: 375px) {
-  .juejin-error-card-btn {
-    padding: 5px 12px;
-    font-size: 14px;
-  }
+	.juejin-error-card-btn {
+		padding: 5px 12px;
+		font-size: 14px;
+	}
 }

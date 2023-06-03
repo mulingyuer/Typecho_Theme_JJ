@@ -10,12 +10,12 @@
 
 /** 全局错误 */
 interface GlobalError {
-  /** 错误记录数据数组 */
-  list: Array<ErrorEvent>;
-  /** 错误记录处理回调 */
-  callback: (event: ErrorEvent) => void | null;
+	/** 错误记录数据数组 */
+	list: Array<ErrorEvent>;
+	/** 错误记录处理回调 */
+	callback: (event: ErrorEvent) => void | null;
 }
 
 declare interface Window {
-  $globalError?: GlobalError;
+	$globalError?: GlobalError;
 }

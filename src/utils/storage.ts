@@ -11,72 +11,72 @@
 export type StorageType = "local" | "session";
 /** 存储类配置参数 */
 export type StorageOptions = {
-  type?: StorageType;
-  prefix?: string;
+	type?: StorageType;
+	prefix?: string;
 };
 
 class JJStorage {
-  private storage: Storage;
-  private prefix: string = "";
+	private storage: Storage;
+	private prefix: string = "";
 
-  constructor(options: StorageOptions) {
-    const { type, prefix } = options;
+	constructor(options: StorageOptions) {
+		const { type, prefix } = options;
 
-    switch (type) {
-      case "local":
-        this.storage = window.localStorage;
-        break;
-      case "session":
-        this.storage = window.sessionStorage;
-        break;
-      default:
-        this.storage = window.localStorage;
-    }
+		switch (type) {
+			case "local":
+				this.storage = window.localStorage;
+				break;
+			case "session":
+				this.storage = window.sessionStorage;
+				break;
+			default:
+				this.storage = window.localStorage;
+		}
 
-    if (prefix) {
-      this.prefix = prefix;
-    }
-  }
+		if (prefix) {
+			this.prefix = prefix;
+		}
+	}
 
-  /** 存储数据 */
-  public setItem(key: string, value: any) {
-    key = this.prefix + key;
-    if (typeof value === "string") {
-      this.storage.setItem(key, value);
-      return;
-    }
+	/** 存储数据 */
+	public setItem(key: string, value: any) {
+		key = this.prefix + key;
+		if (typeof value === "string") {
+			this.storage.setItem(key, value);
+			return;
+		}
 
-    try {
-      this.storage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error("存储数据失败：", error);
-    }
-  }
+		try {
+			this.storage.setItem(key, JSON.stringify(value));
+		} catch (error) {
+			console.error("存储数据失败：", error);
+		}
+	}
 
-  /** 获取数据 */
-  public getItem<T>(key: string, isJson: boolean = true) {
-    key = this.prefix + key;
-    const value = this.storage.getItem(key);
-    if (!value) return null;
+	/** 获取数据 */
+	public getItem<T>(key: string, isJson: boolean = true) {
+		key = this.prefix + key;
+		const value = this.storage.getItem(key);
+		if (!value) return null;
 
-    if (!isJson) return value as T;
-    try {
-      return JSON.parse(value) as T;
-    } catch (error) {
-      return value as T;
-    }
-  }
+		if (!isJson) return value as T;
+		try {
+			return JSON.parse(value) as T;
+		} catch (error) {
+			return value as T;
+		}
+	}
 
-  /** 删除数据 */
-  public removeItem(key: string) {
-    key = this.prefix + key;
-    this.storage.removeItem(key);
-  }
+	/** 删除数据 */
+	public removeItem(key: string) {
+		key = this.prefix + key;
+		this.storage.removeItem(key);
+	}
 
-  /** 清空数据 */
-  public clear() {
-    this.storage.clear();
-  }
+	/** 清空数据 */
+	public clear() {
+		this.storage.clear();
+	}
 }
 
 /** 实例化 */

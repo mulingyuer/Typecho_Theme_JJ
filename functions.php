@@ -661,6 +661,110 @@ function getDirectoryTree() {
 };
 
 /**
+ * @description: 获取目录树
+ * @param {*} $maxDirectory 最大层级
+ * @Date: 2023-06-03 22:30:49
+ * @Author: mulingyuer
+ */
+function getJJDirectoryTree($maxDirectory = 3) {
+    global $catalog;
+    $treeList = generateTreeList(array_replace_recursive(array(), $catalog));
+    echo generateTreeTemplate($treeList, $maxDirectory);
+}
+
+/**
+ * @description: 将扁平化目录树数组转成结构化目录树数组
+ * @param {*} $list 目录树数组
+ * @param {*} $depth  最大层级
+ * @Date: 2023-06-03 15:42:21
+ * @Author: mulingyuer
+ */
+function generateTreeList($list, $depth = 6) {
+    if (count($list) <= 0 || $depth <= 1) {
+        return $list;
+    }
+
+    for ($i = count($list) - 1; $i >= 0; $i--) {
+        $item = $list[$i];
+        if ($item['depth'] == $depth) {
+            $parentIndex = $i - 1;
+            while ($parentIndex >= 0) {
+                $parent = &$list[$parentIndex];
+                if ($parent['depth'] < $depth) {
+                    break;
+                }
+                $parentIndex--;
+            }
+
+            if ($parentIndex < 0) {
+                break;
+            }
+
+            if ( ! is_array($parent['children'])) {
+                $parent['children'] = array();
+            }
+
+            array_unshift($parent['children'], $item);
+            array_splice($list, $i, 1);
+        }
+    }
+
+    $list = array_values($list);
+    return generateTreeList($list, $depth - 1);
+}
+
+/**
+ * @description: 删除目录树数组指定层级children
+ * @param {*} $list 目录树数组
+ * @param {*} $depth  最大层级
+ * @param {*} $currentDepth 当前层级
+ * @Date: 2023-06-03 15:49:03
+ * @Author: mulingyuer
+ */
+function removeChildren($list, $depth, $currentDepth = 0) {
+    foreach ($list as &$item) {
+        if (isset($item['children']) && count($item['children']) > 0) {
+            if ($currentDepth < $depth - 1) {
+                $item['children'] = removeChildren($item['children'], $depth, $currentDepth + 1);
+            } else {
+                unset($item['children']);
+            }
+        }
+    }
+    return $list;
+}
+
+/**
+ * @description: 生成目录树html
+ * @param {*} $arr 目录树数组
+ * @param {*} $depth  最大层级
+ * @param {*} $currentDepth 当前层级
+ * @param {*} $isChildren 是否是子级
+ * @Date: 2023-06-03 16:48:54
+ * @Author: mulingyuer
+ */
+function generateTreeTemplate($arr, $depth, $currentDepth = 1, $isChildren = false) {
+    if (count($arr) <= 0) {
+        return '<div class="directory-tree-list-empty">暂无目录</div>';
+    }
+    if ($currentDepth > $depth) {
+        return '';
+    }
+    $output =  ! $isChildren ? '<ul class="directory-tree-list">' : '';
+    foreach ($arr as $item) {
+        $output .= '<li class="directory-tree-list-item depth-'.$currentDepth.'"><div class="directory-tree-list-item-link-wrapper"><a class="directory-tree-list-item-link" href="#heading-'.$item['count'].'" title="'.$item['text'].'">'.$item['text'].'</a></div>';
+        if ( ! empty($item['children']) && $currentDepth < $depth) {
+            $output .= '<ul class="directory-tree-sub-list">';
+            $output .= generateTreeTemplate($item['children'], $depth, $currentDepth + 1, true);
+            $output .= '</ul>';
+        }
+        $output .= '</li>';
+    }
+    $output .=  ! $isChildren ? '</ul>' : '';
+    return $output;
+}
+
+/**
  * 增加浏览次数
  * 使用方法: 在<code>themeInit</code>函数中添加代码
  * <pre>if($archive->is('single') || $archive->is('page')){ viewsCounter($archive);}</pre>

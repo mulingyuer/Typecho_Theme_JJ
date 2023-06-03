@@ -9,8 +9,8 @@
  */
 
 export default function asciiEmoji() {
-  console.log(
-    `%c
+	console.log(
+		`%c
                             voonna  uuuu!!                                          
                             ~onnn     8auii                           -  *    *^    
                            i1uaz%   i&$i81i8                               ^   *    
@@ -54,6 +54,6 @@ a1$      @8+^;;-;;-;;;;novv+vvzz*zzzozzzzzaaaaaa~311u31;au~~~~~~~~~86@          
                      6;8i1$$$&&&~o~;^--%nnn%n-------&&&##!ii!                       
                          1#&#&#&n------%$%%$------%$$&&&#1                          
 `,
-    "color:#71D1DB"
-  );
+		"color:#71D1DB"
+	);
 }

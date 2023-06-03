@@ -38,41 +38,41 @@ import dockerfile from "highlight.js/lib/languages/dockerfile";
 import { LanguageFn } from "highlight.js";
 
 type Languages = {
-  [key: string]: LanguageFn;
+	[key: string]: LanguageFn;
 };
 const languages: Languages = {
-  bash,
-  c,
-  csharp,
-  cpp,
-  css,
-  go,
-  xml,
-  json,
-  java,
-  javascript,
-  less,
-  markdown,
-  php,
-  phpTemplate,
-  python,
-  pythonRepl,
-  rust,
-  scss,
-  sql,
-  shell,
-  typescript,
-  webAssembly,
-  yaml,
-  http,
-  nginx,
-  apache,
-  dockerfile,
+	bash,
+	c,
+	csharp,
+	cpp,
+	css,
+	go,
+	xml,
+	json,
+	java,
+	javascript,
+	less,
+	markdown,
+	php,
+	phpTemplate,
+	python,
+	pythonRepl,
+	rust,
+	scss,
+	sql,
+	shell,
+	typescript,
+	webAssembly,
+	yaml,
+	http,
+	nginx,
+	apache,
+	dockerfile
 };
 
 //批量注册
 Object.keys(languages).forEach((name) => {
-  hljs.registerLanguage(name, languages[name]);
+	hljs.registerLanguage(name, languages[name]);
 });
 
 export default hljs;

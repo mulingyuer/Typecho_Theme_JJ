@@ -11,15 +11,15 @@ import "./style.scss";
 import FaceReplace from "@/modules/comment/emoji/faceReplace";
 
 class NotificationList {
-  /** 评论列表容器 */
-  private list: HTMLElement | null = document.querySelector(".notification-list-content");
+	/** 评论列表容器 */
+	private list: HTMLElement | null = document.querySelector(".notification-list-content");
 
-  constructor(callback: () => void) {
-    if (this.list) {
-      new FaceReplace(this.list).start();
-    }
-    callback();
-  }
+	constructor(callback: () => void) {
+		if (this.list) {
+			new FaceReplace(this.list).start();
+		}
+		callback();
+	}
 }
 
 export default NotificationList;

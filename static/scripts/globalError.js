@@ -9,20 +9,20 @@
  */
 
 window.$globalError = {
-  /** 错误记录数据数组 */
-  list: [],
-  /** 错误记录处理回调 */
-  callback: null,
+	/** 错误记录数据数组 */
+	list: [],
+	/** 错误记录处理回调 */
+	callback: null
 };
 
 window.addEventListener(
-  "error",
-  function (event) {
-    if (typeof window.$globalError.callback === "function") {
-      window.$globalError.callback(event);
-    } else {
-      window.$globalError.list.push(event);
-    }
-  },
-  true
+	"error",
+	function (event) {
+		if (typeof window.$globalError.callback === "function") {
+			window.$globalError.callback(event);
+		} else {
+			window.$globalError.list.push(event);
+		}
+	},
+	true
 );

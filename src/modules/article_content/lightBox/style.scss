@@ -1,33 +1,36 @@
+.markdown-body img {
+	cursor: zoom-in;
+}
 .jj-light-box {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  cursor: zoom-out;
-  display: none;
-  &.visible {
-    display: block;
-  }
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	cursor: zoom-out;
+	display: none;
+	&.visible {
+		display: block;
+	}
 }
 .jj-light-box-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  transition: opacity 0.3s;
-  &.visible {
-    opacity: 1;
-  }
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+	transition: opacity 0.3s;
+	&.visible {
+		opacity: 1;
+	}
 }
 .jj-light-box img {
-  position: absolute;
-  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
-  cursor: zoom-in;
-  z-index: 1;
-  will-change: transform;
+	position: absolute;
+	transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
+	cursor: zoom-out;
+	z-index: 1;
+	will-change: transform;
 }

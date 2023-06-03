@@ -12,7 +12,7 @@ import { createPinia } from "pinia";
 
 const pinia = createPinia();
 const app = createApp({
-  render() {},
+	render() {}
 });
 app.use(pinia);
 //用一个dom元素挂载app，但是dom不显示

@@ -13,17 +13,17 @@ let oldScrollData = ""; //记录旧的滚动数据
 
 /** 锁定body滚动 */
 export function lockBodyScroll() {
-  if (lockCount === 0) {
-    oldScrollData = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-  }
-  lockCount++;
+	if (lockCount === 0) {
+		oldScrollData = document.body.style.overflow;
+		document.body.style.overflow = "hidden";
+	}
+	lockCount++;
 }
 
 /** 解锁body滚动 */
 export function unlockBodyScroll() {
-  lockCount--;
-  if (lockCount === 0) {
-    document.body.style.overflow = oldScrollData;
-  }
+	lockCount--;
+	if (lockCount === 0) {
+		document.body.style.overflow = oldScrollData;
+	}
 }
