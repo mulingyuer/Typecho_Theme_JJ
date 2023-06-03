@@ -9,7 +9,7 @@
 		"dev": "webpack --config=./webpack/webpack.dev.ts",
 		"build": "webpack --config=./webpack/webpack.prod.ts && bumpp",
 		"analyze": "webpack --config=./webpack/webpack.prod.ts --analyze",
-		"git:commit": "gitmoji -i"
+		"git:commit": "git add . && git cz"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.21.5",
@@ -20,6 +20,7 @@
 		"@babel/preset-env": "^7.22.4",
 		"@babel/preset-typescript": "^7.21.5",
 		"@babel/runtime": "^7.22.3",
+		"@commitlint/cli": "^17.6.5",
 		"@types/glob": "^8.1.0",
 		"@types/node": "^20.2.5",
 		"@types/qrcode": "^1.5.0",
@@ -27,11 +28,16 @@
 		"autoprefixer": "^10.4.14",
 		"babel-loader": "^9.1.2",
 		"bumpp": "^9.1.0",
+		"commitizen": "^4.3.0",
+		"commitlint-config-cz": "^0.13.3",
+		"commitlint-config-git-commit-emoji": "^1.0.0",
 		"compression-webpack-plugin": "^10.0.0",
 		"core-js": "3.30.2",
 		"css-loader": "^6.8.1",
+		"cz-customizable": "^7.0.0",
 		"glob": "^10.2.6",
 		"html-webpack-plugin": "^5.5.1",
+		"husky": "^8.0.3",
 		"mini-css-extract-plugin": "^2.7.6",
 		"postcss": "^8.4.24",
 		"postcss-loader": "^7.3.2",
@@ -54,5 +60,10 @@
 		"qrcode": "^1.5.3",
 		"toastify-js": "^1.12.0",
 		"vue": "^3.3.4"
+	},
+	"config": {
+		"commitizen": {
+			"path": "node_modules/cz-customizable"
+		}
 	}
 }
