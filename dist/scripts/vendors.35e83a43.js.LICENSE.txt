@@ -5,3 +5,5 @@
  *
  * Copyright (C) 2018 Varun A P
  */
+
+/*! @docsearch/js 3.4.0 | MIT License | © Algolia, Inc. and contributors | https://docsearch.algolia.com */

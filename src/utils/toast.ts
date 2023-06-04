@@ -25,53 +25,53 @@ const errorOptions: Options = { className: "jj-toast error" };
 
 /** 自定义toast通知 */
 export class Toast {
-  /** 配置 */
-  private options: Options = defaultOptions;
+	/** 配置 */
+	private options: Options = defaultOptions;
 
-  constructor(options?: Options) {
-    if (options) {
-      this.options = this.mergeOptions(this.options, options);
-    }
-  }
+	constructor(options?: Options) {
+		if (options) {
+			this.options = this.mergeOptions(this.options, options);
+		}
+	}
 
-  /** 默认通知 */
-  public default(options: Options) {
-    const op = this.mergeOptions(this.options, options);
-    Toastify(op).showToast();
-  }
+	/** 默认通知 */
+	public default(options: Options) {
+		const op = this.mergeOptions(this.options, options);
+		Toastify(op).showToast();
+	}
 
-  /** 成功通知 */
-  public success(options: Options) {
-    const op = this.mergeOptions(this.options, successOptions, options);
-    Toastify(op).showToast();
-  }
+	/** 成功通知 */
+	public success(options: Options) {
+		const op = this.mergeOptions(this.options, successOptions, options);
+		Toastify(op).showToast();
+	}
 
-  /** 警告通知 */
-  public warning(options: Options) {
-    const op = this.mergeOptions(this.options, warningOptions, options);
-    Toastify(op).showToast();
-  }
+	/** 警告通知 */
+	public warning(options: Options) {
+		const op = this.mergeOptions(this.options, warningOptions, options);
+		Toastify(op).showToast();
+	}
 
-  /** 错误通知 */
-  public error(options: Options) {
-    const op = this.mergeOptions(this.options, errorOptions, options);
-    Toastify(op).showToast();
-  }
+	/** 错误通知 */
+	public error(options: Options) {
+		const op = this.mergeOptions(this.options, errorOptions, options);
+		Toastify(op).showToast();
+	}
 
-  /** 信息通知 */
-  public info(options: Options) {
-    const op = this.mergeOptions(this.options, infoOptions, options);
-    Toastify(op).showToast();
-  }
+	/** 信息通知 */
+	public info(options: Options) {
+		const op = this.mergeOptions(this.options, infoOptions, options);
+		Toastify(op).showToast();
+	}
 
-  /** 合并配置 */
-  private mergeOptions(...args: Array<Options>) {
-    const options = {};
-    args.forEach((op) => {
-      Object.assign(options, op);
-    });
-    return options;
-  }
+	/** 合并配置 */
+	private mergeOptions(...args: Array<Options>) {
+		const options = {};
+		args.forEach((op) => {
+			Object.assign(options, op);
+		});
+		return options;
+	}
 }
 
 /** 实例 */

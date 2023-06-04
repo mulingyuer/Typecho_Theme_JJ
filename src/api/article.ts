@@ -16,17 +16,17 @@ import { apiGet, apiPost } from "@/request";
  * @Author: mulingyuer
  */
 export function getArticleList(url: string) {
-  return apiGet<string>({
-    url,
-    method: "get",
-  });
+	return apiGet<string>({
+		url,
+		method: "get"
+	});
 }
 
 /** 点赞返回的结果 */
 interface LikeResult {
-  msg: string;
-  status: number;
-  result: string;
+	msg: string;
+	status: number;
+	result: string;
 }
 
 /**
@@ -36,12 +36,12 @@ interface LikeResult {
  * @Author: mulingyuer
  */
 export function postLike(url: string) {
-  return apiPost<LikeResult>({
-    url: `${url}?themeAction=promo`,
-    method: "post",
-    params: {
-      operate: "inc", //操作类型 inc 增加 dec 减少
-      field: "likes", //操作字段
-    },
-  });
+	return apiPost<LikeResult>({
+		url: `${url}?themeAction=promo`,
+		method: "post",
+		params: {
+			operate: "inc", //操作类型 inc 增加 dec 减少
+			field: "likes" //操作字段
+		}
+	});
 }

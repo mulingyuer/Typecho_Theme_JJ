@@ -12,5 +12,5 @@ import NotificationList from "@/modules/notification/list";
 import listSkeleton from "@/modules/notification/list_skeleton";
 
 new NotificationList(() => {
-  listSkeleton.receiveClose();
+	listSkeleton.receiveClose();
 });

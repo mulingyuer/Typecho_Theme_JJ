@@ -1,33 +1,33 @@
 .archive-tips {
-  background-color: var(--jj-article-nav-bg);
-  border-bottom: 1px solid var(--jj-article-nav-border);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+	background-color: var(--jj-article-nav-bg);
+	border-bottom: 1px solid var(--jj-article-nav-border);
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
 }
 .archive-tips-content {
-  padding: 12px 20px;
+	padding: 12px 20px;
 }
 .archive-tips-title {
-  font-size: 14px;
-  color: var(--jj-category-tips-color);
-  @include one-line();
-  strong {
-    font-size: 16px;
-    color: var(--jj-category-tips-strong-color);
-  }
+	font-size: 14px;
+	color: var(--jj-category-tips-color);
+	@include one-line();
+	strong {
+		font-size: 16px;
+		color: var(--jj-category-tips-strong-color);
+	}
 }
 
 @media screen and (max-width: 640px) {
-  .archive-tips {
-    border: none;
-    margin-bottom: 10px;
-  }
-  .archive-tips-content {
-    padding: 12px;
-  }
+	.archive-tips {
+		border: none;
+		margin-bottom: 10px;
+	}
+	.archive-tips-content {
+		padding: 12px;
+	}
 }
 @media screen and (max-width: 420px) {
-  .archive-tips {
-    margin-bottom: 8px;
-  }
+	.archive-tips {
+		margin-bottom: 8px;
+	}
 }

@@ -89,20 +89,42 @@ function themeConfig($form) {
     );
     $form->addInput($address);
 
-    // $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
-    //     'sidebarBlock',
-    //     [
-    //         'ShowRecentPosts' => _t('显示最新文章'),
-    //         'ShowRecentComments' => _t('显示最近回复'),
-    //         'ShowCategory' => _t('显示分类'),
-    //         'ShowArchive' => _t('显示归档'),
-    //         'ShowOther' => _t('显示其它杂项'),
-    //     ],
-    //     ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'],
-    //     _t('侧边栏显示')
-    // );
+    $isOpenDocSearch = new \Typecho\Widget\Helper\Form\Element\Radio(
+        'isOpenDocSearch',
+        array(
+            'off' => _t('关闭'),
+            'on'  => _t('开启'),
+        ),
+        'off', _t('是否开启DocSearch'), _t('默认关闭')
+    );
+    $form->addInput($isOpenDocSearch);
 
-    // $form->addInput($sidebarBlock->multiMode());
+    $docSearchAppId = new \Typecho\Widget\Helper\Form\Element\Text(
+        'docSearchAppId',
+        NULL,
+        '',
+        _t('DocSearch AppId'),
+        _t('默认为空')
+    );
+    $form->addInput($docSearchAppId);
+
+    $docSearchApiKey = new \Typecho\Widget\Helper\Form\Element\Text(
+        'docSearchApiKey',
+        NULL,
+        '',
+        _t('DocSearch ApiKey'),
+        _t('默认为空')
+    );
+    $form->addInput($docSearchApiKey);
+
+    $docSearchIndexName = new \Typecho\Widget\Helper\Form\Element\Text(
+        'docSearchIndexName',
+        NULL,
+        '',
+        _t('DocSearch IndexName'),
+        _t('默认为空')
+    );
+    $form->addInput($docSearchIndexName);
 }
 
 /**
@@ -661,6 +683,110 @@ function getDirectoryTree() {
 };
 
 /**
+ * @description: 获取目录树
+ * @param {*} $maxDirectory 最大层级
+ * @Date: 2023-06-03 22:30:49
+ * @Author: mulingyuer
+ */
+function getJJDirectoryTree($maxDirectory = 3) {
+    global $catalog;
+    $treeList = generateTreeList(array_replace_recursive(array(), $catalog));
+    echo generateTreeTemplate($treeList, $maxDirectory);
+}
+
+/**
+ * @description: 将扁平化目录树数组转成结构化目录树数组
+ * @param {*} $list 目录树数组
+ * @param {*} $depth  最大层级
+ * @Date: 2023-06-03 15:42:21
+ * @Author: mulingyuer
+ */
+function generateTreeList($list, $depth = 6) {
+    if (count($list) <= 0 || $depth <= 1) {
+        return $list;
+    }
+
+    for ($i = count($list) - 1; $i >= 0; $i--) {
+        $item = $list[$i];
+        if ($item['depth'] == $depth) {
+            $parentIndex = $i - 1;
+            while ($parentIndex >= 0) {
+                $parent = &$list[$parentIndex];
+                if ($parent['depth'] < $depth) {
+                    break;
+                }
+                $parentIndex--;
+            }
+
+            if ($parentIndex < 0) {
+                break;
+            }
+
+            if ( ! is_array($parent['children'])) {
+                $parent['children'] = array();
+            }
+
+            array_unshift($parent['children'], $item);
+            array_splice($list, $i, 1);
+        }
+    }
+
+    $list = array_values($list);
+    return generateTreeList($list, $depth - 1);
+}
+
+/**
+ * @description: 删除目录树数组指定层级children
+ * @param {*} $list 目录树数组
+ * @param {*} $depth  最大层级
+ * @param {*} $currentDepth 当前层级
+ * @Date: 2023-06-03 15:49:03
+ * @Author: mulingyuer
+ */
+function removeChildren($list, $depth, $currentDepth = 0) {
+    foreach ($list as &$item) {
+        if (isset($item['children']) && count($item['children']) > 0) {
+            if ($currentDepth < $depth - 1) {
+                $item['children'] = removeChildren($item['children'], $depth, $currentDepth + 1);
+            } else {
+                unset($item['children']);
+            }
+        }
+    }
+    return $list;
+}
+
+/**
+ * @description: 生成目录树html
+ * @param {*} $arr 目录树数组
+ * @param {*} $depth  最大层级
+ * @param {*} $currentDepth 当前层级
+ * @param {*} $isChildren 是否是子级
+ * @Date: 2023-06-03 16:48:54
+ * @Author: mulingyuer
+ */
+function generateTreeTemplate($arr, $depth, $currentDepth = 1, $isChildren = false) {
+    if (count($arr) <= 0) {
+        return '<div class="directory-tree-list-empty">暂无目录</div>';
+    }
+    if ($currentDepth > $depth) {
+        return '';
+    }
+    $output =  ! $isChildren ? '<ul class="directory-tree-list">' : '';
+    foreach ($arr as $item) {
+        $output .= '<li class="directory-tree-list-item depth-'.$currentDepth.'"><div class="directory-tree-list-item-link-wrapper"><a class="directory-tree-list-item-link" href="#heading-'.$item['count'].'" title="'.$item['text'].'">'.$item['text'].'</a></div>';
+        if ( ! empty($item['children']) && $currentDepth < $depth) {
+            $output .= '<ul class="directory-tree-sub-list">';
+            $output .= generateTreeTemplate($item['children'], $depth, $currentDepth + 1, true);
+            $output .= '</ul>';
+        }
+        $output .= '</li>';
+    }
+    $output .=  ! $isChildren ? '</ul>' : '';
+    return $output;
+}
+
+/**
  * 增加浏览次数
  * 使用方法: 在<code>themeInit</code>函数中添加代码
  * <pre>if($archive->is('single') || $archive->is('page')){ viewsCounter($archive);}</pre>
@@ -886,6 +1012,56 @@ function getIdPosts($id) {
         'title'     => $title,
         'permalink' => $permalink,
     );
+}
+
+// docsearch
+function setDocSearchCookie() {
+    $options = Helper::options();
+    $open    = $options->isOpenDocSearch === 'on';
+    if ( ! $open) {
+        return;
+    }
+
+    $key  = 'jj_docsearch';
+    $data = array(
+        'appid'     => $options->docSearchAppId,
+        'apiKey'    => $options->docSearchApiKey,
+        'indexName' => $options->docSearchIndexName,
+    );
+    $content  = json_encode($data);
+    $one_week = 60 * 60 * 24 * 7; // 1周
+    $expire   = time() + 60 * 60 * 24 * 365; // 1年
+    $path     = '/';
+    $domain   = $_SERVER['HTTP_HOST'];
+    $secure   = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $httpOnly = false;
+    $needSet  = false; //是否需要设置cookie
+
+    if (isset($_COOKIE[$key])) {
+        $decodedCookie = json_decode($_COOKIE[$key], true);
+
+        //cookie不对或者为空、内部数据不对
+        if (empty($decodedCookie) || ! isset($decodedCookie['creationTime'])) {
+            $needSet = true;
+        } else {
+            $cookieCreationTime = $decodedCookie['creationTime'];
+            $remainingTime      = $expire - $cookieCreationTime;
+            // 有效期是否不够一周
+            if ($remainingTime <= $one_week) {
+                $needSet = true;
+            }
+        }
+    } else {
+        $needSet = true;
+    }
+
+    //设置cookie
+    if ($needSet) {
+        $data['creationTime'] = time();
+        $content              = json_encode($data);
+        setcookie($key, $content, $expire, $path, $domain, $secure, $httpOnly);
+    }
+
 }
 
 //主题themeInit函数

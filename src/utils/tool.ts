@@ -9,8 +9,8 @@
  */
 /** 是否支持closest方法 */
 export const isSupportClosest = (() => {
-  const div = document.createElement("div");
-  return !!div.closest;
+	const div = document.createElement("div");
+	return !!div.closest;
 })();
 
 /**
@@ -21,13 +21,13 @@ export const isSupportClosest = (() => {
  * @Author: mulingyuer
  */
 export function debounce(fn: Function, delay: number) {
-  let timer: any = null;
-  return function (...args: any[]) {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      fn.apply(this, args);
-    }, delay);
-  };
+	let timer: any = null;
+	return function (...args: any[]) {
+		if (timer) clearTimeout(timer);
+		timer = setTimeout(() => {
+			fn.apply(this, args);
+		}, delay);
+	};
 }
 
 /**
@@ -38,15 +38,15 @@ export function debounce(fn: Function, delay: number) {
  * @Author: mulingyuer
  */
 export function throttle(fn: Function, delay: number) {
-  let timer: any = null;
-  return function (...args: any[]) {
-    if (!timer) {
-      timer = setTimeout(() => {
-        fn.apply(this, args);
-        timer = null;
-      }, delay);
-    }
-  };
+	let timer: any = null;
+	return function (...args: any[]) {
+		if (!timer) {
+			timer = setTimeout(() => {
+				fn.apply(this, args);
+				timer = null;
+			}, delay);
+		}
+	};
 }
 
 /**
@@ -57,17 +57,17 @@ export function throttle(fn: Function, delay: number) {
  * @Author: mulingyuer
  */
 export function findParentElementByClass(target: HTMLElement, className: string): HTMLElement | null {
-  if (!target) return null;
-  if (isSupportClosest) {
-    return target.closest(`.${className}`);
-  } else {
-    let parent = target.parentElement;
-    while (parent) {
-      if (parent.classList.contains(className)) return parent;
-      parent = parent.parentElement;
-    }
-    return null;
-  }
+	if (!target) return null;
+	if (isSupportClosest) {
+		return target.closest(`.${className}`);
+	} else {
+		let parent = target.parentElement;
+		while (parent) {
+			if (parent.classList.contains(className)) return parent;
+			parent = parent.parentElement;
+		}
+		return null;
+	}
 }
 
 /**
@@ -77,11 +77,11 @@ export function findParentElementByClass(target: HTMLElement, className: string)
  * @Author: mulingyuer
  */
 export function joinThemePath(path?: string): string {
-  const metaPath: HTMLElement | null = document.querySelector("meta[name=path]");
-  if (!metaPath) return "";
-  const str = metaPath.getAttribute("content");
-  if (typeof str === "string" && str.trim() !== "") {
-    return `${str}${path}`;
-  }
-  return "";
+	const metaPath: HTMLElement | null = document.querySelector("meta[name=path]");
+	if (!metaPath) return "";
+	const str = metaPath.getAttribute("content");
+	if (typeof str === "string" && str.trim() !== "") {
+		return `${str}${path}`;
+	}
+	return "";
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-05-20 12:42:09
- * @LastEditTime: 2023-05-20 16:17:03
+ * @LastEditTime: 2023-06-04 16:17:40
  * @LastEditors: mulingyuer
  * @Description: 错误处理
  * @FilePath: \Typecho_Theme_JJ\src\utils\error.ts
@@ -16,18 +16,20 @@ import { findParentElementByClass, joinThemePath } from "@/utils/tool";
  * @Author: mulingyuer
  */
 function linksImgError(event: ErrorEvent) {
-  const target = event.target as HTMLImageElement;
-  const isImg = target.tagName.toLocaleLowerCase() === "img";
-  if (!isImg) return;
-  //判断是不是友链图片
-  const isLinkImg = !!findParentElementByClass(target, "links-page-body");
-  if (!isLinkImg) return;
+	const target = event.target as HTMLImageElement;
+	//如果不是html元素跳过
+	if (!(target instanceof HTMLImageElement)) return;
+	const isImg = target.tagName.toLocaleLowerCase() === "img";
+	if (!isImg) return;
+	//判断是不是友链图片
+	const isLinkImg = !!findParentElementByClass(target, "links-page-body");
+	if (!isLinkImg) return;
 
-  const defaultImgSrc = joinThemePath("static/images/links/default.png");
-  //防止重复替换
-  if (target.src !== defaultImgSrc) {
-    target.src = defaultImgSrc;
-  }
+	const defaultImgSrc = joinThemePath("static/images/links/default.png");
+	//防止重复替换
+	if (target.src !== defaultImgSrc) {
+		target.src = defaultImgSrc;
+	}
 }
 
 /**
@@ -37,8 +39,8 @@ function linksImgError(event: ErrorEvent) {
  * @Author: mulingyuer
  */
 function globalErrorCallback(event: ErrorEvent) {
-  //友链图片错误
-  linksImgError(event);
+	//友链图片错误
+	linksImgError(event);
 }
 
 /**
@@ -47,15 +49,15 @@ function globalErrorCallback(event: ErrorEvent) {
  * @Author: mulingyuer
  */
 export function initGlobalImgLoadError() {
-  if (!window.$globalError) return;
-  //有错误先处理完
-  if (window.$globalError.list.length > 0) {
-    window.$globalError.list.forEach((event) => {
-      globalErrorCallback(event);
-    });
-    //清空数组
-    window.$globalError.list = [];
-  }
-  //挂载全局错误处理
-  window.$globalError.callback = globalErrorCallback;
+	if (!window.$globalError) return;
+	//有错误先处理完
+	if (window.$globalError.list.length > 0) {
+		window.$globalError.list.forEach((event) => {
+			globalErrorCallback(event);
+		});
+		//清空数组
+		window.$globalError.list = [];
+	}
+	//挂载全局错误处理
+	window.$globalError.callback = globalErrorCallback;
 }

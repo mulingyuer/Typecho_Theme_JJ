@@ -1,120 +1,120 @@
 .recent-comments {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 .recent-comments-content {
-  background-color: var(--jj-recent-comments-bg);
-  border-radius: 4px;
-  overflow: hidden;
+	background-color: var(--jj-recent-comments-bg);
+	border-radius: 4px;
+	overflow: hidden;
 }
 .recent-comments-head {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  border-bottom: 1px solid var(--jj-recent-comments-border);
-  font-size: 16px;
-  line-height: 20px;
+	display: flex;
+	align-items: center;
+	padding: 10px 20px;
+	border-bottom: 1px solid var(--jj-recent-comments-border);
+	font-size: 16px;
+	line-height: 20px;
 }
 .recent-comments-head-icon {
-  flex-shrink: 0;
-  margin-right: 10px;
-  font-size: inherit;
-  font-weight: inherit;
-  color: var(--jj-recent-comments-head-icon-color);
+	flex-shrink: 0;
+	margin-right: 10px;
+	font-size: inherit;
+	font-weight: inherit;
+	color: var(--jj-recent-comments-head-icon-color);
 }
 .recent-comments-title {
-  flex-grow: 1;
-  min-width: 0;
-  font-weight: normal;
-  font-size: inherit;
-  color: var(--jj-recent-comments-title-color);
-  @include one-line();
+	flex-grow: 1;
+	min-width: 0;
+	font-weight: normal;
+	font-size: inherit;
+	color: var(--jj-recent-comments-title-color);
+	@include one-line();
 }
 // .recent-comments-body {
 // }
 .recent-comments-list {
-  &.hidden {
-    display: none;
-  }
+	&.hidden {
+		display: none;
+	}
 }
 .recent-comments-list-placeholder {
-  padding: 20px;
-  text-align: center;
-  font-size: 14px;
-  color: var(--jj-recent-comments-list-placeholder-color);
+	padding: 20px;
+	text-align: center;
+	font-size: 14px;
+	color: var(--jj-recent-comments-list-placeholder-color);
 }
 .recent-comments-list-item {
-  display: flex;
-  align-items: center;
-  padding: 15px 20px;
-  color: inherit;
-  text-decoration: none;
-  &:hover {
-    background-color: var(--jj-recent-comments-list-item-bg-hover);
-  }
-  &:active {
-    opacity: 0.7;
-  }
+	display: flex;
+	align-items: center;
+	padding: 15px 20px;
+	color: inherit;
+	text-decoration: none;
+	&:hover {
+		background-color: var(--jj-recent-comments-list-item-bg-hover);
+	}
+	&:active {
+		opacity: 0.7;
+	}
 }
 .recent-comments-list-item-avatar {
-  flex-shrink: 0;
-  margin-right: 10px;
-  width: 36px;
-  height: 36px;
-  > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    vertical-align: top;
-  }
+	flex-shrink: 0;
+	margin-right: 10px;
+	width: 36px;
+	height: 36px;
+	> img {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		vertical-align: top;
+	}
 }
 .recent-comments-list-item-content {
-  flex-grow: 1;
-  min-width: 0;
+	flex-grow: 1;
+	min-width: 0;
 }
 .recent-comments-list-item-title {
-  margin-bottom: 4px;
-  font-size: 16px;
-  line-height: 1;
-  color: var(--jj-recent-comments-list-item-title-color);
-  @include one-line();
+	margin-bottom: 4px;
+	font-size: 16px;
+	line-height: 1;
+	color: var(--jj-recent-comments-list-item-title-color);
+	@include one-line();
 }
 .recent-comments-list-item-msg {
-  font-size: 13px;
-  line-height: 18px;
-  color: var(--jj-recent-comments-list-item-msg-color);
-  @include multi-line(2);
-  img {
-    width: auto;
-    height: 20px;
-    vertical-align: sub;
-    margin: 0 2px;
-    position: relative;
-    top: 1px;
-    &.hot-word-emoji-img {
-      width: 40px;
-      height: 40px;
-    }
-  }
+	font-size: 13px;
+	line-height: 18px;
+	color: var(--jj-recent-comments-list-item-msg-color);
+	@include multi-line(2);
+	img {
+		width: auto;
+		height: 20px;
+		vertical-align: sub;
+		margin: 0 2px;
+		position: relative;
+		top: 1px;
+		&.hot-word-emoji-img {
+			width: 40px;
+			height: 40px;
+		}
+	}
 }
 .recent-comments-footer {
-  border-top: 1px solid var(--jj-recent-comments-border);
+	border-top: 1px solid var(--jj-recent-comments-border);
 }
 .recent-comments-management-btn {
-  display: block;
-  padding: 15px 20px;
-  font-size: 14px;
-  text-align: center;
-  text-decoration: none;
-  color: var(--jj-recent-comments-management-btn-color);
-  transition: color 0.2s;
-  &:hover {
-    color: var(--jj-recent-comments-management-btn-color-hover);
-  }
-  &:active {
-    opacity: 0.7;
-  }
+	display: block;
+	padding: 15px 20px;
+	font-size: 14px;
+	text-align: center;
+	text-decoration: none;
+	color: var(--jj-recent-comments-management-btn-color);
+	transition: color 0.2s;
+	&:hover {
+		color: var(--jj-recent-comments-management-btn-color-hover);
+	}
+	&:active {
+		opacity: 0.7;
+	}
 }
 .recent-comments-management-btn-icon {
-  font-size: inherit;
-  line-height: inherit;
+	font-size: inherit;
+	line-height: inherit;
 }

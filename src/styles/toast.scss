@@ -1,37 +1,37 @@
 // 自定义toast通知样式
 .jj-toast {
-  padding: 8px 16px;
-  font-size: 14px;
-  color: var(--jj-toast-color);
-  background: var(--jj-toast-bg);
-  border: 1px solid var(--jj-toast-border);
-  border-radius: 4px;
-  box-shadow: 0 0 5px var(--jj-toast-box-shadow);
-  &.info {
-    color: var(--jj-toast-color-info);
-    border-color: var(--jj-toast-border-info);
-    background: var(--jj-toast-bg-info);
-  }
-  &.success {
-    color: var(--jj-toast-color-success);
-    border-color: var(--jj-toast-border-success);
-    background: var(--jj-toast-bg-success);
-  }
-  &.warning {
-    color: var(--jj-toast-color-warning);
-    border-color: var(--jj-toast-border-warning);
-    background: var(--jj-toast-bg-warning);
-  }
-  &.error {
-    color: var(--jj-toast-color-error);
-    border-color: var(--jj-toast-border-error);
-    background: var(--jj-toast-bg-error);
-  }
+	padding: 8px 16px;
+	font-size: 14px;
+	color: var(--jj-toast-color);
+	background: var(--jj-toast-bg);
+	border: 1px solid var(--jj-toast-border);
+	border-radius: 4px;
+	box-shadow: 0 0 5px var(--jj-toast-box-shadow);
+	&.info {
+		color: var(--jj-toast-color-info);
+		border-color: var(--jj-toast-border-info);
+		background: var(--jj-toast-bg-info);
+	}
+	&.success {
+		color: var(--jj-toast-color-success);
+		border-color: var(--jj-toast-border-success);
+		background: var(--jj-toast-bg-success);
+	}
+	&.warning {
+		color: var(--jj-toast-color-warning);
+		border-color: var(--jj-toast-border-warning);
+		background: var(--jj-toast-bg-warning);
+	}
+	&.error {
+		color: var(--jj-toast-color-error);
+		border-color: var(--jj-toast-border-error);
+		background: var(--jj-toast-bg-error);
+	}
 }
 
 @media only screen and (max-width: 360px) {
-  .jj-toast {
-    width: fit-width;
-    max-width: 300px;
-  }
+	.jj-toast {
+		width: fit-width;
+		max-width: 300px;
+	}
 }

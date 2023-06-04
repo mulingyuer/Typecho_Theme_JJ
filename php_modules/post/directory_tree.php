@@ -4,7 +4,7 @@
       <h3 class="directory-tree-title">目录</h3>
     </div>
     <div class="directory-tree-body">
-      <?php getDirectoryTree();?>
+      <?php getJJDirectoryTree();?>
     </div>
   </div>
 </div>

@@ -12,17 +12,17 @@ import FaceReplace from "@/modules/comment/emoji/faceReplace";
 import recentCommentsSkeleton from "@/modules/home/recent_comments_skeleton";
 
 class RecentComments {
-  /** 评论列表 */
-  private commentList: HTMLElement | null = document.querySelector(".recent-comments-list");
+	/** 评论列表 */
+	private commentList: HTMLElement | null = document.querySelector(".recent-comments-list");
 
-  constructor() {
-    //表情替换
-    if (this.commentList) {
-      new FaceReplace(this.commentList).start();
-    }
+	constructor() {
+		//表情替换
+		if (this.commentList) {
+			new FaceReplace(this.commentList).start();
+		}
 
-    //关闭骨架
-    recentCommentsSkeleton.receiveClose();
-  }
+		//关闭骨架
+		recentCommentsSkeleton.receiveClose();
+	}
 }
 new RecentComments();

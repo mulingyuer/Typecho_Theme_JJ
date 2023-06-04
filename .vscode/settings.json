@@ -1,9 +1,23 @@
 {
-  "cSpell.words": ["appkey", "fenxiang", "hljs", "juejin", "qqkongjian", "qrcode", "smartblue", "Toastify", "Typecho", "wechat", "weibo"],
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/bower_components": true,
-    "**/*.code-search": true,
-    "**/dist": true
-  }
+	"cSpell.words": [
+		"appkey",
+		"docsearch",
+		"fenxiang",
+		"hljs",
+		"juejin",
+		"qqkongjian",
+		"qrcode",
+		"smartblue",
+		"Toastify",
+		"Typecho",
+		"wechat",
+		"weibo"
+	],
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/bower_components": true,
+		"**/*.code-search": true,
+		"**/dist": true
+	},
+	"files.eol": "\n"
 }

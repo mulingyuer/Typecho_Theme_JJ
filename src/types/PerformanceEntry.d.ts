@@ -9,6 +9,6 @@
  */
 
 declare interface PerformanceEntry {
-  /** 前文档的 DOMContentLoaded 事件完成后的用时 ms */
-  domContentLoadedEventEnd: number;
+	/** 前文档的 DOMContentLoaded 事件完成后的用时 ms */
+	domContentLoadedEventEnd: number;
 }
