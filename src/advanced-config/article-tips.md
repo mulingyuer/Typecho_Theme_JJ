@@ -1,7 +1,7 @@
 <!--
  * @Author: mulingyuer
  * @Date: 2023-03-28 02:22:08
- * @LastEditTime: 2023-03-28 03:15:22
+ * @LastEditTime: 2023-06-04 23:45:33
  * @LastEditors: mulingyuer
  * @Description:文章小技巧
  * @FilePath: \Typecho_Theme_JJ\src\advanced-config\article-tips.md
@@ -85,3 +85,9 @@
 ![](/images/advanced-config/article-tips/iframe支持01.jpg)
 
 不知道为什么 CodePen 不支持 iframe 内嵌了，可能是我的方式不对，上个 b 站的也是一样，反正是对 iframe 做了样式支持
+
+## 目录树
+
+v2.2.2 版本重构了目录树，实现了**高保真掘金目录树**，为此它的展示逻辑和掘金相同，最大嵌套层级是 3 层，但是这个 3 层不是说必须从 h2-h4，而是嵌套深度只有 3 层，你可以 h3-h5 这种形式。
+
+![](/images/advanced-config/article-tips/目录树01.jpg)

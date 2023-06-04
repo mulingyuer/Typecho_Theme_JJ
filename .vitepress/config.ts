@@ -75,6 +75,10 @@ export default defineConfig({
             text: "自定义分享图",
             link: "/advanced-config/share-img",
           },
+          {
+            text: "DocSearch",
+            link: "/advanced-config/docsearch",
+          },
         ],
       },
       {
