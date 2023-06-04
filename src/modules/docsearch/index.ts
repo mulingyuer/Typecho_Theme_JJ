@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-06-04 16:19:55
- * @LastEditTime: 2023-06-04 23:02:30
+ * @LastEditTime: 2023-06-04 23:30:31
  * @LastEditors: mulingyuer
  * @Description: docsearch
  * @FilePath: \Typecho_Theme_JJ\src\modules\docsearch\index.ts
@@ -35,7 +35,7 @@ class FixedDocSearch {
 			const { appid, apiKey, indexName } = cookieData;
 			this.init({ appid, apiKey, indexName });
 		} catch (error) {
-			console.log(error);
+			console.error("初始化docsearch失败", error);
 		}
 	}
 
