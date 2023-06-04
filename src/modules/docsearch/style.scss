@@ -1,29 +1,31 @@
-.DocSearch-Button-Keys,
-.DocSearch-Button-Placeholder {
-	display: none;
-}
-.DocSearch-Button {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	background: none;
-	padding: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	.DocSearch-Search-Icon {
-		width: 16px;
-		height: 16px;
-		color: #86909c;
+.docsearch-wrapper {
+	.DocSearch-Button-Keys,
+	.DocSearch-Button-Placeholder {
+		display: none;
 	}
-	&:hover {
+	.DocSearch-Button {
+		width: 100%;
+		height: 100%;
+		margin: 0;
 		background: none;
-		box-shadow: none;
-		color: #1e80ff;
-	}
-	&:active {
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		.DocSearch-Search-Icon {
+			width: 16px;
+			height: 16px;
+			color: #86909c;
+		}
+		&:hover {
+			background: none;
+			box-shadow: none;
 			color: #1e80ff;
+		}
+		&:active {
+			.DocSearch-Search-Icon {
+				color: #1e80ff;
+			}
 		}
 	}
 }
