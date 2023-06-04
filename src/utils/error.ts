@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-05-20 12:42:09
- * @LastEditTime: 2023-05-20 16:17:03
+ * @LastEditTime: 2023-06-04 16:17:40
  * @LastEditors: mulingyuer
  * @Description: 错误处理
  * @FilePath: \Typecho_Theme_JJ\src\utils\error.ts
@@ -17,6 +17,8 @@ import { findParentElementByClass, joinThemePath } from "@/utils/tool";
  */
 function linksImgError(event: ErrorEvent) {
 	const target = event.target as HTMLImageElement;
+	//如果不是html元素跳过
+	if (!(target instanceof HTMLImageElement)) return;
 	const isImg = target.tagName.toLocaleLowerCase() === "img";
 	if (!isImg) return;
 	//判断是不是友链图片

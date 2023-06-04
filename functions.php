@@ -89,20 +89,42 @@ function themeConfig($form) {
     );
     $form->addInput($address);
 
-    // $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
-    //     'sidebarBlock',
-    //     [
-    //         'ShowRecentPosts' => _t('显示最新文章'),
-    //         'ShowRecentComments' => _t('显示最近回复'),
-    //         'ShowCategory' => _t('显示分类'),
-    //         'ShowArchive' => _t('显示归档'),
-    //         'ShowOther' => _t('显示其它杂项'),
-    //     ],
-    //     ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'],
-    //     _t('侧边栏显示')
-    // );
+    $isOpenDocSearch = new \Typecho\Widget\Helper\Form\Element\Radio(
+        'isOpenDocSearch',
+        array(
+            'off' => _t('关闭'),
+            'on'  => _t('开启'),
+        ),
+        'off', _t('是否开启DocSearch'), _t('默认关闭')
+    );
+    $form->addInput($isOpenDocSearch);
 
-    // $form->addInput($sidebarBlock->multiMode());
+    $docSearchAppId = new \Typecho\Widget\Helper\Form\Element\Text(
+        'docSearchAppId',
+        NULL,
+        '',
+        _t('DocSearch AppId'),
+        _t('默认为空')
+    );
+    $form->addInput($docSearchAppId);
+
+    $docSearchApiKey = new \Typecho\Widget\Helper\Form\Element\Text(
+        'docSearchApiKey',
+        NULL,
+        '',
+        _t('DocSearch ApiKey'),
+        _t('默认为空')
+    );
+    $form->addInput($docSearchApiKey);
+
+    $docSearchIndexName = new \Typecho\Widget\Helper\Form\Element\Text(
+        'docSearchIndexName',
+        NULL,
+        '',
+        _t('DocSearch IndexName'),
+        _t('默认为空')
+    );
+    $form->addInput($docSearchIndexName);
 }
 
 /**
@@ -990,6 +1012,56 @@ function getIdPosts($id) {
         'title'     => $title,
         'permalink' => $permalink,
     );
+}
+
+// docsearch
+function setDocSearchCookie() {
+    $options = Helper::options();
+    $open    = $options->isOpenDocSearch === 'on';
+    if ( ! $open) {
+        return;
+    }
+
+    $key  = 'jj_docsearch';
+    $data = array(
+        'appid'     => $options->docSearchAppId,
+        'apiKey'    => $options->docSearchApiKey,
+        'indexName' => $options->docSearchIndexName,
+    );
+    $content  = json_encode($data);
+    $one_week = 60 * 60 * 24 * 7; // 1周
+    $expire   = time() + 60 * 60 * 24 * 365; // 1年
+    $path     = '/';
+    $domain   = $_SERVER['HTTP_HOST'];
+    $secure   = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $httpOnly = false;
+    $needSet  = false; //是否需要设置cookie
+
+    if (isset($_COOKIE[$key])) {
+        $decodedCookie = json_decode($_COOKIE[$key], true);
+
+        //cookie不对或者为空、内部数据不对
+        if (empty($decodedCookie) || ! isset($decodedCookie['creationTime'])) {
+            $needSet = true;
+        } else {
+            $cookieCreationTime = $decodedCookie['creationTime'];
+            $remainingTime      = $expire - $cookieCreationTime;
+            // 有效期是否不够一周
+            if ($remainingTime <= $one_week) {
+                $needSet = true;
+            }
+        }
+    } else {
+        $needSet = true;
+    }
+
+    //设置cookie
+    if ($needSet) {
+        $data['creationTime'] = time();
+        $content              = json_encode($data);
+        setcookie($key, $content, $expire, $path, $domain, $secure, $httpOnly);
+    }
+
 }
 
 //主题themeInit函数

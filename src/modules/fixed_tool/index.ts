@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-21 22:59:30
- * @LastEditTime: 2023-03-21 23:36:49
+ * @LastEditTime: 2023-06-04 17:06:39
  * @LastEditors: mulingyuer
  * @Description: 浮动工具
  * @FilePath: \Typecho_Theme_JJ\src\modules\fixed_tool\index.ts
@@ -11,6 +11,7 @@ import "./style.scss";
 import { useDataStore } from "@/store/data";
 import { watch } from "vue";
 import Theme from "@/utils/theme";
+import FixedDocSearch from "../docsearch";
 
 /** 数据 */
 const dataStore = useDataStore();
@@ -110,3 +111,6 @@ class SwitchTheme {
 	};
 }
 new SwitchTheme();
+
+/** docsearch */
+const docsearch = new FixedDocSearch();
