@@ -23,7 +23,7 @@
             <div class="articles-related-list-item-footer" itemprop="interactionCount">
               <span class="articles-related-list-item-footer-item">
                 <i class="jj-icon jj-icon-eye articles-related-list-item-footer-item-icon"></i>
-                <span><?php articleViews($relatedPosts);?></span>
+                <span><?php echo articleViews($relatedPosts); ?></span>
               </span>
               <span class="articles-related-list-item-footer-item">
                 <i class="jj-icon jj-icon-like articles-related-list-item-footer-item-icon"></i>

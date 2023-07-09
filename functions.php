@@ -1071,9 +1071,26 @@ function setDocSearchCookie() {
  * @Author: mulingyuer
  */
 function numFormatSeparator($val) {
-
     $num = floatval($val);
     return number_format($num);
+}
+
+/**
+ * @description: 单位转w
+ * @param {*} $val
+ * @Date: 2023-07-09 18:11:38
+ * @Author: mulingyuer
+ */
+function numUnitConversion($val) {
+    $num = floatval($val);
+    if ($num >= 10000) {
+        $num = floor($num / 1000) / 10;
+        if (fmod($num, 1) == 0) {
+            $num = intval($num);
+        }
+        return $num.'w';
+    }
+    return $num;
 }
 
 //主题themeInit函数
