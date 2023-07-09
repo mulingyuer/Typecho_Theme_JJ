@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-06-04 00:58:00
- * @LastEditTime: 2023-06-04 03:36:27
+ * @LastEditTime: 2023-07-09 16:18:53
  * @LastEditors: mulingyuer
  * @Description: git cz 配置文件
- * @FilePath: \Typecho_Theme_JJ\.cz-config.js
+ * @FilePath: /Typecho_Theme_JJ/.cz-config.js
  * 怎么可能会有bug！！！
  */
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
 		{ value: ":rocket: chore", name: "🚀  chore: 部署功能或性能优化(构建/工程依赖/工具)" },
 		{ value: ":tada: init", name: "🎉  init: 项目初始化" },
 		{ value: ":white_check_mark: test", name: "✅  test: 测试" },
-		{ value: " :construction: wip", name: "🚧  wip: 进行中的工作(自定义)" }
+		{ value: ":construction: wip", name: "🚧  wip: 进行中的工作(自定义)" }
 	],
 
 	// scope 类型（定义之后，可通过上下键选择）
