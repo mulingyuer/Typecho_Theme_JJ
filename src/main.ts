@@ -41,4 +41,4 @@ updateWindowSize();
 window.addEventListener("resize", updateWindowSize);
 
 //ascii
-// asciiEmoji();
+asciiEmoji();

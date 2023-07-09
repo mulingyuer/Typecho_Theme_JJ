@@ -31,7 +31,10 @@
         <div class="main-right">
           <?php $this->need('./php_modules/article_author.php');?>
           <?php $this->need('./php_modules/post/latest_posts.php');?>
+          <div class="post-right-sticky">
           <?php $this->need('./php_modules/post/directory_tree.php');?>
+          <?php $this->need('./php_modules/post/next-article.php');?>
+          </div>
         </div>
       </div>
     </div>

@@ -1,11 +1,5 @@
 .directory-tree {
-	position: sticky;
-	top: $headerGap;
 	margin-bottom: 20px;
-	transition: top 0.2s;
-	&.heighten {
-		top: $headerH + $headerGap;
-	}
 }
 .directory-tree-content {
 	background-color: var(--jj-directory-tree-bg);
@@ -26,7 +20,9 @@
 	border-bottom: 1px solid var(--jj-directory-tree-title-border);
 }
 .directory-tree-body {
-	max-height: 460px;
+	// max-height: 460px;
+	min-height: 100px;
+	max-height: calc(100vh - 230px);
 	overflow: auto;
 	margin-right: 4px;
 	position: relative;

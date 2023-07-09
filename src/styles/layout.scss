@@ -1,3 +1,8 @@
+// hash跳转增加offset偏移量，防止导航挡住
+html {
+	scroll-padding-top: $headerH + $headerGap;
+}
+
 // 布局样式
 .main {
 	padding-top: $headerH + $navH;

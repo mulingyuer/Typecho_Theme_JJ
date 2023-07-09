@@ -20,9 +20,6 @@
 }
 .latest-posts-body {
 	padding-bottom: 16px;
-	font-size: 14px;
-	line-height: 22px;
-	color: var(--jj-latest-posts-item-title);
 }
 .latest-posts-empty,
 .latest-posts-item {
@@ -33,31 +30,19 @@
 	color: var(--jj-latest-posts-empty);
 }
 .latest-posts-item {
-	display: flex;
-	color: inherit;
+	display: block;
 	text-decoration: none;
-	.latest-posts-item-icon2 {
-		display: none;
-	}
-	&:hover {
+	font-size: 14px;
+	line-height: 22px;
+	&:hover .latest-posts-item-title {
 		color: var(--jj-latest-posts-item-title-hover);
-		.latest-posts-item-icon1 {
-			display: none;
-		}
-		.latest-posts-item-icon2 {
-			display: block;
-			color: inherit;
-		}
 	}
-}
-.latest-posts-item-icon1,
-.latest-posts-item-icon2 {
-	flex-shrink: 0;
-	margin-right: 5px;
-	color: var(--jj-latest-posts-item-icon);
 }
 .latest-posts-item-title {
-	flex-grow: 1;
-	min-width: 0;
+	color: var(--jj-latest-posts-item-title);
 	@include multi-line(2);
+}
+.latest-posts-item-other {
+	margin-top: 6px;
+	color: var(--jj-latest-posts-item-other);
 }
