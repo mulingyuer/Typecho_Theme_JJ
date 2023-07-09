@@ -12,11 +12,11 @@
     <div class="article-author-body">
       <div class="article-author-item">
         <i class="jj-icon jj-icon-like-fill article-author-item-icon"></i>
-        <span class="article-author-item-text">获得点赞 <?php echo getLikeCount($this); ?></span>
+        <span class="article-author-item-text">获得点赞 <?php echo numFormatSeparator(getLikeCount($this)); ?></span>
       </div>
       <div class="article-author-item">
         <i class="jj-icon jj-icon-eye-fill article-author-item-icon"></i>
-        <span class="article-author-item-text">文章被阅读 <?php articleViews($this);?></span>
+        <span class="article-author-item-text">文章被阅读 <?php echo numFormatSeparator(articleViews($this)); ?></span>
       </div>
     </div>
   </div>

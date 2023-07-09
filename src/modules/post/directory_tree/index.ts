@@ -1,14 +1,13 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-23 19:58:22
- * @LastEditTime: 2023-06-03 21:40:18
+ * @LastEditTime: 2023-07-09 15:40:35
  * @LastEditors: mulingyuer
  * @Description: 目录树
- * @FilePath: \Typecho_Theme_JJ\src\modules\post\directory_tree\index.ts
+ * @FilePath: /Typecho_Theme_JJ/src/modules/post/directory_tree/index.ts
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
-import emitter, { MittEventName } from "@/utils/mittEvent";
 import { throttle, findParentElementByClass } from "@/utils/tool";
 
 class DirectoryTree {
@@ -26,7 +25,6 @@ class DirectoryTree {
 	private clickTimer: NodeJS.Timeout | null = null;
 
 	constructor() {
-		emitter.on(MittEventName.HEADER_SHOW, this.listenHeaderShow);
 		if (!this.list) return;
 		// list点击事件代理
 		this.list.addEventListener("click", this.onTreeClick);
@@ -44,15 +42,6 @@ class DirectoryTree {
 		window.addEventListener("scroll", this.onScroll);
 		this.onScroll();
 	}
-
-	/** 监听header的显示隐藏 */
-	private listenHeaderShow = (status: boolean) => {
-		if (status) {
-			this.wrap?.classList.add("heighten");
-		} else {
-			this.wrap?.classList.remove("heighten");
-		}
-	};
 
 	/** 事件代理 */
 	private onTreeClick = (event: Event) => {
@@ -94,7 +83,7 @@ class DirectoryTree {
 		const scrollTop = window.scrollY || document.documentElement.scrollTop;
 		const viewHeight = document.documentElement.clientHeight;
 		let activeTitle: HTMLElement | undefined = void 0;
-		//截取出当前可视区域内的标题元素
+		//计算每个标题元素距离文档顶部的距离
 		const dataList = this.titles
 			.map((title) => {
 				return {
@@ -102,17 +91,24 @@ class DirectoryTree {
 					offsetTop: this.getOffsetTopBetter(title)
 				};
 			})
-			.filter(({ offsetTop }) => offsetTop < scrollTop + viewHeight && offsetTop >= scrollTop);
-		//判断一下，如果筛选出来没有内容，比对下最后一个，如果最后一个已经属于已浏览区域，那么就选最后一个
-		if (dataList.length === 0) {
-			const lastTitle = this.titles[this.titles.length - 1];
-			const offsetTop = this.getOffsetTopBetter(lastTitle);
-			if (offsetTop < scrollTop + viewHeight) {
-				activeTitle = lastTitle;
-			}
+			.filter((item) => item.title);
+		const firstData = dataList[0];
+		const lastData = dataList[dataList.length - 1];
+
+		if (firstData.offsetTop >= scrollTop + viewHeight) {
+			//如果第一个标题大于scrollTop + viewHeight，那么就选第一个
+			activeTitle = firstData.title;
+		} else if (lastData.offsetTop < scrollTop + viewHeight) {
+			//如果最后一个标题小于scrollTop + viewHeight，那么就选最后一个
+			activeTitle = lastData.title;
 		} else {
-			activeTitle = dataList[0].title;
+			//首尾都不是，说明在中间，那就筛选所有已浏览的标题元素，并选取第一个
+			const filterDataList = dataList.filter(({ offsetTop }) => {
+				return offsetTop < scrollTop + viewHeight && offsetTop >= scrollTop;
+			});
+			if (filterDataList.length !== 0) activeTitle = filterDataList[0].title;
 		}
+
 		//高亮处理
 		if (!activeTitle) return;
 		const id = (activeTitle as HTMLElement).getAttribute("id");

@@ -348,7 +348,7 @@ function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', 
     if ($return) {
         return $fieldValue;
     } else {
-        echo $fieldValue;
+        return $fieldValue;
     }
 }
 
@@ -711,7 +711,7 @@ function generateTreeList($list, $depth = 6) {
         if ($item['depth'] == $depth) {
             $parentIndex = $i - 1;
             while ($parentIndex >= 0) {
-                $parent = &$list[$parentIndex];
+                $parent =  &$list[$parentIndex];
                 if ($parent['depth'] < $depth) {
                     break;
                 }
@@ -1062,6 +1062,18 @@ function setDocSearchCookie() {
         setcookie($key, $content, $expire, $path, $domain, $secure, $httpOnly);
     }
 
+}
+
+/**
+ * @description: 转换千分位分隔符
+ * @param {*} $val
+ * @Date: 2023-07-09 15:48:57
+ * @Author: mulingyuer
+ */
+function numFormatSeparator($val) {
+
+    $num = floatval($val);
+    return number_format($num);
 }
 
 //主题themeInit函数
