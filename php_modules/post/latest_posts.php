@@ -12,7 +12,7 @@
           <div class="latest-posts-item-other">
             <span class="latest-posts-item-other-item"><?php echo getLikeCount($posts); ?>点赞</span>
             <span> · </span>
-            <span class="latest-posts-item-other-item"><?php $posts->commentsNum(_t('0'), _t('1'), _t('%d '));?>评论</span>
+            <span class="latest-posts-item-other-item"><?php $posts->commentsNum(_t('0'), _t('1'), _t('%d'));?>评论</span>
           </div>
           <span> </span>
           </a>
