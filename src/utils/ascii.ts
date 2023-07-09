@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-26 08:04:13
- * @LastEditTime: 2023-07-09 17:24:08
+ * @LastEditTime: 2023-07-09 18:33:13
  * @LastEditors: mulingyuer
  * @Description: ASCII 表情
  * @FilePath: /Typecho_Theme_JJ/src/utils/ascii.ts
@@ -57,5 +57,8 @@ export default function asciiEmoji() {
 	// 		"color:#71D1DB"
 	// 	);
 
-	console.log("%cWelcome to Blog!", "color: #1E80FF; font-size: x-large;padding: 10px;");
+	console.log(
+		`%cWelcome to ${location.host}!`,
+		"color: #1E80FF; font-size: x-large;padding: 10px;text-decoration: none;"
+	);
 }
