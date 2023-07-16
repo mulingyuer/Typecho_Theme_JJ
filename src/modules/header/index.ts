@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:36:49
- * @LastEditTime: 2023-03-30 12:07:43
+ * @LastEditTime: 2023-07-16 17:35:48
  * @LastEditors: mulingyuer
  * @Description: header模块
- * @FilePath: \Typecho_Theme_JJ\src\modules\header\index.ts
+ * @FilePath: /Typecho_Theme_JJ/src/modules/header/index.ts
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
@@ -12,7 +12,7 @@ import { useDataStore } from "@/store/data";
 import { watch } from "vue";
 import SearchHistory from "./searchHistory";
 import { lockBodyScroll, unlockBodyScroll } from "@/utils/rollingLock";
-import QRCode from "qrcode";
+// import QRCode from "qrcode";
 import eventMitt, { MittEventName } from "@/utils/mittEvent";
 import toast from "@/utils/toast";
 
@@ -298,7 +298,7 @@ class LoginDialog {
 		this.dialogContent = document.querySelector(".login-dialog-content");
 		this.articleBtn = document.querySelector(".header-article-btn.login");
 		//二维码
-		this.createQrCode();
+		// this.createQrCode();
 		//绑定事件
 		this.loginBtn.addEventListener("click", this.onClickLogin.bind(this));
 		this.closeBtn && this.closeBtn.addEventListener("click", this.onClickClose.bind(this));
@@ -314,15 +314,15 @@ class LoginDialog {
 	}
 
 	/** 生成二维码并丢入html中 */
-	private createQrCode() {
-		QRCode.toDataURL("https://s1.ax1x.com/2023/03/17/ppGkaMd.png", { margin: 1 })
-			.then((url) => {
-				this.qrCodeImg?.setAttribute("src", url);
-			})
-			.catch((error) => {
-				console.error("二维码生成失败", error);
-			});
-	}
+	// private createQrCode() {
+	// 	QRCode.toDataURL("https://s1.ax1x.com/2023/03/17/ppGkaMd.png", { margin: 1 })
+	// 		.then((url) => {
+	// 			this.qrCodeImg?.setAttribute("src", url);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error("二维码生成失败", error);
+	// 		});
+	// }
 
 	/** 登录按钮点击事件 */
 	private onClickLogin() {
