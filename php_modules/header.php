@@ -178,7 +178,7 @@
         <div class="login-dialog-body-right">
           <div class="login-dialog-qrcode-title">扫码登录</div>
           <div class="login-dialog-qrcode">
-            <img class="login-dialog-qrcode-img" src="" alt="扫码登录">
+            <img class="login-dialog-qrcode-img" src="<?php $this->options->themeUrl('/static/images/login/login_dialog_qrcode.png');?>" alt="扫码登录">
           </div>
           <div class="login-dialog-qrcode-tips">请使用手机扫码登录</div>
         </div>

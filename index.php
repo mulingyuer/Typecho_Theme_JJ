@@ -6,7 +6,7 @@
  *
  * @package JJ
  * @author 木灵鱼儿
- * @version 2.2.3
+ * @version 2.2.4
  * @link https://www.mulingyuer.com
  */
 ?>
@@ -55,6 +55,8 @@
   <?php $this->need('./php_modules/fixed_tool.php');?>
   <?php //body标签底部插入代码 ?>
   <?php $this->options->bodyInsertCode();?>
+  <?php //typecho 插件挂接点 ?>
+  <?php $this->footer();?>
 </body>
 </html>
 <?php endif;?>
