@@ -54,6 +54,10 @@ export default defineConfig({
             text: "头像换源",
             link: "/basic-config/avatar",
           },
+          {
+            text: "资源更新",
+            link: "/basic-config/update",
+          },
         ],
       },
       {
@@ -117,3 +121,4 @@ export default defineConfig({
     ["script", { src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js" }],
   ],
 });
+

@@ -3,7 +3,7 @@
     "vitepress": "1.0.0-alpha.75"
   },
   "scripts": {
-    "docs:dev": "vitepress dev",
+    "docs:dev": "vitepress dev --host",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
   },
@@ -11,3 +11,4 @@
     "markdown-it-custom-attrs": "^1.0.2"
   }
 }
+
