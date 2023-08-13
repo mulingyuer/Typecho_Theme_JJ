@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-23 05:18:31
- * @LastEditTime: 2023-03-24 17:16:36
+ * @LastEditTime: 2023-08-13 13:04:30
  * @LastEditors: mulingyuer
  * @Description: 相关文章
- * @FilePath: \Typecho_Theme_JJ\src\modules\post\articles_related\index.ts
+ * @FilePath: /Typecho_Theme_JJ/src/modules/post/articles_related/index.ts
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
@@ -17,6 +17,8 @@ class ArticlesRelated {
 	private commentBtnClass = "comments";
 	/** 文章卡片类名 */
 	private listItemClass = "articles-related-list-item";
+	/** 黑名单className */
+	private blackClassList = ["author", "comments", "articles-related-list-item-tag"];
 
 	constructor() {
 		this.list && this.list.addEventListener("click", this.eventProxy);
@@ -25,6 +27,9 @@ class ArticlesRelated {
 	/** 事件代理 */
 	private eventProxy = (event: Event) => {
 		const target = event.target as HTMLElement;
+		//如果点击的元素是黑名单className则不执行
+		const isBlack = this.hasBlackClass(target);
+		if (isBlack) return;
 		const hasCommentBtn = this.hasClassName(target, this.commentBtnClass);
 		if (hasCommentBtn) return;
 		const articleCard = this.getClassNameElement(target, this.listItemClass);
@@ -53,6 +58,12 @@ class ArticlesRelated {
 		const parent = target.parentElement;
 		if (!parent) return null;
 		return this.getClassNameElement(parent, className);
+	}
+
+	/** 元素class是否存在黑名单中 */
+	private hasBlackClass(target: HTMLElement): boolean {
+		const findIndex = Array.from(target.classList).findIndex((item) => this.blackClassList.includes(item));
+		return findIndex !== -1;
 	}
 }
 new ArticlesRelated();

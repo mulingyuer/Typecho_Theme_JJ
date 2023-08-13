@@ -18,6 +18,10 @@
         <i class="jj-icon jj-icon-eye-fill article-author-item-icon"></i>
         <span class="article-author-item-text">文章被阅读 <?php echo numFormatSeparator(articleViews($this)); ?></span>
       </div>
+      <div class="article-author-item">
+        <i class="jj-icon jj-icon-sync article-author-item-icon"></i>
+        <span class="article-author-item-text">最后更新 <?php echo date('y-m-d G:i:s', $this->modified); ?></span>
+      </div>
     </div>
   </div>
 </div>

@@ -3,22 +3,14 @@
     <div class="article-content-card-head" itemprop="author" itemscope itemtype="http://schema.org/Person">
       <h1 class="article-content-title"><?php $this->title()?></h1>
       <div class="article-content-author">
-        <a class="article-content-author-avatar" href="<?php $this->author->permalink();?>" target="_self" itemprop="url" title="<?php $this->author();?>">
-          <?php $this->author->gravatar(80);?>
-        </a>
-        <div class="article-content-author-info">
-          <div class="article-content-author-name" itemprop="name" rel="author"><?php $this->author();?></div>
-          <div class="article-content-author-other">
-            <time class="article-content-time" datetime="<?php $this->date('c');?>" itemprop="datePublished"><?php $this->date('Y年m月d日 H:i');?>&nbsp;&nbsp;</time>
-            <span class="article-content-views">·&nbsp;&nbsp;阅读 <?php echo articleViews($this); ?></span>
-            <?php if ($this->user->hasLogin()): ?>
-            <a class="article-content-edit-btn" href="<?php $this->options->adminUrl();?>write-<?php if ($this->is('post')): ?>post<?php else: ?>page<?php endif;?>.php?cid=<?php echo $this->cid; ?>" target="_self">编辑</a>
-            <?php endif;?>
-          </div>
-        </div>
-      </div>
-      <div class="article-content-end-time">
-        最后更新：<?php echo date('Y/m/d/ G:i:s', $this->modified); ?>
+        <a class="article-content-author-name"  href="<?php $this->author->permalink();?>" target="_self" itemprop="url" itemprop="name" rel="author"><?php $this->author();?></a>
+        <time class="article-content-time" datetime="<?php $this->date('c');?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i');?></time>
+        <span class="article-content-views">
+          <i class="jj-icon jj-icon-eye article-content-views-icon"></i><?php echo articleViews($this); ?>
+        </span>
+        <?php if ($this->user->hasLogin()): ?>
+        <a class="article-content-edit-btn" href="<?php $this->options->adminUrl();?>write-<?php if ($this->is('post')): ?>post<?php else: ?>page<?php endif;?>.php?cid=<?php echo $this->cid; ?>" target="_self">编辑</a>
+        <?php endif;?>
       </div>
     </div>
     <div class="article-content-card-body">

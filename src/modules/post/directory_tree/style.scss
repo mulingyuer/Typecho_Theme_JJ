@@ -21,7 +21,7 @@
 }
 .directory-tree-body {
 	// max-height: 460px;
-	min-height: 100px;
+	min-height: 38px;
 	max-height: calc(100vh - 234px);
 	overflow: auto;
 	margin-right: 4px;
@@ -61,11 +61,19 @@
 		> .directory-tree-list-item-link-wrapper {
 			padding-left: 26px;
 		}
+		> .directory-tree-list-item-link-wrapper .directory-tree-list-item-link {
+			padding-top: 2px;
+			padding-bottom: 2px;
+		}
 	}
 	&.depth-3 {
-		color: var(var(--jj-directory-tree-item3));
+		color: var(--jj-directory-tree-item3);
 		> .directory-tree-list-item-link-wrapper {
 			padding-left: 41px;
+		}
+		> .directory-tree-list-item-link-wrapper .directory-tree-list-item-link {
+			padding-top: 2px;
+			padding-bottom: 2px;
 		}
 	}
 }
@@ -98,7 +106,7 @@
 	display: block;
 	text-decoration: none;
 	color: inherit;
-	padding: 11px 8px;
+	padding: 4px 8px;
 	border-radius: 4px;
 	margin-right: 8px;
 	@include one-line();
