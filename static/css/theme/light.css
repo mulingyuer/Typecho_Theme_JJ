@@ -104,11 +104,14 @@
 	--jj-article-card-head-color: #8a919f;
 	--jj-article-card-head-border: #e5e6eb;
 	--jj-article-card-user-color: #515767;
-	--jj-article-card-tag-color-hover: #1e80ff;
+	--jj-article-card-category-color-hover: #1e80ff;
 	--jj-article-card-title-color: #252933;
 	--jj-article-card-desc-color: #8a919f;
 	--jj-article-card-footer-color: #8a919f;
 	--jj-article-card-footer-color-hover: #1e80ff;
+	--jj-article-card-tag-color: #8a919f;
+	--jj-article-card-tag-color-hover: #1171ee;
+	--jj-article-card-tag-bg: #f2f3f5;
 
 	/* article-pagination */
 	--jj-article-pagination-bg: #fff;
@@ -198,10 +201,9 @@
 
 	/* article-content */
 	--jj-article-content-title: #252933;
+	--jj-article-content-author-color: #8a919f;
 	--jj-article-content-author-name: #515767;
-	--jj-article-content-author-other: #8a919f;
 	--jj-article-content-edit-btn: #1e80ff;
-	--jj-article-content-end-time: #8a919f;
 
 	/* article-author */
 	--jj-article-author-bg: #fff;
@@ -339,4 +341,15 @@
 	--jj-next-article-title-border: #e4e6eb;
 	--jj-next-article-link: #515767;
 	--jj-next-article-link-hover: #007fff;
+
+	/* docsearch */
+	--jj-docsearch-primary-color: #2e89ff;
+
+	/* articles_related */
+	--jj-articles-related-list-item-footer: #515767;
+	--jj-articles-related-list-item-other-hover: #1171ee;
+	--jj-articles-related-list-item-other-border: #e4e6eb;
+	--jj-articles-related-list-item-tag-color: #8a919f;
+	--jj-articles-related-list-item-tag-color-hover: #1171ee;
+	--jj-articles-related-list-item-tag-bg: #f2f3f5;
 }

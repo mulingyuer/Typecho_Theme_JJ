@@ -272,13 +272,13 @@ function secondaryAllActive($that, $category, $children) {
 function timeFormatting($time) {
     if ($time == 'no') {return;}
     $chunks = array(
-        array(31536000, ' 年'),
-        array(2592000, ' 个月'),
-        array(604800, ' 周'),
-        array(86400, ' 天'),
-        array(3600, ' 小时'),
-        array(60, ' 分钟'),
-        array(1, ' 秒'),
+        array(31536000, '年'),
+        array(2592000, '月'),
+        array(604800, '周'),
+        array(86400, '天'),
+        array(3600, '小时'),
+        array(60, '分钟'),
+        array(1, '秒'),
     );
     $newer_date = time();
     $since      = abs($newer_date - $time);
@@ -711,7 +711,7 @@ function generateTreeList($list, $depth = 6) {
         if ($item['depth'] == $depth) {
             $parentIndex = $i - 1;
             while ($parentIndex >= 0) {
-                $parent =  &$list[$parentIndex];
+                $parent = &$list[$parentIndex];
                 if ($parent['depth'] < $depth) {
                     break;
                 }
