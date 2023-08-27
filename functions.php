@@ -56,6 +56,7 @@ function themeConfig($form) {
             'nico'            => _t('nico'),
             'devui-blue'      => _t('devui-blue'),
             'hydrogen'        => _t('hydrogen'),
+            'serene-rose'     => _t('serene-rose'),
         ),
         'juejin', _t('默认文章和独立页主题'), _t('默认使用掘金主题，非默认选项时优先级大于文章和独立页的默认值')
     );
@@ -531,6 +532,7 @@ if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php' || $_SERVER['SCRIPT_NAME'
             'nico'            => _t('nico'),
             'devui-blue'      => _t('devui-blue'),
             'hydrogen'        => _t('hydrogen'),
+            'serene-rose'     => _t('serene-rose'),
         ), 'juejin', _t('文章主题'), _t('默认使用掘金主题'));
         $layout->addItem($markdownTheme);
     }

@@ -66,7 +66,12 @@
 	border: 0.5px solid rgba(128, 128, 128, 0.4);
 	margin: 15px 0;
 }
-
+.markdown-body input[type="radio"],
+.markdown-body input[type="checkbox"],
+.markdown-body input[type="radio"] + label,
+.markdown-body input[type="checkbox"] + label {
+	vertical-align: baseline;
+}
 @media screen and (max-width: 600px) {
 	.markdown-body iframe {
 		height: 110vw;

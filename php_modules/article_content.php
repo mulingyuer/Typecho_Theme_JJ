@@ -32,8 +32,10 @@ $content = $this->content;
 //a链接增加_blank
 $content = preg_replace('/<a href=\"(.*?)\">(.*?)<\/a>/sm', '<a href="$1" target="_blank">$2</a>', $content);
 //todo
-$content = preg_replace('/\[x\]/sm', '<i class="jj-icon jj-icon-check-square todo"></i> ', $content);
-$content = preg_replace('/\[\s\]/sm', '<i class="jj-icon jj-icon-border todo"></i> ', $content);
+// $content = preg_replace('/\[x\]/sm', '<i class="jj-icon jj-icon-check-square todo"></i> ', $content);
+// $content = preg_replace('/\[\s\]/sm', '<i class="jj-icon jj-icon-border todo"></i> ', $content);
+$content = preg_replace('/\[x\]/sm', '<input type="checkbox" checked disabled/>', $content);
+$content = preg_replace('/\[\s\]/sm', '<input type="checkbox" disabled/>', $content);
 //回复可见
 if ($this->user->hasLogin() || $result) {
     $content = preg_replace("/\[hide\](<br>)?(.*?)\[\/hide\]/sm", '$2', $content);
