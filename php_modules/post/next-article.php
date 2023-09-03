@@ -9,7 +9,7 @@ if ($next):
 $title = $match[2][0];
 $href  = $match[1][0];
 $text  = $match[3][0];?>
-  <div class="next-article">
+  <div class="next-article immersion-hide">
     <div class="next-article-content">
       <div class="next-article-head">
         <h3 class="next-article-title">下一篇</h3>
