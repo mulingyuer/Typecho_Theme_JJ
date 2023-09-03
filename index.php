@@ -6,7 +6,7 @@
  *
  * @package JJ
  * @author 木灵鱼儿
- * @version 2.2.7
+ * @version 2.2.8
  * @link https://www.mulingyuer.com
  */
 ?>
