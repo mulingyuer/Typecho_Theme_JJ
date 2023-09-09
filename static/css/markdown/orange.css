@@ -105,6 +105,9 @@
 	background-size: 40px;
 	background-color: #fdfdfd;
 }
+.code-block-header {
+	background-color: #fdfdfd;
+}
 .markdown-body pre > code {
 	font-size: 12px;
 	padding: 15px 12px;
