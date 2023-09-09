@@ -191,6 +191,7 @@
 }
 .markdown-body pre {
 	margin: 2em 0;
+	box-shadow: 0 0 10px #e7daff;
 }
 .markdown-body pre > code {
 	display: block;
@@ -204,9 +205,8 @@
 	color: #383838;
 	border-radius: 2px;
 	scroll-behavior: smooth;
-	box-shadow: 0 0 10px #e7daff;
 }
-.markdown-body pre > code:hover {
+.markdown-body pre:hover {
 	box-shadow: 0 0 20px #e7daff;
 }
 .markdown-body pre > code::-webkit-scrollbar {
