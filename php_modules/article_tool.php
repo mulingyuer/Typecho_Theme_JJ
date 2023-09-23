@@ -17,15 +17,15 @@
             <div class="article-tool-wx-qrcode-info">微信扫码分享</div>
           </div>
         </div>
-        <a class="article-tool-share-item" href="https://connect.qq.com/widget/shareqq/index.html?url=<?php seoUrl($this);?>&title=<?php echo urlencode($this->title()); ?>&pics=<?php echo seoImage($this); ?>&summary=<?php echo getArticleSummary($this); ?>&site=<?php echo urlencode($this->options->title); ?>" target="_blank" title="QQ分享">
+        <a class="article-tool-share-item" href="https://connect.qq.com/widget/shareqq/index.html?url=<?php seoUrl($this);?>&title=<?php echo urlencode($this->title); ?>&pics=<?php echo seoImage($this); ?>&summary=<?php echo getArticleSummary($this); ?>&site=<?php echo urlencode($this->options->title); ?>" target="_blank" title="QQ分享">
           <i class="jj-icon jj-icon-QQ article-tool-share-item-icon"></i>
           <div class="article-tool-share-item-title">QQ</div>
         </a>
-        <a class="article-tool-share-item" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?php seoUrl($this);?>&title=<?php echo urlencode($this->title()); ?>&desc=<?php echo getArticleSummary($this); ?>&summary=&site=<?php $this->options->title();?>" target="_blank" title="QQ空间分享">
+        <a class="article-tool-share-item" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?php seoUrl($this);?>&title=<?php echo urlencode($this->title); ?>&desc=<?php echo getArticleSummary($this); ?>&summary=&site=<?php $this->options->title();?>" target="_blank" title="QQ空间分享">
           <i class="jj-icon jj-icon-qqkongjian article-tool-share-item-icon"></i>
           <div class="article-tool-share-item-title">QQ空间</div>
         </a>
-        <a class="article-tool-share-item" href="https://service.weibo.com/share/share.php?url=<?php seoUrl($this);?>&title=%E3%80%90<?php echo urlencode($this->title()); ?>%E3%80%91<?php echo getArticleSummary($this); ?>&appkey=&pic=<?php seoUrl($this);?>&searchPic=true" target="_blank" title="新浪微博">
+        <a class="article-tool-share-item" href="https://service.weibo.com/share/share.php?url=<?php seoUrl($this);?>&title=%E3%80%90<?php echo urlencode($this->title); ?>%E3%80%91<?php echo getArticleSummary($this); ?>&appkey=&pic=<?php seoUrl($this);?>&searchPic=true" target="_blank" title="新浪微博">
           <i class="jj-icon jj-icon-weibo article-tool-share-item-icon"></i>
           <div class="article-tool-share-item-title">新浪微博</div>
         </a>

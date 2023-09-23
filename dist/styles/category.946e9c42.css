@@ -1,0 +1,59 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.8.1_webpack@5.88.2/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.3.3_postcss@8.4.29_webpack@5.88.2/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.3.2_sass@1.66.1_webpack@5.88.2/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/pages/category/style.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@keyframes article-skeleton-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 480px 0;
+  }
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/registry.npmmirror.com+css-loader@6.8.1_webpack@5.88.2/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/.pnpm/registry.npmmirror.com+postcss-loader@7.3.3_postcss@8.4.29_webpack@5.88.2/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/registry.npmmirror.com+sass-loader@13.3.2_sass@1.66.1_webpack@5.88.2/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/modules/category/tips/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@keyframes article-skeleton-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 480px 0;
+  }
+}
+.category-tips {
+  background-color: var(--jj-article-nav-bg);
+  border-bottom: 1px solid var(--jj-article-nav-border);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.category-tips-content {
+  padding: 12px 20px;
+}
+
+.category-tips-title {
+  font-size: 14px;
+  color: var(--jj-category-tips-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.category-tips-title strong {
+  font-size: 16px;
+  color: var(--jj-category-tips-strong-color);
+}
+
+@media screen and (max-width: 640px) {
+  .category-tips {
+    border: none;
+    margin-bottom: 10px;
+  }
+  .category-tips-content {
+    padding: 12px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .category-tips {
+    margin-bottom: 8px;
+  }
+}
