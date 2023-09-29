@@ -315,7 +315,7 @@ function articleThumbnail($that) {
         return $that->fields->thumb;
     } elseif (preg_match_all($pattern, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
         return $thumbUrl[1][0];
-    } elseif ($attach->isImage) {
+    } elseif ($attach && $attach->isImage) {
         return $attach->url;
     } else {
         return '';
@@ -726,8 +726,8 @@ function generateTreeList($list, $depth = 6) {
                 break;
             }
 
-            if ( ! is_array($parent['children'])) {
-                $parent['children'] = array();
+            if ( ! isset($parent['children'])) {
+                $parent['children'] = [];
             }
 
             array_unshift($parent['children'], $item);

@@ -56,7 +56,7 @@
           <?php endif;?>
         </div>
         <?php if ($this->user->hasLogin()): ?>
-        <a class="header-comment" href="<?php echo getHidePage($page, 'notification'); ?>" target="_self" title="评论列表">
+        <a class="header-comment" href="<?php echo getHidePage($pages, 'notification'); ?>" target="_self" title="评论列表">
           <i class="jj-icon jj-icon-tongzhixiaoxi header-comment-icon"></i>
         </a>
         <?php endif;?>
