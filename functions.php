@@ -726,8 +726,8 @@ function generateTreeList($list, $depth = 6) {
                 break;
             }
 
-            if ( ! is_array($parent['children'])) {
-                $parent['children'] = array();
+            if ( ! isset($parent['children'])) {
+                $parent['children'] = [];
             }
 
             array_unshift($parent['children'], $item);
