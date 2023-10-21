@@ -7,7 +7,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "webpack --config=./webpack/webpack.dev.ts",
-		"build": "webpack --config=./webpack/webpack.prod.ts && bumpp --no-commit --no-tag --no-push",
+		"build": "webpack --config=./webpack/webpack.prod.ts && bumpp --no-commit --no-tag --no-push && ts-node buildCommand/updateVersion.ts",
 		"analyze": "webpack --config=./webpack/webpack.prod.ts --analyze",
 		"git:commit-all": "git add . && git cz",
 		"git:commit-index": "git cz",
