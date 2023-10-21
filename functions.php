@@ -727,7 +727,7 @@ function generateTreeList($list, $depth = 6) {
             }
 
             if ( ! isset($parent['children'])) {
-                $parent['children'] = [];
+                $parent['children'] = array();
             }
 
             array_unshift($parent['children'], $item);
@@ -830,44 +830,31 @@ function viewsCounter($widget, $field = 'views') {
  * @Author: mulingyuer
  */
 function getBrowser($agent) {
+    $outputer = '';
+    $version  = '';
+
     if (preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
         $outputer = 'Internet Explore';
     } elseif (preg_match('/FireFox\/([^\s]+)/i', $agent, $regs)) {
-        $str1         = explode('Firefox/', $regs[0]);
-        $FireFox_vern = explode('.', $str1[1]);
-        $outputer     = 'FireFox';
+        $outputer = 'FireFox';
     } elseif (preg_match('/Maxthon([\d]*)\/([^\s]+)/i', $agent, $regs)) {
-        $str1         = explode('Maxthon/', $agent);
-        $Maxthon_vern = explode('.', $str1[1]);
-        $outputer     = 'MicroSoft Edge';
+        $outputer = 'MicroSoft Edge';
     } elseif (preg_match('#360([a-zA-Z0-9.]+)#i', $agent, $regs)) {
         $outputer = '360 Fast Browser';
     } elseif (preg_match('/Edge([\d]*)\/([^\s]+)/i', $agent, $regs)) {
-        $str1      = explode('Edge/', $regs[0]);
-        $Edge_vern = explode('.', $str1[1]);
-        $outputer  = 'MicroSoft Edge';
+        $outputer = 'MicroSoft Edge';
     } elseif (preg_match('/UC/i', $agent)) {
-        $str1           = explode('rowser/', $agent);
-        $UCBrowser_vern = explode('.', $str1[1]);
-        $outputer       = 'UC Browser';
+        $outputer = 'UC Browser';
     } elseif (preg_match('/QQ/i', $agent, $regs) || preg_match('/QQ Browser\/([^\s]+)/i', $agent, $regs)) {
-        $str1     = explode('rowser/', $agent);
-        $QQ_vern  = explode('.', $str1[1]);
         $outputer = 'QQ Browser';
     } elseif (preg_match('/UBrowser/i', $agent, $regs)) {
-        $str1           = explode('rowser/', $agent);
-        $UCBrowser_vern = explode('.', $str1[1]);
-        $outputer       = 'UC Browser';
+        $outputer = 'UC Browser';
     } elseif (preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
         $outputer = 'Opera';
     } elseif (preg_match('/Chrome([\d]*)\/([^\s]+)/i', $agent, $regs)) {
-        $str1        = explode('Chrome/', $agent);
-        $chrome_vern = explode('.', $str1[1]);
-        $outputer    = 'Google Chrome';
+        $outputer = 'Google Chrome';
     } elseif (preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
-        $str1        = explode('Version/', $agent);
-        $safari_vern = explode('.', $str1[1]);
-        $outputer    = 'Safari';
+        $outputer = 'Safari';
     } else {
         $outputer = 'Google Chrome';
     }
