@@ -1,9 +1,9 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 23:34:05
- * @LastEditTime: 2023-07-09 14:19:52
+ * @LastEditTime: 2023-11-19 19:12:02
  * @LastEditors: mulingyuer
- * @Description:
+ * @Description: post
  * @FilePath: /Typecho_Theme_JJ/src/pages/post/index.ts
  * 怎么可能会有bug！！！
  */
@@ -18,6 +18,7 @@ import "@/modules/comment";
 import "@/modules/post/articles_related";
 import "@/modules/article_tool";
 import "@/modules/post/next_article";
+import "@/modules/post/mobile_directory_tree";
 import emitter, { MittEventName } from "@/utils/mittEvent";
 
 class PostRightSticky {

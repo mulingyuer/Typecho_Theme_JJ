@@ -51,6 +51,20 @@
 		display: flex;
 	}
 }
+// 暂时隐藏主题切换
+.fixed-tool-item.theme-switch {
+	display: none;
+}
+// 移动端目录树
+.fixed-tool-item.mobile-directory-tree-toggle {
+	display: none;
+}
+
+@media screen and (max-width: 1000px) {
+	.fixed-tool-item.mobile-directory-tree-toggle {
+		display: flex;
+	}
+}
 @media screen and (max-width: 480px) {
 	.fixed-tool {
 		right: 12px;
