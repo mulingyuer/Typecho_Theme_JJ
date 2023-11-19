@@ -9,7 +9,7 @@ Typecho 主题-《高仿掘金》
 [《主题使用指南》](https://mulingyuer.github.io/Typecho_Theme_JJ/)
 
 ## 主题功能
- 
+
 1. webpack5 + typescript 重构主题
 2. 支持 Typecho 1.2
 3. 模块化项目结构
@@ -28,7 +28,8 @@ Typecho 主题-《高仿掘金》
 16. 有彩蛋哦
 17. 高保真掘金目录树
 18. 支持 docsearch（需要自己申请 apiKey）
-19. 还有很多变化需细细品味
+19. 新增移动端目录树功能
+20. 还有很多变化需细细品味
 
 ## 主题预览
 
@@ -51,6 +52,8 @@ Typecho 主题-《高仿掘金》
 [![pPckPyQ.png](https://s1.ax1x.com/2023/09/09/pPckPyQ.png)](https://imgse.com/i/pPckPyQ)
 
 [![pPck9SS.png](https://s1.ax1x.com/2023/09/09/pPck9SS.png)](https://imgse.com/i/pPck9SS)
+
+[![piUlpeU.jpg](https://z1.ax1x.com/2023/11/20/piUlpeU.jpg)](https://imgse.com/i/piUlpeU)
 
 ## 相关插件
 
