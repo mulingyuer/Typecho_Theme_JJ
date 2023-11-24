@@ -235,6 +235,13 @@
 	--jj-directory-tree-list-item-link-bg-hover: #f2f3f5;
 	--jj-directory-tree-list-empty: #8a919f;
 
+	/* mobile_directory_tree */
+	--jj-mobile-directory-tree-mask-bg: rgba(0, 0, 0, 0.3);
+	--jj-mobile-directory-tree-close-icon: #000;
+	--jj-mobile-directory-tree-head-border: #e4e6eb;
+	--jj-mobile-directory-tree-title: #000;
+	--jj-mobile-directory-tree-content-bg: #fff;
+
 	/* comment */
 	--jj-comment-bg: #fff;
 	--jj-comment-title: #252933;
