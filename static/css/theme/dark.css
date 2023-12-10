@@ -95,7 +95,7 @@
 	--jj-article-nav-item-color: #515767;
 	--jj-article-nav-item-color-hover: #007fff;
 	--jj-article-nav-item-color-active: #252933;
-	--jj-article-nav-item-before-bg: #1e80ff;
+	--jj-article-nav-line-bg: #1e80ff;
 
 	/* article-card */
 	--jj-article-card-bg: #fff;
@@ -106,6 +106,8 @@
 	--jj-article-card-user-color: #515767;
 	--jj-article-card-category-color-hover: #1e80ff;
 	--jj-article-card-title-color: #252933;
+	--jj-article-card-sticky-tag-color: #fff;
+	--jj-article-card-sticky-tag-bg: #1e80ff;
 	--jj-article-card-desc-color: #8a919f;
 	--jj-article-card-footer-color: #8a919f;
 	--jj-article-card-footer-color-hover: #1e80ff;

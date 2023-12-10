@@ -13,7 +13,7 @@
     </div>
     <div class="article-card-body">
       <div class="article-card-main">
-        <h2 class="article-card-title" itemprop="name headline"><?php $this->title()?></h2>
+        <h2 class="article-card-title" itemprop="name headline"><?php $this->sticky();?><?php $this->title();?></h2>
         <p class="article-card-desc" itemprop="articleBody"><?php $this->excerpt(300);?></p>
         <div class="article-card-footer" >
           <div class="article-card-footer-left" itemprop="interactionCount">
