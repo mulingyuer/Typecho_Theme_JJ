@@ -38,6 +38,25 @@ function themeConfig($form) {
     );
     $form->addInput($filing);
 
+    // 文章置顶
+    $stickyCidList = new \Typecho\Widget\Helper\Form\Element\Text(
+        'stickyCidList',
+        null,
+        '',
+        _t('置顶文章cid列表'),
+        _t('请用英文逗号 , 分隔文章cid')
+    );
+    $form->addInput($stickyCidList);
+    // 文章置顶标题高亮tag
+    $stickyCidTag = new \Typecho\Widget\Helper\Form\Element\Text(
+        'stickyCidTag',
+        null,
+        '<span class="article-card-sticky-tag">置顶</span>',
+        _t('置顶文章标题前面加的tag'),
+        _t('请使用html标签')
+    );
+    $form->addInput($stickyCidTag);
+
     $defaultMarkdownTheme = new \Typecho\Widget\Helper\Form\Element\Select(
         'defaultMarkdownTheme',
         array(
@@ -78,7 +97,7 @@ function themeConfig($form) {
             'chrome' => _t('谷歌浏览器小恐龙'),
             'juejin' => _t('掘金404'),
         ),
-        'chrome', _t('404页面类型'), _t('默认使用谷歌浏览器小恐龙')
+        'juejin', _t('404页面类型'), _t('默认使用掘金404')
     );
     $form->addInput($errorType);
 
@@ -103,7 +122,7 @@ function themeConfig($form) {
 
     $docSearchAppId = new \Typecho\Widget\Helper\Form\Element\Text(
         'docSearchAppId',
-        NULL,
+        null,
         '',
         _t('DocSearch AppId'),
         _t('默认为空')
@@ -112,7 +131,7 @@ function themeConfig($form) {
 
     $docSearchApiKey = new \Typecho\Widget\Helper\Form\Element\Text(
         'docSearchApiKey',
-        NULL,
+        null,
         '',
         _t('DocSearch ApiKey'),
         _t('默认为空')
@@ -121,7 +140,7 @@ function themeConfig($form) {
 
     $docSearchIndexName = new \Typecho\Widget\Helper\Form\Element\Text(
         'docSearchIndexName',
-        NULL,
+        null,
         '',
         _t('DocSearch IndexName'),
         _t('默认为空')
@@ -305,15 +324,18 @@ function timeFormatting($time) {
  * @Author: mulingyuer
  */
 function articleThumbnail($that) {
-    $attach  = $that->attachments(1)->attachment;
-    $pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
+    $attach   = $that->attachments(1)->attachment;
+    $pattern1 = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
+    $pattern2 = '/\!\[.*?\]\((.*?)\)/i';
 
     //如果有自定义缩略图
     if ($that->fields->titleImg) {
         return $that->fields->titleImg;
     } elseif ($that->fields->thumb) {
         return $that->fields->thumb;
-    } elseif (preg_match_all($pattern, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
+    } elseif (preg_match_all($pattern1, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
+        return $thumbUrl[1][0];
+    } elseif (preg_match_all($pattern2, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
         return $thumbUrl[1][0];
     } elseif ($attach && $attach->isImage) {
         return $attach->url;
@@ -1084,13 +1106,94 @@ function numUnitConversion($val) {
     return $num;
 }
 
+/**
+ * 通过反射获取内部变量
+ *
+ * @param mixed $object
+ * @param string $name
+ * @return mixed
+ * @throws ReflectionException
+ */
+function reflectGetValue($object, $name) {
+    $reflect  = new ReflectionClass($object);
+    $property = $reflect->getProperty($name);
+    $property->setAccessible(true);
+    return $property->getValue($object);
+}
+
+/**
+ * 通过反射设置私有成员
+ * @param $object
+ * @param $name
+ * @param $value
+ */
+function reflectSetValue($object, $name, $value) {
+    try {
+        $reflect  = new ReflectionClass($object);
+        $property = $reflect->getProperty($name);
+        $property->setAccessible(true);
+        $property->setValue($object, $value);
+    } catch (ReflectionException $e) {
+    }
+}
+
+/** 设置置顶文章 */
+function pushStickyArticles($archive) {
+    // 是否配置了cid
+    $cidStr = Helper::options()->stickyCidList;
+    if (empty($cidStr) || is_null($cidStr)) {
+        return;
+    }
+
+    $cidList = explode(',', str_replace(' ', '', $cidStr));
+    if (empty($cidList)) {
+        return;
+    }
+
+    // 是否是第一页
+    $currentPage = $archive->getCurrentPage();
+    if ($currentPage !== 1) {
+        return;
+    }
+
+    $stack    = reflectGetValue($archive, 'stack');
+    $articles = array();
+
+    reflectSetValue($archive, 'stack', array());
+    reflectSetValue($archive, 'row', array());
+    reflectSetValue($archive, 'length', 0);
+
+    // 开始获取文章
+    $db           = Typecho_Db::get();
+    $stickyCidTag = Helper::options()->stickyCidTag;
+    $showTag      =  ! empty($cidStr) && ! is_null($cidStr);
+    foreach ($cidList as $cid) {
+        $cidArticle = $db->fetchRow($archive->select()->where('cid = ?', $cid));
+        if (empty($cidArticle)) {
+            return;
+        }
+        // 添加tag
+        if ($showTag) {
+            $cidArticle['sticky'] = $stickyCidTag;
+        }
+        $articles[] = $cidArticle;
+    }
+
+    $stack = array_merge($articles, $stack);
+
+    if (count($stack)) {
+        foreach ($stack as $post) {
+            $archive->push($post);
+        }
+    }
+}
+
 //主题themeInit函数
 function themeInit($archive) {
     //评论回复楼层最高999层.这个正常设置最高只有7层
     Helper::options()->commentsMaxNestingLevels = 999;
     //自动增加浏览次数
     if ($archive->is('single') || $archive->is('page')) {viewsCounter($archive);}
-    ;
     //目录树
     if ($archive->is('single')) {
         $archive->content = addAnchorPoint($archive->content);
@@ -1110,4 +1213,8 @@ function themeInit($archive) {
         }
     }
 
+    // 文章置顶
+    if ($archive->is('index')) {
+        pushStickyArticles($archive);
+    }
 }
