@@ -279,6 +279,9 @@
 	--jj-comment-list-item-reply: #8a919f;
 	--jj-comment-list-item-bg: rgba(247, 248, 250, 0.7);
 
+	/** comment-list-empty */
+	--jj-comment-list-empty-text-color: #8a919f;
+
 	/* comment-pagination */
 	--jj-comment-pagination-a: #8a919f;
 	--jj-comment-pagination-a-hover: #fff;

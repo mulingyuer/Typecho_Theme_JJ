@@ -185,6 +185,24 @@
 	}
 }
 
+/** 列表空占位 */
+.comment-list-empty {
+	margin-top: 32px;
+	text-align: center;
+	padding-bottom: 40px;
+}
+.comment-list-empty-img {
+	width: 180px;
+	height: 180px;
+	vertical-align: top;
+}
+.comment-list-empty-text {
+	margin-top: 8px;
+	font-size: 16px;
+	line-height: 1.75;
+	color: var(--jj-comment-list-empty-text-color);
+}
+
 @media screen and (max-width: 480px) {
 	.comment-list-item {
 		padding: 12px 0;
@@ -218,5 +236,10 @@
 			height: 30px;
 			line-height: 30px;
 		}
+	}
+
+	.comment-list-empty {
+		margin-top: 25px;
+		padding-bottom: 30px;
 	}
 }
