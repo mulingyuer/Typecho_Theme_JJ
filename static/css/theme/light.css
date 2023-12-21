@@ -169,6 +169,11 @@
 	--jj-recent-comments-management-btn-color: #1e80ff;
 	--jj-recent-comments-management-btn-color-hover: #1171ee;
 
+	/** recommended_article */
+	--jj-recommended-article-item-tag-bg: rgba(0, 0, 0, 0.2);
+	--jj-recommended-article-item-tag-color: #fff;
+	--jj-recommended-article-item-tag-border: #fff;
+
 	/* theme-tool */
 	--jj-theme-tool-bg: #fff;
 	--jj-theme-tool-item-bg-hover: rgba(216, 216, 216, 0.1);

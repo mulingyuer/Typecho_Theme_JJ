@@ -34,11 +34,11 @@
 	height: 22px;
 	line-height: 22px;
 	font-size: 12px;
-	color: #fff;
+	color: var(--jj-recommended-article-item-tag-color);
 	padding: 0 8px;
-	border: 1px solid #fff;
+	border: 1px solid var(--jj-recommended-article-item-tag-border);
 	border-radius: 6px;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: var(--jj-recommended-article-item-tag-bg);
 	transform: scale(0.8);
 	transform-origin: right bottom;
 }
