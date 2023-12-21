@@ -57,6 +57,25 @@ function themeConfig($form) {
     );
     $form->addInput($stickyCidTag);
 
+    // 首页右侧推荐文章cid列表
+    $homeRecommendedArticleCidList = new \Typecho\Widget\Helper\Form\Element\Text(
+        'homeRecommendedArticleCidList',
+        null,
+        '',
+        _t('首页右侧推荐文章cid列表'),
+        _t('请用英文逗号 , 分隔文章cid，最大3篇，务必配置好文章自定义缩略图字段！！！')
+    );
+    $form->addInput($homeRecommendedArticleCidList);
+    // 首页右侧推荐文章tag
+    $homeRecommendedArticleTag = new \Typecho\Widget\Helper\Form\Element\Text(
+        'homeRecommendedArticleTag',
+        null,
+        '推荐',
+        _t('首页右侧推荐文章tag文字'),
+        _t('推荐2个文字'),
+    );
+    $form->addInput($homeRecommendedArticleTag);
+
     $defaultMarkdownTheme = new \Typecho\Widget\Helper\Form\Element\Select(
         'defaultMarkdownTheme',
         array(
@@ -1186,6 +1205,42 @@ function pushStickyArticles($archive) {
             $archive->push($post);
         }
     }
+}
+
+/** 获取首页右侧推荐文章列表 */
+function getHomeRecommendedArticleList() {
+    // 文章数组
+    $articles = array();
+
+    // 是否配置了cid
+    $cidStr = Helper::options()->homeRecommendedArticleCidList;
+    if (empty($cidStr) || is_null($cidStr)) {
+        return $articles;
+    }
+
+    // 只取前三个
+    $cidList = explode(',', str_replace(' ', '', $cidStr));
+    if (empty($cidList)) {
+        return $articles;
+    }
+    $cidList = array_slice($cidList, 0, 3);
+
+    // 开始获取文章
+    foreach ($cidList as $cid) {
+        $cidArticle = Helper::widgetById('Contents', $cid);
+        if (empty($cidArticle)) {
+            return;
+        }
+        $articles[] = array(
+            'cid'       => $cidArticle->cid,
+            'title'     => $cidArticle->title,
+            'permalink' => $cidArticle->permalink,
+            'date'      => $cidArticle->created,
+            'thumb'     => $cidArticle->fields->thumb,
+        );
+    }
+
+    return $articles;
 }
 
 //主题themeInit函数

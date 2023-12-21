@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:07:38
- * @LastEditTime: 2023-12-10 22:43:56
+ * @LastEditTime: 2023-12-21 21:01:36
  * @LastEditors: mulingyuer
  * @Description: index入口文件
  * @FilePath: /Typecho_Theme_JJ/src/pages/home/index.ts
@@ -15,5 +15,6 @@ import "@/modules/article_pagination";
 import "@/modules/article_skeleton";
 import "@/modules/article_empty";
 import "@/modules/home/recent_comments";
+import "@/modules/home/recommended_article";
 import "@/modules/home/theme_tool";
 import "@/modules/footer";
