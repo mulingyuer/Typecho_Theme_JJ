@@ -7,8 +7,7 @@
   <?php $this->need('./php_modules/notes.php');?>
 <head>
   <?php $this->need('./php_modules/default_head.php');?>
-  <link href="<?php $this->options->themeUrl('/static/css/markdown/base.css');?>" rel="stylesheet">
-  <link href="<?php $this->options->themeUrl('/static/css/markdown/'.getArticleTheme($this).'.css');?>" rel="stylesheet">
+  <?php $this->need('./php_modules/head/markdown_theme.php');?>
   <?php $this->need('./dist/head/page.php');?>
   <?php //head标签底部插入代码 ?>
   <?php $this->options->headInsertCode();?>

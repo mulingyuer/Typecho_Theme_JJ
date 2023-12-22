@@ -1,0 +1,292 @@
+@charset "UTF-8";
+.markdown-body {
+	word-break: break-word;
+	line-height: 1.75;
+	font-weight: 400;
+	font-size: 15px;
+	overflow-x: hidden;
+}
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	line-height: 1.5;
+	margin-top: 35px;
+	margin-bottom: 10px;
+	color: #3c9dff;
+}
+.markdown-body h1 {
+	font-size: 30px;
+	margin-bottom: 5px;
+	padding-bottom: 8px;
+	text-align: center;
+}
+.markdown-body h2 {
+	font-size: 24px;
+	padding-bottom: 6px;
+}
+.markdown-body h2:before {
+	content: "🍋";
+}
+.markdown-body h3 {
+	font-size: 18px;
+	padding-bottom: 0;
+}
+.markdown-body h3:before {
+	content: "🍓";
+}
+.markdown-body h4 {
+	font-size: 16px;
+}
+.markdown-body h4:before {
+	content: "🍑";
+}
+.markdown-body h5 {
+	font-size: 15px;
+}
+.markdown-body h5:before {
+	content: "🍉";
+}
+.markdown-body h6 {
+	margin-top: 5px;
+}
+.markdown-body h6:before {
+	content: "🍒";
+}
+.markdown-body p {
+	line-height: inherit;
+	margin-top: 22px;
+	margin-bottom: 22px;
+}
+.markdown-body img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	border-radius: 4px;
+	padding: 1px;
+	border: 1px solid #d2e8ff;
+}
+.markdown-body img:hover {
+	box-shadow: 0 1px 3px #5eaeff;
+}
+.markdown-body hr {
+	height: 4px;
+	margin: 34px 0;
+	background-size: 4px 1px;
+	background-image: linear-gradient(270deg, #5eaeff, #f3f9ff 25%, transparent 50%);
+	border-style: none;
+}
+.markdown-body code {
+	word-break: break-word;
+	border-radius: 3px;
+	overflow-x: auto;
+	background-color: #d2e8ff;
+	color: #3c9dff;
+	font-size: 0.9em;
+	padding: 0.1em 0.5em;
+	margin: 0 3px;
+}
+.markdown-body code,
+.markdown-body pre {
+	font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+	transition: all 0.3s;
+}
+.markdown-body pre {
+	overflow: auto;
+	position: relative;
+	line-height: 1.75;
+	border: 1px solid #90c7ff;
+	border-radius: 4px;
+}
+.markdown-body pre:hover {
+	box-shadow: 0 1px 10px #beddff;
+}
+.markdown-body pre > code {
+	font-size: 12px;
+	padding: 15px 12px;
+	margin: 0;
+	word-break: normal;
+	display: block;
+	overflow-x: auto;
+	color: #333;
+	background: #f8f8f8;
+}
+.markdown-body a {
+	text-decoration: none;
+	color: #3c9dff;
+	border-bottom: 1px solid #90c7ff;
+	transition: all 0.3s;
+}
+.markdown-body a:hover {
+	color: #007fff;
+	border-bottom: 2px solid #5eaeff;
+}
+.markdown-body a[href]:not(:empty) {
+	padding-right: 18px;
+}
+.markdown-body a[href]:not(:empty):after {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-left: 2px;
+	content: "";
+	background: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPjxwYXRoIGQ9Ik0zODQgMTI4YTQ4IDQ4IDAgMDEyLjgxNiA5NS45MkwzODQgMjI0SDI1NmEzMiAzMiAwIDAwLTMxLjkyIDI5LjZMMjI0IDI1NnY1MTJhMzIgMzIgMCAwMDI5LjYgMzEuOTJsMi40LjA4aDUxMmEzMiAzMiAwIDAwMzEuOTItMjkuNmwuMDgtMi40VjY1NmE0OCA0OCAwIDAxOTUuOTItMi44MTZMODk2IDY1NnYxMTJhMTI4IDEyOCAwIDAxLTEyNCAxMjcuOTM2bC00IC4wNjRIMjU2YTEyOCAxMjggMCAwMS0xMjcuOTM2LTEyNGwtLjA2NC00VjI1NmExMjggMTI4IDAgMDExMjQtMTI3LjkzNmw0LS4wNjRoMTI4em0zODQgMGExMjggMTI4IDAgMDExMjcuOTM2IDEyNGwuMDY0IDR2MTYwYTQ4IDQ4IDAgMDEtOTUuOTIgMi44MTZMODAwIDQxNlYyOTEuODcybC0zODIuMDY0IDM4Mi4wOGE0OCA0OCAwIDAxLTcwLjAzMi02NS42bDIuMTYtMi4yODhMNzMyLjA5NiAyMjRINjA4YTQ4IDQ4IDAgMDEtMi44MTYtOTUuOTJMNjA4IDEyOGgxNjB6IiBmaWxsPSIjM2M5ZGZmIiBmaWxsLW9wYWNpdHk9Ii41NiIgZGF0YS1zcG0tYW5jaG9yLWlkPSJhMzEzeC5zZWFyY2hfaW5kZXguMC5pMC41Yzc1M2E4MTgwa2RKWCIgY2xhc3M9InNlbGVjdGVkIi8+PC9zdmc+);
+	background-size: 100%;
+}
+.markdown-body table {
+	margin: 0 auto 10px;
+	font-size: 12px;
+	width: auto;
+	max-width: 100%;
+	overflow: auto;
+	border-collapse: collapse;
+	border: 1px solid #3c9dff;
+}
+.markdown-body thead {
+	text-align: center;
+}
+.markdown-body thead th {
+	color: #fff;
+	background-color: #5eaeff;
+}
+.markdown-body tr {
+	text-align: center;
+}
+.markdown-body tbody tr:hover {
+	background-color: #d2e8ff;
+}
+.markdown-body tbody tr:hover code {
+	background-color: #90c7ff;
+}
+.markdown-body tr:nth-child(2n) {
+	background-color: #ecf5ff;
+}
+.markdown-body td,
+.markdown-body th {
+	padding: 12px 7px;
+	line-height: 24px;
+}
+.markdown-body td {
+	min-width: 120px;
+}
+.markdown-body ol,
+.markdown-body ul {
+	padding-left: 28px;
+}
+.markdown-body ol li,
+.markdown-body ul li {
+	margin-bottom: 0;
+	list-style: inherit;
+}
+.markdown-body ol li::marker,
+.markdown-body ul li::marker {
+	color: #5eaeff;
+}
+.markdown-body ol li .task-list-item,
+.markdown-body ul li .task-list-item {
+	list-style: none;
+}
+.markdown-body ol li .task-list-item ol,
+.markdown-body ol li .task-list-item ul,
+.markdown-body ul li .task-list-item ol,
+.markdown-body ul li .task-list-item ul {
+	margin-top: 0;
+}
+.markdown-body ol ol,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ul ul {
+	margin-top: 3px;
+}
+.markdown-body ol li {
+	padding-left: 6px;
+}
+.markdown-body b,
+.markdown-body strong {
+	font-weight: 900;
+	padding: 0 1px;
+	font-size: 17px;
+}
+.markdown-body small {
+	color: #cbcbcb;
+	padding: 0 1px;
+	font-size: 22px;
+	zoom: 0.5;
+}
+.markdown-body em {
+	padding: 0 1px;
+}
+.markdown-body del {
+	padding: 0 1px;
+	text-decoration-thickness: 2px;
+}
+.markdown-body blockquote {
+	color: #1a1b1c;
+	padding: 1px 20px;
+	margin: 22px 0;
+	border-radius: 4px;
+	border-left: 4px solid rgba(60, 157, 255, 0.5);
+	background-color: rgba(190, 221, 255, 0.3);
+}
+.markdown-body blockquote blockquote {
+	margin: 8px 0;
+}
+.markdown-body blockquote:after {
+	display: block;
+	content: "";
+}
+.markdown-body blockquote > p {
+	margin: 10px 0;
+}
+.markdown-body details {
+	margin: 12px 0;
+	padding: 4px 10px;
+	border: 2px solid #3c9dff;
+	border-radius: 8px;
+	background-color: #ecf5ff;
+	transition: all 0.3s;
+}
+.markdown-body details summary {
+	cursor: pointer;
+}
+.markdown-body input[type="checkbox"] {
+	position: relative;
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	border-radius: 2px;
+	vertical-align: middle;
+	transform: translateY(-2px);
+	box-sizing: border-box;
+	border: 1px solid #beddff;
+}
+.markdown-body input[type="checkbox"]:checked {
+	border: 1px solid #5eaeff;
+	background-color: #5eaeff;
+}
+.markdown-body input[type="checkbox"]:checked:before {
+	position: absolute;
+	top: 3px;
+	left: 1px;
+	width: 11px;
+	height: 6px;
+	background-color: transparent;
+	border-left: 2px solid #fff;
+	border-bottom: 2px solid #fff;
+	transform: rotate(-45deg);
+	content: "";
+	box-sizing: border-box;
+}
+@media (max-width: 720px) {
+	.markdown-body h1 {
+		font-size: 24px;
+	}
+	.markdown-body h2 {
+		font-size: 20px;
+	}
+	.markdown-body h3 {
+		font-size: 18px;
+	}
+}

@@ -3,6 +3,89 @@ if ( ! defined('__TYPECHO_ROOT_DIR__')) {
     exit;
 }
 
+// 文章主题样式map
+global $markdownThemeMap;
+$markdownThemeMap = array(
+    'juejin'           => _t('掘金'),
+    'github'           => _t('github'),
+    'smartblue'        => _t('smartblue'),
+    'cyanosis'         => _t('cyanosis'),
+    'channing-cyan'    => _t('channing-cyan'),
+    'fancy'            => _t('fancy'),
+    'hydrogen'         => _t('hydrogen'),
+    'v-green'          => _t('v-green'),
+    'vue-pro'          => _t('vue-pro'),
+    'healer-readable'  => _t('healer-readable'),
+    'mk-cute'          => _t('mk-cute'),
+    'geek-black'       => _t('geek-black'),
+    'qklhk-chocolate'  => _t('qklhk-chocolate'),
+    'orange'           => _t('orange'),
+    'scrolls-light'    => _t('scrolls-light'),
+    'simplicity-green' => _t('simplicity-green'),
+    'arknights'        => _t('arknights'),
+    'vuepress'         => _t('vuepress'),
+    'nico'             => _t('nico'),
+    'devui-blue'       => _t('devui-blue'),
+    'serene-rose'      => _t('serene-rose'),
+    'z-blue'           => _t('z-blue'),
+    'minimalism'       => _t('minimalism'),
+    'yu'               => _t('yu'),
+    'keepnice'         => _t('keepnice'),
+);
+
+// 默认文章主题对应的代码高亮map
+global $defaultMarkdownThemeHighlightMap;
+$defaultMarkdownThemeHighlightMap = array(
+    'juejin'           => 'juejin',
+    'github'           => 'github',
+    'smartblue'        => 'juejin',
+    'cyanosis'         => 'atom-one-dark',
+    'channing-cyan'    => 'juejin',
+    'fancy'            => 'juejin',
+    'hydrogen'         => 'juejin',
+    'v-green'          => 'juejin',
+    'vue-pro'          => 'monokai',
+    'healer-readable'  => 'srcery',
+    'mk-cute'          => 'juejin',
+    'geek-black'       => 'monokai',
+    'qklhk-chocolate'  => 'juejin',
+    'orange'           => 'atom-one-light',
+    'scrolls-light'    => 'juejin',
+    'simplicity-green' => 'juejin',
+    'arknights'        => 'atom-one-light',
+    'vuepress'         => 'base16/tomorrow-night',
+    'nico'             => 'atelier-sulphurpool-light',
+    'devui-blue'       => 'juejin',
+    'serene-rose'      => 'atom-one-dark',
+    'z-blue'           => 'androidstudio',
+    'minimalism'       => 'atom-one-dark',
+    'yu'               => 'atom-one-dark',
+    'keepnice'         => 'github',
+);
+
+// 代码高亮主题map
+global $markdownHighlightMap;
+$markdownHighlightMap = array(
+    ''                          => _t('无'),
+    'juejin'                    => _t('掘金'),
+    'github'                    => _t('github'),
+    'github-gist'               => _t('github-gist'),
+    'atom-one-dark'             => _t('atom-one-dark'),
+    'atom-one-light'            => _t('atom-one-light'),
+    'monokai'                   => _t('monokai'),
+    'monokai-sublime'           => _t('monokai-sublime'),
+    'srcery'                    => _t('srcery'),
+    'tomorrow-night-blue'       => _t('tomorrow-night-blue'),
+    'tomorrow-night-eighties'   => _t('tomorrow-night-eighties'),
+    'tomorrow-night'            => _t('tomorrow-night'),
+    'tomorrow'                  => _t('tomorrow'),
+    'atelier-sulphurpool-light' => _t('atelier-sulphurpool-light'),
+    'androidstudio'             => _t('androidstudio'),
+    'a11y-dark'                 => _t('a11y-dark'),
+    'a11y-light'                => _t('a11y-light'),
+    'zenburn'                   => _t('zenburn'),
+);
+
 /**
  * @description: 主题可视化配置
  * @param {*} $form
@@ -10,6 +93,7 @@ if ( ! defined('__TYPECHO_ROOT_DIR__')) {
  * @Author: mulingyuer
  */
 function themeConfig($form) {
+    global $markdownThemeMap;
 
     $headInsertCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
         'headInsertCode',
@@ -78,24 +162,7 @@ function themeConfig($form) {
 
     $defaultMarkdownTheme = new \Typecho\Widget\Helper\Form\Element\Select(
         'defaultMarkdownTheme',
-        array(
-            'juejin'          => _t('掘金'),
-            'github'          => _t('github'),
-            'smartblue'       => _t('smartblue'),
-            'cyanosis'        => _t('cyanosis'),
-            'channing-cyan'   => _t('channing-cyan'),
-            'fancy'           => _t('fancy'),
-            'v-green'         => _t('v-green'),
-            'mk-cute'         => _t('mk-cute'),
-            'qklhk-chocolate' => _t('qklhk-chocolate'),
-            'orange'          => _t('orange'),
-            'scrolls-light'   => _t('scrolls-light'),
-            'vuepress'        => _t('vuepress'),
-            'nico'            => _t('nico'),
-            'devui-blue'      => _t('devui-blue'),
-            'hydrogen'        => _t('hydrogen'),
-            'serene-rose'     => _t('serene-rose'),
-        ),
+        $markdownThemeMap,
         'juejin', _t('默认文章和独立页主题'), _t('默认使用掘金主题，非默认选项时优先级大于文章和独立页的默认值')
     );
     $form->addInput($defaultMarkdownTheme);
@@ -514,7 +581,7 @@ function getAllPages() {
             ->where('table.contents.created < ?', Helper::options()->time), array($widget, 'push'));
     return $widget;
 
-};
+}
 
 /**
  * @description: 获取指定隐藏分页地址
@@ -537,7 +604,7 @@ function getHidePage($page, $name) {
     } else {
         return $href;
     }
-};
+}
 
 /**
  * @description: 自定义关键字
@@ -546,6 +613,8 @@ function getHidePage($page, $name) {
  */
 if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php' || $_SERVER['SCRIPT_NAME'] == '/admin/write-page.php') {
     function themeFields($layout) {
+        global $markdownThemeMap;
+        global $markdownHighlightMap;
         //文章独享关键字
         if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php') {
 
@@ -557,28 +626,13 @@ if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php' || $_SERVER['SCRIPT_NAME'
             $layout->addItem($titleImg);
         }
         // 文章主题
-        $markdownTheme = new Typecho_Widget_Helper_Form_Element_Select('markdownTheme', array(
-            'juejin'          => _t('掘金'),
-            'github'          => _t('github'),
-            'smartblue'       => _t('smartblue'),
-            'cyanosis'        => _t('cyanosis'),
-            'channing-cyan'   => _t('channing-cyan'),
-            'fancy'           => _t('fancy'),
-            'v-green'         => _t('v-green'),
-            'mk-cute'         => _t('mk-cute'),
-            'qklhk-chocolate' => _t('qklhk-chocolate'),
-            'orange'          => _t('orange'),
-            'scrolls-light'   => _t('scrolls-light'),
-            'vuepress'        => _t('vuepress'),
-            'nico'            => _t('nico'),
-            'devui-blue'      => _t('devui-blue'),
-            'hydrogen'        => _t('hydrogen'),
-            'serene-rose'     => _t('serene-rose'),
-        ), 'juejin', _t('文章主题'), _t('默认使用掘金主题'));
+        $markdownTheme = new Typecho_Widget_Helper_Form_Element_Select('markdownTheme', $markdownThemeMap, 'juejin', _t('文章主题'), _t('默认使用掘金主题'));
         $layout->addItem($markdownTheme);
+        // 代码高亮
+        $highlightTheme = new Typecho_Widget_Helper_Form_Element_Select('highlightTheme', $markdownHighlightMap, null, _t('文章代码块主题'), _t('文章主题自带配套的代码高亮，如果你有定制需求，可以自行选择代码高亮主题，否则默认选择无即可。'));
+        $layout->addItem($highlightTheme);
     }
 }
-;
 
 /**
  * @description: 获取文章title图片
@@ -588,7 +642,7 @@ if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php' || $_SERVER['SCRIPT_NAME'
  */
 function getArticleTitleImg($that) {
     return $that->fields->titleImg;
-};
+}
 
 /**
  * @description: 获取文章主题
@@ -603,8 +657,6 @@ function getArticleTheme($that) {
         $fieldsTheme = 'juejin';
     }
 
-    $theme = 'juejin';
-
     if ($defaultTheme !== 'juejin' && $fieldsTheme === 'juejin') {
         $theme = $defaultTheme;
     } else {
@@ -612,7 +664,47 @@ function getArticleTheme($that) {
     }
 
     return $theme;
-};
+}
+
+/**
+ * @description: 生成markdown主题样式link元素
+ * @param {*} $that
+ * @Date: 2023-12-22 23:13:27
+ * @Author: mulingyuer
+ */
+function getMarkdownTheme($that) {
+    global $defaultMarkdownThemeHighlightMap;
+    $themeUrl = Helper::options()->themeUrl;
+    // 文章主题
+    $articleTheme = $that->fields->markdownTheme;
+    $defaultTheme = Helper::options()->defaultMarkdownTheme;
+    if (empty($articleTheme)) {
+        $articleTheme = 'juejin';
+    }
+    if ($defaultTheme !== 'juejin' && $articleTheme === 'juejin') {
+        $articleTheme = $defaultTheme;
+    }
+    // 代码高亮主题
+    $highlightTheme = $that->fields->highlightTheme;
+    if (empty($highlightTheme)) {
+        // 如果文章主题对应的代码高亮主题不存在
+        // 则使用默认代码高亮主题
+        if (array_key_exists($articleTheme, $defaultMarkdownThemeHighlightMap)) {
+            $highlightTheme = $defaultMarkdownThemeHighlightMap[$articleTheme];
+        } else {
+            $highlightTheme = 'juejin';
+        }
+    }
+
+    // 文章主题链接
+    $articleHref = $themeUrl.'/static/css/markdown/'.$articleTheme.'.css';
+    $articleLink = '<link href="'.$articleHref.'" rel="stylesheet">';
+    // 代码高亮主题链接
+    $highlightHref = $themeUrl.'/static/css/highlight/'.$highlightTheme.'.css';
+    $highlightLink = '<link href="'.$highlightHref.'" rel="stylesheet">';
+
+    echo $articleLink.$highlightLink;
+}
 
 /**
  * @description: 获取用户组
@@ -658,7 +750,7 @@ function chineseUserGroup($uid = null) {
         $zhUserGroup = '未知用户';
     }
     return $zhUserGroup;
-};
+}
 
 /**
  * @description: 给文章内容标题添加锚点
@@ -725,7 +817,7 @@ function getDirectoryTree() {
     } else {
         echo $index;
     }
-};
+}
 
 /**
  * @description: 获取目录树
@@ -862,7 +954,7 @@ function viewsCounter($widget, $field = 'views') {
         return true;
     }
     return false;
-};
+}
 
 /**
  * @description: 获取浏览器信息
@@ -900,7 +992,7 @@ function getBrowser($agent) {
         $outputer = 'Google Chrome';
     }
     echo $outputer;
-};
+}
 
 /**
  * @description: 获取操作系统信息
@@ -948,7 +1040,7 @@ function getOs($agent) {
         $os = 'Linux';
     }
     echo $os;
-};
+}
 
 /**
  * @description: 子评论回复@
@@ -974,7 +1066,7 @@ function get_comment_at($coid) {
     } else {
         echo '';
     }
-};
+}
 
 /**
  * @description: 去除评论内容的p容器标签
