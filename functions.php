@@ -95,6 +95,7 @@ $markdownHighlightMap = array(
 function themeConfig($form) {
     global $markdownThemeMap;
 
+    // head标签底部插入代码
     $headInsertCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
         'headInsertCode',
         null,
@@ -104,6 +105,7 @@ function themeConfig($form) {
     );
     $form->addInput($headInsertCode);
 
+    // body标签底部插入代码
     $bodyInsertCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
         'bodyInsertCode',
         null,
@@ -113,6 +115,7 @@ function themeConfig($form) {
     );
     $form->addInput($bodyInsertCode);
 
+    // 备案信息
     $filing = new \Typecho\Widget\Helper\Form\Element\Textarea(
         'filing',
         null,
@@ -167,6 +170,7 @@ function themeConfig($form) {
     );
     $form->addInput($defaultMarkdownTheme);
 
+    // 文章翻页类型
     $paginationType = new \Typecho\Widget\Helper\Form\Element\Select(
         'paginationType',
         array(
@@ -177,6 +181,7 @@ function themeConfig($form) {
     );
     $form->addInput($paginationType);
 
+    // 404页面类型
     $errorType = new \Typecho\Widget\Helper\Form\Element\Select(
         'errorType',
         array(
@@ -187,6 +192,7 @@ function themeConfig($form) {
     );
     $form->addInput($errorType);
 
+    // 底部联系地址
     $address = new \Typecho\Widget\Helper\Form\Element\Text(
         'address',
         null,
@@ -196,6 +202,7 @@ function themeConfig($form) {
     );
     $form->addInput($address);
 
+    // DocSearch
     $isOpenDocSearch = new \Typecho\Widget\Helper\Form\Element\Radio(
         'isOpenDocSearch',
         array(
