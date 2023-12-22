@@ -43,7 +43,7 @@
       <?php $thumbnail = articleThumbnail($this);?>
       <?php if ($thumbnail !== ''): ?>
       <div class="article-card-thumb">
-        <img class="article-card-thumb-img" src="<?php $this->options->themeUrl('/static/images/loading.gif');?>" data-src="<?php echo $thumbnail; ?>" alt="<?php $this->title()?>">
+        <img class="article-card-thumb-img" src="<?php $this->options->themeUrl('/static/images/loading.gif');?>" data-src="<?php echo $thumbnail; ?>" data-error="<?php $this->options->themeUrl('/static/images/loading_error.gif');?>" alt="<?php $this->title()?>">
       </div>
       <?php endif;?>
     </div>
