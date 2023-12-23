@@ -14,7 +14,7 @@ Typecho 主题-《高仿掘金》
 2. 支持 Typecho 1.2
 3. 模块化项目结构
 4. 响应式兼容到 320px 分辨率
-5. 提供 14 个文章主题，自由切换
+5. 提供 24 个文章主题，18 个代码高亮主题
 6. 本地化 B 站表情，重构多版设计，本次更加便于扩展更新
 7. 独立页也支持文章主题切换
 8. 优化了灯箱逻辑，体验更好
@@ -29,37 +29,38 @@ Typecho 主题-《高仿掘金》
 17. 高保真掘金目录树
 18. 支持 docsearch（需要自己申请 apiKey）
 19. 新增移动端目录树功能
-20. 还有很多变化需细细品味
+20. 新增文章置顶功能
+21. 新增首页右侧推荐文章功能（具体查看文档）
+22. 配套文章编辑器 [Typecho_Plugin_JJEditor](https://github.com/mulingyuer/Typecho_Plugin_JJEditor) 实现友链页样式编辑时预览
+23. 还有很多变化需细细品味
 
 ## 主题预览
 
-[![pPcFjot.png](https://s1.ax1x.com/2023/09/09/pPcFjot.png)](https://imgse.com/i/pPcFjot)
+![pi7XRu4.png](https://s11.ax1x.com/2023/12/24/pi7XRu4.png)
 
-[![pPcFxFP.png](https://s1.ax1x.com/2023/09/09/pPcFxFP.png)](https://imgse.com/i/pPcFxFP)
+![pPcFxFP.png](https://s1.ax1x.com/2023/09/09/pPcFxFP.png)
 
-[![pPcFqLd.png](https://s1.ax1x.com/2023/09/09/pPcFqLd.png)](https://imgse.com/i/pPcFqLd)
+![pPcFqLd.png](https://s1.ax1x.com/2023/09/09/pPcFqLd.png)
 
-[![pPcFOeA.png](https://s1.ax1x.com/2023/09/09/pPcFOeA.png)](https://imgse.com/i/pPcFOeA)
+![pPcFOeA.png](https://s1.ax1x.com/2023/09/09/pPcFOeA.png)
 
-[![pPcFXdI.png](https://s1.ax1x.com/2023/09/09/pPcFXdI.png)](https://imgse.com/i/pPcFXdI)
+![pPcFXdI.png](https://s1.ax1x.com/2023/09/09/pPcFXdI.png)
 
-[![pPcFzJf.png](https://s1.ax1x.com/2023/09/09/pPcFzJf.png)](https://imgse.com/i/pPcFzJf)
+![pPcFzJf.png](https://s1.ax1x.com/2023/09/09/pPcFzJf.png)
 
-[![pPckSW8.png](https://s1.ax1x.com/2023/09/09/pPckSW8.png)](https://imgse.com/i/pPckSW8)
+![pPckSW8.png](https://s1.ax1x.com/2023/09/09/pPckSW8.png)
 
-[![pPckCQg.png](https://s1.ax1x.com/2023/09/09/pPckCQg.png)](https://imgse.com/i/pPckCQg)
+![pPckCQg.png](https://s1.ax1x.com/2023/09/09/pPckCQg.png)
 
-[![pPckPyQ.png](https://s1.ax1x.com/2023/09/09/pPckPyQ.png)](https://imgse.com/i/pPckPyQ)
+![pPckPyQ.png](https://s1.ax1x.com/2023/09/09/pPckPyQ.png)
 
-[![pPck9SS.png](https://s1.ax1x.com/2023/09/09/pPck9SS.png)](https://imgse.com/i/pPck9SS)
+![pPck9SS.png](https://s1.ax1x.com/2023/09/09/pPck9SS.png)
 
-[![piUlpeU.jpg](https://z1.ax1x.com/2023/11/20/piUlpeU.jpg)](https://imgse.com/i/piUlpeU)
+![pi7XWDJ.jpg](https://s11.ax1x.com/2023/12/24/pi7XWDJ.jpg)
 
 ## 相关插件
 
-最近写了一个 Typecho 的掘金编辑器插件，如果你想体验的话可以尝试一下！
-
-切换文章主题的时候预览会与 Typecho_Theme_JJ 进行联动。（可以话来点 Star 支持一下）
+配套写了一个 Typecho 的掘金编辑器插件，推荐一起使用，体验更佳，支持文章主题和代码高亮在编辑时的预览效果，还支持友链页的特殊样式预览。（可以话来点 Star 支持一下）
 
 [Typecho_Plugin_JJEditor](https://github.com/mulingyuer/Typecho_Plugin_JJEditor)
 

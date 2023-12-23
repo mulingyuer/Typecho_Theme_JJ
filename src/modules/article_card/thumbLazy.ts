@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-21 01:26:37
- * @LastEditTime: 2023-03-21 01:48:51
+ * @LastEditTime: 2023-12-23 01:28:31
  * @LastEditors: mulingyuer
  * @Description: 文章卡片图片懒加载
- * @FilePath: \Typecho_Theme_JJ\src\modules\articleCard\thumbLazy.ts
+ * @FilePath: /Typecho_Theme_JJ/src/modules/article_card/thumbLazy.ts
  * 怎么可能会有bug！！！
  */
 import observer from "@/utils/observer";
@@ -56,10 +56,26 @@ class ThumbLazy {
 		const src = target.dataset.src;
 		if (typeof src === "string" && src.trim() !== "") {
 			const img = new Image();
+			// 加载成功
 			img.addEventListener("load", () => {
 				target.src = src;
 				this.lazyLoadSet.delete(target);
 				target.removeAttribute("data-src");
+				target.removeAttribute("data-error");
+				//打入标记
+				target.dataset.lazy = "true";
+				//移除监听
+				this.removeLazyLoad(target);
+			});
+			// 加载失败
+			img.addEventListener("error", () => {
+				const errorSrc = target.dataset.error;
+				if (typeof errorSrc === "string" && errorSrc.trim() !== "") {
+					target.src = errorSrc;
+				}
+				this.lazyLoadSet.delete(target);
+				target.removeAttribute("data-src");
+				target.removeAttribute("data-error");
 				//打入标记
 				target.dataset.lazy = "true";
 				//移除监听

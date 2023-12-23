@@ -93,6 +93,16 @@
 	color: var(--jj-article-card-title-color);
 	@include one-line();
 }
+.article-card-sticky-tag {
+	vertical-align: top;
+	font-size: 12px;
+	font-weight: normal;
+	margin-right: 6px;
+	color: var(--jj-article-card-sticky-tag-color);
+	padding: 2px 4px;
+	background-color: var(--jj-article-card-sticky-tag-bg);
+	border-radius: 4px;
+}
 .article-card-desc {
 	margin-bottom: 8px;
 	font-size: 13px;

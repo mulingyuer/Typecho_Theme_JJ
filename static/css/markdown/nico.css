@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .markdown-body {
 	font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
 		Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
@@ -267,53 +268,4 @@
 	.markdown-body h3 {
 		font-size: 18px;
 	}
-}
-/* code */
-.hljs-comment,
-.hljs-quote {
-	color: #6b7394;
-}
-.hljs-attribute,
-.hljs-link,
-.hljs-name,
-.hljs-regexp,
-.hljs-selector-class,
-.hljs-selector-id,
-.hljs-tag,
-.hljs-template-variable,
-.hljs-variable {
-	color: #c94922;
-}
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-meta,
-.hljs-number,
-.hljs-params,
-.hljs-type {
-	color: #c76b29;
-}
-.hljs-bullet,
-.hljs-string,
-.hljs-symbol {
-	color: #ac9739;
-}
-.hljs-section,
-.hljs-title {
-	color: #3d8fd1;
-}
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #6679cc;
-}
-.markdown-body pre,
-.markdown-body pre > code.hljs {
-	background: #f5f7ff;
-	color: #5e6687;
-}
-.hljs-emphasis {
-	font-style: italic;
-}
-.hljs-strong {
-	font-weight: 700;
 }
