@@ -58,6 +58,10 @@ export default defineConfig({
             text: "资源更新",
             link: "/basic-config/update",
           },
+          {
+            text: "文章主题",
+            link: "/basic-config/article-theme",
+          },
         ],
       },
       {
@@ -82,6 +86,10 @@ export default defineConfig({
           {
             text: "DocSearch",
             link: "/advanced-config/docsearch",
+          },
+          {
+            text: "掘金编辑器",
+            link: "/advanced-config/jj-editor",
           },
         ],
       },

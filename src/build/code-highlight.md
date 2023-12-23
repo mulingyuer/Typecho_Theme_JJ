@@ -1,10 +1,10 @@
 <!--
  * @Author: mulingyuer
  * @Date: 2023-03-28 02:43:14
- * @LastEditTime: 2023-03-28 02:50:32
+ * @LastEditTime: 2023-12-24 06:05:02
  * @LastEditors: mulingyuer
  * @Description: 代码高亮
- * @FilePath: \Typecho_Theme_JJ\src\build\code-highlight.md
+ * @FilePath: /Typecho_Theme_JJ/src/build/code-highlight.md
  * 怎么可能会有bug！！！
 -->
 
@@ -50,7 +50,7 @@
 
 找到脚本文件：`/src/modules/article_content/hljs.ts`
 
-import 引入你需要的语音类型，然后在`languages`对象中加入引入的类型，重新打包主题即可使用。
+import 引入你需要的语言类型，然后在`languages`对象中加入引入的类型，重新打包主题即可使用。
 
 **例：**
 
@@ -73,3 +73,4 @@ Object.keys(languages).forEach((name) => {
 
 export default hljs;
 ```
+

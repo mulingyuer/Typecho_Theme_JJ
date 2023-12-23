@@ -1,10 +1,10 @@
 <!--
  * @Author: mulingyuer
  * @Date: 2023-03-27 02:29:23
- * @LastEditTime: 2023-06-04 23:41:38
+ * @LastEditTime: 2023-12-24 06:03:55
  * @LastEditors: mulingyuer
  * @Description: 主题介绍
- * @FilePath: \Typecho_Theme_JJ\src\start\introduce-theme.md
+ * @FilePath: /Typecho_Theme_JJ/src/start/introduce-theme.md
  * 怎么可能会有bug！！！
 -->
 
@@ -24,7 +24,7 @@
 2. 支持 Typecho 1.2
 3. 模块化项目结构
 4. 响应式兼容到 320px 分辨率
-5. 提供 14 个文章主题，自由切换
+5. 提供 24 个文章主题，18 个代码高亮主题
 6. 本地化 B 站表情，重构多版设计，本次更加便于扩展更新
 7. 独立页也支持文章主题切换
 8. 优化了灯箱逻辑，体验更好
@@ -38,7 +38,11 @@
 16. 有彩蛋哦
 17. 高保真掘金目录树
 18. 支持 docsearch（需要自己申请 apiKey）
-19. 还有很多变化需细细品味
+19. 新增移动端目录树功能
+20. 新增文章置顶功能
+21. 新增首页右侧推荐文章功能（具体查看文档）
+22. 配套文章编辑器 [Typecho_Plugin_JJEditor](https://github.com/mulingyuer/Typecho_Plugin_JJEditor) 实现友链页样式编辑时预览
+23. 还有很多变化需细细品味
 
 ## 有啥遗憾？
 
@@ -59,3 +63,4 @@
 ## 浏览器支持度
 
 基本上我只考虑最新浏览器了，因为旧浏览器各种新功能用不上，特别是国产浏览器，我是没做兼容的，目前只考虑主流的谷歌浏览器、火狐浏览器、Safari、手机端的谷歌浏览器这些。
+
