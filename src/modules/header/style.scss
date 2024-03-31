@@ -618,7 +618,8 @@
 	margin-bottom: 16px;
 }
 .login-dialog-input-group {
-	input {
+	input[type="text"],
+	input[type="password"] {
 		display: block;
 		width: 100%;
 		height: 40px;
@@ -642,6 +643,39 @@
 	&.submit {
 		margin-top: 30px;
 	}
+	&.remember {
+		margin-top: 15px;
+	}
+	&.remember {
+		position: relative;
+		display: flex;
+		.remember-label {
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			@include no-select();
+		}
+		input[type="checkbox"] {
+			position: absolute;
+			width: 0;
+			height: 0;
+			margin: 0;
+			outline: none;
+			z-index: -1;
+			opacity: 0;
+			&:checked + .login-dialog-input-checkbox {
+				border-color: var(--jj-login-dialog-input-checkbox-border-active);
+				background-color: var(--jj-login-dialog-input-checkbox-bg-active);
+				.login-dialog-input-checkbox-icon {
+					opacity: 1;
+					transform: scale(1);
+				}
+			}
+			&:checked ~ .login-dialog-input-checkbox-text {
+				color: var(--jj-login-dialog-input-checkbox-text-active);
+			}
+		}
+	}
 	//用户名-打招呼熊猫
 	&.username:focus-within {
 		.greeting {
@@ -663,6 +697,29 @@
 			display: none;
 		}
 	}
+}
+.login-dialog-input-checkbox {
+	flex-shrink: 0;
+	margin-right: 6px;
+	width: 16px;
+	height: 16px;
+	border: 1px solid var(--jj-login-dialog-input-checkbox-border);
+	border-radius: 2px;
+	text-align: center;
+	line-height: 14px;
+	transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.login-dialog-input-checkbox-icon {
+	display: block;
+	font-size: 12px;
+	color: var(--jj-login-dialog-input-checkbox-icon);
+	transform: scale(0);
+	transition: transform 0.2s ease-in-out;
+}
+.login-dialog-input-checkbox-text {
+	font-size: 13px;
+	color: var(--jj-login-dialog-title-color);
+	line-height: 1;
 }
 .login-dialog-form-btn {
 	display: block;
