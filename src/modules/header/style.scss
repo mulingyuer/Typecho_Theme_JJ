@@ -42,10 +42,12 @@
 	display: block;
 	height: 100%;
 	margin-right: 12px;
+	pointer-events: none;
 }
 .header-logo-mobile {
 	display: none;
 	height: 100%;
+	pointer-events: none;
 }
 .header-nav {
 	height: 100%;
