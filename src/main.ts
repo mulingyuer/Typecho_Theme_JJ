@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:22:40
- * @LastEditTime: 2023-11-20 00:31:26
+ * @LastEditTime: 2024-04-01 00:53:30
  * @LastEditors: mulingyuer
  * @Description: 通用入口文件
  * @FilePath: /Typecho_Theme_JJ/src/main.ts
@@ -41,4 +41,6 @@ updateWindowSize();
 window.addEventListener("resize", updateWindowSize);
 
 //ascii
-asciiEmoji();
+if (process.env.NODE_ENV !== "development") {
+	asciiEmoji();
+}

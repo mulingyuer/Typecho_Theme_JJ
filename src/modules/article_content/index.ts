@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-22 19:56:36
- * @LastEditTime: 2023-09-09 18:33:00
+ * @LastEditTime: 2024-04-01 01:01:53
  * @LastEditors: mulingyuer
  * @Description: 文章内容模块
  * @FilePath: /Typecho_Theme_JJ/src/modules/article_content/index.ts
@@ -43,6 +43,8 @@ class CodeBlock {
 			right.appendChild(copyBtn);
 			// 代码块添加头部
 			codeBlock.insertBefore(wrapper, codeDom);
+			// 添加行号
+			this.addLineNumber(codeDom);
 		});
 	}
 
@@ -89,7 +91,7 @@ class CodeBlock {
 	private foldBtnClick = (event: Event) => {
 		const currentTarget = event.currentTarget as HTMLElement;
 		//获取到code-block-header
-		const codeBlockHeader = currentTarget.closest(".code-block-header") as HTMLElement | null;
+		const codeBlockHeader: HTMLElement | null = currentTarget.closest(".code-block-header");
 		if (!codeBlockHeader) return;
 		codeBlockHeader.classList.toggle("fold");
 	};
@@ -132,7 +134,7 @@ class CodeBlock {
 		const currentTarget = event.currentTarget as HTMLElement;
 		const pre = currentTarget.closest("pre") as HTMLElement | null;
 		if (!pre) return;
-		const codeDom = pre.querySelector("code") as HTMLElement | null;
+		const codeDom = pre.querySelector("code");
 		if (!codeDom) return;
 		copy(codeDom)
 			.then(() => {
@@ -141,6 +143,19 @@ class CodeBlock {
 			.catch(() => {
 				toast.error({ text: "复制失败，请手动复制" });
 			});
+	}
+
+	/** 添加行号 */
+	private addLineNumber(codeDom: HTMLElement) {
+		codeDom.classList.add("code-block-extension-code-show-num");
+		const codeHtml = codeDom.innerHTML;
+		const lines = codeHtml
+			.split("\n")
+			.map((line, index) => {
+				return `<span class="code-block-extension-code-line" data-line-num="${index + 1}">${line}</span>`;
+			})
+			.join("\n");
+		codeDom.innerHTML = lines;
 	}
 }
 
