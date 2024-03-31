@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-22 19:56:36
- * @LastEditTime: 2024-04-01 01:01:53
+ * @LastEditTime: 2024-04-01 01:20:34
  * @LastEditors: mulingyuer
  * @Description: 文章内容模块
  * @FilePath: /Typecho_Theme_JJ/src/modules/article_content/index.ts
@@ -20,6 +20,8 @@ const foldSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><pa
 class CodeBlock {
 	/** 文章dom元素 */
 	private article = document.querySelector(".markdown-body");
+	/** 复制按钮定时器 */
+	private copyBtnTimers = new Map<Element, NodeJS.Timeout>();
 
 	constructor() {
 		if (!this.article) return;
@@ -130,20 +132,31 @@ class CodeBlock {
 	}
 
 	/** 复制按钮点击事件 */
-	private copyBtnClick(event: Event) {
+	private copyBtnClick = (event: Event) => {
 		const currentTarget = event.currentTarget as HTMLElement;
+		if (this.copyBtnTimers.has(currentTarget)) {
+			clearTimeout(this.copyBtnTimers.get(currentTarget));
+			this.copyBtnTimers.delete(currentTarget);
+		}
 		const pre = currentTarget.closest("pre") as HTMLElement | null;
 		if (!pre) return;
 		const codeDom = pre.querySelector("code");
 		if (!codeDom) return;
 		copy(codeDom)
 			.then(() => {
-				toast.success({ text: "复制成功" });
+				currentTarget.innerText = "复制成功";
+				this.copyBtnTimers.set(
+					currentTarget,
+					setTimeout(() => {
+						currentTarget.innerText = "复制代码";
+						this.copyBtnTimers.delete(currentTarget);
+					}, 2000)
+				);
 			})
 			.catch(() => {
 				toast.error({ text: "复制失败，请手动复制" });
 			});
-	}
+	};
 
 	/** 添加行号 */
 	private addLineNumber(codeDom: HTMLElement) {
