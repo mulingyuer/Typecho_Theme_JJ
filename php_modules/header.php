@@ -169,6 +169,15 @@
               <input type="password" name="password" placeholder="请输入密码" autocomplete="off" required pattern="\S+.*">
               <img class="panfish-img blindfold" src="<?php $this->options->themeUrl('/static/images/login/blindfold.png');?>">
             </div>
+            <div class="login-dialog-input-group remember">
+              <label class="remember-label" for="remember">
+                <input type="checkbox" name="remember" class="checkbox" value="1" id="remember">
+                <span class="login-dialog-input-checkbox">
+                  <i class="jj-icon jj-icon-check login-dialog-input-checkbox-icon"></i>
+                </span>
+                <span class="login-dialog-input-checkbox-text">记住账号</span>
+              </label>
+            </div>
             <div class="login-dialog-input-group submit">
               <button class="login-dialog-form-btn">登录</button>
             </div>

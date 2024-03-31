@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-23 01:32:28
- * @LastEditTime: 2023-03-23 01:49:44
+ * @LastEditTime: 2024-04-01 00:41:00
  * @LastEditors: mulingyuer
  * @Description: 代码高亮
- * @FilePath: \Typecho_Theme_JJ\src\modules\article_content\hljs.ts
+ * @FilePath: /Typecho_Theme_JJ/src/modules/article_content/hljs.ts
  * 怎么可能会有bug！！！
  */
 import hljs from "highlight.js/lib/core";

@@ -67,6 +67,11 @@
 	--jj-login-dialog-footer-color: #8a919f;
 	--jj-login-dialog-link-color: #1e80ff;
 	--jj-login-dialog-link-color-hover: #1171ee;
+	--jj-login-dialog-input-checkbox-border: #c4c7ce;
+	--jj-login-dialog-input-checkbox-border-active: #1e80ff;
+	--jj-login-dialog-input-checkbox-bg-active: #1e80ff;
+	--jj-login-dialog-input-checkbox-icon: #fff;
+	--jj-login-dialog-input-checkbox-text-active: #1e80ff;
 
 	/* nav */
 	--jj-nav-bg-color: #fff;

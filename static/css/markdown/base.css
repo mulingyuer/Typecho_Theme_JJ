@@ -85,6 +85,25 @@
 .code-block-header-copy-btn:active {
 	opacity: 0.7;
 }
+.code-block-extension-code-line {
+	background-color: inherit;
+}
+.code-block-extension-code-line::before {
+	content: attr(data-line-num);
+	color: gray;
+	user-select: none;
+	background-color: inherit;
+	text-align: center;
+	display: inline-block;
+	width: 18px;
+	padding: 0 10px;
+	box-sizing: content-box;
+	position: sticky;
+	left: 0;
+}
+pre > code.code-block-extension-code-show-num {
+	padding-left: 0 !important;
+}
 .markdown-body iframe {
 	display: block;
 	width: 100%;
