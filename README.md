@@ -4,6 +4,8 @@ Typecho 主题-《高仿掘金》
 
 这是一个程序员风格的主题，是为了更好的文章阅读和分享知识！（可以话来点 Star 支持一下）
 
+预览链接：[木灵鱼儿](https://www.mulingyuer.com)
+
 ## FAQ 文档
 
 [《主题使用指南》](https://mulingyuer.github.io/Typecho_Theme_JJ/)
@@ -14,7 +16,7 @@ Typecho 主题-《高仿掘金》
 2. 支持 Typecho 1.2
 3. 模块化项目结构
 4. 响应式兼容到 320px 分辨率
-5. 提供 24 个文章主题，18 个代码高亮主题
+5. 提供 24 个文章主题，18 个代码高亮主题，支持代码行号，一键复制
 6. 本地化 B 站表情，重构多版设计，本次更加便于扩展更新
 7. 独立页也支持文章主题切换
 8. 优化了灯箱逻辑，体验更好
@@ -71,3 +73,12 @@ Typecho 主题-《高仿掘金》
 ## 底层基建
 
 本主题基于 [《webpack-multiple-entry》](https://github.com/mulingyuer/webpack-multiple-entry)项目实现，它是一个用于 Typecho 主题开发的底层工具，用于实现现代化前端打包构建。
+
+
+## 捐赠
+
+开源并非易事，如果您喜欢这个的项目，请考虑捐赠一些资金，以助项目更好地发展壮大。
+
+
+| ![微信捐赠](./faq/donated_wx.jpg) | ![支付宝捐赠](./faq/donated_zfb.jpg) |
+|---|---|
