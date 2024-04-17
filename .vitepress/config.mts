@@ -3,6 +3,7 @@ import mdItCustomAttrs from "markdown-it-custom-attrs";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/Typecho_Theme_JJ",
   title: "JJ 主题使用文档",
   description: "Typecho_Theme_JJ 使用文档",
   srcDir: "src",
