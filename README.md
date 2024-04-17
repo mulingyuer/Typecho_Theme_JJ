@@ -6,6 +6,12 @@ Typecho 主题-《高仿掘金》
 
 预览链接：[木灵鱼儿](https://www.mulingyuer.com)
 
+## 仓库镜像地址
+
+由于国内部分用户反馈github不方便查看，特意加了国内的Gitee地址。
+
+Gitee仓库：[Typecho_Theme_JJ](https://gitee.com/mulingyuer/Typecho_Theme_JJ)
+
 ## FAQ 文档
 
 [《主题使用指南》](https://mulingyuer.github.io/Typecho_Theme_JJ/)
