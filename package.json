@@ -1,14 +1,15 @@
 {
   "devDependencies": {
-    "vitepress": "1.0.0-alpha.75"
+    "vitepress": "1.1.0"
   },
   "scripts": {
-    "docs:dev": "vitepress dev --host",
+    "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "markdown-it-custom-attrs": "^1.0.2"
+    "markdown-it-custom-attrs": "^1.0.2",
+    "medium-zoom": "^1.1.0",
+    "vue": "^3.4.23"
   }
 }
-

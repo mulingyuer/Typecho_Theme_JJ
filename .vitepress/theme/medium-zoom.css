@@ -1,0 +1,7 @@
+.medium-zoom-overlay {
+  z-index: 90;
+}
+
+.medium-zoom-image {
+  z-index:  91;
+}

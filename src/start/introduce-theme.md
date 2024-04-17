@@ -1,10 +1,10 @@
 <!--
  * @Author: mulingyuer
  * @Date: 2023-03-27 02:29:23
- * @LastEditTime: 2023-12-24 06:03:55
+ * @LastEditTime: 2024-04-17 17:53:48
  * @LastEditors: mulingyuer
  * @Description: 主题介绍
- * @FilePath: /Typecho_Theme_JJ/src/start/introduce-theme.md
+ * @FilePath: \Typecho_Theme_JJ\src\start\introduce-theme.md
  * 怎么可能会有bug！！！
 -->
 
@@ -24,7 +24,7 @@
 2. 支持 Typecho 1.2
 3. 模块化项目结构
 4. 响应式兼容到 320px 分辨率
-5. 提供 24 个文章主题，18 个代码高亮主题
+5. 提供 24 个文章主题，18 个代码高亮主题，支持代码行号，一键复制
 6. 本地化 B 站表情，重构多版设计，本次更加便于扩展更新
 7. 独立页也支持文章主题切换
 8. 优化了灯箱逻辑，体验更好

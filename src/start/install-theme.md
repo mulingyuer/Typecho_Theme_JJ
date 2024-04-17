@@ -1,7 +1,7 @@
 <!--
  * @Author: mulingyuer
  * @Date: 2023-03-28 01:07:25
- * @LastEditTime: 2023-05-14 23:53:45
+ * @LastEditTime: 2024-04-17 17:58:11
  * @LastEditors: mulingyuer
  * @Description: 主题安装
  * @FilePath: \Typecho_Theme_JJ\src\start\install-theme.md
@@ -28,9 +28,11 @@
 
 ## 使用要求
 
-1. PHP 7.2 - 7.4 版本，测试 8.0 版本不支持
+1. PHP 7.2 - 8.2 版本
 2. Typecho 1.2 版本，有些语法低版本不支持
-3. MySql 5.6 - 5.7 版本
+3. MySql 5.6 - 8.0 版本
+
+个人推荐直接php8.2，mysql也上8.0，因为这两个的旧版本都已经不再维护了，主题已经做了兼容处理，我个人也是使用的php8.2和mysql8.0，有问题方便修复。
 
 ## 启用
 
