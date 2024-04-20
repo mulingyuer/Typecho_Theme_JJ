@@ -25,7 +25,7 @@
 .markdown-body h4:first-child,
 .markdown-body h5:first-child,
 .markdown-body h6:first-child {
-	margin-top: -1.5rem;
+	margin-top: 1.2rem;
 	margin-bottom: 1rem;
 }
 .markdown-body h1:before,
