@@ -21,16 +21,18 @@
           <input class="comment-form-input" type="url" name="url"  placeholder="<?php _e('http://');?>" value="<?php $this->remember('url');?>"<?php if ($this->options->commentsRequireURL): ?> required pattern="\S+.*"<?php endif;?> />
         </div>
         <?php endif;?>
-        <div class="comment-form-textarea-wrap">
-          <textarea class="comment-form-textarea" rows="4" name="text" placeholder="请填写真实邮箱方便站长联系，并回复有效的内容！回复有效的内容！有效的内容！" required><?php $this->remember('text');?></textarea>
-        </div>
-        <div class="comment-form-footer">
-          <div class="comment-form-tool">
-            <?php $this->need("/php_modules/comment/emoji.php");?>
+        <div class="comment-form-combination">
+          <div class="comment-form-textarea-wrap">
+            <textarea id="textarea" class="comment-form-textarea" name="text" placeholder="请填写真实邮箱方便站长联系，并回复有效的内容！回复有效的内容！有效的内容！" required><?php $this->remember('text');?></textarea>
           </div>
-          <div class="comment-form-btn-wrap">
-            <?php $comments->cancelReply('<button class="comment-form-btn comment-form-cancel">放弃</button>');?>
-            <button class="comment-form-btn comment-form-submit" type="submit"><?php _e('发表评论');?></button>
+          <div class="comment-form-footer">
+            <div class="comment-form-tool">
+              <?php $this->need("/php_modules/comment/emoji.php");?>
+            </div>
+            <div class="comment-form-btn-wrap">
+              <?php $comments->cancelReply('<button class="comment-form-btn comment-form-cancel">放弃</button>');?>
+              <button class="comment-form-btn comment-form-submit" type="submit"><?php _e('评论');?></button>
+            </div>
           </div>
         </div>
       </div>

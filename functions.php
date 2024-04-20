@@ -138,9 +138,9 @@ function themeConfig($form) {
     $stickyCidTag = new \Typecho\Widget\Helper\Form\Element\Text(
         'stickyCidTag',
         null,
-        '<span class="article-card-sticky-tag">置顶</span>',
+        '',
         _t('置顶文章标题前面加的tag'),
-        _t('请使用html标签')
+        _t('请使用html标签，默认：&lt;span class=&quot;article-card-sticky-tag&quot;&gt;置顶&lt;/span&gt;')
     );
     $form->addInput($stickyCidTag);
 
@@ -1285,6 +1285,7 @@ function pushStickyArticles($archive) {
     $db           = Typecho_Db::get();
     $stickyCidTag = Helper::options()->stickyCidTag;
     $showTag      =  ! empty($cidStr) && ! is_null($cidStr);
+    $isConfiguredTag = ! empty($stickyCidTag) && ! is_null($stickyCidTag);
     foreach ($cidList as $cid) {
         $cidArticle = $db->fetchRow($archive->select()->where('cid = ?', $cid));
         if (empty($cidArticle)) {
@@ -1292,7 +1293,12 @@ function pushStickyArticles($archive) {
         }
         // 添加tag
         if ($showTag) {
-            $cidArticle['sticky'] = $stickyCidTag;
+            if($isConfiguredTag) {
+                $cidArticle['sticky'] = $stickyCidTag;
+            }else {
+                // 默认配置
+                $cidArticle['sticky'] = '<span class="article-card-sticky-tag">置顶</span>';
+            }
         }
         $articles[] = $cidArticle;
     }

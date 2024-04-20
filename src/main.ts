@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:22:40
- * @LastEditTime: 2024-04-01 00:53:30
+ * @LastEditTime: 2024-04-21 00:13:54
  * @LastEditors: mulingyuer
  * @Description: 通用入口文件
  * @FilePath: /Typecho_Theme_JJ/src/main.ts
@@ -16,6 +16,9 @@ import { initGlobalImgLoadError } from "@/utils/error";
 import "@/styles/reset.scss";
 import "@/styles/fonts/iconfont.css";
 import "@/styles/layout.scss";
+
+// plugins
+import "@/plugins/simplebar";
 
 //modules
 import "@/modules/header";

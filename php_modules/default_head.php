@@ -42,6 +42,9 @@ content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale
 <meta property="twitter:description" content="<?php blogDescription($this);?>">
 <meta property="twitter:image" content="<?php echo seoImage($this); ?>">
 
+<!-- config -->
+<meta name="theme-config" data-pagination-type="<?php $this->options->paginationType();?>" data-theme-path="<?php $this->options->themeUrl();?>" >
+
 <!-- theme -->
 <?php $random_number = rand() / getrandmax();?>
 <link href="<?php $this->options->themeUrl('/static/css/theme/light.css?'.$random_number);?>" rel="stylesheet" type="text/css" title="light">
