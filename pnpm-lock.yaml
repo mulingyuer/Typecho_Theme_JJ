@@ -9,16 +9,16 @@ importers:
   .:
     dependencies:
       '@docsearch/css':
-        specifier: 3.5.2
-        version: 3.5.2
+        specifier: 3.6.0
+        version: 3.6.0
       '@docsearch/js':
-        specifier: 3.5.2
-        version: 3.5.2(@algolia/client-search@4.23.3)(search-insights@2.13.0)
+        specifier: 3.6.0
+        version: 3.6.0(@algolia/client-search@4.23.3)(search-insights@2.13.0)
       '@floating-ui/dom':
-        specifier: ^1.5.3
+        specifier: ^1.6.3
         version: 1.6.3
       axios:
-        specifier: ^1.6.2
+        specifier: ^1.6.8
         version: 1.6.8
       highlight.js:
         specifier: ^11.9.0
@@ -42,14 +42,14 @@ importers:
         specifier: ^1.12.0
         version: 1.12.0
       vue:
-        specifier: ^3.3.8
+        specifier: ^3.4.23
         version: 3.4.23(typescript@5.4.5)
     devDependencies:
       '@babel/cli':
-        specifier: ^7.23.0
+        specifier: ^7.24.1
         version: 7.24.1(@babel/core@7.24.4)
       '@babel/core':
-        specifier: ^7.23.3
+        specifier: ^7.24.4
         version: 7.24.4
       '@babel/plugin-proposal-class-properties':
         specifier: ^7.18.6
@@ -58,28 +58,28 @@ importers:
         specifier: ^7.20.7
         version: 7.20.7(@babel/core@7.24.4)
       '@babel/plugin-transform-runtime':
-        specifier: ^7.23.3
+        specifier: ^7.24.3
         version: 7.24.3(@babel/core@7.24.4)
       '@babel/preset-env':
-        specifier: ^7.23.3
+        specifier: ^7.24.4
         version: 7.24.4(@babel/core@7.24.4)
       '@babel/preset-typescript':
-        specifier: ^7.23.3
+        specifier: ^7.24.1
         version: 7.24.1(@babel/core@7.24.4)
       '@babel/runtime':
-        specifier: ^7.23.2
+        specifier: ^7.24.4
         version: 7.24.4
       '@commitlint/cli':
-        specifier: ^18.4.2
+        specifier: ^18.6.1
         version: 18.6.1(@types/node@20.12.7)(typescript@5.4.5)
       '@types/archiver':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: 6.0.2
       '@types/glob':
         specifier: ^8.1.0
         version: 8.1.0
       '@types/node':
-        specifier: ^20.9.2
+        specifier: ^20.12.7
         version: 20.12.7
       '@types/qrcode':
         specifier: ^1.5.5
@@ -88,16 +88,16 @@ importers:
         specifier: ^1.12.3
         version: 1.12.3
       archiver:
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: 6.0.2
       autoprefixer:
-        specifier: ^10.4.16
+        specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
       babel-loader:
         specifier: ^9.1.3
         version: 9.1.3(@babel/core@7.24.4)(webpack@5.91.0(webpack-cli@5.1.4))
       bumpp:
-        specifier: ^9.2.0
+        specifier: ^9.4.0
         version: 9.4.0
       commitizen:
         specifier: ^4.3.0
@@ -109,52 +109,52 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       compression-webpack-plugin:
-        specifier: ^10.0.0
-        version: 10.0.0(webpack@5.91.0(webpack-cli@5.1.4))
+        specifier: ^11.1.0
+        version: 11.1.0(webpack@5.91.0(webpack-cli@5.1.4))
       core-js:
-        specifier: 3.33.2
-        version: 3.33.2
+        specifier: 3.37.0
+        version: 3.37.0
       css-loader:
-        specifier: ^6.8.1
+        specifier: ^6.11.0
         version: 6.11.0(webpack@5.91.0(webpack-cli@5.1.4))
       cz-customizable:
         specifier: ^7.0.0
         version: 7.0.0
       glob:
-        specifier: ^10.3.10
+        specifier: ^10.3.12
         version: 10.3.12
       html-webpack-plugin:
-        specifier: ^5.5.3
+        specifier: ^5.6.0
         version: 5.6.0(webpack@5.91.0(webpack-cli@5.1.4))
       husky:
-        specifier: ^8.0.3
-        version: 8.0.3
+        specifier: ^9.0.11
+        version: 9.0.11
       mini-css-extract-plugin:
-        specifier: ^2.7.6
+        specifier: ^2.9.0
         version: 2.9.0(webpack@5.91.0(webpack-cli@5.1.4))
       postcss:
-        specifier: ^8.4.31
+        specifier: ^8.4.38
         version: 8.4.38
       postcss-loader:
-        specifier: ^7.3.3
+        specifier: ^7.3.4
         version: 7.3.4(postcss@8.4.38)(typescript@5.4.5)(webpack@5.91.0(webpack-cli@5.1.4))
       sass:
-        specifier: ^1.69.5
+        specifier: ^1.75.0
         version: 1.75.0
       sass-loader:
-        specifier: ^13.3.2
-        version: 13.3.3(sass@1.75.0)(webpack@5.91.0(webpack-cli@5.1.4))
+        specifier: ^14.2.1
+        version: 14.2.1(sass@1.75.0)(webpack@5.91.0(webpack-cli@5.1.4))
       ts-node:
-        specifier: ^10.9.1
+        specifier: ^10.9.2
         version: 10.9.2(@types/node@20.12.7)(typescript@5.4.5)
       typescript:
-        specifier: ^5.2.2
+        specifier: ^5.4.5
         version: 5.4.5
       webpack:
-        specifier: ^5.89.0
+        specifier: ^5.91.0
         version: 5.91.0(webpack-cli@5.1.4)
       webpack-bundle-analyzer:
-        specifier: ^4.10.1
+        specifier: ^4.10.2
         version: 4.10.2
       webpack-cli:
         specifier: ^5.1.4
@@ -163,8 +163,8 @@ importers:
         specifier: ^5.10.0
         version: 5.10.0
       webpackbar:
-        specifier: ^5.0.2
-        version: 5.0.2(webpack@5.91.0(webpack-cli@5.1.4))
+        specifier: ^6.0.1
+        version: 6.0.1(webpack@5.91.0(webpack-cli@5.1.4))
 
 packages:
 
@@ -957,14 +957,14 @@ packages:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
 
-  '@docsearch/css@3.5.2':
-    resolution: {integrity: sha512-SPiDHaWKQZpwR2siD0KQUwlStvIAnEyK6tAE2h2Wuoq8ue9skzhlyVQ1ddzOxX6khULnAALDiR/isSF3bnuciA==}
+  '@docsearch/css@3.6.0':
+    resolution: {integrity: sha512-+sbxb71sWre+PwDK7X2T8+bhS6clcVMLwBPznX45Qu6opJcgRjAp7gYSDzVFp187J+feSj5dNBN1mJoi6ckkUQ==}
 
-  '@docsearch/js@3.5.2':
-    resolution: {integrity: sha512-p1YFTCDflk8ieHgFJYfmyHBki1D61+U9idwrLh+GQQMrBSP3DLGKpy0XUJtPjAOPltcVbqsTjiPFfH7JImjUNg==}
+  '@docsearch/js@3.6.0':
+    resolution: {integrity: sha512-QujhqINEElrkIfKwyyyTfbsfMAYCkylInLYMRqHy7PHc8xTBQCow73tlo/Kc7oIwBrCLf0P3YhjlOeV4v8hevQ==}
 
-  '@docsearch/react@3.5.2':
-    resolution: {integrity: sha512-9Ahcrs5z2jq/DcAvYtvlqEBHImbm4YJI8M9y0x6Tqg598P40HTEkX7hsMcIuThI+hTFxRGZ9hll0Wygm2yEjng==}
+  '@docsearch/react@3.6.0':
+    resolution: {integrity: sha512-HUFut4ztcVNmqy9gp/wxNbC7pTOHhgVVkHVGCACTuLhUKUhKAF9KYHJtMiLUJxEqiFLQiuri1fWF8zqwM/cu1w==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
       react: '>= 16.8.0 < 19.0.0'
@@ -1580,9 +1580,9 @@ packages:
     resolution: {integrity: sha512-/UIcLWvwAQyVibgpQDPtfNM3SvqN7G9elAPAV7GM0L53EbNWwWiCsWtK8Fwed/APEbptPHXs5PuW+y8Bq8lFTA==}
     engines: {node: '>= 12.0.0'}
 
-  compression-webpack-plugin@10.0.0:
-    resolution: {integrity: sha512-wLXLIBwpul/ALcm7Aj+69X0pYT3BYt6DdPn3qrgBIh9YejV9Bju9ShhlAsjujLyWMo6SAweFIWaUoFmXZNuNrg==}
-    engines: {node: '>= 14.15.0'}
+  compression-webpack-plugin@11.1.0:
+    resolution: {integrity: sha512-zDOQYp10+upzLxW+VRSjEpRRwBXJdsb5lBMlRxx1g8hckIFBpe3DTI0en2w7h+beuq89576RVzfiXrkdPGrHhA==}
+    engines: {node: '>= 18.12.0'}
     peerDependencies:
       webpack: ^5.1.0
 
@@ -1591,9 +1591,6 @@ packages:
 
   confbox@0.1.7:
     resolution: {integrity: sha512-uJcB/FKZtBMCJpK8MQji6bJHgu1tixKPxRLeGkNzBoOZzpnZUJm0jm2/sBDWcuBx1dYgxV4JU+g5hmNxCyAmdA==}
-
-  consola@2.15.3:
-    resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
 
   consola@3.2.3:
     resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==}
@@ -1617,8 +1614,8 @@ packages:
   core-js-compat@3.37.0:
     resolution: {integrity: sha512-vYq4L+T8aS5UuFg4UwDhc7YNRWVeVZwltad9C/jV3R2LgVOpS9BDr7l/WL6BN0dbV3k1XejPTHqqEzJgsa0frA==}
 
-  core-js@3.33.2:
-    resolution: {integrity: sha512-XeBzWI6QL3nJQiHmdzbAOiMYqjrb7hwU7A39Qhvd/POSa/t9E1AeZyEZx3fNvp/vtM8zXwhoL0FsiS0hD0pruQ==}
+  core-js@3.37.0:
+    resolution: {integrity: sha512-fu5vHevQ8ZG4og+LXug8ulUtVxjOcEYvifJr7L5Bfq9GOztVqsKd9/59hUk2ZSbCrS3BqUr3EpaYGIYzq7g3Ug==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -2129,9 +2126,9 @@ packages:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
 
-  husky@8.0.3:
-    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
-    engines: {node: '>=14'}
+  husky@9.0.11:
+    resolution: {integrity: sha512-AB6lFlbwwyIqMdHYhwPe+kjOC3Oc5P3nThEoW/AaO2BX3vJDjWPFxYLxokUZOo6RNX20He3AaT8sESs9NJcmEw==}
+    engines: {node: '>=18'}
     hasBin: true
 
   iconv-lite@0.4.24:
@@ -2434,6 +2431,9 @@ packages:
   map-obj@4.3.0:
     resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
     engines: {node: '>=8'}
+
+  markdown-table@2.0.0:
+    resolution: {integrity: sha512-Ezda85ToJUBhM6WGaG6veasyym+Tbs3cMAw/ZhOPqXiYsr0jgocBV3j3nx+4lk47plLlIqjwuTm/ywVI+zjJ/A==}
 
   meow@12.1.1:
     resolution: {integrity: sha512-BhXM0Au22RwUneMPwSCnyhTOizdWoIEPU9sp0Aqa1PnDMR5Wv2FGXYDjuzJEIX+Eo2Rb8xuYe5jrnm5QowQFkw==}
@@ -2900,6 +2900,10 @@ packages:
   renderkid@3.0.0:
     resolution: {integrity: sha512-q/7VIQA8lmM1hF+jn+sFSPWGlMkSAeNYcPLmDQx2zzuiDfaLrOmumR8iaUKlenFgh0XRPIUeSPlH3A+AW3Z5pg==}
 
+  repeat-string@1.6.1:
+    resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}
+    engines: {node: '>=0.10'}
+
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -2977,23 +2981,25 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  sass-loader@13.3.3:
-    resolution: {integrity: sha512-mt5YN2F1MOZr3d/wBRcZxeFgwgkH44wVc2zohO2YF6JiOMkiXe4BYRZpSu2sO1g71mo/j16txzUhsKZlqjVGzA==}
-    engines: {node: '>= 14.15.0'}
+  sass-loader@14.2.1:
+    resolution: {integrity: sha512-G0VcnMYU18a4N7VoNDegg2OuMjYtxnqzQWARVWCIVSZwJeiL9kg8QMsuIZOplsJgTzZLF6jGxI3AClj8I9nRdQ==}
+    engines: {node: '>= 18.12.0'}
     peerDependencies:
-      fibers: '>= 3.1.0'
+      '@rspack/core': 0.x || 1.x
       node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
       sass: ^1.3.0
       sass-embedded: '*'
       webpack: ^5.0.0
     peerDependenciesMeta:
-      fibers:
+      '@rspack/core':
         optional: true
       node-sass:
         optional: true
       sass:
         optional: true
       sass-embedded:
+        optional: true
+      webpack:
         optional: true
 
   sass@1.75.0:
@@ -3408,9 +3414,9 @@ packages:
       webpack-cli:
         optional: true
 
-  webpackbar@5.0.2:
-    resolution: {integrity: sha512-BmFJo7veBDgQzfWXl/wwYXr/VFus0614qZ8i9znqcl9fnEdiVkdbi0TedLQ6xAK92HZHDJ0QmyQ0fmuZPAgCYQ==}
-    engines: {node: '>=12'}
+  webpackbar@6.0.1:
+    resolution: {integrity: sha512-TnErZpmuKdwWBdMoexjio3KKX6ZtoKHRVvLIU0A47R0VVBDtx3ZyOJDktgYixhoJokZTYTt1Z37OkO9pnGJa9Q==}
+    engines: {node: '>=14.21.3'}
     peerDependencies:
       webpack: 3 || 4 || 5
 
@@ -4553,11 +4559,11 @@ snapshots:
 
   '@discoveryjs/json-ext@0.5.7': {}
 
-  '@docsearch/css@3.5.2': {}
+  '@docsearch/css@3.6.0': {}
 
-  '@docsearch/js@3.5.2(@algolia/client-search@4.23.3)(search-insights@2.13.0)':
+  '@docsearch/js@3.6.0(@algolia/client-search@4.23.3)(search-insights@2.13.0)':
     dependencies:
-      '@docsearch/react': 3.5.2(@algolia/client-search@4.23.3)(search-insights@2.13.0)
+      '@docsearch/react': 3.6.0(@algolia/client-search@4.23.3)(search-insights@2.13.0)
       preact: 10.20.2
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -4566,11 +4572,11 @@ snapshots:
       - react-dom
       - search-insights
 
-  '@docsearch/react@3.5.2(@algolia/client-search@4.23.3)(search-insights@2.13.0)':
+  '@docsearch/react@3.6.0(@algolia/client-search@4.23.3)(search-insights@2.13.0)':
     dependencies:
       '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)(search-insights@2.13.0)
       '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)
-      '@docsearch/css': 3.5.2
+      '@docsearch/css': 3.6.0
       algoliasearch: 4.23.3
     optionalDependencies:
       search-insights: 2.13.0
@@ -5278,7 +5284,7 @@ snapshots:
       normalize-path: 3.0.0
       readable-stream: 3.6.2
 
-  compression-webpack-plugin@10.0.0(webpack@5.91.0(webpack-cli@5.1.4)):
+  compression-webpack-plugin@11.1.0(webpack@5.91.0(webpack-cli@5.1.4)):
     dependencies:
       schema-utils: 4.2.0
       serialize-javascript: 6.0.2
@@ -5287,8 +5293,6 @@ snapshots:
   concat-map@0.0.1: {}
 
   confbox@0.1.7: {}
-
-  consola@2.15.3: {}
 
   consola@3.2.3: {}
 
@@ -5311,7 +5315,7 @@ snapshots:
     dependencies:
       browserslist: 4.23.0
 
-  core-js@3.33.2: {}
+  core-js@3.37.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -5828,7 +5832,7 @@ snapshots:
 
   human-signals@5.0.0: {}
 
-  husky@8.0.3: {}
+  husky@9.0.11: {}
 
   iconv-lite@0.4.24:
     dependencies:
@@ -6086,6 +6090,10 @@ snapshots:
   map-obj@1.0.1: {}
 
   map-obj@4.3.0: {}
+
+  markdown-table@2.0.0:
+    dependencies:
+      repeat-string: 1.6.1
 
   meow@12.1.1: {}
 
@@ -6548,6 +6556,8 @@ snapshots:
       lodash: 4.17.21
       strip-ansi: 6.0.1
 
+  repeat-string@1.6.1: {}
+
   require-directory@2.1.1: {}
 
   require-from-string@2.0.2: {}
@@ -6615,12 +6625,12 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass-loader@13.3.3(sass@1.75.0)(webpack@5.91.0(webpack-cli@5.1.4)):
+  sass-loader@14.2.1(sass@1.75.0)(webpack@5.91.0(webpack-cli@5.1.4)):
     dependencies:
       neo-async: 2.6.2
-      webpack: 5.91.0(webpack-cli@5.1.4)
     optionalDependencies:
       sass: 1.75.0
+      webpack: 5.91.0(webpack-cli@5.1.4)
 
   sass@1.75.0:
     dependencies:
@@ -7039,13 +7049,17 @@ snapshots:
       - esbuild
       - uglify-js
 
-  webpackbar@5.0.2(webpack@5.91.0(webpack-cli@5.1.4)):
+  webpackbar@6.0.1(webpack@5.91.0(webpack-cli@5.1.4)):
     dependencies:
+      ansi-escapes: 4.3.2
       chalk: 4.1.2
-      consola: 2.15.3
+      consola: 3.2.3
+      figures: 3.2.0
+      markdown-table: 2.0.0
       pretty-time: 1.1.0
       std-env: 3.7.0
       webpack: 5.91.0(webpack-cli@5.1.4)
+      wrap-ansi: 7.0.0
 
   which-module@2.0.1: {}
 

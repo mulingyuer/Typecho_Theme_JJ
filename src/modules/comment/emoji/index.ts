@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-25 22:25:07
- * @LastEditTime: 2024-04-21 03:17:51
+ * @LastEditTime: 2024-04-21 04:13:19
  * @LastEditors: mulingyuer
  * @Description: 表情
  * @FilePath: /Typecho_Theme_JJ/src/modules/comment/emoji/index.ts
@@ -182,7 +182,12 @@ class Emoji {
 	private popoverUpdate(btn: HTMLElement, childWrap: HTMLElement, arrowWrap: HTMLElement) {
 		computePosition(btn, childWrap, {
 			placement: "bottom-start",
-			middleware: [offset(12), flip({ crossAxis: false }), shift(), arrow({ element: arrowWrap })]
+			middleware: [
+				offset({ mainAxis: 12, crossAxis: -12 }),
+				flip({ crossAxis: false }),
+				shift(),
+				arrow({ element: arrowWrap })
+			]
 		}).then(({ x, y, middlewareData, placement }) => {
 			Object.assign(childWrap.style, {
 				left: `${x ?? 0}px`,
