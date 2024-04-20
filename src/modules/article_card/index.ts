@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-19 17:59:36
- * @LastEditTime: 2023-08-13 11:29:30
+ * @LastEditTime: 2024-04-19 17:29:28
  * @LastEditors: mulingyuer
  * @Description: 文章卡片
  * @FilePath: /Typecho_Theme_JJ/src/modules/article_card/index.ts
@@ -11,6 +11,7 @@ import "./style.scss";
 import toast from "@/utils/toast";
 import ThumbLazy from "./thumbLazy";
 import type { LazyTarget } from "./thumbLazy";
+import { getThemeConfig } from "@/utils/themeConfig";
 
 class ArticleCard {
 	/** 父级容器 */
@@ -23,6 +24,8 @@ class ArticleCard {
 	private thumbLazy = ThumbLazy.getInstance();
 	/** 黑名单className */
 	private blackClassList = ["article-card-tag"];
+	/** 主题配置 */
+	private themeConfig = getThemeConfig();
 
 	constructor() {
 		if (this.articleWrap) {
@@ -47,7 +50,12 @@ class ArticleCard {
 		}
 		const link = articleCard.dataset.link;
 		if (typeof link === "string" && link.trim() !== "") {
-			location.href = link;
+			if (!this.themeConfig || this.themeConfig.paginationType === "button") {
+				location.href = link;
+				return;
+			} else {
+				window.open(link, "_blank");
+			}
 		} else {
 			toast.warning({ text: "未找到卡片的文章链接" });
 		}

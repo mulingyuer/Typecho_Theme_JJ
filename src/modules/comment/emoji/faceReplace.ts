@@ -1,45 +1,47 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-26 04:06:58
- * @LastEditTime: 2023-03-30 00:52:46
+ * @LastEditTime: 2024-04-21 02:45:32
  * @LastEditors: mulingyuer
  * @Description: 文本替换成表情
- * @FilePath: \Typecho_Theme_JJ\src\modules\comment\emoji\faceReplace.ts
+ * @FilePath: /Typecho_Theme_JJ/src/modules/comment/emoji/faceReplace.ts
  * 怎么可能会有bug！！！
  */
-import { emojiData, getEmojiPrefix } from "./data";
+import { SingletonFactory } from "@/utils/singletonFactory";
+import { emojiData } from "./data";
+import type { EmojiImageItem, EmojiImageList, EmojiItem1 } from "./types";
+import { getThemeConfig } from "@/utils/themeConfig";
+import { joinPath } from "@/utils/tool";
 
 /** 文本替换成表情 */
-class FaceReplace {
-	/** 需要替换的dom元素 */
-	private domList: Array<HTMLElement> = [];
+class SingletonFaceReplace {
+	themeConfig = getThemeConfig();
+	/** 缓存 */
+	private cache = new Map<string, EmojiImageItem>();
 
-	constructor(dom: HTMLElement | Array<HTMLElement>) {
+	/** 开始 */
+	public start(dom: HTMLElement | Array<HTMLElement>) {
 		if (Array.isArray(dom)) {
-			this.domList = dom;
+			dom.forEach((item) => this.replace(item));
 		} else {
-			this.domList.push(dom);
+			this.replace(dom);
 		}
 	}
 
-	/** 开始替换 */
-	public start() {
-		this.domList.forEach((dom) => {
-			this.replace(dom);
-		});
-	}
-
-	/** 将文本中的表情替换成图片元素 */
+	/** 替换表情 */
 	private replace(dom: HTMLElement) {
 		let html = dom.innerHTML;
 		const reg = /\[(.*?)\]/g;
-		const emojiPrefix = getEmojiPrefix();
 
 		html = html.replace(reg, (match, param) => {
 			const data = this.getEmojiData(param);
-			if (data.src) {
-				return `<img class="${data.isHotWord ? "hot-word-emoji-img" : ""}" src="${emojiPrefix}${data.src}">`;
+			if (data) {
+				return `<img class="${data.renderClassName ?? ""}" src="${joinPath(
+					this.themeConfig?.themePath ?? "",
+					data.src
+				)}">`;
 			}
+
 			return match;
 		});
 
@@ -47,25 +49,21 @@ class FaceReplace {
 		dom.innerHTML = html;
 	}
 
-	/** 获取表情对应的数据 */
-	private getEmojiData(emoji: string) {
-		let src = "";
-		let isHotWord = false;
-		for (let i = 0, len = emojiData.length; i < len; i++) {
-			const { id, data } = emojiData[i];
-			const val = data[emoji as keyof typeof data];
-			if (typeof val === "string") {
-				src = val;
-				if (id === "hotWord") isHotWord = true;
-				break;
-			}
-		}
+	/** 获取表情 */
+	private getEmojiData(key: string): EmojiImageItem | undefined {
+		// 如果缓存中存在，则直接返回
+		if (this.cache.has(key)) return this.cache.get(key);
 
-		return {
-			src,
-			isHotWord
-		};
+		const list: EmojiImageList = emojiData
+			.filter((item) => item.type === "image")
+			.flatMap((item) => (item as EmojiItem1).data);
+
+		const data = list.find((item) => item.key === key);
+
+		// 缓存
+		if (data) this.cache.set(key, data);
+		return data;
 	}
 }
 
-export default FaceReplace;
+export const singletonFaceReplace = SingletonFactory.getInstance(SingletonFaceReplace);

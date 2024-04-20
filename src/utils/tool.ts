@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-15 19:54:42
- * @LastEditTime: 2023-05-20 13:19:39
+ * @LastEditTime: 2024-04-20 22:21:31
  * @LastEditors: mulingyuer
  * @Description: 工具函数
- * @FilePath: \Typecho_Theme_JJ\src\utils\tool.ts
+ * @FilePath: /Typecho_Theme_JJ/src/utils/tool.ts
  * 怎么可能会有bug！！！
  */
 /** 是否支持closest方法 */
@@ -84,4 +84,12 @@ export function joinThemePath(path?: string): string {
 		return `${str}${path}`;
 	}
 	return "";
+}
+
+/** 拼接path地址 */
+export function joinPath(...args: string[]) {
+	return args.reduce((start, end) => {
+		if (!start) return end;
+		return start.replace(/\/$/, "") + "/" + end.replace(/^\//, "");
+	}, "");
 }

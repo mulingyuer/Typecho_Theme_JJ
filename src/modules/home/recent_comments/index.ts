@@ -1,14 +1,14 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-21 17:40:33
- * @LastEditTime: 2023-03-27 22:36:38
+ * @LastEditTime: 2024-04-21 02:46:07
  * @LastEditors: mulingyuer
  * @Description: 最近评论
- * @FilePath: \Typecho_Theme_JJ\src\modules\home\recent_comments\index.ts
+ * @FilePath: /Typecho_Theme_JJ/src/modules/home/recent_comments/index.ts
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
-import FaceReplace from "@/modules/comment/emoji/faceReplace";
+import { singletonFaceReplace } from "@/modules/comment/emoji/faceReplace";
 import recentCommentsSkeleton from "@/modules/home/recent_comments_skeleton";
 
 class RecentComments {
@@ -18,7 +18,7 @@ class RecentComments {
 	constructor() {
 		//表情替换
 		if (this.commentList) {
-			new FaceReplace(this.commentList).start();
+			singletonFaceReplace.start(this.commentList);
 		}
 
 		//关闭骨架

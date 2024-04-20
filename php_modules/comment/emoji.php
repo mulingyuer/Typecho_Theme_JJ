@@ -2,7 +2,7 @@
   <div class="emoji-content">
     <div class="emoji-btn">
       <i class="jj-icon jj-icon-smile emoji-btn-icon"></i>
-      <span class="emoji-btn-text">表情</span>
+      <!-- <span class="emoji-btn-text">表情</span> -->
     </div>
     <div class="emoji-picker">
       <div class="emoji-picker-arrow"></div>

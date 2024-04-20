@@ -9,6 +9,9 @@
 	--jj-skeleton-line-bg1: #e4e6eb;
 	--jj-skeleton-line-bg2: rgba(228, 230, 235, 0.5);
 
+	/** 滚动条 */
+	--jj-scroll-bar-bg1: #e4e6eb;
+
 	/** 顶部导航栏 */
 	--jj-header-bg-color: #fff;
 	--jj-header-box-shadow: rgba(0, 0, 0, 0.05);
@@ -325,7 +328,7 @@
 
 	/* emoji */
 	--jj-emoji-bg: #fff;
-	--jj-emoji-btn: #4e5969;
+	--jj-emoji-btn: #8a919f;
 	--jj-emoji-btn-hover: #1e80ff;
 	--jj-emoji-picker-box-shadow: rgba(0, 0, 0, 0.1);
 	--jj-emoji-picker-arrow-bg: #fff;
@@ -333,7 +336,6 @@
 	--jj-emoji-picker-head-item: #252933;
 	--jj-emoji-picker-head-item-bg-hover: #f1f3f6;
 	--jj-emoji-picker-head-item-bg-active: #e5e6eb;
-	--jj-emoji-picker-scroll-bg: #e5e6eb;
 	--jj-emoji-picker-body-item-bg: #e3e5e7;
 
 	/* links */

@@ -2,11 +2,11 @@
 	position: relative;
 }
 .emoji-btn {
-	height: 28px;
-	padding: 0 5px;
+	width: 32px;
+	height: 32px;
 	display: flex;
 	align-items: center;
-	font-size: 13px;
+	font-size: 20px;
 	color: var(--jj-emoji-btn);
 	transition: color 0.3s;
 	cursor: pointer;
@@ -44,12 +44,12 @@
 	&.top {
 		border-top-color: var(--jj-emoji-picker-arrow-bg);
 		bottom: -18px;
-		left: 20px;
+		left: 4px;
 	}
 	&.bottom {
 		border-bottom-color: var(--jj-emoji-picker-arrow-bg);
 		top: -18px;
-		left: 20px;
+		left: 4px;
 	}
 }
 .emoji-picker-content {
@@ -118,30 +118,11 @@
 	width: 100%;
 	height: 100%;
 	white-space: normal;
-	padding: 8px 4px 8px 8px;
+	padding: 8px 0 8px 8px;
 }
-.emoji-picker-body-item-scroll {
-	height: 100%;
-	padding-right: 4px;
-	overflow: auto;
-	// 谷歌浏览器
-	&::-webkit-scrollbar {
-		width: 6px;
-		height: 6px;
-	}
-	&::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		background-color: var(--jj-emoji-picker-scroll-bg);
-	}
-	// 火狐浏览器
-	@supports (scrollbar-width: thin) {
-		// scrollbar-width: thin; // Firefox 显示有问题
-		scrollbar-color: var(--jj-emoji-picker-scroll-bg) transparent;
-	}
-}
-.emoji-picker-body-item-scroll {
-	> img,
-	> span {
+.emoji-picker-body-item {
+	.emoji-picker-body-img,
+	.emoji-picker-body-text {
 		display: inline-block;
 		vertical-align: top;
 		padding: 6px;
@@ -154,16 +135,16 @@
 			background-color: var(--jj-emoji-picker-body-item-bg);
 		}
 	}
-	> img {
+	.emoji-picker-body-img {
 		width: 40px;
 		height: 40px;
 	}
-	> span {
+	.emoji-picker-body-text {
 		padding: 6px 10px;
 	}
 }
 .emoji-picker-body-item.hot-word {
-	.emoji-picker-body-item-scroll > img {
+	.emoji-picker-body-img {
 		width: 72px;
 		height: 72px;
 	}
