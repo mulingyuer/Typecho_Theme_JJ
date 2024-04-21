@@ -1,10 +1,10 @@
 <!--
  * @Author: mulingyuer
  * @Date: 2023-03-28 02:22:08
- * @LastEditTime: 2023-12-24 06:28:59
+ * @LastEditTime: 2024-04-22 00:09:06
  * @LastEditors: mulingyuer
  * @Description:文章小技巧
- * @FilePath: /Typecho_Theme_JJ/src/advanced-config/article-tips.md
+ * @FilePath: \Typecho_Theme_JJ_docs\src\advanced-config\article-tips.md
  * 怎么可能会有bug！！！
 -->
 
@@ -76,15 +76,19 @@
 
 有时候我们希望页面内嵌一些外链，比如视频，代码 codePen 这些，这个功能在之前是没有的，为此在 2.0 加入了对它的样式支持。
 
-```markdown
-## 这是一个 b 站视频
+如果你想保持一定的宽高比列，主题目前支持16:9的比例，适用于视频和代码分享，如果需要，请给iframe元素添加一个属性：
 
-<iframe src="//player.bilibili.com/player.html?aid=824033998&bvid=BV1Ug4y1W7Ha&cid=1070035335&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+```html
+<iframe data-type="video">  </iframe>
+
+<iframe data-type="code">  </iframe>
+
+<iframe>  </iframe>
 ```
 
-![](/images/advanced-config/article-tips/iframe支持01.jpg)
+这两个自定义属性是必须的，如果你想保持这个比例的话，当然普通的iframe也是可以的，你可以自己配置行内样式实现自定义。
 
-不知道为什么 CodePen 不支持 iframe 内嵌了，可能是我的方式不对，上个 b 站的也是一样，反正是对 iframe 做了样式支持
+![](/images/advanced-config/article-tips/iframe支持01.png)
 
 ## 目录树
 
@@ -141,4 +145,3 @@ v2.3 版本新增了首页右侧推荐文章功能，我们只需要在主题配
 ![](/images/advanced-config/article-tips/首页右侧推荐文章03.jpg)
 
 这个就非常适合推荐一些精品文章，配合优质的广告图进行展示，也可以是软文之类的，如果你对右下角的文字不满意，也可以自己在 **首页右侧推荐文章 tag 文字** 进行修改。
-
