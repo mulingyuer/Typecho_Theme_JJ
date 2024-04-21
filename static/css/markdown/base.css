@@ -107,10 +107,13 @@ pre > code.code-block-extension-code-show-num {
 .markdown-body iframe {
 	display: block;
 	width: 100%;
+	margin: 15px 0;
+}
+.markdown-body iframe[data-type="video"],
+.markdown-body iframe[data-type="code"] {
 	height: 430px;
 	border-radius: 8px;
 	border: 0.5px solid rgba(128, 128, 128, 0.4);
-	margin: 15px 0;
 }
 .markdown-body input[type="radio"],
 .markdown-body input[type="checkbox"],
@@ -119,7 +122,8 @@ pre > code.code-block-extension-code-show-num {
 	vertical-align: baseline;
 }
 @media screen and (max-width: 600px) {
-	.markdown-body iframe {
+	.markdown-body iframe[data-type="video"],
+	.markdown-body iframe[data-type="code"] {
 		height: 110vw;
 		min-height: 390px;
 	}
