@@ -159,7 +159,7 @@ function themeConfig($form) {
         null,
         '推荐',
         _t('首页右侧推荐文章tag文字'),
-        _t('推荐2个文字'),
+        _t('推荐2个文字')
     );
     $form->addInput($homeRecommendedArticleTag);
 
