@@ -1,7 +1,7 @@
 <!--
  * @Author: mulingyuer
  * @Date: 2023-03-28 02:22:08
- * @LastEditTime: 2024-04-22 00:09:06
+ * @LastEditTime: 2024-04-27 23:24:46
  * @LastEditors: mulingyuer
  * @Description:文章小技巧
  * @FilePath: \Typecho_Theme_JJ_docs\src\advanced-config\article-tips.md
@@ -54,9 +54,14 @@
 用于处理一些已完成和未完成的事情
 
 ```markdown
-[x] 这是一个选中的 todo 图标
-[ ] 这是一个未选中的 todo 图标
+- [x] 这是一个选中的 todo 图标
+- [ ] 这是一个未选中的 todo 图标
+
+1. [x] 这是一个选中的 todo 图标
+2. [ ] 这是一个未选中的 todo 图标
 ```
+
+必须是在列表中，否则不会生效，注意`] `方括号后面是有一个空格的。
 
 ![](/images/advanced-config/article-tips/todo列表01.jpg)
 
