@@ -1382,17 +1382,17 @@ function articleReadingTime($text) {
         $hours = $hours % 24;
         
         if ($hours == 0) {
-            return "$days 天";
+            return "阅读".$days."天";
         } else {
-            return "$days 天 $hours 小时";
+            return "阅读".$days."天".$hours."小时";
         }
     } else {
         if ($hours == 0) {
-            return "$minutes 分钟";
+            return "阅读".$minutes."分钟";
         } elseif ($minutes == 0) {
-            return "$hours 小时";
+            return "阅读".$hours."小时";
         } else {
-            return "$hours 小时 $minutes 分钟";
+            return "阅读".$hours."小时".$minutes."分钟";
         }
     }
 }
