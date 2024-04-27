@@ -1367,6 +1367,36 @@ function todoListFormatted($html){
     return $html;
 }
 
+/** 计算文章的阅读时间 */
+function articleReadingTime($text) {
+    $length = mb_strlen(strip_tags($text), 'utf-8');
+    // 计算阅读时间（分钟）
+    $readingTime = ceil($length / 250);
+    
+    // 转换阅读时间为小时和分钟
+    $hours = floor($readingTime / 60);
+    $minutes = $readingTime % 60;
+
+    if ($hours >= 24) {
+        $days = floor($hours / 24);
+        $hours = $hours % 24;
+        
+        if ($hours == 0) {
+            return "$days 天";
+        } else {
+            return "$days 天 $hours 小时";
+        }
+    } else {
+        if ($hours == 0) {
+            return "$minutes 分钟";
+        } elseif ($minutes == 0) {
+            return "$hours 小时";
+        } else {
+            return "$hours 小时 $minutes 分钟";
+        }
+    }
+}
+
 
 //主题themeInit函数
 function themeInit($archive) {

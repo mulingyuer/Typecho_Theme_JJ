@@ -8,6 +8,9 @@
         <span class="article-content-views">
           <i class="jj-icon jj-icon-eye article-content-views-icon"></i><?php echo articleViews($this); ?>
         </span>
+        <span class="article-content-reading-time">
+        <i class="jj-icon jj-icon-time-circle article-content-reading-time-icon"></i><?php echo articleReadingTime($this->content); ?>
+        </span>
         <?php if ($this->user->hasLogin()): ?>
         <a class="article-content-edit-btn" href="<?php $this->options->adminUrl();?>write-<?php if ($this->is('post')): ?>post<?php else: ?>page<?php endif;?>.php?cid=<?php echo $this->cid; ?>" target="_self">编辑</a>
         <?php endif;?>

@@ -20,10 +20,12 @@
 	@include one-line();
 }
 .article-content-time,
-.article-content-views {
+.article-content-views,
+.article-content-reading-time {
 	margin-right: 16px;
 }
-.article-content-views-icon {
+.article-content-views-icon,
+.article-content-reading-time-icon {
 	margin-right: 3px;
 }
 .article-content-edit-btn {
