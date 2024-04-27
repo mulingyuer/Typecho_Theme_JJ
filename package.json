@@ -12,7 +12,8 @@
 		"git:commit-all": "git add . && git cz",
 		"git:commit-index": "git cz",
 		"build-zip": "ts-node buildCommand/zip.ts",
-		"init-husky": "npx husky install"
+		"init-husky": "npx husky init",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.24.1",

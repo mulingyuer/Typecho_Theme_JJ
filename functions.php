@@ -1348,6 +1348,24 @@ function getHomeRecommendedArticleList() {
     return $articles;
 }
 
+/**
+ * @description: todoList 格式化
+ * @param {*} $html
+ * @Date: 2024-04-27 15:21:07
+ * @Author: mulingyuer
+ */
+function todoListFormatted($html){
+    // 匹配 [ ] 和 [x] 并替换为相应的 input 元素
+    $html = preg_replace('/<li>\[x\]\s/sm', '<li class="task-list-item"><input type="checkbox" checked disabled/>', $html);
+    $html = preg_replace('/<li>\[\s\]\s/sm', '<li class="task-list-item"><input type="checkbox" disabled/>', $html);
+
+    // 为包含任务列表的 ul/ol 添加 class
+    $html = preg_replace('/<(ul|ol)>(.*?<li class="task-list-item">.*?)<\/\1>/s', '<$1 class="contains-task-list">$2</$1>', $html);
+
+    return $html;
+}
+
+
 //主题themeInit函数
 function themeInit($archive) {
     //评论回复楼层最高999层.这个正常设置最高只有7层
