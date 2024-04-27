@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 20:49:25
- * @LastEditTime: 2023-03-19 13:21:05
+ * @LastEditTime: 2024-04-27 17:31:38
  * @LastEditors: mulingyuer
  * @Description: webpack dev配置
- * @FilePath: \Typecho_Theme_JJ\webpack\webpack.dev.ts
+ * @FilePath: /Typecho_Theme_JJ/webpack/webpack.dev.ts
  * 怎么可能会有bug！！！
  */
 import type { Configuration } from "webpack";
@@ -22,7 +22,8 @@ export default merge(common, {
 		//vue
 		new DefinePlugin({
 			__VUE_OPTIONS_API__: false,
-			__VUE_PROD_DEVTOOLS__: true
+			__VUE_PROD_DEVTOOLS__: true,
+			__VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
 		})
 	],
 	watch: true, //监听任何已解析文件的更改
