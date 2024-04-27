@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-22 19:56:36
- * @LastEditTime: 2024-04-01 01:20:34
+ * @LastEditTime: 2024-04-27 17:28:59
  * @LastEditors: mulingyuer
  * @Description: 文章内容模块
  * @FilePath: /Typecho_Theme_JJ/src/modules/article_content/index.ts
@@ -53,6 +53,11 @@ class CodeBlock {
 	/** 代码高亮 */
 	private highlight(codeDom: HTMLElement) {
 		hljs.highlightElement(codeDom);
+		// 将cpp转化为c++
+		if (codeDom.classList.contains("language-cpp")) {
+			codeDom.classList.remove("language-cpp");
+			codeDom.classList.add("language-c++");
+		}
 	}
 
 	/** 创建code-header模板 */

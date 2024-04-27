@@ -1056,14 +1056,16 @@ function getOs($agent) {
  * @Author: mulingyuer
  */
 function get_comment_at($coid) {
-    $db   = Typecho_Db::get();
+    $db = Typecho_Db::get();
     $prow = $db->fetchRow($db->select('parent')->from('table.comments')
-            ->where('coid = ? AND status = ?', $coid, 'approved'));
-    $parent = $prow['parent'];
-    if ($parent != '0') {
+            ->where('coid = ? AND status = ?',$coid, 'approved')) ?? [];
+    
+    $parent = $prow['parent'] ?? '0';
+
+    if ($parent !== '0') {
         $arow = $db->fetchRow($db->select('author')->from('table.comments')
-                ->where('coid = ? AND status = ?', $parent, 'approved'));
-        $author = $arow['author'];
+            ->where('coid = ? AND status = ?', $parent, 'approved')) ?? [];$author = $arow['author'] ?? '';
+
         if ($author) {
             $href = '<a class="comment-list-item-relation" href="#comment-'.$parent.'">@'.$author.'</a>';
             echo $href;
@@ -1347,6 +1349,54 @@ function getHomeRecommendedArticleList() {
 
     return $articles;
 }
+
+/**
+ * @description: todoList 格式化
+ * @param {*} $html
+ * @Date: 2024-04-27 15:21:07
+ * @Author: mulingyuer
+ */
+function todoListFormatted($html){
+    // 匹配 [ ] 和 [x] 并替换为相应的 input 元素
+    $html = preg_replace('/<li>\[x\]\s/sm', '<li class="task-list-item"><input type="checkbox" checked disabled/>', $html);
+    $html = preg_replace('/<li>\[\s\]\s/sm', '<li class="task-list-item"><input type="checkbox" disabled/>', $html);
+
+    // 为包含任务列表的 ul/ol 添加 class
+    $html = preg_replace('/<(ul|ol)>(.*?<li class="task-list-item">.*?)<\/\1>/s', '<$1 class="contains-task-list">$2</$1>', $html);
+
+    return $html;
+}
+
+/** 计算文章的阅读时间 */
+function articleReadingTime($text) {
+    $length = mb_strlen(strip_tags($text), 'utf-8');
+    // 计算阅读时间（分钟）
+    $readingTime = ceil($length / 250);
+    
+    // 转换阅读时间为小时和分钟
+    $hours = floor($readingTime / 60);
+    $minutes = $readingTime % 60;
+
+    if ($hours >= 24) {
+        $days = floor($hours / 24);
+        $hours = $hours % 24;
+        
+        if ($hours == 0) {
+            return "$days 天";
+        } else {
+            return "$days 天 $hours 小时";
+        }
+    } else {
+        if ($hours == 0) {
+            return "$minutes 分钟";
+        } elseif ($minutes == 0) {
+            return "$hours 小时";
+        } else {
+            return "$hours 小时 $minutes 分钟";
+        }
+    }
+}
+
 
 //主题themeInit函数
 function themeInit($archive) {
