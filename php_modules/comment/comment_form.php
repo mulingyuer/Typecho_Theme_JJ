@@ -7,7 +7,7 @@
           <?php $this->author->gravatar();?>
         <?php else: ?>
           <?php $email = $this->remember('mail', true);if (!empty($email)): ?>
-            <img src="https://gravatar.loli.net/avatar/<?php echo md5($email); ?>">
+            <img src="https://cravatar.cn/avatar/<?php echo md5($email); ?>">
           <?php else: ?>
             <img src="<?php $this->options->themeUrl('/static/images/comment/default_avatar.svg');?>">
           <?php endif;?>
