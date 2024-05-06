@@ -1,8 +1,8 @@
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-item">
-      <a href="<?php echo getHidePage($page, 'about'); ?>" target="_self" title="关于">关于</a>
-      <a href="<?php echo getHidePage($page, 'links'); ?>" target="_self" title="友情链接">友情链接</a>
+      <a href="<?php echo getHidePage($this, 'about'); ?>" target="_self" title="关于">关于</a>
+      <a href="<?php echo getHidePage($this, 'links'); ?>" target="_self" title="友情链接">友情链接</a>
       <a href="<?php $this->options->siteUrl();?>sitemap.xml" target="_blank" title="站点地图">站点地图</a>
     </div>
     <div class="footer-item">
