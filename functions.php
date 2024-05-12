@@ -607,7 +607,7 @@ function getHidePage($page, $name) {
     }
     //判断是否存在
     if (empty($href)) {
-        return $name.'页不存在';
+        return 'javascript:alert(\''.$name.'页不存在！\');';
     } else {
         return $href;
     }
