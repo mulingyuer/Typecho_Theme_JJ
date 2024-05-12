@@ -1,89 +1,89 @@
 <?php
-if ( ! defined('__TYPECHO_ROOT_DIR__')) {
+if (!defined('__TYPECHO_ROOT_DIR__')) {
     exit;
 }
 
 // 文章主题样式map
 global $markdownThemeMap;
 $markdownThemeMap = array(
-    'juejin'           => _t('掘金'),
-    'github'           => _t('github'),
-    'smartblue'        => _t('smartblue'),
-    'cyanosis'         => _t('cyanosis'),
-    'channing-cyan'    => _t('channing-cyan'),
-    'fancy'            => _t('fancy'),
-    'hydrogen'         => _t('hydrogen'),
-    'v-green'          => _t('v-green'),
-    'vue-pro'          => _t('vue-pro'),
-    'healer-readable'  => _t('healer-readable'),
-    'mk-cute'          => _t('mk-cute'),
-    'geek-black'       => _t('geek-black'),
-    'qklhk-chocolate'  => _t('qklhk-chocolate'),
-    'orange'           => _t('orange'),
-    'scrolls-light'    => _t('scrolls-light'),
+    'juejin' => _t('掘金'),
+    'github' => _t('github'),
+    'smartblue' => _t('smartblue'),
+    'cyanosis' => _t('cyanosis'),
+    'channing-cyan' => _t('channing-cyan'),
+    'fancy' => _t('fancy'),
+    'hydrogen' => _t('hydrogen'),
+    'v-green' => _t('v-green'),
+    'vue-pro' => _t('vue-pro'),
+    'healer-readable' => _t('healer-readable'),
+    'mk-cute' => _t('mk-cute'),
+    'geek-black' => _t('geek-black'),
+    'qklhk-chocolate' => _t('qklhk-chocolate'),
+    'orange' => _t('orange'),
+    'scrolls-light' => _t('scrolls-light'),
     'simplicity-green' => _t('simplicity-green'),
-    'arknights'        => _t('arknights'),
-    'vuepress'         => _t('vuepress'),
-    'nico'             => _t('nico'),
-    'devui-blue'       => _t('devui-blue'),
-    'serene-rose'      => _t('serene-rose'),
-    'z-blue'           => _t('z-blue'),
-    'minimalism'       => _t('minimalism'),
-    'yu'               => _t('yu'),
-    'keepnice'         => _t('keepnice'),
+    'arknights' => _t('arknights'),
+    'vuepress' => _t('vuepress'),
+    'nico' => _t('nico'),
+    'devui-blue' => _t('devui-blue'),
+    'serene-rose' => _t('serene-rose'),
+    'z-blue' => _t('z-blue'),
+    'minimalism' => _t('minimalism'),
+    'yu' => _t('yu'),
+    'keepnice' => _t('keepnice'),
 );
 
 // 默认文章主题对应的代码高亮map
 global $defaultMarkdownThemeHighlightMap;
 $defaultMarkdownThemeHighlightMap = array(
-    'juejin'           => 'juejin',
-    'github'           => 'github',
-    'smartblue'        => 'juejin',
-    'cyanosis'         => 'atom-one-dark',
-    'channing-cyan'    => 'juejin',
-    'fancy'            => 'juejin',
-    'hydrogen'         => 'juejin',
-    'v-green'          => 'juejin',
-    'vue-pro'          => 'monokai',
-    'healer-readable'  => 'srcery',
-    'mk-cute'          => 'juejin',
-    'geek-black'       => 'monokai',
-    'qklhk-chocolate'  => 'juejin',
-    'orange'           => 'atom-one-light',
-    'scrolls-light'    => 'juejin',
+    'juejin' => 'juejin',
+    'github' => 'github',
+    'smartblue' => 'juejin',
+    'cyanosis' => 'atom-one-dark',
+    'channing-cyan' => 'juejin',
+    'fancy' => 'juejin',
+    'hydrogen' => 'juejin',
+    'v-green' => 'juejin',
+    'vue-pro' => 'monokai',
+    'healer-readable' => 'srcery',
+    'mk-cute' => 'juejin',
+    'geek-black' => 'monokai',
+    'qklhk-chocolate' => 'juejin',
+    'orange' => 'atom-one-light',
+    'scrolls-light' => 'juejin',
     'simplicity-green' => 'juejin',
-    'arknights'        => 'atom-one-light',
-    'vuepress'         => 'base16/tomorrow-night',
-    'nico'             => 'atelier-sulphurpool-light',
-    'devui-blue'       => 'juejin',
-    'serene-rose'      => 'atom-one-dark',
-    'z-blue'           => 'androidstudio',
-    'minimalism'       => 'atom-one-dark',
-    'yu'               => 'atom-one-dark',
-    'keepnice'         => 'github',
+    'arknights' => 'atom-one-light',
+    'vuepress' => 'base16/tomorrow-night',
+    'nico' => 'atelier-sulphurpool-light',
+    'devui-blue' => 'juejin',
+    'serene-rose' => 'atom-one-dark',
+    'z-blue' => 'androidstudio',
+    'minimalism' => 'atom-one-dark',
+    'yu' => 'atom-one-dark',
+    'keepnice' => 'github',
 );
 
 // 代码高亮主题map
 global $markdownHighlightMap;
 $markdownHighlightMap = array(
-    ''                          => _t('无'),
-    'juejin'                    => _t('掘金'),
-    'github'                    => _t('github'),
-    'github-gist'               => _t('github-gist'),
-    'atom-one-dark'             => _t('atom-one-dark'),
-    'atom-one-light'            => _t('atom-one-light'),
-    'monokai'                   => _t('monokai'),
-    'monokai-sublime'           => _t('monokai-sublime'),
-    'srcery'                    => _t('srcery'),
-    'tomorrow-night-blue'       => _t('tomorrow-night-blue'),
-    'tomorrow-night-eighties'   => _t('tomorrow-night-eighties'),
-    'tomorrow-night'            => _t('tomorrow-night'),
-    'tomorrow'                  => _t('tomorrow'),
+    '' => _t('无'),
+    'juejin' => _t('掘金'),
+    'github' => _t('github'),
+    'github-gist' => _t('github-gist'),
+    'atom-one-dark' => _t('atom-one-dark'),
+    'atom-one-light' => _t('atom-one-light'),
+    'monokai' => _t('monokai'),
+    'monokai-sublime' => _t('monokai-sublime'),
+    'srcery' => _t('srcery'),
+    'tomorrow-night-blue' => _t('tomorrow-night-blue'),
+    'tomorrow-night-eighties' => _t('tomorrow-night-eighties'),
+    'tomorrow-night' => _t('tomorrow-night'),
+    'tomorrow' => _t('tomorrow'),
     'atelier-sulphurpool-light' => _t('atelier-sulphurpool-light'),
-    'androidstudio'             => _t('androidstudio'),
-    'a11y-dark'                 => _t('a11y-dark'),
-    'a11y-light'                => _t('a11y-light'),
-    'zenburn'                   => _t('zenburn'),
+    'androidstudio' => _t('androidstudio'),
+    'a11y-dark' => _t('a11y-dark'),
+    'a11y-light' => _t('a11y-light'),
+    'zenburn' => _t('zenburn'),
 );
 
 /**
@@ -92,7 +92,8 @@ $markdownHighlightMap = array(
  * @Date: 2023-03-21 23:48:01
  * @Author: mulingyuer
  */
-function themeConfig($form) {
+function themeConfig($form)
+{
     global $markdownThemeMap;
 
     // head标签底部插入代码
@@ -175,7 +176,7 @@ function themeConfig($form) {
         'paginationType',
         array(
             'infinite' => _t('无限滚动'),
-            'button'   => _t('按钮翻页'),
+            'button' => _t('按钮翻页'),
         ),
         'infinite', _t('文章翻页类型'), _t('默认使用无限滚动')
     );
@@ -207,7 +208,7 @@ function themeConfig($form) {
         'isOpenDocSearch',
         array(
             'off' => _t('关闭'),
-            'on'  => _t('开启'),
+            'on' => _t('开启'),
         ),
         'off', _t('是否开启DocSearch'), _t('默认关闭')
     );
@@ -247,15 +248,16 @@ function themeConfig($form) {
  * @Date: 2023-03-14 20:50:07
  * @Author: mulingyuer
  */
-function blogTitle($that) {
+function blogTitle($that)
+{
     $before = $that->archiveTitle(array(
         'category' => _t('分类 %s 下的文章'),
-        'search'   => _t('包含关键字 %s 的文章'),
-        'tag'      => _t('标签 %s 下的文章'),
-        'author'   => _t('%s 发布的文章'),
+        'search' => _t('包含关键字 %s 的文章'),
+        'tag' => _t('标签 %s 下的文章'),
+        'author' => _t('%s 发布的文章'),
     ), '', ' - ');
     $title = Helper::options()->title();
-    return $before.$title;
+    return $before . $title;
 }
 
 /**
@@ -264,10 +266,11 @@ function blogTitle($that) {
  * @Date: 2023-03-22 00:40:07
  * @Author: mulingyuer
  */
-function isOtherPage($that) {
-    $isIndex    = $that->is('index');
+function isOtherPage($that)
+{
+    $isIndex = $that->is('index');
     $isCategory = $that->is('category');
-    $isArchive  = $that->is('archive');
+    $isArchive = $that->is('archive');
 
     return $isIndex || $isCategory || $isArchive;
 }
@@ -279,7 +282,8 @@ function isOtherPage($that) {
  * @Date: 2023-05-14 23:22:44
  * @Author: mulingyuer
  */
-function blogDescription($that, $max = 160) {
+function blogDescription($that, $max = 160)
+{
     $desc = '';
     if (isOtherPage($that)) {
         $desc = Helper::options()->description();
@@ -295,7 +299,8 @@ function blogDescription($that, $max = 160) {
  * @Date: 2023-03-14 21:02:23
  * @Author: mulingyuer
  */
-function blogKeywords($that) {
+function blogKeywords($that)
+{
     $keywords = '';
     if (isOtherPage($that)) {
         $keywords = Helper::options()->keywords();
@@ -311,7 +316,8 @@ function blogKeywords($that) {
  * @Date: 2023-03-14 21:20:53
  * @Author: mulingyuer
  */
-function seoUrl($that) {
+function seoUrl($that)
+{
     // 旧版
     // $url = "";
     // if ($that->is('index')) {
@@ -329,16 +335,17 @@ function seoUrl($that) {
  * @Date: 2023-03-14 21:30:30
  * @Author: mulingyuer
  */
-function seoImage($that) {
+function seoImage($that)
+{
     $image = '';
     if (isOtherPage($that)) {
-        $image = Helper::options()->themeUrl.'/static/images/favicon/android-chrome-512x512.png';
+        $image = Helper::options()->themeUrl . '/static/images/favicon/android-chrome-512x512.png';
     } else {
         $image = articleThumbnail($that);
     }
     //保底图片
-    if ( ! $image) {
-        $image = Helper::options()->themeUrl.'/static/images/seo_img_null.jpg';
+    if (!$image) {
+        $image = Helper::options()->themeUrl . '/static/images/seo_img_null.jpg';
     }
     return $image;
 }
@@ -351,7 +358,8 @@ function seoImage($that) {
  * @Date: 2023-03-18 22:24:19
  * @Author: mulingyuer
  */
-function isParentActive($activeSlug, $category, $children) {
+function isParentActive($activeSlug, $category, $children)
+{
 
     $flag = false;
     foreach ($children as $mid) {
@@ -365,7 +373,8 @@ function isParentActive($activeSlug, $category, $children) {
 }
 
 /** 二级分类：全部是否高亮 */
-function secondaryAllActive($that, $category, $children) {
+function secondaryAllActive($that, $category, $children)
+{
     $flag = true;
     foreach ($children as $mid) {
         $child = $category->getCategory($mid);
@@ -383,7 +392,8 @@ function secondaryAllActive($that, $category, $children) {
  * @Date: 2023-03-19 16:58:25
  * @Author: mulingyuer
  */
-function timeFormatting($time) {
+function timeFormatting($time)
+{
     if ($time == 'no') {return;}
     $chunks = array(
         array(31536000, '年'),
@@ -395,17 +405,17 @@ function timeFormatting($time) {
         array(1, '秒'),
     );
     $newer_date = time();
-    $since      = abs($newer_date - $time);
+    $since = abs($newer_date - $time);
 
     for ($i = 0, $j = count($chunks); $i < $j; $i++) {
         $seconds = $chunks[$i][0];
-        $name    = $chunks[$i][1];
+        $name = $chunks[$i][1];
         if (($count = floor($since / $seconds)) != 0) {
             break;
         }
 
     }
-    $output = $count.$name.'前';
+    $output = $count . $name . '前';
 
     echo $output;
 }
@@ -416,8 +426,9 @@ function timeFormatting($time) {
  * @Date: 2023-03-19 17:03:31
  * @Author: mulingyuer
  */
-function articleThumbnail($that) {
-    $attach   = $that->attachments(1)->attachment;
+function articleThumbnail($that)
+{
+    $attach = $that->attachments(1)->attachment;
     $pattern1 = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
     $pattern2 = '/\!\[.*?\]\((.*?)\)/i';
 
@@ -448,10 +459,11 @@ function articleThumbnail($that) {
  * @Date: 2023-03-19 17:07:55
  * @Author: mulingyuer
  */
-function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', $return = false, $field = 'views') {
+function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', $return = false, $field = 'views')
+{
     $fields = unserialize($that->fields);
     if (array_key_exists($field, $fields)) {
-        $fieldValue = ( ! empty($fields[$field])) ? intval($fields[$field]) : 0;
+        $fieldValue = (!empty($fields[$field])) ? intval($fields[$field]) : 0;
     } else {
         $fieldValue = 0;
     }
@@ -475,7 +487,8 @@ function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', 
  * @Date: 2023-03-24 23:19:56
  * @Author: mulingyuer
  */
-function getLikeCount($that) {
+function getLikeCount($that)
+{
 
     $linkCount = $that->fields->likes;
     if (empty($linkCount)) {
@@ -491,19 +504,20 @@ function getLikeCount($that) {
  * @return void
  * @date 2020-05-04
  */
-function promo($widget) {
+function promo($widget)
+{
 
-    $user          = $widget->widget('Widget_User');
-    $db            = Typecho_Db::get();
-    $fields        = unserialize($widget->fields);
+    $user = $widget->widget('Widget_User');
+    $db = Typecho_Db::get();
+    $fields = unserialize($widget->fields);
     $allowOperates = array('get', 'set', 'inc', 'dec'); // 这里可以扩展操作，建议屏蔽get/set
-    $allowFields   = array('likes'); // 这里可以扩展修改字段
+    $allowFields = array('likes'); // 这里可以扩展修改字段
 
     // 获取操作
     $operate = $widget->request->get('operate');
-    $field   = $widget->request->get('field');
-    $value   = $widget->request->filter('int')->get('value');
-    $value   = $value === null ? 100 : $value; // 100 起步
+    $field = $widget->request->get('field');
+    $value = $widget->request->filter('int')->get('value');
+    $value = $value === null ? 100 : $value; // 100 起步
 
     $result = array('cid' => $widget->cid);
 
@@ -526,14 +540,14 @@ function promo($widget) {
         $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
     } elseif ($operate === 'inc') {
         $result['operate'] = 'inc';
-        $value             = intval($fields[$field]) + 1;
+        $value = intval($fields[$field]) + 1;
         $widget->setField($field, 'str', $value, $widget->cid);
         $result[$field] = $value;
         $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
     } elseif ($operate === 'dec') {
         $result['operate'] = 'dec';
-        $value             = intval($fields[$field]) - 1;
-        $result[$field]    = $value;
+        $value = intval($fields[$field]) - 1;
+        $result[$field] = $value;
         if ($value > 0) {
             $widget->setField($field, 'str', $value, $widget->cid);
         } else {
@@ -549,7 +563,8 @@ function promo($widget) {
  * @Date: 2023-03-21 00:22:09
  * @Author: mulingyuer
  */
-function isAjax() {
+function isAjax()
+{
     if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         return true;
     }
@@ -561,17 +576,18 @@ function isAjax() {
  * @Date: 2023-03-21 19:43:52
  * @Author: mulingyuer
  */
-function getAllPages() {
+function getAllPages()
+{
     $db = Typecho_Db::get();
     if (class_exists('\Typecho\Widget')) {
         $widget = \Widget\Contents\Page\Rows::alloc();
         foreach (array(
-            'stack'  => array(),
-            'row'    => array(),
+            'stack' => array(),
+            'row' => array(),
             'length' => 0,
         ) as $name => $val) {
             try {
-                $reflect  = new ReflectionClass($widget);
+                $reflect = new ReflectionClass($widget);
                 $property = $reflect->getProperty($name);
                 $property->setAccessible(true);
                 $property->setValue($widget, $val);
@@ -597,20 +613,23 @@ function getAllPages() {
  * @Date: 2023-03-21 19:32:45
  * @Author: mulingyuer
  */
-function getHidePage($page, $name) {
-    $href;
+function getHidePage($page, $name)
+{
+    $link = [
+        "title" => "",
+        "href" => "",
+    ];
+
     getAllPages()->to($page);
     while ($page->next()) {
         if ($page->slug === $name) {
-            $href = $page->permalink;
+            $link["title"] = $page->title;
+            $link["href"] = $page->permalink;
+            break;
         }
     }
-    //判断是否存在
-    if (empty($href)) {
-        return 'javascript:alert(\''.$name.'页不存在！\');';
-    } else {
-        return $href;
-    }
+
+    return $link;
 }
 
 /**
@@ -619,7 +638,8 @@ function getHidePage($page, $name) {
  * @Author: mulingyuer
  */
 if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php' || $_SERVER['SCRIPT_NAME'] == '/admin/write-page.php') {
-    function themeFields($layout) {
+    function themeFields($layout)
+    {
         global $markdownThemeMap;
         global $markdownHighlightMap;
         //文章独享关键字
@@ -647,7 +667,8 @@ if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php' || $_SERVER['SCRIPT_NAME'
  * @Date: 2023-03-22 20:28:15
  * @Author: mulingyuer
  */
-function getArticleTitleImg($that) {
+function getArticleTitleImg($that)
+{
     return $that->fields->titleImg;
 }
 
@@ -657,9 +678,10 @@ function getArticleTitleImg($that) {
  * @Date: 2023-03-23 00:44:46
  * @Author: mulingyuer
  */
-function getArticleTheme($that) {
+function getArticleTheme($that)
+{
     $defaultTheme = Helper::options()->defaultMarkdownTheme;
-    $fieldsTheme  = $that->fields->markdownTheme;
+    $fieldsTheme = $that->fields->markdownTheme;
     if (empty($fieldsTheme)) {
         $fieldsTheme = 'juejin';
     }
@@ -679,7 +701,8 @@ function getArticleTheme($that) {
  * @Date: 2023-12-22 23:13:27
  * @Author: mulingyuer
  */
-function getMarkdownTheme($that) {
+function getMarkdownTheme($that)
+{
     global $defaultMarkdownThemeHighlightMap;
     $themeUrl = Helper::options()->themeUrl;
     // 文章主题
@@ -704,13 +727,13 @@ function getMarkdownTheme($that) {
     }
 
     // 文章主题链接
-    $articleHref = $themeUrl.'/static/css/markdown/'.$articleTheme.'.css';
-    $articleLink = '<link href="'.$articleHref.'" rel="stylesheet">';
+    $articleHref = $themeUrl . '/static/css/markdown/' . $articleTheme . '.css';
+    $articleLink = '<link href="' . $articleHref . '" rel="stylesheet">';
     // 代码高亮主题链接
-    $highlightHref = $themeUrl.'/static/css/highlight/'.$highlightTheme.'.css';
-    $highlightLink = '<link href="'.$highlightHref.'" rel="stylesheet">';
+    $highlightHref = $themeUrl . '/static/css/highlight/' . $highlightTheme . '.css';
+    $highlightLink = '<link href="' . $highlightHref . '" rel="stylesheet">';
 
-    echo $articleLink.$highlightLink;
+    echo $articleLink . $highlightLink;
 }
 
 /**
@@ -718,9 +741,10 @@ function getMarkdownTheme($that) {
  * @Date: 2023-03-23 05:10:27
  * @Author: mulingyuer
  */
-function getGroup($uid = 0) {
-    $db    = Typecho_Db::get();
-    $prow  = $db->fetchRow($db->select('group')->from('table.users')->where('uid = ?', $uid));
+function getGroup($uid = 0)
+{
+    $db = Typecho_Db::get();
+    $prow = $db->fetchRow($db->select('group')->from('table.users')->where('uid = ?', $uid));
     $group = $prow['group'];
     if (empty($group)) {$group = 'visitor';}
 
@@ -733,7 +757,8 @@ function getGroup($uid = 0) {
  * @Date: 2023-03-23 05:09:12
  * @Author: mulingyuer
  */
-function chineseUserGroup($uid = null) {
+function chineseUserGroup($uid = null)
+{
     $userGroup = getGroup($uid);
     $zhUserGroup;
     switch ($userGroup) {
@@ -765,17 +790,18 @@ function chineseUserGroup($uid = null) {
  * @Date: 2023-03-23 20:43:02
  * @Author: mulingyuer
  */
-function addAnchorPoint($content) {
+function addAnchorPoint($content)
+{
     global $catalog;
     global $catalog_count;
-    $catalog       = array();
+    $catalog = array();
     $catalog_count = 0;
-    $content       = preg_replace_callback('/<h([1-6])(.*?)>(.*?)<\/h\1>/i', function ($content) {
+    $content = preg_replace_callback('/<h([1-6])(.*?)>(.*?)<\/h\1>/i', function ($content) {
         global $catalog;
         global $catalog_count;
         $catalog_count++;
         $catalog[] = array('text' => trim(strip_tags($content[3])), 'depth' => $content[1], 'count' => $catalog_count);
-        return '<h'.$content[1].$content[2].' id="heading-'.$catalog_count.'">'.$content[3].'</h'.$content[1].'>';
+        return '<h' . $content[1] . $content[2] . ' id="heading-' . $catalog_count . '">' . $content[3] . '</h' . $content[1] . '>';
     }, $content);
     return $content;
 }
@@ -785,41 +811,42 @@ function addAnchorPoint($content) {
  * @Date: 2023-03-23 20:36:47
  * @Author: mulingyuer
  */
-function getDirectoryTree() {
+function getDirectoryTree()
+{
     global $catalog;
     $index = '';
     if ($catalog) {
-        $index      = '<ul class="directory-tree-list">'."\n";
+        $index = '<ul class="directory-tree-list">' . "\n";
         $prev_depth = '';
-        $to_depth   = 0;
+        $to_depth = 0;
         foreach ($catalog as $catalog_item) {
             $catalog_depth = $catalog_item['depth'];
             if ($prev_depth) {
                 if ($catalog_depth == $prev_depth) {
-                    $index .= ''."\n";
+                    $index .= '' . "\n";
                 } elseif ($catalog_depth > $prev_depth) {
                     $to_depth++;
-                    $index .= '<ul class="directory-tree-sub-list">'."\n";
+                    $index .= '<ul class="directory-tree-sub-list">' . "\n";
                 } else {
                     $to_depth2 = ($to_depth > ($prev_depth - $catalog_depth)) ? ($prev_depth - $catalog_depth) : $to_depth;
                     if ($to_depth2) {
                         for ($i = 0; $i < $to_depth2; $i++) {
-                            $index .= ''."\n".'</ul>'."\n";
+                            $index .= '' . "\n" . '</ul>' . "\n";
                             $to_depth--;
                         }
                     }
                     $index .= '';
                 }
             }
-            $index .= '<li class="directory-tree-list-item"><div class="directory-tree-list-item-container"><a class="directory-tree-list-item-link" href="#heading-'.$catalog_item['count'].'" data-scroll="#heading-'.$catalog_item['count'].'" title="'.$catalog_item['text'].'"><i class="jj-icon jj-icon-send directory-tree-list-item-icon"></i>'.$catalog_item['text'].'</a></div>';
+            $index .= '<li class="directory-tree-list-item"><div class="directory-tree-list-item-container"><a class="directory-tree-list-item-link" href="#heading-' . $catalog_item['count'] . '" data-scroll="#heading-' . $catalog_item['count'] . '" title="' . $catalog_item['text'] . '"><i class="jj-icon jj-icon-send directory-tree-list-item-icon"></i>' . $catalog_item['text'] . '</a></div>';
             $prev_depth = $catalog_item['depth'];
         }
         for ($i = 0; $i <= $to_depth; $i++) {
-            $index .= ''."\n".'</li></ul>'."\n";
+            $index .= '' . "\n" . '</li></ul>' . "\n";
         }
         // $index = '<div id="toc-container">'."\n".'<div id="toc">'."\n".'<strong>文章目录</strong>'."\n".$index.'</div>'."\n".'</div>'."\n";
     }
-    if ( ! $index) {
+    if (!$index) {
         echo '<ul class="directory-tree-list"><div class="directory-tree-list-empty">暂无目录</div></ul>';
     } else {
         echo $index;
@@ -832,7 +859,8 @@ function getDirectoryTree() {
  * @Date: 2023-06-03 22:30:49
  * @Author: mulingyuer
  */
-function getJJDirectoryTree($maxDirectory = 3) {
+function getJJDirectoryTree($maxDirectory = 3)
+{
     global $catalog;
     $treeList = generateTreeList(array_replace_recursive(array(), $catalog));
     echo generateTreeTemplate($treeList, $maxDirectory);
@@ -845,7 +873,8 @@ function getJJDirectoryTree($maxDirectory = 3) {
  * @Date: 2023-06-03 15:42:21
  * @Author: mulingyuer
  */
-function generateTreeList($list, $depth = 6) {
+function generateTreeList($list, $depth = 6)
+{
     if (count($list) <= 0 || $depth <= 1) {
         return $list;
     }
@@ -866,7 +895,7 @@ function generateTreeList($list, $depth = 6) {
                 break;
             }
 
-            if ( ! isset($parent['children'])) {
+            if (!isset($parent['children'])) {
                 $parent['children'] = array();
             }
 
@@ -887,7 +916,8 @@ function generateTreeList($list, $depth = 6) {
  * @Date: 2023-06-03 15:49:03
  * @Author: mulingyuer
  */
-function removeChildren($list, $depth, $currentDepth = 0) {
+function removeChildren($list, $depth, $currentDepth = 0)
+{
     foreach ($list as &$item) {
         if (isset($item['children']) && count($item['children']) > 0) {
             if ($currentDepth < $depth - 1) {
@@ -909,24 +939,25 @@ function removeChildren($list, $depth, $currentDepth = 0) {
  * @Date: 2023-06-03 16:48:54
  * @Author: mulingyuer
  */
-function generateTreeTemplate($arr, $depth, $currentDepth = 1, $isChildren = false) {
+function generateTreeTemplate($arr, $depth, $currentDepth = 1, $isChildren = false)
+{
     if (count($arr) <= 0) {
         return '<div class="directory-tree-list-empty">暂无目录</div>';
     }
     if ($currentDepth > $depth) {
         return '';
     }
-    $output =  ! $isChildren ? '<ul class="directory-tree-list">' : '';
+    $output = !$isChildren ? '<ul class="directory-tree-list">' : '';
     foreach ($arr as $item) {
-        $output .= '<li class="directory-tree-list-item depth-'.$currentDepth.'"><div class="directory-tree-list-item-link-wrapper"><a class="directory-tree-list-item-link" href="#heading-'.$item['count'].'" title="'.$item['text'].'">'.$item['text'].'</a></div>';
-        if ( ! empty($item['children']) && $currentDepth < $depth) {
+        $output .= '<li class="directory-tree-list-item depth-' . $currentDepth . '"><div class="directory-tree-list-item-link-wrapper"><a class="directory-tree-list-item-link" href="#heading-' . $item['count'] . '" title="' . $item['text'] . '">' . $item['text'] . '</a></div>';
+        if (!empty($item['children']) && $currentDepth < $depth) {
             $output .= '<ul class="directory-tree-sub-list">';
             $output .= generateTreeTemplate($item['children'], $depth, $currentDepth + 1, true);
             $output .= '</ul>';
         }
         $output .= '</li>';
     }
-    $output .=  ! $isChildren ? '</ul>' : '';
+    $output .= !$isChildren ? '</ul>' : '';
     return $output;
 }
 
@@ -939,25 +970,26 @@ function generateTreeTemplate($arr, $depth, $currentDepth = 1, $isChildren = fal
  * @return boolean
  */
 
-function viewsCounter($widget, $field = 'views') {
-    if ( ! $widget instanceof Widget_Archive) {
+function viewsCounter($widget, $field = 'views')
+{
+    if (!$widget instanceof Widget_Archive) {
         return false;
     }
 
-    $fieldValue   = articleViews($widget, '%d', '%d', '%d', true, $field);
-    $fieldRecords = Typecho_Cookie::get('__typecho_'.$field);
+    $fieldValue = articleViews($widget, '%d', '%d', '%d', true, $field);
+    $fieldRecords = Typecho_Cookie::get('__typecho_' . $field);
     if (empty($fieldRecords)) {
         $fieldRecords = array();
     } else {
         $fieldRecords = explode(',', $fieldRecords);
     }
 
-    if ( ! in_array($widget->cid, $fieldRecords)) {
+    if (!in_array($widget->cid, $fieldRecords)) {
         $fieldValue = $fieldValue + 1;
         $widget->setField($field, 'str', strval($fieldValue), $widget->cid);
         $fieldRecords[] = $widget->cid;
-        $fieldRecords   = implode(',', $fieldRecords);
-        Typecho_Cookie::set('__typecho_'.$field, $fieldRecords);
+        $fieldRecords = implode(',', $fieldRecords);
+        Typecho_Cookie::set('__typecho_' . $field, $fieldRecords);
         return true;
     }
     return false;
@@ -969,9 +1001,10 @@ function viewsCounter($widget, $field = 'views') {
  * @Date: 2023-03-24 13:33:39
  * @Author: mulingyuer
  */
-function getBrowser($agent) {
+function getBrowser($agent)
+{
     $outputer = '';
-    $version  = '';
+    $version = '';
 
     if (preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
         $outputer = 'Internet Explore';
@@ -1007,7 +1040,8 @@ function getBrowser($agent) {
  * @Date: 2023-03-24 13:34:12
  * @Author: mulingyuer
  */
-function getOs($agent) {
+function getOs($agent)
+{
     $os = false;
     if (preg_match('/win/i', $agent)) {
         if (preg_match('/nt 6.0/i', $agent)) {
@@ -1055,19 +1089,21 @@ function getOs($agent) {
  * @Date: 2023-03-24 13:36:10
  * @Author: mulingyuer
  */
-function get_comment_at($coid) {
+function get_comment_at($coid)
+{
     $db = Typecho_Db::get();
     $prow = $db->fetchRow($db->select('parent')->from('table.comments')
-            ->where('coid = ? AND status = ?',$coid, 'approved')) ?? [];
-    
+            ->where('coid = ? AND status = ?', $coid, 'approved')) ?? [];
+
     $parent = $prow['parent'] ?? '0';
 
     if ($parent !== '0') {
         $arow = $db->fetchRow($db->select('author')->from('table.comments')
-            ->where('coid = ? AND status = ?', $parent, 'approved')) ?? [];$author = $arow['author'] ?? '';
+                ->where('coid = ? AND status = ?', $parent, 'approved')) ?? [];
+        $author = $arow['author'] ?? '';
 
         if ($author) {
-            $href = '<a class="comment-list-item-relation" href="#comment-'.$parent.'">@'.$author.'</a>';
+            $href = '<a class="comment-list-item-relation" href="#comment-' . $parent . '">@' . $author . '</a>';
             echo $href;
         } else {
             echo '';
@@ -1083,7 +1119,8 @@ function get_comment_at($coid) {
  * @Date: 2023-04-08 09:06:16
  * @Author: mulingyuer
  */
-function remove_comment_p($content) {
+function remove_comment_p($content)
+{
     $content = preg_replace("/^<p>(.*)<\/p>$/", '$1', $content);
     return $content;
 }
@@ -1095,8 +1132,9 @@ function remove_comment_p($content) {
  * @Date: 2023-03-25 00:12:20
  * @Author: mulingyuer
  */
-function getArticleSummary($that, $maxLength = 80) {
-    $content  = $that->excerpt;
+function getArticleSummary($that, $maxLength = 80)
+{
+    $content = $that->excerpt;
     $abstract = Typecho_Common::fixHtml(Typecho_Common::subStr($content, 0, $maxLength, '...'));
     if (empty($abstract)) {
         $abstract = _t('暂无简介');
@@ -1110,20 +1148,21 @@ function getArticleSummary($that, $maxLength = 80) {
  * @Date: 2023-03-26 08:30:14
  * @Author: mulingyuer
  */
-function getIdPosts($id) {
+function getIdPosts($id)
+{
     $permalink = '';
-    $title     = '';
+    $title = '';
 
     if ($id) {
-        $getid  = explode(',', $id);
-        $db     = Typecho_Db::get();
+        $getid = explode(',', $id);
+        $db = Typecho_Db::get();
         $result = $db->fetchAll($db->select()->from('table.contents')
                 ->where('status = ?', 'publish')
                 ->where('type = ?', 'post')
                 ->where('cid in ?', $getid)
                 ->order('cid', Typecho_Db::SORT_DESC)
         );
-        if ( ! $result) {
+        if (!$result) {
             $result = $db->fetchAll($db->select()->from('table.contents')
                     ->where('status = ?', 'publish')
                     ->where('type = ?', 'page')
@@ -1134,51 +1173,52 @@ function getIdPosts($id) {
         if ($result) {
             $i = 1;
             foreach ($result as $val) {
-                $val       = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
-                $title     = htmlspecialchars($val['title']);
+                $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
+                $title = htmlspecialchars($val['title']);
                 $permalink = $val['permalink'];
             }
         }
     }
 
     return array(
-        'title'     => $title,
+        'title' => $title,
         'permalink' => $permalink,
     );
 }
 
 // docsearch
-function setDocSearchCookie() {
+function setDocSearchCookie()
+{
     $options = Helper::options();
-    $open    = $options->isOpenDocSearch === 'on';
-    if ( ! $open) {
+    $open = $options->isOpenDocSearch === 'on';
+    if (!$open) {
         return;
     }
 
-    $key  = 'jj_docsearch';
+    $key = 'jj_docsearch';
     $data = array(
-        'appid'     => $options->docSearchAppId,
-        'apiKey'    => $options->docSearchApiKey,
+        'appid' => $options->docSearchAppId,
+        'apiKey' => $options->docSearchApiKey,
         'indexName' => $options->docSearchIndexName,
     );
-    $content  = json_encode($data);
+    $content = json_encode($data);
     $one_week = 60 * 60 * 24 * 7; // 1周
-    $expire   = time() + 60 * 60 * 24 * 365; // 1年
-    $path     = '/';
-    $domain   = $_SERVER['HTTP_HOST'];
-    $secure   = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $expire = time() + 60 * 60 * 24 * 365; // 1年
+    $path = '/';
+    $domain = $_SERVER['HTTP_HOST'];
+    $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
     $httpOnly = false;
-    $needSet  = false; //是否需要设置cookie
+    $needSet = false; //是否需要设置cookie
 
     if (isset($_COOKIE[$key])) {
         $decodedCookie = json_decode($_COOKIE[$key], true);
 
         //cookie不对或者为空、内部数据不对
-        if (empty($decodedCookie) || ! isset($decodedCookie['creationTime'])) {
+        if (empty($decodedCookie) || !isset($decodedCookie['creationTime'])) {
             $needSet = true;
         } else {
             $cookieCreationTime = $decodedCookie['creationTime'];
-            $remainingTime      = $expire - $cookieCreationTime;
+            $remainingTime = $expire - $cookieCreationTime;
             // 有效期是否不够一周
             if ($remainingTime <= $one_week) {
                 $needSet = true;
@@ -1191,7 +1231,7 @@ function setDocSearchCookie() {
     //设置cookie
     if ($needSet) {
         $data['creationTime'] = time();
-        $content              = json_encode($data);
+        $content = json_encode($data);
         setcookie($key, $content, $expire, $path, $domain, $secure, $httpOnly);
     }
 
@@ -1203,7 +1243,8 @@ function setDocSearchCookie() {
  * @Date: 2023-07-09 15:48:57
  * @Author: mulingyuer
  */
-function numFormatSeparator($val) {
+function numFormatSeparator($val)
+{
     $num = floatval($val);
     return number_format($num);
 }
@@ -1214,14 +1255,15 @@ function numFormatSeparator($val) {
  * @Date: 2023-07-09 18:11:38
  * @Author: mulingyuer
  */
-function numUnitConversion($val) {
+function numUnitConversion($val)
+{
     $num = floatval($val);
     if ($num >= 10000) {
         $num = floor($num / 1000) / 10;
         if (fmod($num, 1) == 0) {
             $num = intval($num);
         }
-        return $num.'w';
+        return $num . 'w';
     }
     return $num;
 }
@@ -1234,8 +1276,9 @@ function numUnitConversion($val) {
  * @return mixed
  * @throws ReflectionException
  */
-function reflectGetValue($object, $name) {
-    $reflect  = new ReflectionClass($object);
+function reflectGetValue($object, $name)
+{
+    $reflect = new ReflectionClass($object);
     $property = $reflect->getProperty($name);
     $property->setAccessible(true);
     return $property->getValue($object);
@@ -1247,9 +1290,10 @@ function reflectGetValue($object, $name) {
  * @param $name
  * @param $value
  */
-function reflectSetValue($object, $name, $value) {
+function reflectSetValue($object, $name, $value)
+{
     try {
-        $reflect  = new ReflectionClass($object);
+        $reflect = new ReflectionClass($object);
         $property = $reflect->getProperty($name);
         $property->setAccessible(true);
         $property->setValue($object, $value);
@@ -1258,7 +1302,8 @@ function reflectSetValue($object, $name, $value) {
 }
 
 /** 设置置顶文章 */
-function pushStickyArticles($archive) {
+function pushStickyArticles($archive)
+{
     // 是否配置了cid
     $cidStr = Helper::options()->stickyCidList;
     if (empty($cidStr) || is_null($cidStr)) {
@@ -1276,7 +1321,7 @@ function pushStickyArticles($archive) {
         return;
     }
 
-    $stack    = reflectGetValue($archive, 'stack');
+    $stack = reflectGetValue($archive, 'stack');
     $articles = array();
 
     reflectSetValue($archive, 'stack', array());
@@ -1284,10 +1329,10 @@ function pushStickyArticles($archive) {
     reflectSetValue($archive, 'length', 0);
 
     // 开始获取文章
-    $db           = Typecho_Db::get();
+    $db = Typecho_Db::get();
     $stickyCidTag = Helper::options()->stickyCidTag;
-    $showTag      =  ! empty($cidStr) && ! is_null($cidStr);
-    $isConfiguredTag = ! empty($stickyCidTag) && ! is_null($stickyCidTag);
+    $showTag = !empty($cidStr) && !is_null($cidStr);
+    $isConfiguredTag = !empty($stickyCidTag) && !is_null($stickyCidTag);
     foreach ($cidList as $cid) {
         $cidArticle = $db->fetchRow($archive->select()->where('cid = ?', $cid));
         if (empty($cidArticle)) {
@@ -1295,9 +1340,9 @@ function pushStickyArticles($archive) {
         }
         // 添加tag
         if ($showTag) {
-            if($isConfiguredTag) {
+            if ($isConfiguredTag) {
                 $cidArticle['sticky'] = $stickyCidTag;
-            }else {
+            } else {
                 // 默认配置
                 $cidArticle['sticky'] = '<span class="article-card-sticky-tag">置顶</span>';
             }
@@ -1315,7 +1360,8 @@ function pushStickyArticles($archive) {
 }
 
 /** 获取首页右侧推荐文章列表 */
-function getHomeRecommendedArticleList() {
+function getHomeRecommendedArticleList()
+{
     // 文章数组
     $articles = array();
 
@@ -1339,11 +1385,11 @@ function getHomeRecommendedArticleList() {
             return;
         }
         $articles[] = array(
-            'cid'       => $cidArticle->cid,
-            'title'     => $cidArticle->title,
+            'cid' => $cidArticle->cid,
+            'title' => $cidArticle->title,
             'permalink' => $cidArticle->permalink,
-            'date'      => $cidArticle->created,
-            'thumb'     => $cidArticle->fields->thumb,
+            'date' => $cidArticle->created,
+            'thumb' => $cidArticle->fields->thumb,
         );
     }
 
@@ -1356,7 +1402,8 @@ function getHomeRecommendedArticleList() {
  * @Date: 2024-04-27 15:21:07
  * @Author: mulingyuer
  */
-function todoListFormatted($html){
+function todoListFormatted($html)
+{
     // 匹配 [ ] 和 [x] 并替换为相应的 input 元素
     $html = preg_replace('/<li>\[x\]\s/sm', '<li class="task-list-item"><input type="checkbox" checked disabled/>', $html);
     $html = preg_replace('/<li>\[\s\]\s/sm', '<li class="task-list-item"><input type="checkbox" disabled/>', $html);
@@ -1368,11 +1415,12 @@ function todoListFormatted($html){
 }
 
 /** 计算文章的阅读时间 */
-function articleReadingTime($text) {
+function articleReadingTime($text)
+{
     $length = mb_strlen(strip_tags($text), 'utf-8');
     // 计算阅读时间（分钟）
     $readingTime = ceil($length / 250);
-    
+
     // 转换阅读时间为小时和分钟
     $hours = floor($readingTime / 60);
     $minutes = $readingTime % 60;
@@ -1380,26 +1428,26 @@ function articleReadingTime($text) {
     if ($hours >= 24) {
         $days = floor($hours / 24);
         $hours = $hours % 24;
-        
+
         if ($hours == 0) {
-            return "阅读".$days."天";
+            return "阅读" . $days . "天";
         } else {
-            return "阅读".$days."天".$hours."小时";
+            return "阅读" . $days . "天" . $hours . "小时";
         }
     } else {
         if ($hours == 0) {
-            return "阅读".$minutes."分钟";
+            return "阅读" . $minutes . "分钟";
         } elseif ($minutes == 0) {
-            return "阅读".$hours."小时";
+            return "阅读" . $hours . "小时";
         } else {
-            return "阅读".$hours."小时".$minutes."分钟";
+            return "阅读" . $hours . "小时" . $minutes . "分钟";
         }
     }
 }
 
-
 //主题themeInit函数
-function themeInit($archive) {
+function themeInit($archive)
+{
     //评论回复楼层最高999层.这个正常设置最高只有7层
     Helper::options()->commentsMaxNestingLevels = 999;
     //自动增加浏览次数
