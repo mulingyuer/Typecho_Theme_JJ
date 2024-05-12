@@ -203,6 +203,16 @@ function themeConfig($form)
     );
     $form->addInput($address);
 
+    // 自定义文章版权声明
+    $customCopyright = new \Typecho\Widget\Helper\Form\Element\Textarea(
+        'customCopyright',
+        null,
+        '',
+        _t('自定义文章版权声明'),
+        _t('默认空')
+    );
+    $form->addInput($customCopyright);
+
     // DocSearch
     $isOpenDocSearch = new \Typecho\Widget\Helper\Form\Element\Radio(
         'isOpenDocSearch',
