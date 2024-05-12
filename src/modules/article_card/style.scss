@@ -65,6 +65,9 @@
 	a {
 		text-decoration: none;
 		color: inherit;
+		& + a {
+			margin-left: 10px;
+		}
 		&:hover {
 			color: var(--jj-article-card-category-color-hover);
 		}

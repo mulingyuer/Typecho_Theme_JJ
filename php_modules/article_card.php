@@ -1,3 +1,5 @@
+<?php $isArticleInfinite = $this->options->paginationType === 'infinite';?>
+<?php $ArticleTarget = "_self";if ($isArticleInfinite) {$ArticleTarget = "_blank";}?>
 <div class="article-card-wrap hidden">
   <?php while ($this->next()): ?>
   <article class="article-card" data-link="<?php $this->permalink();?>" itemscope itemtype="http://schema.org/BlogPosting">
@@ -8,7 +10,16 @@
       </span>
       <time class="article-card-time" datetime="<?php $this->date('c');?>" itemprop="datePublished"><?php timeFormatting($this->created);?></time>
       <span class="article-card-category">
-        <?php $this->category('<span class="article-card-category-separator">·</span>');?>
+        <?php $categories = $this->categories;?>
+        <?php if (!empty($categories)): ?>
+          <?php foreach ($categories as $category): ?>
+            <a class="article-card-category-link" target="<?php echo $ArticleTarget; ?>" href="<?php echo $category['permalink']; ?>" title="<?php echo $category['name']; ?>">
+              <?php echo $category['name']; ?>
+            </a>
+          <?php endforeach;?>
+        <?php else: ?>
+          <span class="article-card-category-separator">·</span>
+        <?php endif;?>
       </span>
     </div>
     <div class="article-card-body">
@@ -25,7 +36,7 @@
               <i class="jj-icon jj-icon-like article-card-footer-item-icon"></i>
               <span><?php echo numUnitConversion(getLikeCount($this)); ?></span>
             </span>
-            <a class="article-card-footer-item comments" href="<?php $this->permalink()?>#comments" target="_self" title="文章评论">
+            <a class="article-card-footer-item comments" href="<?php $this->permalink()?>#comments" target="<?php echo $ArticleTarget; ?>" title="文章评论">
               <i class="jj-icon jj-icon-message article-card-footer-item-icon"></i>
               <span><?php echo numUnitConversion($this->commentsNum); ?></span>
             </a>
@@ -34,7 +45,7 @@
           <?php if (count($articleTags) > 0): ?>
           <div class="article-card-footer-right">
             <?php foreach ($articleTags as $tag): ?>
-              <a class="article-card-tag" href="<?php echo $tag['url']; ?>"><?php echo $tag['name']; ?></a>
+              <a class="article-card-tag" href="<?php echo $tag['url']; ?>" target="<?php echo $ArticleTarget; ?>" title="<?php echo $tag['name']; ?>"><?php echo $tag['name']; ?></a>
             <?php endforeach;?>
           </div>
           <?php endif;?>
