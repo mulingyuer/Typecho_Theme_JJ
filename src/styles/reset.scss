@@ -24,6 +24,9 @@ html {
 	color: #333;
 	word-break: break-word;
 	text-rendering: optimizeLegibility;
+	-moz-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
 }
 
 body {
