@@ -647,13 +647,13 @@ function getHidePage($page, $name)
  * @Date: 2023-03-22 20:28:04
  * @Author: mulingyuer
  */
-if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php' || $_SERVER['SCRIPT_NAME'] == '/admin/write-page.php') {
+if ($_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-post.php' || $_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-page.php') {
     function themeFields($layout)
     {
         global $markdownThemeMap;
         global $markdownHighlightMap;
         //文章独享关键字
-        if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php') {
+        if ($_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-post.php') {
 
             //自定义文章缩略图
             $thumb = new Typecho_Widget_Helper_Form_Element_Text('thumb', null, null, _t('自定义缩略图'), _t('输入缩略图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
@@ -1453,6 +1453,31 @@ function articleReadingTime($text)
             return "阅读" . $hours . "小时" . $minutes . "分钟";
         }
     }
+}
+
+// 获取后台管理页面的 URL
+function getAdminUrl($page = "")
+{
+    // 获取 Typecho 配置选项对象
+    $options = Typecho_Widget::widget('Widget_Options');
+    // 获取 adminUrl 方法返回的基础 URL
+    $adminUrl = $options->adminUrl;
+
+    if (empty($page)) {
+        return $adminUrl;
+    }
+
+    // 删除开头的斜线（如果有）
+    if (strpos($page, '/') === 0) {
+        $page = substr($page, 1);
+    }
+    // 删除结尾的 .php（如果有）
+    if (substr($page, -4) === '.php') {
+        $page = substr($page, 0, -4);
+    }
+
+    // 拼接并返回完整的 URL
+    return $adminUrl . $page . ".php";
 }
 
 //主题themeInit函数

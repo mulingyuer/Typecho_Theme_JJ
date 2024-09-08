@@ -50,17 +50,18 @@
             </div>
           </form>
           <?php if ($this->user->hasLogin()): ?>
-          <a class="header-article-btn" href="<?php $this->options->siteUrl();?>admin/write-post.php" target="_self" title="写文章">写文章</a>
+          <a class="header-article-btn" href="<?php echo getAdminUrl('write-post'); ?>" target="_self" title="写文章">写文章</a>
           <?php else: ?>
           <a class="header-article-btn login" href="javascript:;" target="_self" title="写文章">写文章</a>
           <?php endif;?>
         </div>
         <?php if ($this->user->hasLogin()): ?>
-        <a class="header-comment" href="<?php echo getHidePage($pages, 'notification'); ?>" target="_self" title="评论列表">
+        <?php $commentsLink = getHidePage($pages, 'notification');?>
+        <a class="header-comment" href="<?php echo $commentsLink['href']; ?>" target="_self" title="评论列表">
           <i class="jj-icon jj-icon-tongzhixiaoxi header-comment-icon"></i>
         </a>
         <?php endif;?>
-        <?php if ( ! $this->user->hasLogin()): ?>
+        <?php if (!$this->user->hasLogin()): ?>
           <button class="header-login-btn">登录</button>
         <?php else: ?>
         <div class="header-menu-wrap">
@@ -92,27 +93,27 @@
               </div>
             </div>
             <div class="header-menu-list">
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/write-page.php" target="_self" title="新建分页">
+              <a class="header-menu-list-item" href="<?php echo getAdminUrl('write-page'); ?>" target="_self" title="新建分页">
                 <i class="jj-icon jj-icon-file header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">新建分页</span>
               </a>
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/manage-pages.php" target="_self" title="新建分页">
+              <a class="header-menu-list-item" href="<?php echo getAdminUrl('manage-pages'); ?>" target="_self" title="新建分页">
                 <i class="jj-icon jj-icon-snippets header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">分页管理</span>
               </a>
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/category.php" target="_self" title="分类管理">
+              <a class="header-menu-list-item" href="<?php echo getAdminUrl('category'); ?>" target="_self" title="分类管理">
                 <i class="jj-icon jj-icon-control header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">新建分类</span>
               </a>
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/manage-categories.php" target="_self" title="分类管理">
+              <a class="header-menu-list-item" href="<?php echo getAdminUrl('manage-categories'); ?>" target="_self" title="分类管理">
                 <i class="jj-icon jj-icon-appstore header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">分类管理</span>
               </a>
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/manage-posts.php" target="_self" title="文章管理">
+              <a class="header-menu-list-item" href="<?php echo getAdminUrl('manage-posts'); ?>" target="_self" title="文章管理">
                 <i class="jj-icon jj-icon-file-text header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">文章管理</span>
               </a>
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin/manage-comments.php" target="_self" title="评论管理">
+              <a class="header-menu-list-item" href="<?php echo getAdminUrl('manage-comments'); ?>" target="_self" title="评论管理">
                 <i class="jj-icon jj-icon-comment header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">评论管理</span>
               </a>
@@ -120,13 +121,13 @@
                 <i class="jj-icon jj-icon-user header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">我的主页</span>
               </a>
-              <a class="header-menu-list-item" href="<?php $this->options->siteUrl();?>admin" target="_self" title="进入后台">
+              <a class="header-menu-list-item" href="<?php echo getAdminUrl(); ?>" target="_self" title="进入后台">
                 <i class="jj-icon jj-icon-dashboard header-menu-list-item-icon"></i>
                 <span class="header-menu-list-item-text">进入后台</span>
               </a>
             </div>
             <div class="header-menu-footer">
-              <a class="header-menu-footer-btn" href="<?php $this->options->siteUrl();?>admin/options-theme.php" target="_self" title="主题设置">主题设置</a>
+              <a class="header-menu-footer-btn" href="<?php echo getAdminUrl('options-theme'); ?>" target="_self" title="主题设置">主题设置</a>
               <a class="header-menu-footer-btn" href="<?php $this->options->logoutUrl();?>" target="_self" title="退出登录">退出登录</a>
             </div>
           </div>
@@ -145,7 +146,7 @@
     <div class="mobile-search-body"></div>
   </div>
 </div>
-<?php if ( ! $this->user->hasLogin()): ?>
+<?php if (!$this->user->hasLogin()): ?>
 <div class="login-dialog">
   <div class="login-dialog-content-wrap">
     <div class="login-dialog-mask"></div>
