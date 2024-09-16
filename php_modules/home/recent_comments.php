@@ -27,7 +27,7 @@
     </div>
     <?php if ($this->user->hasLogin()): ?>
     <div class="recent-comments-footer">
-      <a class="recent-comments-management-btn" href="<?php echo getAdminUrl('manage-comments'); ?> target="_self">
+      <a class="recent-comments-management-btn" href="<?php echo getAdminUrl('manage-comments'); ?>" target="_self">
         <span>管理评论</span>
         <i class="jj-icon jj-icon-right recent-comments-management-btn-icon"></i>
       </a>
