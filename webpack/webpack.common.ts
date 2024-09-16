@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 20:34:21
- * @LastEditTime: 2023-03-21 18:55:39
+ * @LastEditTime: 2024-09-16 16:11:45
  * @LastEditors: mulingyuer
  * @Description: webpack基础配置
- * @FilePath: \Typecho_Theme_JJ\webpack\webpack.common.ts
+ * @FilePath: /Typecho_Theme_JJ/webpack/webpack.common.ts
  * 怎么可能会有bug！！！
  */
 import type { Configuration } from "webpack";
@@ -84,7 +84,7 @@ export default {
 	},
 	plugins: [
 		new WebpackBar({
-			name: "🚀  少女祈祷中...",
+			name: "🙏 少女祈祷中...",
 			color: "#1e80ff"
 		}),
 		//css样式抽离

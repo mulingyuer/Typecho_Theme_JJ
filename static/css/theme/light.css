@@ -376,4 +376,9 @@
 	--jj-articles-related-list-item-tag-color: #8a919f;
 	--jj-articles-related-list-item-tag-color-hover: #1171ee;
 	--jj-articles-related-list-item-tag-bg: #f2f3f5;
+
+	/** article_detail_recommended */
+	--jj-article-detail-recommended-item-tag-color: #fff;
+	--jj-article-detail-recommended-item-tag-border: #fff;
+	--jj-article-detail-recommended-item-tag-bg: rgba(0, 0, 0, 0.2);
 }

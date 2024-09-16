@@ -1,4 +1,4 @@
-<?php if ( ! defined('__TYPECHO_ROOT_DIR__')) {
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) {
     exit;
 }
 ?>
@@ -33,6 +33,7 @@
           <div class="post-right-sticky">
           <?php $this->need('./php_modules/post/directory_tree.php');?>
           <?php $this->need('./php_modules/post/next-article.php');?>
+          <?php $this->need('./php_modules/post/article_detail_recommended.php');?>
           </div>
         </div>
       </div>

@@ -164,6 +164,25 @@ function themeConfig($form)
     );
     $form->addInput($homeRecommendedArticleTag);
 
+    // 文章详情页右侧推荐文章cid
+    $articleRecommendedArticleCid = new \Typecho\Widget\Helper\Form\Element\Text(
+        'articleRecommendedArticleCid',
+        null,
+        '',
+        _t('文章详情页右侧推荐文章cid'),
+        _t('只能填写一个文章cid，务必配置好文章自定义缩略图字段！！！')
+    );
+    $form->addInput($articleRecommendedArticleCid);
+    // 文章详情页右侧推荐文章tag
+    $articleRecommendedArticleTag = new \Typecho\Widget\Helper\Form\Element\Text(
+        'articleRecommendedArticleTag',
+        null,
+        '推荐',
+        _t('文章详情页右侧推荐文章tag文字'),
+        _t('推荐2个文字')
+    );
+    $form->addInput($articleRecommendedArticleTag);
+
     $defaultMarkdownTheme = new \Typecho\Widget\Helper\Form\Element\Select(
         'defaultMarkdownTheme',
         $markdownThemeMap,
@@ -647,13 +666,13 @@ function getHidePage($page, $name)
  * @Date: 2023-03-22 20:28:04
  * @Author: mulingyuer
  */
-if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php' || $_SERVER['SCRIPT_NAME'] == '/admin/write-page.php') {
+if ($_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-post.php' || $_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-page.php') {
     function themeFields($layout)
     {
         global $markdownThemeMap;
         global $markdownHighlightMap;
         //文章独享关键字
-        if ($_SERVER['SCRIPT_NAME'] == '/admin/write-post.php') {
+        if ($_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-post.php') {
 
             //自定义文章缩略图
             $thumb = new Typecho_Widget_Helper_Form_Element_Text('thumb', null, null, _t('自定义缩略图'), _t('输入缩略图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
@@ -1453,6 +1472,54 @@ function articleReadingTime($text)
             return "阅读" . $hours . "小时" . $minutes . "分钟";
         }
     }
+}
+
+// 获取后台管理页面的 URL
+function getAdminUrl($page = "")
+{
+    // 获取 Typecho 配置选项对象
+    $options = Typecho_Widget::widget('Widget_Options');
+    // 获取 adminUrl 方法返回的基础 URL
+    $adminUrl = $options->adminUrl;
+
+    if (empty($page)) {
+        return $adminUrl;
+    }
+
+    // 删除开头的斜线（如果有）
+    if (strpos($page, '/') === 0) {
+        $page = substr($page, 1);
+    }
+    // 删除结尾的 .php（如果有）
+    if (substr($page, -4) === '.php') {
+        $page = substr($page, 0, -4);
+    }
+
+    // 拼接并返回完整的 URL
+    return $adminUrl . $page . ".php";
+}
+
+/** 获取文章详情页右侧推荐文章 */
+function getArticleDetailRecommended()
+{
+    // 是否配置了cid
+    $cid = Helper::options()->articleRecommendedArticleCid;
+    if (empty($cid) || is_null($cid)) {
+        return null;
+    }
+
+    // 提取文章数据
+    $cidArticle = Helper::widgetById('Contents', $cid);
+    if (empty($cidArticle)) {
+        return null;
+    }
+
+    return array(
+        'cid' => $cidArticle->cid,
+        'title' => $cidArticle->title,
+        'permalink' => $cidArticle->permalink,
+        'date' => $cidArticle->created,
+        'thumb' => $cidArticle->fields->thumb);
 }
 
 //主题themeInit函数
