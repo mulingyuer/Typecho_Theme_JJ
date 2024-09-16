@@ -10,6 +10,6 @@
   "dependencies": {
     "markdown-it-custom-attrs": "^1.0.2",
     "medium-zoom": "^1.1.0",
-    "vue": "^3.4.23"
+    "vue": "^3.5.6"
   }
 }

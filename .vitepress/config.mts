@@ -7,6 +7,7 @@ export default defineConfig({
   title: "JJ 主题使用文档",
   description: "Typecho_Theme_JJ 使用文档",
   srcDir: "src",
+  outDir: "docs",
   themeConfig: {
     search: {
       provider: "local",
@@ -94,6 +95,10 @@ export default defineConfig({
           {
             text: "掘金编辑器",
             link: "/advanced-config/jj-editor",
+          },
+          {
+            text: "如何添加自己的广告",
+            link: "/advanced-config/ad",
           },
         ],
       },
