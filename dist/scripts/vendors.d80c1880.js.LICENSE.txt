@@ -8,22 +8,22 @@
 
 /*! #__NO_SIDE_EFFECTS__ */
 
-/*! @docsearch/js 3.6.0 | MIT License | © Algolia, Inc. and contributors | https://docsearch.algolia.com */
+/*! @docsearch/js 3.6.1 | MIT License | © Algolia, Inc. and contributors | https://docsearch.algolia.com */
 
 /**
-* @vue/reactivity v3.4.23
+* @vue/reactivity v3.5.3
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 
 /**
-* @vue/runtime-dom v3.4.23
+* @vue/runtime-dom v3.5.3
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 
 /**
-* @vue/shared v3.4.23
+* @vue/shared v3.5.3
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/

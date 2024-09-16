@@ -164,6 +164,25 @@ function themeConfig($form)
     );
     $form->addInput($homeRecommendedArticleTag);
 
+    // 文章详情页右侧推荐文章cid
+    $articleRecommendedArticleCid = new \Typecho\Widget\Helper\Form\Element\Text(
+        'articleRecommendedArticleCid',
+        null,
+        '',
+        _t('文章详情页右侧推荐文章cid'),
+        _t('只能填写一个文章cid，务必配置好文章自定义缩略图字段！！！')
+    );
+    $form->addInput($articleRecommendedArticleCid);
+    // 文章详情页右侧推荐文章tag
+    $articleRecommendedArticleTag = new \Typecho\Widget\Helper\Form\Element\Text(
+        'articleRecommendedArticleTag',
+        null,
+        '推荐',
+        _t('文章详情页右侧推荐文章tag文字'),
+        _t('推荐2个文字')
+    );
+    $form->addInput($articleRecommendedArticleTag);
+
     $defaultMarkdownTheme = new \Typecho\Widget\Helper\Form\Element\Select(
         'defaultMarkdownTheme',
         $markdownThemeMap,
@@ -1478,6 +1497,29 @@ function getAdminUrl($page = "")
 
     // 拼接并返回完整的 URL
     return $adminUrl . $page . ".php";
+}
+
+/** 获取文章详情页右侧推荐文章 */
+function getArticleDetailRecommended()
+{
+    // 是否配置了cid
+    $cid = Helper::options()->articleRecommendedArticleCid;
+    if (empty($cid) || is_null($cid)) {
+        return null;
+    }
+
+    // 提取文章数据
+    $cidArticle = Helper::widgetById('Contents', $cid);
+    if (empty($cidArticle)) {
+        return null;
+    }
+
+    return array(
+        'cid' => $cidArticle->cid,
+        'title' => $cidArticle->title,
+        'permalink' => $cidArticle->permalink,
+        'date' => $cidArticle->created,
+        'thumb' => $cidArticle->fields->thumb);
 }
 
 //主题themeInit函数
