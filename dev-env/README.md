@@ -14,10 +14,14 @@
 ```
 dev-env/
 ├── docker-compose.yml        # 服务编排（入库共享）
+├── docker-compose.mysql80.yml # MySQL 8.0 覆盖配置（入库共享）
 ├── config.inc.example.php    # 配置占位模板（入库共享）
 ├── config.inc.php            # Typecho 配置文件（本地生成，git 忽略）
 ├── plugins/                  # 本地插件目录 → /app/usr/plugins（内容 git 忽略）
-├── mysql-data/               # MySQL 数据（本地生成，git 忽略）
+├── mysql-data/               # MySQL 5.7 数据（本地生成，git 忽略）
+├── backup/                   # 数据库备份/恢复脚本与备份文件（备份文件 git 忽略）
+│   ├── backup.ps1            # 备份数据库
+│   └── restore.ps1           # 恢复数据库
 └── README.md                 # 本文档
 ```
 
@@ -127,6 +131,53 @@ Get-Content backup.sql | docker compose exec -T mysql mysql -uroot -proot typech
 > ```powershell
 > docker compose exec mysql mysql -uroot -proot typecho -e "UPDATE typecho_options SET value='http://jj.test' WHERE name='siteUrl';"
 > ```
+
+## 切换 MySQL 8.0（可选）
+
+默认使用 MySQL 5.7 作为开发基准。如需验证主题在 MySQL 8.0 下的兼容性，使用 [docker-compose.mysql80.yml](docker-compose.mysql80.yml) 覆盖配置：
+
+```powershell
+# 先停止当前环境，避免端口和数据目录冲突
+docker compose down
+
+# 使用 MySQL 8.0 启动（使用独立数据目录 ./mysql-data-80）
+docker compose -f docker-compose.yml -f docker-compose.mysql80.yml up -d
+```
+
+验证要点：
+
+- 覆盖文件已指定 `--default-authentication-plugin=mysql_native_password`，规避 MySQL 8.0 默认的 `caching_sha2_password` 认证插件与旧驱动的兼容问题；
+- 确认主题安装、文章发布、评论、附件上传等核心流程正常；
+- 留意 `utf8mb4` 字符集与排序规则在 8.0 下的行为差异。
+
+切回 MySQL 5.7：
+
+```powershell
+docker compose down
+docker compose up -d
+```
+
+> 两个版本的数据目录互相独立（`mysql-data/` 与 `mysql-data-80/`），切换不会互相污染。
+
+## 备份与恢复
+
+### 备份
+
+```powershell
+./backup/backup.ps1
+```
+
+在 `backup/` 目录生成 `typecho-yyyyMMdd-HHmmss.sql`。
+
+### 恢复
+
+```powershell
+# 恢复本地备份
+./backup/restore.ps1 ./backup/typecho-20260921-120000.sql
+
+# 恢复线上导出的备份，并自动把站点 URL 替换为 http://jj.test
+./backup/restore.ps1 ./backup.sql -UpdateSiteUrl
+```
 
 ## 常见问题
 

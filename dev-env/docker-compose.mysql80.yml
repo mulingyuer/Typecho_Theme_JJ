@@ -1,0 +1,14 @@
+# MySQL 8.0 覆盖配置
+# 使用方式：
+#   docker compose -f docker-compose.yml -f docker-compose.mysql80.yml up -d
+# 切换前建议先 docker compose down，避免端口和数据目录冲突。
+# 注意：使用独立数据目录 ./mysql-data-80，与 5.7 的 ./mysql-data 互不干扰。
+services:
+  mysql:
+    image: mysql:8.0
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./mysql-data-80:/var/lib/mysql
