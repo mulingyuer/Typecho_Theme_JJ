@@ -1,0 +1,13 @@
+{
+	"env": {
+		"browser": true,
+		"es2022": true,
+		"node": true
+	},
+	"plugins": ["typescript", "import", "vue"],
+	"categories": {
+		"correctness": "warn",
+		"suspicious": "warn",
+		"perf": "warn"
+	}
+}

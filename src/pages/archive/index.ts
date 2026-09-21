@@ -3,10 +3,10 @@
  * @Date: 2023-03-22 00:36:30
  * @LastEditTime: 2023-03-22 03:19:35
  * @LastEditors: mulingyuer
- * @Description: archive 通用（分类、搜索、标签、作者）页面文件
+ * @Description: archive 閫氱敤锛堝垎绫汇€佹悳绱€佹爣绛俱€佷綔鑰咃級椤甸潰鏂囦欢
  * @FilePath: \Typecho_Theme_JJ\src\pages\archive\index.ts
- * 怎么可能会有bug！！！
- */
+ * 鎬庝箞鍙兘浼氭湁bug锛侊紒锛? */
+import "@/main";
 import "./style.scss";
 import "@/modules/nav";
 import "@/modules/secondary_nav";

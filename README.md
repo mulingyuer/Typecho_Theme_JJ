@@ -80,11 +80,9 @@ Gitee仓库：[Typecho_Theme_JJ](https://gitee.com/mulingyuer/Typecho_Theme_JJ)
 
 本主题基于 [《webpack-multiple-entry》](https://github.com/mulingyuer/webpack-multiple-entry)项目实现，它是一个用于 Typecho 主题开发的底层工具，用于实现现代化前端打包构建。
 
-
 ## 捐赠
 
 开源并非易事，如果您喜欢这个的项目，请考虑捐赠一些资金，以助项目更好地发展壮大。
 
-
 | ![微信捐赠](./faq/donated_wx.jpg) | ![支付宝捐赠](./faq/donated_zfb.jpg) |
-|---|---|
+| --------------------------------- | ------------------------------------ |

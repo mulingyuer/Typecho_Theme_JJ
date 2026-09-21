@@ -9,21 +9,21 @@
  */
 
 (async function () {
-  const emojiContent = document.querySelector(".emoji-content");
-  if (!emojiContent) return;
+	const emojiContent = document.querySelector(".emoji-content");
+	if (!emojiContent) return;
 
-  const data = [];
+	const data = [];
 
-  emojiContent.children.forEach((item) => {
-    const textDom = item.querySelector(".text-emoji");
-    const text = textDom.innerText;
+	emojiContent.children.forEach((item) => {
+		const textDom = item.querySelector(".text-emoji");
+		const text = textDom.innerText;
 
-    data.push({
-      key: text,
-      val: text,
-      hidden: false,
-    });
-  });
+		data.push({
+			key: text,
+			val: text,
+			hidden: false
+		});
+	});
 
-  console.log(data);
+	console.log(data);
 })();

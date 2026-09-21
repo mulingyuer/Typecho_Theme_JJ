@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 /*
  * @Author: mulingyuer
  * @Date: 2023-05-20 13:28:46

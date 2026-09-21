@@ -1,62 +1,18 @@
 {
-	"name": "webpack-multiple-entry",
+	"name": "typecho-theme-jj",
 	"version": "2.3.8",
-	"repository": "https://github.com/mulingyuer/Typecho_Theme_JJ.git",
-	"author": "mulingyuer <1321968423@qq.com>",
 	"license": "bsd 3.0",
+	"author": "mulingyuer <1321968423@qq.com>",
+	"repository": "https://github.com/mulingyuer/Typecho_Theme_JJ.git",
 	"main": "index.js",
 	"scripts": {
-		"dev": "webpack --config=./webpack/webpack.dev.ts",
-		"build": "webpack --config=./webpack/webpack.prod.ts && bumpp --no-commit --no-tag --no-push && ts-node buildCommand/updateVersion.ts",
-		"analyze": "webpack --config=./webpack/webpack.prod.ts --analyze",
-		"git:commit-all": "git add . && git cz",
-		"git:commit-index": "git cz",
-		"build-zip": "ts-node buildCommand/zip.ts",
-		"init-husky": "npx husky init",
-		"prepare": "husky"
-	},
-	"devDependencies": {
-		"@babel/cli": "^7.25.6",
-		"@babel/core": "^7.25.2",
-		"@babel/plugin-proposal-class-properties": "^7.18.6",
-		"@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-		"@babel/plugin-transform-runtime": "^7.25.4",
-		"@babel/preset-env": "^7.25.4",
-		"@babel/preset-typescript": "^7.24.7",
-		"@babel/runtime": "^7.25.6",
-		"@commitlint/cli": "^19.4.1",
-		"@types/archiver": "^6.0.2",
-		"@types/crypto-js": "^4.2.2",
-		"@types/glob": "^8.1.0",
-		"@types/node": "^22.5.4",
-		"@types/qrcode": "^1.5.5",
-		"@types/toastify-js": "^1.12.3",
-		"archiver": "^7.0.1",
-		"autoprefixer": "^10.4.20",
-		"babel-loader": "^9.1.3",
-		"bumpp": "^9.5.2",
-		"commitizen": "^4.3.0",
-		"commitlint-config-cz": "^0.13.3",
-		"commitlint-config-git-commit-emoji": "^1.0.0",
-		"compression-webpack-plugin": "^11.1.0",
-		"core-js": "3.38.1",
-		"css-loader": "^7.1.2",
-		"cz-customizable": "^7.2.1",
-		"glob": "^11.0.0",
-		"html-webpack-plugin": "^5.6.0",
-		"husky": "^9.1.5",
-		"mini-css-extract-plugin": "^2.9.1",
-		"postcss": "^8.4.45",
-		"postcss-loader": "^8.1.1",
-		"sass": "^1.78.0",
-		"sass-loader": "^16.0.1",
-		"ts-node": "^10.9.2",
-		"typescript": "^5.5.4",
-		"webpack": "^5.94.0",
-		"webpack-bundle-analyzer": "^4.10.2",
-		"webpack-cli": "^5.1.4",
-		"webpack-merge": "^5.10.0",
-		"webpackbar": "^6.0.1"
+		"dev": "vite build --watch",
+		"build": "vite build && bumpp --no-commit --no-tag --no-push && ts-node buildCommand/updateVersion.ts",
+		"lint": "oxlint",
+		"lint:fix": "oxlint --fix",
+		"format": "oxfmt --write --ignore-path=.oxfmtignore .",
+		"format:check": "oxfmt --check --ignore-path=.oxfmtignore .",
+		"build-zip": "ts-node buildCommand/zip.ts"
 	},
 	"dependencies": {
 		"@docsearch/css": "3.6.1",
@@ -73,14 +29,28 @@
 		"toastify-js": "^1.12.0",
 		"vue": "^3.5.3"
 	},
+	"devDependencies": {
+		"@types/archiver": "^6.0.2",
+		"@types/crypto-js": "^4.2.2",
+		"@types/glob": "^8.1.0",
+		"@types/node": "^22.5.4",
+		"@types/qrcode": "^1.5.5",
+		"@types/toastify-js": "^1.12.3",
+		"archiver": "^7.0.1",
+		"autoprefixer": "^10.4.20",
+		"bumpp": "^9.5.2",
+		"glob": "^11.0.0",
+		"oxfmt": "^0.68.0",
+		"oxlint": "^1.83.0",
+		"postcss": "^8.4.45",
+		"sass-embedded": "^1.104.1",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.5.4",
+		"vite": "^8.3.0"
+	},
 	"engines": {
 		"node": ">=v18.16.0",
 		"pnpm": ">=8.6.2"
 	},
-	"engineStrict": true,
-	"config": {
-		"commitizen": {
-			"path": "node_modules/cz-customizable"
-		}
-	}
+	"engineStrict": true
 }

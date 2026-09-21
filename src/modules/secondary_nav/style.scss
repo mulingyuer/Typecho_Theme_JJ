@@ -37,7 +37,9 @@
 	margin-right: 12px;
 	margin-bottom: 12px;
 	background-color: var(--jj-secondary-nav-item-bg);
-	box-shadow: 0 1px 2px 0 var(--jj-secondary-nav-item-box-shadow), 0 1px 2px 0 var(--jj-secondary-nav-item-box-shadow);
+	box-shadow:
+		0 1px 2px 0 var(--jj-secondary-nav-item-box-shadow),
+		0 1px 2px 0 var(--jj-secondary-nav-item-box-shadow);
 	font-size: 13px;
 	color: var(--jj-secondary-nav-item-color);
 	border-radius: 99999px;

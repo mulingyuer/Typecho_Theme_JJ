@@ -44,6 +44,6 @@ updateWindowSize();
 window.addEventListener("resize", updateWindowSize);
 
 //ascii
-if (process.env.NODE_ENV !== "development") {
+if (import.meta.env.PROD) {
 	asciiEmoji();
 }

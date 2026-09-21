@@ -214,7 +214,10 @@
 	color: var(--jj-header-article-btn-color);
 	border-radius: 3px;
 	white-space: nowrap;
-	transition: margin 0.2s, width 0.2s, background-color 0.1s linear;
+	transition:
+		margin 0.2s,
+		width 0.2s,
+		background-color 0.1s linear;
 	&:hover {
 		background-color: var(--jj-header-article-btn-bg-hover);
 	}
@@ -573,7 +576,9 @@
 	opacity: 0;
 	transform: translate3D(0, -50%, 0);
 	transform-origin: center bottom;
-	transition: transform 0.15s, opacity 0.15s;
+	transition:
+		transform 0.15s,
+		opacity 0.15s;
 	&.visible {
 		opacity: 1;
 		transform: translate3D(0, 0, 0);
@@ -709,7 +714,9 @@
 	border-radius: 2px;
 	text-align: center;
 	line-height: 14px;
-	transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+	transition:
+		border-color 0.2s ease-in-out,
+		background-color 0.2s ease-in-out;
 }
 .login-dialog-input-checkbox-icon {
 	display: block;

@@ -5,8 +5,8 @@
  * @LastEditors: mulingyuer
  * @Description: post
  * @FilePath: /Typecho_Theme_JJ/src/pages/post/index.ts
- * 怎么可能会有bug！！！
- */
+ * 鎬庝箞鍙兘浼氭湁bug锛侊紒锛? */
+import "@/main";
 import "./style.scss";
 import "@/modules/article_content";
 import "@/modules/article_relevant_info";
@@ -23,14 +23,14 @@ import emitter, { MittEventName } from "@/utils/mittEvent";
 import "@/modules/post/article_detail_recommended";
 
 class PostRightSticky {
-	/** 容器 */
+	/** 瀹瑰櫒 */
 	private wrap = document.querySelector(".post-right-sticky");
 
 	constructor() {
 		emitter.on(MittEventName.HEADER_SHOW, this.listenHeaderShow);
 	}
 
-	/** 监听header的显示隐藏 */
+	/** 鐩戝惉header鐨勬樉绀洪殣钘?*/
 	private listenHeaderShow = (status: boolean) => {
 		if (status) {
 			this.wrap?.classList.add("heighten");

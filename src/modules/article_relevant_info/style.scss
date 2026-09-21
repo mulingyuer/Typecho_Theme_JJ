@@ -20,7 +20,9 @@
 		text-decoration: none;
 		margin-right: 12px;
 		margin-bottom: 12px;
-		transition: color 0.3s, background-color 0.3s;
+		transition:
+			color 0.3s,
+			background-color 0.3s;
 		&:active {
 			opacity: 0.7;
 		}

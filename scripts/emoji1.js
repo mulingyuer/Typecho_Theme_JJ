@@ -9,41 +9,44 @@
  */
 
 (async function () {
-  function sleep() {
-    return new Promise((resolve) => setTimeout(resolve, 5000));
-  }
+	function sleep() {
+		return new Promise((resolve) => setTimeout(resolve, 5000));
+	}
 
-  const emojiContent = document.querySelector(".emoji-content");
-  const textarea = document.querySelector(".reply-box-textarea");
-  if (!emojiContent || !textarea) return;
+	const emojiContent = document.querySelector(".emoji-content");
+	const textarea = document.querySelector(".reply-box-textarea");
+	if (!emojiContent || !textarea) return;
 
-  const data = [];
-  const downloadList = [];
-  const emojiDomList = [...emojiContent.children].reverse();
+	const data = [];
+	const downloadList = [];
+	const emojiDomList = [...emojiContent.children].reverse();
 
-  emojiDomList.forEach((item) => item.click());
+	emojiDomList.forEach((item) => item.click());
 
-  await sleep();
+	await sleep();
 
-  const textareaValue = textarea.value.split("][").map((text) => {
-    text = text.replace(/^\[/, "");
-    text = text.replace(/\]$/, "");
-    return text;
-  }).reverse();
+	const textareaValue = textarea.value
+		.split("][")
+		.map((text) => {
+			text = text.replace(/^\[/, "");
+			text = text.replace(/\]$/, "");
+			return text;
+		})
+		.reverse();
 
-  emojiDomList.forEach((item) => {
-    const img = item.querySelector("img");
-    const src = img.getAttribute("src").split("@")[0];
-    const key = textareaValue.shift();
+	emojiDomList.forEach((item) => {
+		const img = item.querySelector("img");
+		const src = img.getAttribute("src").split("@")[0];
+		const key = textareaValue.shift();
 
-    data.push({
-      key,
-      src: `/static/images/emoji/yellow_face/${src.split("/").pop()}`,
-      hidden: false,
-    });
-    downloadList.push(src);
-  });
+		data.push({
+			key,
+			src: `/static/images/emoji/yellow_face/${src.split("/").pop()}`,
+			hidden: false
+		});
+		downloadList.push(src);
+	});
 
-  console.log(data.reverse());
-  console.log(downloadList.map((text) => `https:${text}`).join("\n"));
+	console.log(data.reverse());
+	console.log(downloadList.map((text) => `https:${text}`).join("\n"));
 })();

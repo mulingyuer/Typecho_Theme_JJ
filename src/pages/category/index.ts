@@ -3,10 +3,9 @@
  * @Date: 2023-03-19 14:31:58
  * @LastEditTime: 2023-03-22 03:19:23
  * @LastEditors: mulingyuer
- * @Description: category分类页
- * @FilePath: \Typecho_Theme_JJ\src\pages\category\index.ts
- * 怎么可能会有bug！！！
- */
+ * @Description: category鍒嗙被椤? * @FilePath: \Typecho_Theme_JJ\src\pages\category\index.ts
+ * 鎬庝箞鍙兘浼氭湁bug锛侊紒锛? */
+import "@/main";
 import "./style.scss";
 import "@/modules/nav";
 import "@/modules/secondary_nav";
