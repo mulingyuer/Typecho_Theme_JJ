@@ -72,6 +72,29 @@ Gitee仓库：[Typecho_Theme_JJ](https://gitee.com/mulingyuer/Typecho_Theme_JJ)
 
 [Typecho_Plugin_JJEditor](https://github.com/mulingyuer/Typecho_Plugin_JJEditor)
 
+## 参与开发
+
+### 环境要求
+
+- **Node.js**：版本为 **24**（由根目录 [.node-version](.node-version) 文件定义）。推荐使用 [FNM](https://github.com/Schniz/fnm) 管理 Node 版本，进入项目目录时会自动切换。
+- **pnpm**：通过 **corepack** 管理，版本由 [package.json](package.json) 中的 `packageManager` 字段锁定。首次克隆项目后执行以下命令激活：
+
+  ```bash
+  corepack enable
+  ```
+
+### 常用命令
+
+```bash
+pnpm install   # 安装依赖
+pnpm dev       # 开发模式（vite watch 构建）
+pnpm build     # 构建并更新版本号
+pnpm lint      # 代码检查
+pnpm format    # 代码格式化
+```
+
+本地 Typecho 调试环境（Docker）请查看 [dev-env/README.md](dev-env/README.md)。
+
 ## 有志之士
 
 如果你也想完善这个主题，可以提交你的代码，在我博客留言探讨也行 [木灵鱼儿](https://www.mulingyuer.com)

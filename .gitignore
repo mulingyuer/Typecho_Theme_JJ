@@ -1,5 +1,6 @@
 node_modules
 /dist
+/Typecho_Theme_JJ.zip
 
 # 本地开发环境：docker-compose.yml 和 README.md 入库共享，
 # 只忽略本地生成的内容和敏感信息

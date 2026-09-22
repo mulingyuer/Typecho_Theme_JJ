@@ -7,8 +7,5 @@
  * @FilePath: /Typecho_Theme_JJ/src/plugins/simplebar/index.ts
  * 怎么可能会有bug！！！
  */
-import ResizeObserver from "resize-observer-polyfill";
 import "simplebar/dist/simplebar.css";
 import "./style.scss";
-
-window.ResizeObserver = ResizeObserver;

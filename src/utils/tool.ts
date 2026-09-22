@@ -7,7 +7,7 @@
  * @FilePath: /Typecho_Theme_JJ/src/utils/tool.ts
  * 怎么可能会有bug！！！
  */
-import { MD5 } from "crypto-js";
+import { md5 } from "./md5";
 
 /** 是否支持closest方法 */
 export const isSupportClosest = (() => {
@@ -129,6 +129,6 @@ export const generatedGravatar = (function () {
 	return function generatedGravatar(options: GeneratedGravatarOptions) {
 		options = mergeConfig(defaultOptions, options);
 		const { email, size, originPreFix } = options;
-		return `${originPreFix}${MD5(email)}?s=${size}&d=identicon`;
+		return `${originPreFix}${md5(email)}?s=${size}&d=identicon`;
 	};
 })();

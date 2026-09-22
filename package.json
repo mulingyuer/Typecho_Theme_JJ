@@ -7,35 +7,31 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "vite build --watch",
-		"build": "vite build && bumpp --no-commit --no-tag --no-push && ts-node buildCommand/updateVersion.ts",
+		"build": "vite build && bumpp --no-commit --no-tag --no-push && ts-node -P buildCommand/tsconfig.json buildCommand/updateVersion.ts",
 		"lint": "oxlint",
 		"lint:fix": "oxlint --fix",
 		"format": "oxfmt --write --ignore-path=.oxfmtignore .",
 		"format:check": "oxfmt --check --ignore-path=.oxfmtignore .",
-		"build-zip": "ts-node buildCommand/zip.ts"
+		"build-zip": "ts-node -P buildCommand/tsconfig.json buildCommand/zip.ts"
 	},
 	"dependencies": {
 		"@docsearch/css": "3.6.1",
 		"@docsearch/js": "3.6.1",
 		"@floating-ui/dom": "^1.6.10",
 		"axios": "^1.6.8",
-		"crypto-js": "^4.2.0",
 		"highlight.js": "^11.10.0",
 		"mitt": "^3.0.1",
 		"pinia": "^2.2.2",
 		"qrcode": "^1.5.4",
-		"resize-observer-polyfill": "^1.5.1",
 		"simplebar": "^6.2.7",
 		"toastify-js": "^1.12.0",
 		"vue": "^3.5.3"
 	},
 	"devDependencies": {
 		"@types/archiver": "^6.0.2",
-		"@types/crypto-js": "^4.2.2",
-		"@types/glob": "^8.1.0",
 		"@types/node": "^22.5.4",
 		"@types/qrcode": "^1.5.5",
-		"@types/toastify-js": "^1.12.3",
+		"@types/toastify-js": "^1.12.4",
 		"archiver": "^7.0.1",
 		"autoprefixer": "^10.4.20",
 		"bumpp": "^9.5.2",
@@ -48,9 +44,5 @@
 		"typescript": "^5.5.4",
 		"vite": "^8.3.0"
 	},
-	"engines": {
-		"node": ">=v18.16.0",
-		"pnpm": ">=8.6.2"
-	},
-	"engineStrict": true
+	"packageManager": "pnpm@12.5.1"
 }
