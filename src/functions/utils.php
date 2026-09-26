@@ -4,6 +4,29 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 /**
+ * @description: 兼容解析文章自定义字段。
+ * Typecho 1.3 起 $archive->fields 为对象，旧版本为 serialize 字符串，统一转为数组返回。
+ * @param {*} $fields 原始 fields 值（对象或字符串）
+ * @return array
+ */
+function parseFields($fields)
+{
+    if (is_array($fields)) {
+        return $fields;
+    }
+    if (is_object($fields)) {
+        return get_object_vars($fields);
+    }
+    if (is_string($fields) && $fields !== '') {
+        $parsed = @unserialize($fields);
+        if (is_array($parsed)) {
+            return $parsed;
+        }
+    }
+    return array();
+}
+
+/**
  * @description: 文章发布时间
  * @param {*} $time 原文章发布时间
  * @Date: 2023-03-19 16:58:25
@@ -78,7 +101,7 @@ function articleThumbnail($that)
  */
 function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', $return = false, $field = 'views')
 {
-    $fields = unserialize($that->fields);
+    $fields = parseFields($that->fields);
     if (array_key_exists($field, $fields)) {
         $fieldValue = (!empty($fields[$field])) ? intval($fields[$field]) : 0;
     } else {
@@ -106,8 +129,8 @@ function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', 
  */
 function getLikeCount($that)
 {
-
-    $linkCount = $that->fields->likes;
+    $fields = parseFields($that->fields);
+    $linkCount = isset($fields['likes']) ? $fields['likes'] : 0;
     if (empty($linkCount)) {
         return 0;
     }
@@ -126,7 +149,7 @@ function promo($widget)
 
     $user = $widget->widget('Widget_User');
     $db = Typecho_Db::get();
-    $fields = unserialize($widget->fields);
+    $fields = parseFields($widget->fields);
     $allowOperates = array('get', 'set', 'inc', 'dec'); // 这里可以扩展操作，建议屏蔽get/set
     $allowFields = array('likes'); // 这里可以扩展修改字段
 
@@ -499,35 +522,28 @@ function getOs($agent)
         } else {
             $os = 'Windows X64';
         }
-
-        $result = $db->fetchAll($db->select()->from('table.contents')
-                ->where('status = ?', 'publish')
-                ->where('type = ?', 'post')
-                ->where('cid in ?', $getid)
-                ->order('cid', Typecho_Db::SORT_DESC)
-        );
-        if (!$result) {
-            $result = $db->fetchAll($db->select()->from('table.contents')
-                    ->where('status = ?', 'publish')
-                    ->where('type = ?', 'page')
-                    ->where('cid in ?', $getid)
-                    ->order('cid', Typecho_Db::SORT_DESC)
-            );
+    } elseif (preg_match('/android/i', $agent)) {
+        if (preg_match('/android 9/i', $agent)) {
+            $os = 'Android Pie';
+        } elseif (preg_match('/android 8/i', $agent)) {
+            $os = 'Android Oreo';
+        } else {
+            $os = 'Android';
         }
-        if ($result) {
-            $i = 1;
-            foreach ($result as $val) {
-                $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
-                $title = htmlspecialchars($val['title']);
-                $permalink = $val['permalink'];
-            }
-        }
+    } elseif (preg_match('/ubuntu/i', $agent)) {
+        $os = 'Ubuntu';
+    } elseif (preg_match('/linux/i', $agent)) {
+        $os = 'Linux';
+    } elseif (preg_match('/iPhone/i', $agent)) {
+        $os = 'iPhone';
+    } elseif (preg_match('/mac/i', $agent)) {
+        $os = 'MacOS';
+    } elseif (preg_match('/fusion/i', $agent)) {
+        $os = 'Android';
+    } else {
+        $os = 'Linux';
     }
-
-    return array(
-        'title' => $title,
-        'permalink' => $permalink,
-    );
+    echo $os;
 }
 
 // docsearch

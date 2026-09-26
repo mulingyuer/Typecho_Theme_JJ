@@ -4,55 +4,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 /**
- * @description: 获取操作系统信息
- * @param {*} $agent 浏览器信息
- * @Date: 2023-03-24 13:34:12
- * @Author: mulingyuer
- */
-function getOs($agent)
-{
-    $os = false;
-    if (preg_match('/win/i', $agent)) {
-        if (preg_match('/nt 6.0/i', $agent)) {
-            $os = 'Windows Vista';
-        } elseif (preg_match('/nt 6.1/i', $agent)) {
-            $os = 'Windows 7';
-        } elseif (preg_match('/nt 6.2/i', $agent)) {
-            $os = 'Windows 8';
-        } elseif (preg_match('/nt 6.3/i', $agent)) {
-            $os = 'Windows 8.1';
-        } elseif (preg_match('/nt 5.1/i', $agent)) {
-            $os = 'Windows XP';
-        } elseif (preg_match('/nt 10.0/i', $agent)) {
-            $os = 'Windows 10';
-        } else {
-            $os = 'Windows X64';
-        }
-    } elseif (preg_match('/android/i', $agent)) {
-        if (preg_match('/android 9/i', $agent)) {
-            $os = 'Android Pie';
-        } elseif (preg_match('/android 8/i', $agent)) {
-            $os = 'Android Oreo';
-        } else {
-            $os = 'Android';
-        }
-    } elseif (preg_match('/ubuntu/i', $agent)) {
-        $os = 'Ubuntu';
-    } elseif (preg_match('/linux/i', $agent)) {
-        $os = 'Linux';
-    } elseif (preg_match('/iPhone/i', $agent)) {
-        $os = 'iPhone';
-    } elseif (preg_match('/mac/i', $agent)) {
-        $os = 'MacOS';
-    } elseif (preg_match('/fusion/i', $agent)) {
-        $os = 'Android';
-    } else {
-        $os = 'Linux';
-    }
-    echo $os;
-}
-
-/**
  * @description: 子评论回复@
  * @param {*} $coid 评论id
  * @Date: 2023-03-24 13:36:10
