@@ -4,10 +4,11 @@
 
 ## 环境组成
 
-| 服务    | 镜像                                | 说明                                                  |
-| ------- | ----------------------------------- | ----------------------------------------------------- |
-| typecho | `joyqi/typecho:1.3.0-php8.2-apache` | Typecho 官方镜像（PHP 8.2 + Apache），站点目录 `/app` |
-| mysql   | `mysql:5.7`                         | 数据库，数据持久化在 `mysql-data/`                    |
+| 服务       | 镜像                                | 说明                                                  |
+| ---------- | ----------------------------------- | ----------------------------------------------------- |
+| typecho    | `joyqi/typecho:1.3.0-php8.2-apache` | Typecho 官方镜像（PHP 8.2 + Apache），站点目录 `/app` |
+| mysql      | `mysql:5.7`                         | 数据库，数据持久化在 `mysql-data/`                    |
+| phpmyadmin | `phpmyadmin:latest`                 | Web 数据库管理面板，访问 `http://localhost:8080`      |
 
 ## 目录结构
 
@@ -147,6 +148,15 @@ Get-Content backup.sql | docker compose exec -T mysql mysql -uroot -proot typech
 > ```powershell
 > docker compose exec mysql mysql -uroot -proot typecho -e "UPDATE typecho_options SET value='http://jj.test' WHERE name='siteUrl';"
 > ```
+
+## phpMyAdmin 管理面板
+
+环境已内置 phpMyAdmin，启动后访问 `http://localhost:8080`：
+
+- 用户名 / 密码：`root` / `root`
+- 登录页无需选择服务器，phpMyAdmin 通过 Docker 内部网络自动连接当前运行的 MySQL 实例
+
+> 由于两个 MySQL 版本不会同时运行（切换前需要 `down`），phpMyAdmin 会始终连接当前启动的那个版本，无需手动切换。
 
 ## 切换 MySQL 8.0（可选）
 

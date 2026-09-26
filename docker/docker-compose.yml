@@ -48,3 +48,19 @@ services:
       # 数据库数据持久化
       - ./mysql-data:/var/lib/mysql
     restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: typecho-jj-phpmyadmin
+    ports:
+      - "8080:80" # Web 访问端口
+    environment:
+      # 通过 Docker 内部网络连接当前运行的 MySQL 实例（5.7 或 8.0）
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      PMA_ABSOLUTE_URI: http://localhost:8080/
+    depends_on:
+      - mysql
+    restart: unless-stopped
