@@ -78,17 +78,7 @@ function articleThumbnail($that)
  */
 function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', $return = false, $field = 'views')
 {
-    $rawFields = $that->fields;
-    if (is_string($rawFields)) {
-        $fields = unserialize($rawFields);
-    } elseif (is_object($rawFields)) {
-        $fields = json_decode(json_encode($rawFields), true);
-    } else {
-        $fields = $rawFields;
-    }
-    if (!is_array($fields)) {
-        $fields = array();
-    }
+    $fields = unserialize($that->fields);
     if (array_key_exists($field, $fields)) {
         $fieldValue = (!empty($fields[$field])) ? intval($fields[$field]) : 0;
     } else {
@@ -136,17 +126,7 @@ function promo($widget)
 
     $user = $widget->widget('Widget_User');
     $db = Typecho_Db::get();
-    $rawFields = $widget->fields;
-    if (is_string($rawFields)) {
-        $fields = unserialize($rawFields);
-    } elseif (is_object($rawFields)) {
-        $fields = json_decode(json_encode($rawFields), true);
-    } else {
-        $fields = $rawFields;
-    }
-    if (!is_array($fields)) {
-        $fields = array();
-    }
+    $fields = unserialize($widget->fields);
     $allowOperates = array('get', 'set', 'inc', 'dec'); // 这里可以扩展操作，建议屏蔽get/set
     $allowFields = array('likes'); // 这里可以扩展修改字段
 
