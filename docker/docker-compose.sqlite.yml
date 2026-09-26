@@ -1,0 +1,42 @@
+# SQLite 覆盖配置（单容器，无数据库服务）
+# 使用方式：
+#   docker compose down
+#   docker compose -f docker-compose.sqlite.yml up -d
+#
+# 说明：
+#   - SQLite 数据文件持久化在 ./sqlite-data/ 目录（挂载到 /app/data），与 MySQL 数据互不干扰；
+#   - SQLite 环境不使用 config.inc.php 挂载（安装脚本会自动生成），避免 Pdo_Mysql 配置冲突；
+#   - 若 ./config.inc.php 中存在 MySQL 配置，启动前可临时移走，或使用全新空目录再启动。
+services:
+  typecho:
+    image: joyqi/typecho:1.3.0-php8.2-apache
+    environment:
+      TYPECHO_INSTALL: 1
+      TYPECHO_DB_ADAPTER: Pdo_SQLite
+      TYPECHO_DB_FILE: /app/data/typecho.db
+      TYPECHO_DB_PREFIX: typecho_
+      # 以下 MySQL 专属变量留空，避免误导安装脚本
+      TYPECHO_DB_HOST: ""
+      TYPECHO_DB_PORT: ""
+      TYPECHO_DB_USER: ""
+      TYPECHO_DB_PASSWORD: ""
+      TYPECHO_DB_DATABASE: ""
+      TYPECHO_DB_ENGINE: ""
+      TYPECHO_DB_CHARSET: ""
+      TYPECHO_DB_NEXT: keep
+      TYPECHO_SITE_URL: http://jj.test
+      TYPECHO_USER_NAME: admin
+      TYPECHO_USER_PASSWORD: admin123
+      TYPECHO_USER_MAIL: admin@jj.test
+    volumes: !override
+      - ../dist:/app/usr/themes/Typecho_Theme_JJ
+      - ./plugins:/app/usr/plugins
+      - ./sqlite-data:/app/data
+    depends_on: !reset []
+
+  # SQLite 无数据库服务，覆盖为空避免基础配置启动 mysql/phpmyadmin
+  mysql:
+    profiles: ["disabled"]
+
+  phpmyadmin:
+    profiles: ["disabled"]

@@ -22,6 +22,16 @@ Gitee仓库：[Typecho_Theme_JJ](https://gitee.com/mulingyuer/Typecho_Theme_JJ)
 >
 > 主题内部分静态资源（如 copyright、links 页背景图）使用编译期写死的路径前缀 `/usr/themes/Typecho_Theme_JJ`。目录改名后这些资源会 404，导致图标、背景图无法显示。
 
+## 数据库兼容性
+
+主题所有数据库操作均走 Typecho 官方查询构造器（DAL），不含任何原生 SQL，因此天然兼容 Typecho 支持的三种数据库：
+
+- MySQL（5.7 / 8.0 均已验证）
+- PostgreSQL（16 已验证）
+- SQLite（已验证）
+
+本地开发环境可通过 Docker Compose 覆盖配置一键切换三种数据库做回归测试，详见 [docker/README.md](docker/README.md)。
+
 ## 主题功能
 
 1. Vite + TypeScript 现代化构建

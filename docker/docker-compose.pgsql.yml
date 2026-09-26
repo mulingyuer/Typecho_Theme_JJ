@@ -1,0 +1,68 @@
+# PostgreSQL 16 覆盖配置
+# 使用方式：
+#   docker compose down
+#   docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
+#
+# 说明：
+#   - PostgreSQL 数据持久化在 ./pgsql-data/ 目录，与 MySQL 数据互不干扰；
+#   - PG 环境不使用 config.inc.php 挂载（安装脚本会自动生成），避免 Pdo_Mysql 配置冲突；
+#   - 若 ./config.inc.php 中存在 MySQL 配置，启动前可临时移走，或使用全新空目录再启动。
+services:
+  typecho:
+    image: joyqi/typecho:1.3.0-php8.2-apache
+    environment:
+      TYPECHO_INSTALL: 1
+      TYPECHO_DB_ADAPTER: Pdo_Pgsql
+      TYPECHO_DB_HOST: pgsql
+      TYPECHO_DB_PORT: 5432
+      TYPECHO_DB_USER: typecho
+      TYPECHO_DB_PASSWORD: typecho
+      TYPECHO_DB_DATABASE: typecho
+      TYPECHO_DB_PREFIX: typecho_
+      TYPECHO_DB_CHARSET: utf8
+      # 以下 MySQL 专属变量留空
+      TYPECHO_DB_ENGINE: ""
+      TYPECHO_DB_FILE: ""
+      TYPECHO_DB_NEXT: keep
+      TYPECHO_SITE_URL: http://jj.test
+      TYPECHO_USER_NAME: admin
+      TYPECHO_USER_PASSWORD: admin123
+      TYPECHO_USER_MAIL: admin@jj.test
+    volumes: !override
+      - ../dist:/app/usr/themes/Typecho_Theme_JJ
+      - ./plugins:/app/usr/plugins
+    depends_on: !reset
+      pgsql:
+        condition: service_healthy
+
+  pgsql:
+    image: postgres:16-alpine
+    container_name: typecho-jj-pgsql
+    environment:
+      POSTGRES_USER: typecho
+      POSTGRES_PASSWORD: typecho
+      POSTGRES_DB: typecho
+    volumes:
+      - ./pgsql-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U typecho -d typecho"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  # 覆盖 mysql / phpmyadmin 为占位 alpine 服务
+  # 保留服务定义（base 文件 typecho.depends_on 引用了 mysql），但镜像换成 alpine
+  # 容器会启动但只占极少资源，typecho 实际连接的是 pgsql 服务
+  mysql:
+    image: alpine:latest
+    entrypoint:
+      [
+        "sh",
+        "-c",
+        "echo 'MySQL placeholder, use pgsql instead' && sleep infinity",
+      ]
+
+  phpmyadmin:
+    image: alpine:latest
+    entrypoint: ["sh", "-c", "echo 'phpMyAdmin placeholder' && sleep infinity"]

@@ -10,6 +10,8 @@
 | mysql      | `mysql:5.7`                         | 数据库，数据持久化在 `mysql-data/`                    |
 | phpmyadmin | `phpmyadmin:latest`                 | Web 数据库管理面板，访问 `http://localhost:8080`      |
 
+> 除 MySQL 5.7 外，本环境还支持 **MySQL 8.0**、**SQLite**、**PostgreSQL 16** 三种数据库切换，详见下文「切换数据库环境」。
+
 ## 目录结构
 
 ```
@@ -184,6 +186,47 @@ docker compose up -d
 ```
 
 > 两个版本的数据目录互相独立（`mysql-data/` 与 `mysql-data-80/`），切换不会互相污染。
+
+## 切换数据库环境
+
+本主题代码层面对 MySQL / PostgreSQL / SQLite 天然兼容（所有查询均走 Typecho DAL），因此可以通过覆盖配置快速切换三种数据库环境做回归测试。
+
+### 环境矩阵
+
+| 环境 | 启动命令 | 数据目录 | 说明 |
+| --- | --- | --- | --- |
+| MySQL 5.7（默认） | `docker compose up -d` | `mysql-data/` | 开发基准环境 |
+| MySQL 8.0 | `docker compose -f docker-compose.yml -f docker-compose.mysql80.yml up -d` | `mysql-data-80/` | 验证 MySQL 8.0 兼容 |
+| SQLite | `docker compose -f docker-compose.sqlite.yml up -d` | `sqlite-data/typecho.db` | 单容器，无数据库服务 |
+| PostgreSQL 16 | `docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d` | `pgsql-data/` | 验证 PG 严格模式兼容 |
+
+> 切换前必须先 `docker compose down`，避免端口与数据目录冲突。
+
+### SQLite 环境
+
+```powershell
+docker compose down
+docker compose -f docker-compose.sqlite.yml up -d
+```
+
+- 数据库文件：`./sqlite-data/typecho.db`
+- 无需额外数据库容器，适合快速验证轻量场景。
+
+### PostgreSQL 16 环境
+
+```powershell
+docker compose down
+docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
+```
+
+- 数据目录：`./pgsql-data/`
+- PG 对 `GROUP BY`、类型比较比 MySQL 严格，适合验证复杂查询的跨库兼容性。
+
+### 三库环境共同点
+
+- 管理员账号均为 `admin` / `admin123`；
+- 首次启动自动执行安装（`TYPECHO_INSTALL=1`），已有表时跳过（`TYPECHO_DB_NEXT=keep`）；
+- 主题与插件挂载方式与默认环境一致，改代码即时生效。
 
 ## 备份与恢复
 

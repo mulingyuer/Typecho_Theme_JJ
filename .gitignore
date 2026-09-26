@@ -6,6 +6,8 @@ node_modules
 # 只忽略本地生成的内容和敏感信息
 docker/mysql-data/
 docker/mysql-data-*/
+docker/sqlite-data/
+docker/pgsql-data/
 docker/config.inc.php
 docker/plugins/*
 !docker/plugins/.gitkeep
