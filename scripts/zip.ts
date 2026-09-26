@@ -39,8 +39,8 @@ const distPath = join(rootPath, "dist");
   // 使用管道方式导出到文件
   archive.pipe(output);
 
-  // 将 dist/ 内容作为 zip 根目录
-  archive.directory(`${distPath}/`, false);
+  // 将 dist/ 内容统一打包到 Typecho_Theme_JJ 目录中，保证解压后目录结构一致
+  archive.directory(`${distPath}/`, "Typecho_Theme_JJ");
 
   // 将归档内容最终化
   archive.finalize();

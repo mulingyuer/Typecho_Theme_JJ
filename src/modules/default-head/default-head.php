@@ -50,6 +50,9 @@ content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale
 <link href="<?php $this->options->themeUrl('/css/theme/light.css?'.$random_number);?>" rel="stylesheet" type="text/css" title="light">
 <link href="<?php $this->options->themeUrl('/css/theme/dark.css?'.$random_number);?>" rel="alternate stylesheet" type="text/css" title="dark">
 
+<!-- iconfont -->
+<link href="<?php $this->options->themeUrl('/fonts/iconfont.css');?>" rel="stylesheet" type="text/css">
+
 <!-- globalError -->
 <script src="<?php $this->options->themeUrl('/scripts/globalError.js');?>"></script>
 

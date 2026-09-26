@@ -16,6 +16,12 @@ Gitee仓库：[Typecho_Theme_JJ](https://gitee.com/mulingyuer/Typecho_Theme_JJ)
 
 [《主题使用指南》](https://mulingyuer.github.io/Typecho_Theme_JJ/)
 
+## 安装注意
+
+> ⚠️ **主题解压/上传后，`usr/themes/` 下的目录名必须是 `Typecho_Theme_JJ`，不要改名。**
+>
+> 主题内部分静态资源（如 copyright、links 页背景图）使用编译期写死的路径前缀 `/usr/themes/Typecho_Theme_JJ`。目录改名后这些资源会 404，导致图标、背景图无法显示。
+
 ## 主题功能
 
 1. Vite + TypeScript 现代化构建

@@ -14,7 +14,6 @@ import { initGlobalImgLoadError } from "@/utils/error";
 
 //css
 import "@/styles/reset.scss";
-import "@/styles/fonts/iconfont.css";
 import "@/styles/layout.scss";
 
 // plugins
@@ -30,20 +29,22 @@ initGlobalImgLoadError();
 //监听scroll事件，记录滚动条位置
 const dataStore = useDataStore();
 function updateScrollY() {
-	dataStore.setScrollY(document.documentElement.scrollTop || document.body.scrollTop);
+  dataStore.setScrollY(
+    document.documentElement.scrollTop || document.body.scrollTop,
+  );
 }
 updateScrollY();
 window.addEventListener("scroll", updateScrollY);
 
 //监听resize事件，记录窗口大小
 function updateWindowSize() {
-	dataStore.setWindowWidth(window.innerWidth);
-	dataStore.setWindowHeight(window.innerHeight);
+  dataStore.setWindowWidth(window.innerWidth);
+  dataStore.setWindowHeight(window.innerHeight);
 }
 updateWindowSize();
 window.addEventListener("resize", updateWindowSize);
 
 //ascii
 if (import.meta.env.PROD) {
-	asciiEmoji();
+  asciiEmoji();
 }
