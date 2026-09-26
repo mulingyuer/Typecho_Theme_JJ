@@ -7,8 +7,7 @@
  * @FilePath: /Typecho_Theme_JJ/src/main.ts
  * 怎么可能会有bug！！！
  */
-import "@/store/install";
-import { useDataStore } from "@/store/data";
+import { dataStore } from "@/store/data";
 import asciiEmoji from "@/utils/ascii";
 import { initGlobalImgLoadError } from "@/utils/error";
 
@@ -27,19 +26,17 @@ import "@/modules/fixed-tool";
 initGlobalImgLoadError();
 
 //监听scroll事件，记录滚动条位置
-const dataStore = useDataStore();
 function updateScrollY() {
-  dataStore.setScrollY(
-    document.documentElement.scrollTop || document.body.scrollTop,
-  );
+  dataStore.scrollY =
+    document.documentElement.scrollTop || document.body.scrollTop;
 }
 updateScrollY();
 window.addEventListener("scroll", updateScrollY);
 
 //监听resize事件，记录窗口大小
 function updateWindowSize() {
-  dataStore.setWindowWidth(window.innerWidth);
-  dataStore.setWindowHeight(window.innerHeight);
+  dataStore.windowWidth = window.innerWidth;
+  dataStore.windowHeight = window.innerHeight;
 }
 updateWindowSize();
 window.addEventListener("resize", updateWindowSize);

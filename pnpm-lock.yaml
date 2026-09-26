@@ -184,9 +184,6 @@ importers:
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
-      pinia:
-        specifier: ^2.2.2
-        version: 2.2.2(typescript@5.5.4)(vue@3.5.3(typescript@5.5.4))
       qrcode:
         specifier: ^1.5.4
         version: 1.5.4
@@ -895,9 +892,6 @@ packages:
 
   '@vue/compiler-ssr@3.5.3':
     resolution: {integrity: sha512-F/5f+r2WzL/2YAPl7UlKcJWHrvoZN8XwEBLnT7S4BXwncH25iDOabhO2M2DWioyTguJAGavDOawejkFXj8EM1w==}
-
-  '@vue/devtools-api@6.6.3':
-    resolution: {integrity: sha512-0MiMsFma/HqA6g3KLKn+AGpL1kgKhFWszC9U29NfpWK5LE7bjeXxySWJrOJ77hBz+TBrBQ7o4QJqbPbqbs8rJw==}
 
   '@vue/reactivity@3.5.3':
     resolution: {integrity: sha512-2w61UnRWTP7+rj1H/j6FH706gRBHdFVpIqEkSDAyIpafBXYH8xt4gttstbbCWdU3OlcSWO8/3mbKl/93/HSMpw==}
@@ -1681,18 +1675,6 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  pinia@2.2.2:
-    resolution: {integrity: sha512-ja2XqFWZC36mupU4z1ZzxeTApV7DOw44cV4dhQ9sGwun+N89v/XP7+j7q6TanS1u1tdbK4r+1BUx7heMaIdagA==}
-    peerDependencies:
-      '@vue/composition-api': ^1.4.0
-      typescript: '>=4.4.4'
-      vue: ^2.6.14 || ^3.3.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-      typescript:
-        optional: true
-
   pkg-types@1.2.0:
     resolution: {integrity: sha512-+ifYuSSqOQ8CqP4MbZA5hDpb97n3E8SVWdJe+Wms9kj745lmd3b7EZJiqvmLwAlmRfjrI7Hi5z3kdBJ93lFNPA==}
 
@@ -2127,17 +2109,6 @@ packages:
       tsx:
         optional: true
       yaml:
-        optional: true
-
-  vue-demi@0.14.10:
-    resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
-    engines: {node: '>=12'}
-    hasBin: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
         optional: true
 
   vue@3.5.3:
@@ -2706,8 +2677,6 @@ snapshots:
     dependencies:
       '@vue/compiler-dom': 3.5.3
       '@vue/shared': 3.5.3
-
-  '@vue/devtools-api@6.6.3': {}
 
   '@vue/reactivity@3.5.3':
     dependencies:
@@ -3436,14 +3405,6 @@ snapshots:
 
   pidtree@1.0.0: {}
 
-  pinia@2.2.2(typescript@5.5.4)(vue@3.5.3(typescript@5.5.4)):
-    dependencies:
-      '@vue/devtools-api': 6.6.3
-      vue: 3.5.3(typescript@5.5.4)
-      vue-demi: 0.14.10(vue@3.5.3(typescript@5.5.4))
-    optionalDependencies:
-      typescript: 5.5.4
-
   pkg-types@1.2.0:
     dependencies:
       confbox: 0.1.7
@@ -3845,10 +3806,6 @@ snapshots:
       sass-embedded: 1.104.1
       terser: 5.30.3
       yaml: 2.9.1
-
-  vue-demi@0.14.10(vue@3.5.3(typescript@5.5.4)):
-    dependencies:
-      vue: 3.5.3(typescript@5.5.4)
 
   vue@3.5.3(typescript@5.5.4):
     dependencies:

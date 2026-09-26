@@ -19,25 +19,25 @@ import "@/modules/post/articles-related";
 import "@/modules/article-tool";
 import "@/modules/post/next-article";
 import "@/modules/post/mobile-directory-tree";
-import emitter, { MittEventName } from "@/utils/mittEvent";
+import emitter from "@/utils/mittEvent";
 import "@/modules/post/article-detail-recommended";
 
 class PostRightSticky {
-	/** 瀹瑰櫒 */
-	private wrap = document.querySelector(".post-right-sticky");
+  /** 瀹瑰櫒 */
+  private wrap = document.querySelector(".post-right-sticky");
 
-	constructor() {
-		emitter.on(MittEventName.HEADER_SHOW, this.listenHeaderShow);
-	}
+  constructor() {
+    emitter.on("HEADER_SHOW", this.listenHeaderShow);
+  }
 
-	/** 鐩戝惉header鐨勬樉绀洪殣钘?*/
-	private listenHeaderShow = (status: boolean) => {
-		if (status) {
-			this.wrap?.classList.add("heighten");
-		} else {
-			this.wrap?.classList.remove("heighten");
-		}
-	};
+  /** 鐩戝惉header鐨勬樉绀洪殣钘?*/
+  private listenHeaderShow = (status: boolean) => {
+    if (status) {
+      this.wrap?.classList.add("heighten");
+    } else {
+      this.wrap?.classList.remove("heighten");
+    }
+  };
 }
 
 new PostRightSticky();

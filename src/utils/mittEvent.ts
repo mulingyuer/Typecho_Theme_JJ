@@ -9,15 +9,10 @@
  */
 import mitt from "mitt";
 
-/** 事件名称 */
-export enum MittEventName {
-	/** header是否显示 */
-	HEADER_SHOW = "HEADER_SHOW"
-}
-
 /** mitt事件类型 */
 export type EventMitt = {
-	[MittEventName.HEADER_SHOW]: boolean;
+  /** header是否显示 */
+  HEADER_SHOW: boolean;
 };
 
 /** 实例 */
