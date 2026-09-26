@@ -270,7 +270,3 @@ function themeConfig($form)
     $form->addInput($docSearchIndexName);
 }
 
-/**
- * @description: 获取当前页面标题
- * @param {*} $that 当前页面对象
- * @Date: 2023-03-14 20:50:07

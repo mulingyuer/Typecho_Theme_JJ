@@ -3,22 +3,27 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
     exit;
 }
 
+/**
+ * @description: 获取当前页面标题
+ * @param {*} $that 当前页面对象
+ * @Date: 2023-03-14 20:50:07
  * @Author: mulingyuer
  */
 function blogTitle($that)
 {
     $before = $that->archiveTitle(array(
         'category' => _t('分类 %s 下的文章'),
-        'search' => _t('包含关键�?%s 的文�?),
+        'search' => _t('包含关键字 %s 的文章'),
         'tag' => _t('标签 %s 下的文章'),
-        'author' => _t('%s 发布的文�?),
+        'author' => _t('%s 发布的文章'),
     ), '', ' - ');
     $title = Helper::options()->title();
     return $before . $title;
 }
 
 /**
- * @description: 固定的一些其他页�? * @param {*} $that 当前页面对象
+ * @description: 固定的一些其他页面
+ * @param {*} $that 当前页面对象
  * @Date: 2023-03-22 00:40:07
  * @Author: mulingyuer
  */
@@ -50,7 +55,8 @@ function blogDescription($that, $max = 160)
 }
 
 /**
- * @description: 获取当前页面关键�? * @param {*} $that 当前页面对象
+ * @description: 获取当前页面关键词
+ * @param {*} $that 当前页面对象
  * @Date: 2023-03-14 21:02:23
  * @Author: mulingyuer
  */
@@ -127,7 +133,7 @@ function isParentActive($activeSlug, $category, $children)
     return $flag;
 }
 
-/** 二级分类：全部是否高�?*/
+/** 二级分类：全部是否高亮 */
 function secondaryAllActive($that, $category, $children)
 {
     $flag = true;
@@ -141,8 +147,3 @@ function secondaryAllActive($that, $category, $children)
     return $flag;
 }
 
-/**
- * @description: 文章发布时间
- * @param {*} $time 原文章发布时�? * @Date: 2023-03-19 16:58:25
- * @Author: mulingyuer
- */

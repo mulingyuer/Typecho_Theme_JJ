@@ -3,15 +3,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
     exit;
 }
 
-            $zhUserGroup = '访客';
-    }
-
-    if (empty($zhUserGroup)) {
-        $zhUserGroup = '未知用户';
-    }
-    return $zhUserGroup;
-}
-
 /**
  * @description: 给文章内容标题添加锚点
  * @param {*} $content 文章内容
@@ -189,14 +180,3 @@ function generateTreeTemplate($arr, $depth, $currentDepth = 1, $isChildren = fal
     return $output;
 }
 
-/**
- * 增加浏览次数
- * 使用方法: 在<code>themeInit</code>函数中添加代码
- * <pre>if($archive->is('single') || $archive->is('page')){ viewsCounter($archive);}</pre>
- *
- * @param Widget_Archive $widget
- * @return boolean
- */
-
-function viewsCounter($widget, $field = 'views')
-{

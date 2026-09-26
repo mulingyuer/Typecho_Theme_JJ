@@ -3,30 +3,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
     exit;
 }
 
-    } elseif (preg_match('/android/i', $agent)) {
-        if (preg_match('/android 9/i', $agent)) {
-            $os = 'Android Pie';
-        } elseif (preg_match('/android 8/i', $agent)) {
-            $os = 'Android Oreo';
-        } else {
-            $os = 'Android';
-        }
-    } elseif (preg_match('/ubuntu/i', $agent)) {
-        $os = 'Ubuntu';
-    } elseif (preg_match('/linux/i', $agent)) {
-        $os = 'Linux';
-    } elseif (preg_match('/iPhone/i', $agent)) {
-        $os = 'iPhone';
-    } elseif (preg_match('/mac/i', $agent)) {
-        $os = 'MacOS';
-    } elseif (preg_match('/fusion/i', $agent)) {
-        $os = 'Android';
-    } else {
-        $os = 'Linux';
-    }
-    echo $os;
-}
-
 /**
  * @description: 子评论回复@
  * @param {*} $coid 评论id
@@ -100,3 +76,33 @@ function getIdPosts($id)
     if ($id) {
         $getid = explode(',', $id);
         $db = Typecho_Db::get();
+        $result = $db->fetchAll($db->select()->from('table.contents')
+                ->where('status = ?', 'publish')
+                ->where('type = ?', 'post')
+                ->where('cid in ?', $getid)
+                ->order('cid', Typecho_Db::SORT_DESC)
+        );
+        if (!$result) {
+            $result = $db->fetchAll($db->select()->from('table.contents')
+                    ->where('status = ?', 'publish')
+                    ->where('type = ?', 'page')
+                    ->where('cid in ?', $getid)
+                    ->order('cid', Typecho_Db::SORT_DESC)
+            );
+        }
+        if ($result) {
+            $i = 1;
+            foreach ($result as $val) {
+                $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
+                $title = htmlspecialchars($val['title']);
+                $permalink = $val['permalink'];
+            }
+        }
+    }
+
+    return array(
+        'title' => $title,
+        'permalink' => $permalink,
+    );
+}
+

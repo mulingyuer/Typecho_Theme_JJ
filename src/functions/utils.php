@@ -5,20 +5,21 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 /**
  * @description: 文章发布时间
- * @param {*} $time 原文章发布时�? * @Date: 2023-03-19 16:58:25
+ * @param {*} $time 原文章发布时间
+ * @Date: 2023-03-19 16:58:25
  * @Author: mulingyuer
  */
 function timeFormatting($time)
 {
     if ($time == 'no') {return;}
     $chunks = array(
-        array(31536000, '�?),
-        array(2592000, '�?),
-        array(604800, '�?),
-        array(86400, '�?),
+        array(31536000, '年'),
+        array(2592000, '月'),
+        array(604800, '周'),
+        array(86400, '天'),
         array(3600, '小时'),
         array(60, '分钟'),
-        array(1, '�?),
+        array(1, '秒'),
     );
     $newer_date = time();
     $since = abs($newer_date - $time);
@@ -31,13 +32,14 @@ function timeFormatting($time)
         }
 
     }
-    $output = $count . $name . '�?;
+    $output = $count . $name . '前';
 
     echo $output;
 }
 
 /**
- * @description: 获取文章缩略�? * @param {*} $that
+ * @description: 获取文章缩略图
+ * @param {*} $that
  * @Date: 2023-03-19 17:03:31
  * @Author: mulingyuer
  */
@@ -47,7 +49,8 @@ function articleThumbnail($that)
     $pattern1 = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
     $pattern2 = '/\!\[.*?\]\((.*?)\)/i';
 
-    //如果有自定义缩略�?    if ($that->fields->titleImg) {
+    //如果有自定义缩略图
+    if ($that->fields->titleImg) {
         return $that->fields->titleImg;
     } elseif ($that->fields->thumb) {
         return $that->fields->thumb;
@@ -63,7 +66,8 @@ function articleThumbnail($that)
 }
 
 /**
- * @description: 文章浏览�? * @param {*} $that 当前页面对象
+ * @description: 文章浏览量
+ * @param {*} $that 当前页面对象
  * @param {*} $format0
  * @param {*} $format1
  * @param {*} $formats
@@ -74,7 +78,17 @@ function articleThumbnail($that)
  */
 function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', $return = false, $field = 'views')
 {
-    $fields = unserialize($that->fields);
+    $rawFields = $that->fields;
+    if (is_string($rawFields)) {
+        $fields = unserialize($rawFields);
+    } elseif (is_object($rawFields)) {
+        $fields = json_decode(json_encode($rawFields), true);
+    } else {
+        $fields = $rawFields;
+    }
+    if (!is_array($fields)) {
+        $fields = array();
+    }
     if (array_key_exists($field, $fields)) {
         $fieldValue = (!empty($fields[$field])) ? intval($fields[$field]) : 0;
     } else {
@@ -95,7 +109,8 @@ function articleViews($that, $format0 = '%d', $format1 = '%d', $formats = '%d', 
 }
 
 /**
- * @description: 文章点赞�? * @param {*} $that 当前页面对象
+ * @description: 文章点赞数
+ * @param {*} $that 当前页面对象
  * @Date: 2023-03-24 23:19:56
  * @Author: mulingyuer
  */
@@ -121,7 +136,17 @@ function promo($widget)
 
     $user = $widget->widget('Widget_User');
     $db = Typecho_Db::get();
-    $fields = unserialize($widget->fields);
+    $rawFields = $widget->fields;
+    if (is_string($rawFields)) {
+        $fields = unserialize($rawFields);
+    } elseif (is_object($rawFields)) {
+        $fields = json_decode(json_encode($rawFields), true);
+    } else {
+        $fields = $rawFields;
+    }
+    if (!is_array($fields)) {
+        $fields = array();
+    }
     $allowOperates = array('get', 'set', 'inc', 'dec'); // 这里可以扩展操作，建议屏蔽get/set
     $allowFields = array('likes'); // 这里可以扩展修改字段
 
@@ -140,7 +165,7 @@ function promo($widget)
         } else {
             $result[$field] = -1;
         }
-        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已获取参�?), 'result' => json_encode($result)));
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已获取参数'), 'result' => json_encode($result)));
     } elseif ($operate === 'set') {
         $result['operate'] = 'set';
         if ($value > 0) {
@@ -149,13 +174,13 @@ function promo($widget)
             $db->query($db->delete('table.fields')
                     ->where('cid = ? AND name = ?', $widget->cid, $field));
         }
-        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操�?), 'result' => json_encode($result)));
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
     } elseif ($operate === 'inc') {
         $result['operate'] = 'inc';
         $value = intval($fields[$field]) + 1;
         $widget->setField($field, 'str', $value, $widget->cid);
         $result[$field] = $value;
-        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操�?), 'result' => json_encode($result)));
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
     } elseif ($operate === 'dec') {
         $result['operate'] = 'dec';
         $value = intval($fields[$field]) - 1;
@@ -166,7 +191,7 @@ function promo($widget)
             $db->query($db->delete('table.fields')
                     ->where('cid = ? AND name = ?', $widget->cid, $field));
         }
-        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操�?), 'result' => json_encode($result)));
+        $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
     }
 }
 
@@ -254,19 +279,21 @@ if ($_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-post.php' || $_SER
     {
         global $markdownThemeMap;
         global $markdownHighlightMap;
-        //文章独享关键�?        if ($_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-post.php') {
+        //文章独享关键字
+        if ($_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-post.php') {
 
             //自定义文章缩略图
-            $thumb = new Typecho_Widget_Helper_Form_Element_Text('thumb', null, null, _t('自定义缩略图'), _t('输入缩略图地址(仅文章有�?<style>.wmd-button-row {height:auto;}</style>'));
+            $thumb = new Typecho_Widget_Helper_Form_Element_Text('thumb', null, null, _t('自定义缩略图'), _t('输入缩略图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
             $layout->addItem($thumb);
-            //文章内容标题�?            $titleImg = new Typecho_Widget_Helper_Form_Element_Text('titleImg', null, null, _t('自定义文章内容标题图'), _t('输入文章内容标题图地址(仅文章有�?<style>.wmd-button-row {height:auto;}</style>'));
+            //文章内容标题图
+            $titleImg = new Typecho_Widget_Helper_Form_Element_Text('titleImg', null, null, _t('自定义文章内容标题图'), _t('输入文章内容标题图地址(仅文章有效)<style>.wmd-button-row {height:auto;}</style>'));
             $layout->addItem($titleImg);
         }
         // 文章主题
         $markdownTheme = new Typecho_Widget_Helper_Form_Element_Select('markdownTheme', $markdownThemeMap, 'juejin', _t('文章主题'), _t('默认使用掘金主题'));
         $layout->addItem($markdownTheme);
         // 代码高亮
-        $highlightTheme = new Typecho_Widget_Helper_Form_Element_Select('highlightTheme', $markdownHighlightMap, null, _t('文章代码块主�?), _t('文章主题自带配套的代码高亮，如果你有定制需求，可以自行选择代码高亮主题，否则默认选择无即可�?));
+        $highlightTheme = new Typecho_Widget_Helper_Form_Element_Select('highlightTheme', $markdownHighlightMap, null, _t('文章代码块主题'), _t('文章主题自带配套的代码高亮，如果你有定制需求，可以自行选择代码高亮主题，否则默认选择无即可。'));
         $layout->addItem($highlightTheme);
     }
 }
@@ -328,7 +355,8 @@ function getMarkdownTheme($that)
     $highlightTheme = $that->fields->highlightTheme;
     if (empty($highlightTheme)) {
         // 如果文章主题对应的代码高亮主题不存在
-        // 则使用默认代码高亮主�?        if (array_key_exists($articleTheme, $defaultMarkdownThemeHighlightMap)) {
+        // 则使用默认代码高亮主题
+        if (array_key_exists($articleTheme, $defaultMarkdownThemeHighlightMap)) {
             $highlightTheme = $defaultMarkdownThemeHighlightMap[$articleTheme];
         } else {
             $highlightTheme = 'juejin';
@@ -346,7 +374,8 @@ function getMarkdownTheme($that)
 }
 
 /**
- * @description: 获取用户�? * @Date: 2023-03-23 05:10:27
+ * @description: 获取用户组
+ * @Date: 2023-03-23 05:10:27
  * @Author: mulingyuer
  */
 function getGroup($uid = 0)
@@ -360,7 +389,8 @@ function getGroup($uid = 0)
 }
 
 /**
- * @description: 中文转义用户�? * @param {*} $uid 用户id
+ * @description: 中文转义用户组
+ * @param {*} $uid 用户id
  * @Date: 2023-03-23 05:09:12
  * @Author: mulingyuer
  */
@@ -376,13 +406,32 @@ function chineseUserGroup($uid = null)
             $zhUserGroup = '编辑';
             break;
         case 'contributor':
-            $zhUserGroup = '贡献�?;
+            $zhUserGroup = '贡献者';
             break;
         case 'subscriber':
             $zhUserGroup = '粉丝';
             break;
         default:
+            $zhUserGroup = '访客';
+    }
 
+    if (empty($zhUserGroup)) {
+        $zhUserGroup = '未知用户';
+    }
+    return $zhUserGroup;
+}
+
+/**
+ * 增加浏览次数
+ * 使用方法: 在<code>themeInit</code>函数中添加代码
+ * <pre>if($archive->is('single') || $archive->is('page')){ viewsCounter($archive);}</pre>
+ *
+ * @param Widget_Archive $widget
+ * @return boolean
+ */
+
+function viewsCounter($widget, $field = 'views')
+{
     if (!$widget instanceof Widget_Archive) {
         return false;
     }
@@ -407,7 +456,9 @@ function chineseUserGroup($uid = null)
 }
 
 /**
- * @description: 获取浏览器信�? * @param {*} $agent 浏览器信�? * @Date: 2023-03-24 13:33:39
+ * @description: 获取浏览器信息
+ * @param {*} $agent 浏览器信息
+ * @Date: 2023-03-24 13:33:39
  * @Author: mulingyuer
  */
 function getBrowser($agent)
@@ -445,7 +496,8 @@ function getBrowser($agent)
 
 /**
  * @description: 获取操作系统信息
- * @param {*} $agent 浏览器信�? * @Date: 2023-03-24 13:34:12
+ * @param {*} $agent 浏览器信息
+ * @Date: 2023-03-24 13:34:12
  * @Author: mulingyuer
  */
 function getOs($agent)
@@ -514,7 +566,9 @@ function setDocSearchCookie()
         'indexName' => $options->docSearchIndexName,
     );
     $content = json_encode($data);
-    $one_week = 60 * 60 * 24 * 7; // 1�?    $expire = time() + 60 * 60 * 24 * 365; // 1�?    $path = '/';
+    $one_week = 60 * 60 * 24 * 7; // 1周
+    $expire = time() + 60 * 60 * 24 * 365; // 1年
+    $path = '/';
     $domain = $_SERVER['HTTP_HOST'];
     $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
     $httpOnly = false;
@@ -523,12 +577,14 @@ function setDocSearchCookie()
     if (isset($_COOKIE[$key])) {
         $decodedCookie = json_decode($_COOKIE[$key], true);
 
-        //cookie不对或者为空、内部数据不�?        if (empty($decodedCookie) || !isset($decodedCookie['creationTime'])) {
+        //cookie不对或者为空、内部数据不对
+        if (empty($decodedCookie) || !isset($decodedCookie['creationTime'])) {
             $needSet = true;
         } else {
             $cookieCreationTime = $decodedCookie['creationTime'];
             $remainingTime = $expire - $cookieCreationTime;
-            // 有效期是否不够一�?            if ($remainingTime <= $one_week) {
+            // 有效期是否不够一周
+            if ($remainingTime <= $one_week) {
                 $needSet = true;
             }
         }
@@ -623,7 +679,8 @@ function pushStickyArticles($archive)
         return;
     }
 
-    // 是否是第一�?    $currentPage = $archive->getCurrentPage();
+    // 是否是第一页
+    $currentPage = $archive->getCurrentPage();
     if ($currentPage !== 1) {
         return;
     }
@@ -635,7 +692,8 @@ function pushStickyArticles($archive)
     reflectSetValue($archive, 'row', array());
     reflectSetValue($archive, 'length', 0);
 
-    // 开始获取文�?    $db = Typecho_Db::get();
+    // 开始获取文章
+    $db = Typecho_Db::get();
     $stickyCidTag = Helper::options()->stickyCidTag;
     $showTag = !empty($cidStr) && !is_null($cidStr);
     $isConfiguredTag = !empty($stickyCidTag) && !is_null($stickyCidTag);
@@ -677,13 +735,15 @@ function getHomeRecommendedArticleList()
         return $articles;
     }
 
-    // 只取前三�?    $cidList = explode(',', str_replace(' ', '', $cidStr));
+    // 只取前三个
+    $cidList = explode(',', str_replace(' ', '', $cidStr));
     if (empty($cidList)) {
         return $articles;
     }
     $cidList = array_slice($cidList, 0, 3);
 
-    // 开始获取文�?    foreach ($cidList as $cid) {
+    // 开始获取文章
+    foreach ($cidList as $cid) {
         $cidArticle = Helper::widgetById('Contents', $cid);
         if (empty($cidArticle)) {
             return;
@@ -701,13 +761,14 @@ function getHomeRecommendedArticleList()
 }
 
 /**
- * @description: todoList 格式�? * @param {*} $html
+ * @description: todoList 格式化
+ * @param {*} $html
  * @Date: 2024-04-27 15:21:07
  * @Author: mulingyuer
  */
 function todoListFormatted($html)
 {
-    // 匹配 [ ] �?[x] 并替换为相应�?input 元素
+    // 匹配 [ ] 和 [x] 并替换为相应的 input 元素
     $html = preg_replace('/<li>\[x\]\s/sm', '<li class="task-list-item"><input type="checkbox" checked disabled/>', $html);
     $html = preg_replace('/<li>\[\s\]\s/sm', '<li class="task-list-item"><input type="checkbox" disabled/>', $html);
 
@@ -717,7 +778,7 @@ function todoListFormatted($html)
     return $html;
 }
 
-/** 计算文章的阅读时�?*/
+/** 计算文章的阅读时间 */
 function articleReadingTime($text)
 {
     $length = mb_strlen(strip_tags($text), 'utf-8');
@@ -733,9 +794,9 @@ function articleReadingTime($text)
         $hours = $hours % 24;
 
         if ($hours == 0) {
-            return "阅读" . $days . "�?;
+            return "阅读" . $days . "天";
         } else {
-            return "阅读" . $days . "�? . $hours . "小时";
+            return "阅读" . $days . "天" . $hours . "小时";
         }
     } else {
         if ($hours == 0) {
@@ -748,7 +809,7 @@ function articleReadingTime($text)
     }
 }
 
-// 获取后台管理页面�?URL
+// 获取后台管理页面的 URL
 function getAdminUrl($page = "")
 {
     // 获取 Typecho 配置选项对象
@@ -760,10 +821,12 @@ function getAdminUrl($page = "")
         return $adminUrl;
     }
 
-    // 删除开头的斜线（如果有�?    if (strpos($page, '/') === 0) {
+    // 删除开头的斜线（如果有）
+    if (strpos($page, '/') === 0) {
         $page = substr($page, 1);
     }
-    // 删除结尾�?.php（如果有�?    if (substr($page, -4) === '.php') {
+    // 删除结尾的 .php（如果有）
+    if (substr($page, -4) === '.php') {
         $page = substr($page, 0, -4);
     }
 
@@ -771,7 +834,7 @@ function getAdminUrl($page = "")
     return $adminUrl . $page . ".php";
 }
 
-/** 获取文章详情页右侧推荐文�?*/
+/** 获取文章详情页右侧推荐文章 */
 function getArticleDetailRecommended()
 {
     // 是否配置了cid
@@ -781,3 +844,48 @@ function getArticleDetailRecommended()
     }
 
     // 提取文章数据
+    $cidArticle = Helper::widgetById('Contents', $cid);
+    if (empty($cidArticle)) {
+        return null;
+    }
+
+    return array(
+        'cid' => $cidArticle->cid,
+        'title' => $cidArticle->title,
+        'permalink' => $cidArticle->permalink,
+        'date' => $cidArticle->created,
+        'thumb' => $cidArticle->fields->thumb);
+}
+
+//主题themeInit函数
+function themeInit($archive)
+{
+    //评论回复楼层最高999层.这个正常设置最高只有7层
+    Helper::options()->commentsMaxNestingLevels = 999;
+    //自动增加浏览次数
+    if ($archive->is('single') || $archive->is('page')) {viewsCounter($archive);}
+    //目录树
+    if ($archive->is('single')) {
+        $archive->content = addAnchorPoint($archive->content);
+    }
+
+    //点赞请求接口
+    // if ($archive->request->isPost() && $archive->request->likeup && $archive->request->do_action) {
+    //     likeup($archive->request->likeup, $archive->request->do_action);
+    //     exit;
+    // }
+
+    if ($archive->is('single')) {
+        if ($archive->request->isPost()) {
+            if ($archive->request->is('themeAction=promo')) {
+                promo($archive);
+            }
+        }
+    }
+
+    // 文章置顶
+    if ($archive->is('index')) {
+        pushStickyArticles($archive);
+    }
+}
+

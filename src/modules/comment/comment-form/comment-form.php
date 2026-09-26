@@ -23,7 +23,7 @@
         <?php endif;?>
         <div class="comment-form-combination">
           <div class="comment-form-textarea-wrap">
-            <textarea id="textarea" class="comment-form-textarea" name="text" placeholder="请填写真实邮箱方便站长联系，并回复有效的内容！回复有效的内容！有效的内容�? required><?php $this->remember('text');?></textarea>
+            <textarea id="textarea" class="comment-form-textarea" name="text" placeholder="请填写真实邮箱方便站长联系，并回复有效的内容！回复有效的内容！有效的内容！" required><?php $this->remember('text');?></textarea>
           </div>
           <div class="comment-form-footer">
             <div class="comment-form-tool">

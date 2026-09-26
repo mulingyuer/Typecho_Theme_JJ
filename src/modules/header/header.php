@@ -36,7 +36,7 @@
         </div>
         <div class="header-search-wrap">
           <form class="header-search-form" method="post" action="<?php $this->options->siteUrl();?>" role="search">
-            <input id="header-search-input" class="header-search-input" type="text" id="s" name="s" maxlength="40" placeholder="<?php _e('输入关键字搜�?);?>" autocomplete="off">
+            <input id="header-search-input" class="header-search-input" type="text" id="s" name="s" maxlength="40" placeholder="<?php _e('输入关键字搜索');?>" autocomplete="off">
             <label for="header-search-input" class="header-search-btn" tabindex="0">
               <i class="jj-icon jj-icon-sousuo"></i>
             </label>
@@ -50,9 +50,9 @@
             </div>
           </form>
           <?php if ($this->user->hasLogin()): ?>
-          <a class="header-article-btn" href="<?php echo getAdminUrl('write-post'); ?>" target="_self" title="写文�?>写文�?/a>
+          <a class="header-article-btn" href="<?php echo getAdminUrl('write-post'); ?>" target="_self" title="写文章">写文章</a>
           <?php else: ?>
-          <a class="header-article-btn login" href="javascript:;" target="_self" title="写文�?>写文�?/a>
+          <a class="header-article-btn login" href="javascript:;" target="_self" title="写文章">写文章</a>
           <?php endif;?>
         </div>
         <?php if ($this->user->hasLogin()): ?>
@@ -128,7 +128,7 @@
             </div>
             <div class="header-menu-footer">
               <a class="header-menu-footer-btn" href="<?php echo getAdminUrl('options-theme'); ?>" target="_self" title="主题设置">主题设置</a>
-              <a class="header-menu-footer-btn" href="<?php $this->options->logoutUrl();?>" target="_self" title="退出登�?>退出登�?/a>
+              <a class="header-menu-footer-btn" href="<?php $this->options->logoutUrl();?>" target="_self" title="退出登录">退出登录</a>
             </div>
           </div>
         </div>
@@ -163,11 +163,11 @@
           <form class="login-dialog-form" action="<?php $this->options->loginAction()?>" method="post" name="login" rold="form">
             <input type="hidden" name="referer" value="<?php echo $this->request->getRequestUrl(); ?>" required>
             <div class="login-dialog-input-group username">
-              <input type="text" name="name" placeholder="请输入账�? required pattern="\S+.*">
+              <input type="text" name="name" placeholder="请输入账号" required pattern="\S+.*">
               <img class="panfish-img greeting" src="<?php $this->options->themeUrl('/images/login/greeting.png');?>">
             </div>
             <div class="login-dialog-input-group password">
-              <input type="password" name="password" placeholder="请输入密�? autocomplete="off" required pattern="\S+.*">
+              <input type="password" name="password" placeholder="请输入密码" autocomplete="off" required pattern="\S+.*">
               <img class="panfish-img blindfold" src="<?php $this->options->themeUrl('/images/login/blindfold.png');?>">
             </div>
             <div class="login-dialog-input-group remember">
@@ -190,11 +190,11 @@
           <div class="login-dialog-qrcode">
             <img class="login-dialog-qrcode-img" src="<?php $this->options->themeUrl('/images/login/login_dialog_qrcode.png');?>" alt="扫码登录">
           </div>
-          <div class="login-dialog-qrcode-tips">请使用手机扫码登�?/div>
+          <div class="login-dialog-qrcode-tips">请使用手机扫码登录</div>
         </div>
       </div>
       <div class="login-dialog-footer">
-        注册登录即表示同�?a class="login-dialog-link" href="javascript:;" title="用户协议">用户协议</a>�?a class="login-dialog-link" href="javascript:;" title="隐私政策">隐私政策</a>
+        注册登录即表示同意<a class="login-dialog-link" href="javascript:;" title="用户协议">用户协议</a>和<a class="login-dialog-link" href="javascript:;" title="隐私政策">隐私政策</a>
       </div>
     </div>
   </div>

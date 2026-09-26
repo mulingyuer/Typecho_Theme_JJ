@@ -31,8 +31,9 @@
             </div>
             <div class="error-card-body">
               <div class="error-title">
-                <strong>404.</strong>出现了一个错误�?              </div>
-              <div class="error-desc">也许可以尝试一下其他方式（空格 || 触摸�?/div>
+                <strong>404.</strong>出现了一个错误。
+              </div>
+              <div class="error-desc">也许可以尝试一下其他方式（空格 || 触摸）</div>
             </div>
           </div>
         <?php else: ?>
@@ -56,7 +57,7 @@
   <?php $this->need('./php_modules/fixed-tool/fixed-tool.php');?>
   <?php //body标签底部插入代码 ?>
   <?php $this->options->bodyInsertCode();?>
-  <?php //typecho 插件挂接�??>
+  <?php //typecho 插件挂接点 ?>
   <?php $this->footer();?>
 </body>
 </html>

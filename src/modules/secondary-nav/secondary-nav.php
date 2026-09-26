@@ -2,6 +2,7 @@
 <?php while ($category->next()): ?>
   <?php if ($this->category === $category->slug): ?>
     <?php $children = $this->widget('Widget_Metas_Category_List')->getAllChildren($category->parent);?>
+    <?php if (!is_array($children)) {$children = array();}?>
       <?php if (count($children)): ?>
       <div class="secondary-nav">
           <div class="secondary-nav-content">

@@ -196,6 +196,17 @@ require_once __DIR__ . '/functions/index.php';
 		writeFileSync(join(outDir, "functions.php"), functionsPhpContent, "utf-8");
 		logger.info("[theme-assembler] functions: 已组装");
 	}
+
+	// 4. 防回归校验：产物 PHP 不得包含 U+FFFD（乱码替换符）或 GBK 残骸"锟"
+	const outPhpFiles = globSync("**/*.php", { cwd: outDir, absolute: true });
+	for (const file of outPhpFiles) {
+		const content = readFileSync(file, "utf-8");
+		if (content.includes("�") || content.includes("锟")) {
+			logger.error(
+				`[theme-assembler] 产物 ${relative(outDir, file)} 含乱码字符（U+FFFD/锟），源文件可能已被编码损坏，请对照 git 历史修复后再构建！`
+			);
+		}
+	}
 }
 
 export default function themeAssembler(options: ThemeAssemblerOptions): Plugin {
