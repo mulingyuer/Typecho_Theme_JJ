@@ -25,7 +25,7 @@ function linksImgError(event: ErrorEvent) {
 	const isLinkImg = !!findParentElementByClass(target, "links-page-body");
 	if (!isLinkImg) return;
 
-	const defaultImgSrc = joinThemePath("static/images/links/default.png");
+	const defaultImgSrc = joinThemePath("/images/links/default.png");
 	//防止重复替换
 	if (target.src !== defaultImgSrc) {
 		target.src = defaultImgSrc;

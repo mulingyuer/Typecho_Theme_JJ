@@ -9,7 +9,7 @@
 import "@/main";
 import "./style.scss";
 import NotificationList from "@/modules/notification/list";
-import listSkeleton from "@/modules/notification/list_skeleton";
+import listSkeleton from "@/modules/notification/list-skeleton";
 
 new NotificationList(() => {
 	listSkeleton.receiveClose();

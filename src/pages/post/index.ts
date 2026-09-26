@@ -8,19 +8,19 @@
  * 鎬庝箞鍙兘浼氭湁bug锛侊紒锛? */
 import "@/main";
 import "./style.scss";
-import "@/modules/article_content";
-import "@/modules/article_relevant_info";
+import "@/modules/article-content";
+import "@/modules/article-relevant-info";
 import "@/modules/copyright";
-import "@/modules/article_author";
-import "@/modules/post/latest_posts";
-import "@/modules/post/directory_tree";
+import "@/modules/article-author";
+import "@/modules/post/latest-posts";
+import "@/modules/post/directory-tree";
 import "@/modules/comment";
-import "@/modules/post/articles_related";
-import "@/modules/article_tool";
-import "@/modules/post/next_article";
-import "@/modules/post/mobile_directory_tree";
+import "@/modules/post/articles-related";
+import "@/modules/article-tool";
+import "@/modules/post/next-article";
+import "@/modules/post/mobile-directory-tree";
 import emitter, { MittEventName } from "@/utils/mittEvent";
-import "@/modules/post/article_detail_recommended";
+import "@/modules/post/article-detail-recommended";
 
 class PostRightSticky {
 	/** 瀹瑰櫒 */

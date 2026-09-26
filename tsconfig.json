@@ -7,13 +7,9 @@
 		"module": "ESNext" /* 指定生成的模块代码格式 */,
 		"moduleResolution": "Bundler" /* 指定 TypeScript 如何从给定的模块说明符查找文件 */,
 		"paths": {
-			"@/*": [
-				"./src/*"
-			]
+			"@/*": ["./src/*"]
 		} /* 指定将导入路径重新映射到其他查找位置的一组条目 */,
-		"types": [
-			"vite/client"
-		] /* 指定无需在源文件中引用即可包含的类型包名称 */,
+		"types": ["vite/client"] /* 指定无需在源文件中引用即可包含的类型包名称 */,
 		"resolveJsonModule": true /* 允许导入 .json 文件 */,
 		/* 互操作约束 */
 		"allowSyntheticDefaultImports": true /* 当模块没有默认导出时，允许 'import x from y' 这种导入方式 */,
@@ -25,12 +21,6 @@
 		/* 完整性 */
 		"skipLibCheck": true /* 跳过对所有 .d.ts 文件的类型检查 */
 	},
-	"include": [
-		"src/**/*",
-		"vite.config.ts",
-		"vite/**/*"
-	],
-	"exclude": [
-		"node_modules"
-	]
+	"include": ["src/**/*", "vite.config.ts", "vite/**/*"],
+	"exclude": ["node_modules"]
 }

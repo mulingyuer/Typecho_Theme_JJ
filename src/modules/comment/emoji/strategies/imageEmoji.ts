@@ -55,7 +55,7 @@ export class ImageEmojiStrategy extends AbstractStrategy {
 		wrapper.classList.add(...wrapperClassName);
 
 		let emojiHtml = "";
-		const loadingSrc = joinPath(this.themeConfig?.themePath ?? "", "/static/images/loading2.gif");
+		const loadingSrc = joinPath(this.themeConfig?.themePath ?? "", "/images/loading2.gif");
 		emojiList.forEach(({ key, src }) => {
 			const imgSrc = joinPath(this.themeConfig?.themePath ?? "", src);
 			emojiHtml += `<img class="emoji-picker-body-img" src="${loadingSrc}" alt="${key}" data-src="${imgSrc}" data-key="${key}" title="${key}" />`;

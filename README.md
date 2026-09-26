@@ -18,9 +18,9 @@ Gitee仓库：[Typecho_Theme_JJ](https://gitee.com/mulingyuer/Typecho_Theme_JJ)
 
 ## 主题功能
 
-1. webpack5 + typescript 重构主题
+1. Vite + TypeScript 现代化构建
 2. 支持 Typecho 1.2
-3. 模块化项目结构
+3. 源码/产物分离的模块化架构（`src/` 开发，`dist/` 即完整主题）
 4. 响应式兼容到 320px 分辨率
 5. 提供 24 个文章主题，18 个代码高亮主题，支持代码行号，一键复制
 6. 本地化 B 站表情，重构多版设计，本次更加便于扩展更新
@@ -83,17 +83,47 @@ Gitee仓库：[Typecho_Theme_JJ](https://gitee.com/mulingyuer/Typecho_Theme_JJ)
   corepack enable
   ```
 
+### 项目结构
+
+```
+src/                    # 开发源码（按功能内聚组织）
+├── modules/            # 功能模块：php + ts + scss 同目录
+├── pages/              # 页面：模板 + 页面逻辑 + 页面样式
+├── functions/          # functions.php 按职责拆分
+├── styles/ utils/ ...  # 纯前端共享层
+scripts/                # 构建辅助脚本（版本号同步、zip 打包）
+vite/plugin/            # 自研 Vite 插件（主题组装器）
+public/                 # 静态资源（Vite publicDir，构建时拷贝到 dist/）
+dist/                   # 构建产物 = 完整 Typecho 主题（git 忽略）
+```
+
 ### 常用命令
 
 ```bash
-pnpm install   # 安装依赖
-pnpm dev       # 开发模式（vite watch 构建）
-pnpm build     # 构建并更新版本号
-pnpm lint      # 代码检查
-pnpm format    # 代码格式化
+pnpm install        # 安装依赖
+pnpm dev            # 开发模式（vite watch 构建，含 PHP 变更同步）
+pnpm build          # 构建完整主题到 dist/（不更新版本号）
+pnpm build-zip      # 将 dist/ 打包为 Typecho_Theme_JJ.zip
+pnpm lint           # 代码检查
+pnpm format         # 代码格式化
+pnpm check          # 并行执行 lint + 格式检查
+pnpm fix            # 串行执行 lint 修复 + 格式化
+pnpm update-version # 更新版本号（bumpp + 同步 home.php 中的 @version）
+pnpm release        # 正式发布：更新版本号 → 构建 → 打包 zip
 ```
 
-本地 Typecho 调试环境（Docker）请查看 [dev-env/README.md](dev-env/README.md)。
+安装主题：将 `dist/` 目录放入 Typecho 的 `usr/themes/` 下即可，或使用 `pnpm build-zip` 生成的 zip 包安装。
+
+本地 Typecho 调试环境（Docker）请查看 [docker/README.md](docker/README.md)。
+
+### 构建脚本说明
+
+`scripts/` 目录下是与发布流程配套的 Node 脚本（通过 ts-node 运行，仅被 pnpm 命令调用，无需手动执行）：
+
+| 脚本              | 说明                                                                                                                              |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `updateVersion.ts` | 配合 `pnpm update-version` 使用：bumpp 更新 [package.json](package.json) 版本号后，将其同步到 `src/pages/home/home.php` 的 `@version` 注释中（Typecho 从该注释读取主题版本）。 |
+| `zip.ts`          | 配合 `pnpm build-zip` 使用：将 `dist/` 目录以最大压缩级别打包为根目录下的 `Typecho_Theme_JJ.zip`，zip 根目录即主题文件，可直接在 Typecho 后台上传安装。 |
 
 ## 有志之士
 
@@ -101,7 +131,7 @@ pnpm format    # 代码格式化
 
 ## 底层基建
 
-本主题基于 [《webpack-multiple-entry》](https://github.com/mulingyuer/webpack-multiple-entry)项目实现，它是一个用于 Typecho 主题开发的底层工具，用于实现现代化前端打包构建。
+本主题采用 Vite 多入口构建，通过自研主题组装插件将 `src/` 源码输出为完整可用的 Typecho 主题。
 
 ## 捐赠
 

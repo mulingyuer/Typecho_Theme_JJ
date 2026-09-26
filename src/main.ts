@@ -22,7 +22,7 @@ import "@/plugins/simplebar";
 
 //modules
 import "@/modules/header";
-import "@/modules/fixed_tool";
+import "@/modules/fixed-tool";
 
 //错误处理
 initGlobalImgLoadError();

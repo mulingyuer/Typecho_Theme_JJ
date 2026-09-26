@@ -9,5 +9,5 @@
 import "@/main";
 import "./style.scss";
 import "@/modules/nav";
-import "@/modules/secondary_nav";
+import "@/modules/secondary-nav";
 import "@/modules/404/game";

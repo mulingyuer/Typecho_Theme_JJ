@@ -8,11 +8,11 @@
  * 鎬庝箞鍙兘浼氭湁bug锛侊紒锛? */
 import "@/main";
 import "./style.scss";
-import "@/modules/article_content";
+import "@/modules/article-content";
 import "@/modules/copyright";
-import "@/modules/article_author";
+import "@/modules/article-author";
 import "@/modules/comment";
-import "@/modules/article_tool";
-import "@/modules/post/directory_tree";
-import "@/modules/post/mobile_directory_tree";
-import "@/modules/article_tool";
+import "@/modules/article-tool";
+import "@/modules/post/directory-tree";
+import "@/modules/post/mobile-directory-tree";
+import "@/modules/article-tool";

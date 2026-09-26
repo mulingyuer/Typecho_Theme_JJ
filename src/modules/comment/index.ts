@@ -8,6 +8,6 @@
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
-import "./comment_form";
-import "./comment_list";
+import "./comment-form";
+import "./comment-list";
 import "./emoji";

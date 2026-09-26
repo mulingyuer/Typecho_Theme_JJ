@@ -1,10 +1,22 @@
 {
+	"ignorePatterns": [
+		"dist/",
+		"public/",
+		"docker/mysql-data/",
+		"docker/backup/",
+		"docker/plugins/",
+		"node_modules/"
+	],
 	"env": {
 		"browser": true,
 		"es2022": true,
 		"node": true
 	},
-	"plugins": ["typescript", "import", "vue"],
+	"plugins": [
+		"typescript",
+		"import",
+		"vue"
+	],
 	"categories": {
 		"correctness": "warn",
 		"suspicious": "warn",

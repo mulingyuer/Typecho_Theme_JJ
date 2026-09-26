@@ -7,5 +7,17 @@
 	"trailingComma": "none",
 	"bracketSpacing": true,
 	"arrowParens": "always",
-	"endOfLine": "lf"
+	"endOfLine": "lf",
+	"ignorePatterns": [
+		"dist/",
+		"node_modules/",
+		"public/",
+		"docker/mysql-data/",
+		"docker/backup/",
+		"docker/plugins/",
+		"php_modules/",
+		"pnpm-lock.yaml",
+		".git/",
+		".husky/"
+	]
 }
