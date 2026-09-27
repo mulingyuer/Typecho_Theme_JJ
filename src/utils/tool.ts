@@ -7,12 +7,12 @@
  * @FilePath: /Typecho_Theme_JJ/src/utils/tool.ts
  * 怎么可能会有bug！！！
  */
-import { md5 } from "./md5";
+import { md5 } from "js-md5";
 
 /** 是否支持closest方法 */
 export const isSupportClosest = (() => {
-	const div = document.createElement("div");
-	return !!div.closest;
+  const div = document.createElement("div");
+  return !!div.closest;
 })();
 
 /**
@@ -23,13 +23,13 @@ export const isSupportClosest = (() => {
  * @Author: mulingyuer
  */
 export function debounce(fn: Function, delay: number) {
-	let timer: any = null;
-	return function (...args: any[]) {
-		if (timer) clearTimeout(timer);
-		timer = setTimeout(() => {
-			fn.apply(this, args);
-		}, delay);
-	};
+  let timer: any = null;
+  return function (...args: any[]) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
 }
 
 /**
@@ -40,15 +40,15 @@ export function debounce(fn: Function, delay: number) {
  * @Author: mulingyuer
  */
 export function throttle(fn: Function, delay: number) {
-	let timer: any = null;
-	return function (...args: any[]) {
-		if (!timer) {
-			timer = setTimeout(() => {
-				fn.apply(this, args);
-				timer = null;
-			}, delay);
-		}
-	};
+  let timer: any = null;
+  return function (...args: any[]) {
+    if (!timer) {
+      timer = setTimeout(() => {
+        fn.apply(this, args);
+        timer = null;
+      }, delay);
+    }
+  };
 }
 
 /**
@@ -58,18 +58,21 @@ export function throttle(fn: Function, delay: number) {
  * @Date: 2023-05-20 12:49:53
  * @Author: mulingyuer
  */
-export function findParentElementByClass(target: HTMLElement, className: string): HTMLElement | null {
-	if (!target) return null;
-	if (isSupportClosest) {
-		return target.closest(`.${className}`);
-	} else {
-		let parent = target.parentElement;
-		while (parent) {
-			if (parent.classList.contains(className)) return parent;
-			parent = parent.parentElement;
-		}
-		return null;
-	}
+export function findParentElementByClass(
+  target: HTMLElement,
+  className: string,
+): HTMLElement | null {
+  if (!target) return null;
+  if (isSupportClosest) {
+    return target.closest(`.${className}`);
+  } else {
+    let parent = target.parentElement;
+    while (parent) {
+      if (parent.classList.contains(className)) return parent;
+      parent = parent.parentElement;
+    }
+    return null;
+  }
 }
 
 /**
@@ -79,56 +82,57 @@ export function findParentElementByClass(target: HTMLElement, className: string)
  * @Author: mulingyuer
  */
 export function joinThemePath(path?: string): string {
-	const metaPath: HTMLElement | null = document.querySelector("meta[name=path]");
-	if (!metaPath) return "";
-	const str = metaPath.getAttribute("content");
-	if (typeof str === "string" && str.trim() !== "") {
-		return `${str}${path}`;
-	}
-	return "";
+  const metaPath: HTMLElement | null =
+    document.querySelector("meta[name=path]");
+  if (!metaPath) return "";
+  const str = metaPath.getAttribute("content");
+  if (typeof str === "string" && str.trim() !== "") {
+    return `${str}${path}`;
+  }
+  return "";
 }
 
 /** 拼接path地址 */
 export function joinPath(...args: string[]) {
-	return args.reduce((start, end) => {
-		if (!start) return end;
-		return start.replace(/\/$/, "") + "/" + end.replace(/^\//, "");
-	}, "");
+  return args.reduce((start, end) => {
+    if (!start) return end;
+    return start.replace(/\/$/, "") + "/" + end.replace(/^\//, "");
+  }, "");
 }
 
 /** 合并配置项，值为undefined的不会覆盖之前的值 */
 export function mergeConfig<T = any>(...args: any[]): T {
-	return args.reduce((preConfig, currentConfig) => {
-		for (const [key, value] of Object.entries(currentConfig)) {
-			if (value !== undefined) {
-				preConfig[key] = value;
-			} else if (!Object.prototype.hasOwnProperty.call(preConfig, key)) {
-				// 新增项，虽然值是undefined，但是之前没有这个key
-				preConfig[key] = value;
-			}
-		}
-		return preConfig;
-	}, {});
+  return args.reduce((preConfig, currentConfig) => {
+    for (const [key, value] of Object.entries(currentConfig)) {
+      if (value !== undefined) {
+        preConfig[key] = value;
+      } else if (!Object.prototype.hasOwnProperty.call(preConfig, key)) {
+        // 新增项，虽然值是undefined，但是之前没有这个key
+        preConfig[key] = value;
+      }
+    }
+    return preConfig;
+  }, {});
 }
 
 /** 生成gravatar全球头像参数类型 */
 export type GeneratedGravatarOptions = {
-	/** 邮箱 */
-	email: string;
-	/** 大小 */
-	size?: number;
-	/** 头像源 */
-	originPreFix?: string;
+  /** 邮箱 */
+  email: string;
+  /** 大小 */
+  size?: number;
+  /** 头像源 */
+  originPreFix?: string;
 };
 /** 生成gravatar全球头像 */
 export const generatedGravatar = (function () {
-	const defaultOptions: Required<Omit<GeneratedGravatarOptions, "email">> = {
-		size: 80,
-		originPreFix: "https://cravatar.cn/avatar/"
-	};
-	return function generatedGravatar(options: GeneratedGravatarOptions) {
-		options = mergeConfig(defaultOptions, options);
-		const { email, size, originPreFix } = options;
-		return `${originPreFix}${md5(email)}?s=${size}&d=identicon`;
-	};
+  const defaultOptions: Required<Omit<GeneratedGravatarOptions, "email">> = {
+    size: 80,
+    originPreFix: "https://cravatar.cn/avatar/",
+  };
+  return function generatedGravatar(options: GeneratedGravatarOptions) {
+    options = mergeConfig(defaultOptions, options);
+    const { email, size, originPreFix } = options;
+    return `${originPreFix}${md5(email)}?s=${size}&d=identicon`;
+  };
 })();
