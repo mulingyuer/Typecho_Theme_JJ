@@ -14,7 +14,7 @@ import SearchHistory from "./searchHistory";
 import { lockBodyScroll, unlockBodyScroll } from "@/utils/rollingLock";
 // import QRCode from "qrcode";
 import eventMitt from "@/utils/mittEvent";
-import toast from "@/utils/toast";
+import { ElMessage } from "element-plus";
 
 /** header class */
 class Header {
@@ -379,7 +379,7 @@ class LoginDialog {
 
   /** 协议按钮事件 */
   private onProtocolBtnClick = () => {
-    toast.info({ text: "真的一滴都没有了", position: "center" });
+    ElMessage.info({ message: "真的一滴都没有了", plain: true });
   };
 }
 new LoginDialog();

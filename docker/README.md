@@ -30,11 +30,11 @@ docker/
 
 挂载关系：
 
-| 本地路径              | 容器路径                          | 用途     |
-| --------------------- | --------------------------------- | -------- |
-| `../dist`（构建产物） | `/app/usr/themes/Typecho_Theme_JJ` | 主题     |
-| `docker/plugins/`       | `/app/usr/plugins`                | 插件     |
-| `docker/config.inc.php` | `/app/config.inc.php`             | 配置文件 |
+| 本地路径                | 容器路径                           | 用途     |
+| ----------------------- | ---------------------------------- | -------- |
+| `../dist`（构建产物）   | `/app/usr/themes/Typecho_Theme_JJ` | 主题     |
+| `docker/plugins/`       | `/app/usr/plugins`                 | 插件     |
+| `docker/config.inc.php` | `/app/config.inc.php`              | 配置文件 |
 
 > 主题目录只挂载 `dist/` 构建产物，容器内不会出现 `src/`、`node_modules/` 等开发文件。
 
@@ -193,12 +193,12 @@ docker compose up -d
 
 ### 环境矩阵
 
-| 环境 | 启动命令 | 数据目录 | 说明 |
-| --- | --- | --- | --- |
-| MySQL 5.7（默认） | `docker compose up -d` | `mysql-data/` | 开发基准环境 |
-| MySQL 8.0 | `docker compose -f docker-compose.yml -f docker-compose.mysql80.yml up -d` | `mysql-data-80/` | 验证 MySQL 8.0 兼容 |
-| SQLite | `docker compose -f docker-compose.sqlite.yml up -d` | `sqlite-data/typecho.db` | 单容器，无数据库服务 |
-| PostgreSQL 16 | `docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d` | `pgsql-data/` | 验证 PG 严格模式兼容 |
+| 环境              | 启动命令                                                                   | 数据目录                 | 说明                 |
+| ----------------- | -------------------------------------------------------------------------- | ------------------------ | -------------------- |
+| MySQL 5.7（默认） | `docker compose up -d`                                                     | `mysql-data/`            | 开发基准环境         |
+| MySQL 8.0         | `docker compose -f docker-compose.yml -f docker-compose.mysql80.yml up -d` | `mysql-data-80/`         | 验证 MySQL 8.0 兼容  |
+| SQLite            | `docker compose -f docker-compose.sqlite.yml up -d`                        | `sqlite-data/typecho.db` | 单容器，无数据库服务 |
+| PostgreSQL 16     | `docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d`   | `pgsql-data/`            | 验证 PG 严格模式兼容 |
 
 > 切换前必须先 `docker compose down`，避免端口与数据目录冲突。
 

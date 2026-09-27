@@ -8,62 +8,73 @@
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
-import toast from "@/utils/toast";
+import { ElMessage } from "element-plus";
 
 class ArticlesRelated {
-	/** 列表容器 */
-	private list: HTMLElement | null = document.querySelector(".articles-related-list");
-	/** 评论按钮类名 */
-	private commentBtnClass = "comments";
-	/** 文章卡片类名 */
-	private listItemClass = "articles-related-list-item";
-	/** 黑名单className */
-	private blackClassList = ["author", "comments", "articles-related-list-item-tag"];
+  /** 列表容器 */
+  private list: HTMLElement | null = document.querySelector(
+    ".articles-related-list",
+  );
+  /** 评论按钮类名 */
+  private commentBtnClass = "comments";
+  /** 文章卡片类名 */
+  private listItemClass = "articles-related-list-item";
+  /** 黑名单className */
+  private blackClassList = [
+    "author",
+    "comments",
+    "articles-related-list-item-tag",
+  ];
 
-	constructor() {
-		this.list && this.list.addEventListener("click", this.eventProxy);
-	}
+  constructor() {
+    this.list && this.list.addEventListener("click", this.eventProxy);
+  }
 
-	/** 事件代理 */
-	private eventProxy = (event: Event) => {
-		const target = event.target as HTMLElement;
-		//如果点击的元素是黑名单className则不执行
-		const isBlack = this.hasBlackClass(target);
-		if (isBlack) return;
-		const hasCommentBtn = this.hasClassName(target, this.commentBtnClass);
-		if (hasCommentBtn) return;
-		const articleCard = this.getClassNameElement(target, this.listItemClass);
-		if (!articleCard) {
-			return toast.warning({ text: "未找到文章卡片" });
-		}
-		const link = articleCard.dataset.link;
-		if (typeof link === "string" && link.trim() !== "") {
-			location.href = link;
-		} else {
-			toast.warning({ text: "未找到卡片的文章链接" });
-		}
-	};
+  /** 事件代理 */
+  private eventProxy = (event: Event) => {
+    const target = event.target as HTMLElement;
+    //如果点击的元素是黑名单className则不执行
+    const isBlack = this.hasBlackClass(target);
+    if (isBlack) return;
+    const hasCommentBtn = this.hasClassName(target, this.commentBtnClass);
+    if (hasCommentBtn) return;
+    const articleCard = this.getClassNameElement(target, this.listItemClass);
+    if (!articleCard) {
+      return ElMessage.warning({ message: "未找到文章卡片", plain: true });
+    }
+    const link = articleCard.dataset.link;
+    if (typeof link === "string" && link.trim() !== "") {
+      location.href = link;
+    } else {
+      ElMessage.warning({ message: "未找到卡片的文章链接", plain: true });
+    }
+  };
 
-	/** 冒泡查询自身或者父级是否存在指定的类名 */
-	private hasClassName(target: HTMLElement, className: string): boolean {
-		if (target.classList.contains(className)) return true;
-		const parent = target.parentElement;
-		if (!parent) return false;
-		return this.hasClassName(parent, className);
-	}
+  /** 冒泡查询自身或者父级是否存在指定的类名 */
+  private hasClassName(target: HTMLElement, className: string): boolean {
+    if (target.classList.contains(className)) return true;
+    const parent = target.parentElement;
+    if (!parent) return false;
+    return this.hasClassName(parent, className);
+  }
 
-	/** 冒泡获取自身或者父级指定的类名元素 */
-	private getClassNameElement(target: HTMLElement, className: string): HTMLElement | null {
-		if (target.classList.contains(className)) return target;
-		const parent = target.parentElement;
-		if (!parent) return null;
-		return this.getClassNameElement(parent, className);
-	}
+  /** 冒泡获取自身或者父级指定的类名元素 */
+  private getClassNameElement(
+    target: HTMLElement,
+    className: string,
+  ): HTMLElement | null {
+    if (target.classList.contains(className)) return target;
+    const parent = target.parentElement;
+    if (!parent) return null;
+    return this.getClassNameElement(parent, className);
+  }
 
-	/** 元素class是否存在黑名单中 */
-	private hasBlackClass(target: HTMLElement): boolean {
-		const findIndex = Array.from(target.classList).findIndex((item) => this.blackClassList.includes(item));
-		return findIndex !== -1;
-	}
+  /** 元素class是否存在黑名单中 */
+  private hasBlackClass(target: HTMLElement): boolean {
+    const findIndex = Array.from(target.classList).findIndex((item) =>
+      this.blackClassList.includes(item),
+    );
+    return findIndex !== -1;
+  }
 }
 new ArticlesRelated();

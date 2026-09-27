@@ -147,24 +147,6 @@
 	--jj-article-relevant-info-a-bg2: #eaf2ff;
 	--jj-article-relevant-info-a-bg2-hover: rgba(30, 128, 255, 0.16);
 
-	/* toast */
-	--jj-toast-color: #333;
-	--jj-toast-bg: #fff;
-	--jj-toast-border: #ebebeb;
-	--jj-toast-box-shadow: rgba(0, 0, 0, 0.1);
-	--jj-toast-color-info: #909399;
-	--jj-toast-bg-info: #edf2fc;
-	--jj-toast-border-info: #ebeef5;
-	--jj-toast-color-success: #67c23a;
-	--jj-toast-bg-success: #f0f9eb;
-	--jj-toast-border-success: #e1f3d8;
-	--jj-toast-color-warning: #e6a23c;
-	--jj-toast-bg-warning: #fdf6ec;
-	--jj-toast-border-warning: #faecd8;
-	--jj-toast-color-error: #f56c6c;
-	--jj-toast-bg-error: #fef0f0;
-	--jj-toast-border-error: #fde2e2;
-
 	/* recent-comments */
 	--jj-recent-comments-bg: #fff;
 	--jj-recent-comments-border: #e4e6eb;

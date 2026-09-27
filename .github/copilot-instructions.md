@@ -42,7 +42,7 @@
 
 - TypeScript 5 + Vue 3（**仅 Composition API**，构建已禁用 Options API）
 - 样式：SCSS（sass-embedded）→ lightningcss 按 `.browserslistrc` 降级压缩
-- 库：axios、mitt、highlight.js、simplebar、toastify-js、qrcode、@floating-ui/dom、@docsearch/js
+- 库：axios、mitt、element-plus、highlight.js、simplebar、qrcode、@floating-ui/dom、@docsearch/js
 - JS 构建目标 `es2015`；`modulePreload.polyfill` 已关闭，modulepreload 标签由构建插件手动输出
 
 ### 构建与工具链

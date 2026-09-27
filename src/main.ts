@@ -1,19 +1,23 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:22:40
- * @LastEditTime: 2024-04-21 00:13:54
+ * @LastEditTime: 2026-09-27 15:55:02
  * @LastEditors: mulingyuer
  * @Description: 通用入口文件
- * @FilePath: /Typecho_Theme_JJ/src/main.ts
+ * @FilePath: \Typecho_Theme_JJ\src\main.ts
  * 怎么可能会有bug！！！
  */
 import { dataStore } from "@/store/data";
 import asciiEmoji from "@/utils/ascii";
 import { initGlobalImgLoadError } from "@/utils/error";
+import { createApp } from "vue";
+import App from "@/modules/spa/App.vue";
 
-//css
+//style
 import "@/styles/reset.scss";
 import "@/styles/layout.scss";
+import "element-plus/es/components/config-provider/style/css";
+import "element-plus/es/components/message/style/css";
 
 // plugins
 import "@/plugins/simplebar";
@@ -45,3 +49,11 @@ window.addEventListener("resize", updateWindowSize);
 if (import.meta.env.PROD) {
   asciiEmoji();
 }
+
+// spa初始化
+async function init() {
+  const el = document.createElement("div");
+  document.body.appendChild(el);
+  createApp(App).mount(el);
+}
+init();
