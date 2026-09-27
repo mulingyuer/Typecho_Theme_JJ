@@ -1,86 +1,80 @@
 /*
  * @Author: mulingyuer
  * @Date: 2023-03-20 19:28:51
- * @LastEditTime: 2023-03-25 03:06:24
+ * @LastEditTime: 2026-09-27
  * @LastEditors: mulingyuer
  * @Description: 请求封装
  * @FilePath: \Typecho_Theme_JJ\src\request\index.ts
  * 怎么可能会有bug！！！
  */
-import axios from "axios";
+import axios, { AxiosRequestConfig, AxiosError } from "axios";
+import axiosRetry, { exponentialDelay } from "axios-retry";
 import { ElMessage } from "element-plus";
-import { AxiosRequestConfig } from "axios";
 
-// 创建axios实例
+/** "没有下一页"自定义错误，替代 err.name === "noMore" 的魔数约定 */
+export class NoMoreError extends Error {
+  name = "NoMoreError";
+  constructor() {
+    super("没有下一页了");
+  }
+}
+
+// 创建 axios 实例
 const service = axios.create({
   baseURL: "",
   headers: {
-    "X-Requested-With": "XMLHttpRequest", //这个标识给后端判断是否是ajax请求
-    // "Content-Type": "application/x-www-form-urlencoded",
+    "X-Requested-With": "XMLHttpRequest", // 标识给后端判断是否是 ajax 请求
   },
-  timeout: 5000, // 请求超时时间
+  timeout: 10000, // 请求超时时间（同域 SSR 片段，10s 足够兜底）
 });
 
-//请求后拦截
+// 全局默认关闭重试，按调用方显式开启（写操作不能盲目重试）
+axiosRetry(service, { retries: 0 });
+
+// 响应拦截
 service.interceptors.response.use(
   (response) => {
     if (response.status !== 200) {
       ElMessage.error({ message: response.statusText, plain: true });
-      return Promise.reject(response.statusText);
-    } else {
-      return response.data;
+      return Promise.reject(new Error(response.statusText));
     }
+    return response.data;
   },
-  (error) => {
-    //get请求文章列表的时候，如果没有下一页了，会返回404，这里不提示错误
-    if (error.response.status === 404) {
-      const response = error.response;
-      //判断是否是文章列表的404
+  (error: AxiosError) => {
+    // 有响应：HTTP 层错误（4xx/5xx）
+    if (error.response) {
+      const { status, data } = error.response;
+
+      // 文章列表分页到底时后端返回 404 + HTML 片段，识别为"没有下一页"
       if (
-        response &&
-        typeof response.data === "string" &&
-        response.data.trim() !== ""
+        status === 404 &&
+        typeof data === "string" &&
+        data.includes("article-pagination-no-more")
       ) {
-        const data: string = response.data;
-        if (data.includes("article-pagination-no-more")) {
-          //确定是没有下一页了
-          const error = new Error("没有下一页了");
-          error.name = "noMore";
-          return Promise.reject(error);
-        }
+        return Promise.reject(new NoMoreError());
       }
-      return Promise.reject(error);
-    } else {
-      ElMessage.error({ message: error.message, plain: true });
+
+      ElMessage.error({
+        message: `请求失败（${status}）`,
+        plain: true,
+      });
       return Promise.reject(error);
     }
+
+    // 无响应：网络层错误（超时 / 断网）
+    const message =
+      error.code === "ECONNABORTED"
+        ? "请求超时，请检查网络"
+        : "网络异常，请检查连接";
+    ElMessage.error({ message, plain: true });
+    return Promise.reject(error);
   },
 );
 
-/** get请求封装：用于类型推断 */
-export function apiGet<T = any>(options: AxiosRequestConfig): Promise<T> {
-  return new Promise((resolve, reject) => {
-    service(options)
-      .then((res: unknown) => {
-        return resolve(res as T);
-      })
-      .catch((error) => {
-        return reject(error);
-      });
-  });
+/** 统一请求入口，泛型 T 即响应体类型（拦截器已剥壳） */
+export function request<T = any>(config: AxiosRequestConfig): Promise<T> {
+  return service(config);
 }
 
-/** post请求封装：用于类型推断 */
-export function apiPost<T = any>(options: AxiosRequestConfig): Promise<T> {
-  return new Promise((resolve, reject) => {
-    service(options)
-      .then((res: unknown) => {
-        return resolve(res as T);
-      })
-      .catch((error) => {
-        return reject(error);
-      });
-  });
-}
-
-export default service;
+// 重试工具导出，供 api 层按需开启（仅幂等 GET 使用）
+export { exponentialDelay };

@@ -23,6 +23,7 @@
 		"@docsearch/js": "3.6.1",
 		"@floating-ui/dom": "^1.6.10",
 		"axios": "^1.6.8",
+		"axios-retry": "^4.5.0",
 		"element-plus": "^2.14.6",
 		"highlight.js": "^11.10.0",
 		"js-md5": "^0.9.2",

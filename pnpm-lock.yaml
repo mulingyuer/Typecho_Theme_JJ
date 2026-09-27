@@ -178,6 +178,9 @@ importers:
       axios:
         specifier: ^1.6.8
         version: 1.6.8(debug@4.3.4(supports-color@8.1.1))
+      axios-retry:
+        specifier: ^4.5.0
+        version: 4.5.0(axios@1.6.8(debug@4.3.4(supports-color@8.1.1)))
       element-plus:
         specifier: ^2.14.6
         version: 2.14.6(vue@3.5.3(typescript@5.5.4))
@@ -1023,6 +1026,11 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
+  axios-retry@4.5.0:
+    resolution: {integrity: sha512-aR99oXhpEDGo0UuAlYcn2iGRds30k366Zfa05XWScR9QaQD4JYiP3/1Qt1u7YlefUOK+cn0CcwoL1oefavQUlQ==}
+    peerDependencies:
+      axios: 0.x || 1.x
+
   axios@1.6.8:
     resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
 
@@ -1380,6 +1388,10 @@ packages:
   is-number@7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
+
+  is-retry-allowed@2.2.0:
+    resolution: {integrity: sha512-XVm7LOeLpTW4jV19QSH38vkswxoLud8sQ57YwJVTPWdiaI9I8keEhGFpBlslyVsgdQy4Opg8QOLb8YRgsyZiQg==}
+    engines: {node: '>=10'}
 
   is-stream@2.0.1:
     resolution: {integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==}
@@ -2898,6 +2910,11 @@ snapshots:
 
   asynckit@0.4.0: {}
 
+  axios-retry@4.5.0(axios@1.6.8(debug@4.3.4(supports-color@8.1.1))):
+    dependencies:
+      axios: 1.6.8(debug@4.3.4(supports-color@8.1.1))
+      is-retry-allowed: 2.2.0
+
   axios@1.6.8(debug@4.3.4(supports-color@8.1.1)):
     dependencies:
       follow-redirects: 1.15.6(debug@4.3.4(supports-color@8.1.1))
@@ -3253,6 +3270,8 @@ snapshots:
       is-extglob: 2.1.1
 
   is-number@7.0.0: {}
+
+  is-retry-allowed@2.2.0: {}
 
   is-stream@2.0.1: {}
 
