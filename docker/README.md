@@ -7,6 +7,7 @@
 | 服务       | 镜像                                | 说明                                                  |
 | ---------- | ----------------------------------- | ----------------------------------------------------- |
 | typecho    | `joyqi/typecho:1.3.0-php8.2-apache` | Typecho 官方镜像（PHP 8.2 + Apache），站点目录 `/app` |
+| caddy      | `caddy:2-alpine`                    | 反向代理，提供 HTTPS 访问（`https://jj.test`）        |
 | mysql      | `mysql:5.7`                         | 数据库，数据持久化在 `mysql-data/`                    |
 | phpmyadmin | `phpmyadmin:latest`                 | Web 数据库管理面板，访问 `http://localhost:8080`      |
 
@@ -18,6 +19,12 @@
 docker/
 ├── docker-compose.yml        # 服务编排（入库共享）
 ├── docker-compose.mysql80.yml # MySQL 8.0 覆盖配置（入库共享）
+├── docker-compose.sqlite.yml  # SQLite 覆盖配置（入库共享）
+├── docker-compose.pgsql.yml   # PostgreSQL 覆盖配置（入库共享）
+├── Caddyfile                 # Caddy 反向代理配置（入库共享）
+├── certs/                    # mkcert 证书目录（本地生成，git 忽略）
+│   ├── jj.test.pem           # 证书
+│   └── jj.test-key.pem       # 私钥
 ├── config.inc.example.php    # 配置占位模板（入库共享）
 ├── config.inc.php            # Typecho 配置文件（本地生成，git 忽略）
 ├── plugins/                  # 本地插件目录 → /app/usr/plugins（内容 git 忽略）
@@ -69,8 +76,7 @@ Copy-Item config.inc.example.php config.inc.php
 127.0.0.1   jj.test
 ```
 
-> 确认宿主机 80 端口未被占用（关闭本地 IIS / Nginx / Laragon 等占用 80 的服务）。
-> 若必须占用 80，可把 `docker-compose.yml` 的端口改为 `"8080:80"`，并把 `TYPECHO_SITE_URL` 改为 `http://jj.test:8080`。
+> 确认宿主机 80/443 端口未被占用（关闭本地 IIS / Nginx / Laragon / Skype 等占用端口的服务）。
 
 ### 4. 启动
 
@@ -101,7 +107,72 @@ docker compose up -d
 
 ### 7. 启用主题
 
-访问 `http://jj.test/admin`，登录后在「控制台 → 外观」中启用 **JJ** 主题。
+访问 `https://jj.test/admin`，登录后在「控制台 → 外观」中启用 **JJ** 主题。
+
+### 8. 配置本地 HTTPS（mkcert，仅需一次）
+
+本环境通过 Caddy 反向代理 + mkcert 本地受信证书提供 `https://jj.test` 访问，使 `window.isSecureContext === true`，从而可以使用 `navigator.clipboard` 等要求安全上下文的现代浏览器 API。
+
+#### 8.1 安装 mkcert
+
+```powershell
+winget install FiloSottile.mkcert
+# 或：choco install mkcert / scoop install mkcert
+```
+
+#### 8.2 生成证书
+
+```powershell
+# 安装本地 CA 到系统信任库（需要管理员权限）
+mkcert -install
+
+# 生成域名证书（在 docker/certs/ 目录执行）
+cd docker
+mkdir certs
+cd certs
+mkcert jj.test
+# 产出 jj.test.pem 和 jj.test-key.pem（已加入 .gitignore，不入库）
+```
+
+> 证书有效期约 2 年，过期后重新执行 `mkcert jj.test` 即可。
+
+#### 8.3 启动服务
+
+```powershell
+docker compose down
+docker compose up -d
+```
+
+访问 `https://jj.test`，浏览器应显示安全锁图标，无警告。
+
+#### 8.4 验证安全上下文
+
+在浏览器控制台执行：
+
+```javascript
+console.log(window.isSecureContext); // 应输出 true
+console.log(navigator.clipboard); // 应输出 Clipboard 对象
+```
+
+#### 8.5 切换回 HTTP（测试降级路径）
+
+如需测试 HTTP 降级路径（如 `execCommand`），临时修改 `Caddyfile`：
+
+```caddyfile
+http://jj.test {
+    reverse_proxy typecho:80
+}
+```
+
+重启 Caddy：
+
+```powershell
+docker compose restart caddy
+```
+
+访问 `http://jj.test` 即可测试降级路径。测试完成后改回 HTTPS 配置并重启。
+
+> **团队协作说明**：证书由 mkcert 在本地生成且不入库，每位协作者首次拉取代码后需自行执行 8.1 和 8.2 两步；未生成证书时 Caddy 容器会因缺少证书文件而启动失败，但不影响 typecho/mysql 等其余服务。
 
 ## 日常开发
 
@@ -117,7 +188,7 @@ pnpm dev
 
 之后：
 
-- 改 `src/` 下任意 PHP / TS / SCSS 文件 → watch 自动重新构建到 `dist/` → 刷新 `http://jj.test` 即时生效；
+- 改 `src/` 下任意 PHP / TS / SCSS 文件 → watch 自动重新构建到 `dist/` → 刷新 `https://jj.test` 即时生效；
 - 改 `docker/plugins/` 下的插件 → 即时生效；
 - 改 `docker/config.inc.php` → 即时生效。
 
@@ -148,7 +219,7 @@ Get-Content backup.sql | docker compose exec -T mysql mysql -uroot -proot typech
 > 导入后如果线上站点 URL 与本地不同，需更新数据库中的站点地址：
 >
 > ```powershell
-> docker compose exec mysql mysql -uroot -proot typecho -e "UPDATE typecho_options SET value='http://jj.test' WHERE name='siteUrl';"
+> docker compose exec mysql mysql -uroot -proot typecho -e "UPDATE typecho_options SET value='https://jj.test' WHERE name='siteUrl';"
 > ```
 
 ## phpMyAdmin 管理面板
@@ -202,6 +273,8 @@ docker compose up -d
 
 > 切换前必须先 `docker compose down`，避免端口与数据目录冲突。
 
+> **HTTPS 说明**：Caddy 反向代理在所有数据库环境中均可使用，切换数据库时无需修改 Caddy 配置。各覆盖文件中的 `TYPECHO_SITE_URL` 已统一为 `https://jj.test`。
+
 ### SQLite 环境
 
 ```powershell
@@ -250,11 +323,18 @@ docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
 
 ## 常见问题
 
-**Q：访问 `http://jj.test` 打不开？**
+**Q：访问 `https://jj.test` 打不开？**
 
 - 检查 hosts 是否配置且保存成功：`ping jj.test` 应解析到 `127.0.0.1`；
-- 检查容器是否运行：`docker compose ps`；
-- 检查 80 端口冲突：`netstat -ano | findstr :80`。
+- 检查容器是否运行：`docker compose ps`（caddy 容器应为 Up 状态）；
+- 检查 80/443 端口冲突：`netstat -ano | findstr :443`；
+- 检查证书是否存在：`docker/certs/` 下应有 `jj.test.pem` 和 `jj.test-key.pem`，缺失则按「配置本地 HTTPS」章节重新生成；
+- 查看 Caddy 日志：`docker compose logs caddy`。
+
+**Q：浏览器提示证书不受信任？**
+
+- 确认已执行 `mkcert -install` 安装本地 CA（需要管理员权限）；
+- Firefox 使用独立证书库，需额外在 Firefox 设置中导入 mkcert CA（`mkcert -CAROOT` 查看 CA 路径）。
 
 **Q：后台「外观」里看不到 JJ 主题 / 页面报错主题缺失？**
 
@@ -277,4 +357,4 @@ docker compose up -d
 
 **Q：需要 HTTPS？**
 
-开发阶段一般不需要。如确实需要（例如调试某些强制 HTTPS 的功能），可用 Caddy 或 mkcert 自签证书在宿主机做一层反向代理到容器 80 端口。
+环境已内置 Caddy + mkcert 提供 `https://jj.test` 访问，详见上文「配置本地 HTTPS」章节。

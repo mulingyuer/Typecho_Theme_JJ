@@ -1,0 +1,4 @@
+https://jj.test {
+	tls /etc/caddy/certs/jj.test.pem /etc/caddy/certs/jj.test-key.pem
+	reverse_proxy typecho:80
+}

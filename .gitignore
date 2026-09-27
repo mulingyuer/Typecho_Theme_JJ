@@ -12,3 +12,7 @@ docker/config.inc.php
 docker/plugins/*
 !docker/plugins/.gitkeep
 !docker/backup
+
+# 本地 HTTPS 证书（mkcert 生成，私钥不入库）
+docker/certs/*.pem
+docker/certs/*.key

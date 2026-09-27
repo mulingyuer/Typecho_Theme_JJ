@@ -109,8 +109,18 @@ pnpm release        # 升版本 + 构建 + 打包 zip
 docker run --rm -v "<repo>:/work" -w /work joyqi/typecho:1.3.0-php8.2-apache sh -c 'php -l <file>'
 
 # 本地联调（dist 挂载进容器，改 dist 刷新即生效）
-cd docker; docker compose -f docker-compose.sqlite.yml up -d   # 访问 http://jj.test/
+cd docker; docker compose -f docker-compose.sqlite.yml up -d   # 访问 https://jj.test/
 ```
+
+### 本地 HTTPS 开发
+
+环境通过 Caddy 反向代理 + mkcert 本地受信证书提供 `https://jj.test` 访问，使 `navigator.clipboard` 等安全上下文 API 可用：
+
+1. 安装 mkcert：`winget install FiloSottile.mkcert`
+2. 安装 CA 并生成证书：`mkcert -install`，然后在 `docker/certs/` 下执行 `mkcert jj.test`（证书已 gitignore 不入库）
+3. 启动服务：`docker compose up -d`（Caddy 自动提供 HTTPS）
+
+详见 [docker/README.md](../docker/README.md)「配置本地 HTTPS」章节与 [HTTPS_SETUP_PLAN.md](../HTTPS_SETUP_PLAN.md)。
 
 ## 七、AI 生成代码时的检查清单
 

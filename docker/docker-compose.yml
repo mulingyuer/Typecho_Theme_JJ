@@ -2,12 +2,13 @@ services:
   typecho:
     image: joyqi/typecho:1.3.0-php8.2-apache
     container_name: typecho-jj
-    ports:
-      - "80:80" # 绑定宿主机 80 端口，配合本地域名 http://jj.test 访问
+    # 不直接暴露宿主机端口，由 Caddy 反向代理统一提供 80/443 访问
+    expose:
+      - "80"
     environment:
       TIMEZONE: Asia/Shanghai
-      # 站点 URL：与 hosts 中配置的本地域名保持一致
-      TYPECHO_SITE_URL: http://jj.test
+      # 站点 URL：与 hosts 中配置的本地域名保持一致（HTTPS 由 Caddy 提供）
+      TYPECHO_SITE_URL: https://jj.test
       # 首次启动自动执行安装脚本；安装完成后改回 0
       TYPECHO_INSTALL: 1
       # 数据库配置（对应下方 mysql 服务）
@@ -64,3 +65,22 @@ services:
     depends_on:
       - mysql
     restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: typecho-jj-caddy
+    ports:
+      - "80:80" # HTTP（Caddy 默认重定向到 HTTPS）
+      - "443:443" # HTTPS（mkcert 本地受信证书）
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./certs:/etc/caddy/certs:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - typecho
+    restart: unless-stopped
+
+volumes:
+  caddy-data:
+  caddy-config:

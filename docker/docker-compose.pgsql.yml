@@ -24,7 +24,7 @@ services:
       TYPECHO_DB_ENGINE: ""
       TYPECHO_DB_FILE: ""
       TYPECHO_DB_NEXT: keep
-      TYPECHO_SITE_URL: http://jj.test
+      TYPECHO_SITE_URL: https://jj.test
       TYPECHO_USER_NAME: admin
       TYPECHO_USER_PASSWORD: admin123
       TYPECHO_USER_MAIL: admin@jj.test
@@ -56,7 +56,12 @@ services:
   # 容器会启动但只占极少资源，typecho 实际连接的是 pgsql 服务
   mysql:
     image: alpine:latest
-    entrypoint: ["sh", "-c", "echo 'MySQL placeholder, use pgsql instead' && sleep infinity"]
+    entrypoint:
+      [
+        "sh",
+        "-c",
+        "echo 'MySQL placeholder, use pgsql instead' && sleep infinity",
+      ]
 
   phpmyadmin:
     image: alpine:latest

@@ -24,7 +24,7 @@ services:
       TYPECHO_DB_ENGINE: ""
       TYPECHO_DB_CHARSET: ""
       TYPECHO_DB_NEXT: keep
-      TYPECHO_SITE_URL: http://jj.test
+      TYPECHO_SITE_URL: https://jj.test
       TYPECHO_USER_NAME: admin
       TYPECHO_USER_PASSWORD: admin123
       TYPECHO_USER_MAIL: admin@jj.test
