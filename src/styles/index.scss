@@ -1,6 +1,7 @@
 /** 全局样式统一入口 */
 // 注意：mixins.scss / variable.scss 等构建注入的变量不会传递到 @use 的子文件，
 // 因此子文件（如 layout.scss）需自行 @use 所需依赖
-@use "./reset.scss";
-@use "./color.scss";
-@use "./layout.scss";
+@use "./_reset.scss";
+@use "./_color.scss";
+@use "./_layout.scss";
+@use "./_ui-overrides.scss";

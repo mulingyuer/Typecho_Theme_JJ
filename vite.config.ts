@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2026-09-21 20:40:58
- * @LastEditTime: 2026-09-26 16:56:47
+ * @LastEditTime: 2026-09-27 19:17:35
  * @LastEditors: mulingyuer
  * @Description: Vite 8 构建配置
  * @FilePath: \Typecho_Theme_JJ\vite.config.ts
@@ -71,8 +71,8 @@ export default defineConfig(({ command }) => {
       preprocessorOptions: {
         scss: {
           additionalData: `
-						@use "@/styles/mixins.scss" as *;
-						@use "@/styles/variable.scss" as *;
+						@use "@/styles/_mixins.scss" as *;
+						@use "@/styles/_variable.scss" as *;
 					`,
         },
       },

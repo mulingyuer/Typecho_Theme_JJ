@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2022-12-18 19:22:40
- * @LastEditTime: 2026-09-27 15:55:02
+ * @LastEditTime: 2026-09-27 19:13:58
  * @LastEditors: mulingyuer
  * @Description: 通用入口文件
  * @FilePath: \Typecho_Theme_JJ\src\main.ts
@@ -15,11 +15,9 @@ import App from "@/modules/spa/App.vue";
 
 //style
 import "@/styles/index.scss";
+import "simplebar/dist/simplebar.css";
 import "element-plus/es/components/config-provider/style/css";
 import "element-plus/es/components/message/style/css";
-
-// plugins
-import "@/plugins/simplebar";
 
 //modules
 import "@/modules/header";
