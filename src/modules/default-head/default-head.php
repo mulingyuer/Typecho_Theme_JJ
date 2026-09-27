@@ -45,11 +45,6 @@ content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale
 <!-- config -->
 <meta name="theme-config" data-pagination-type="<?php $this->options->paginationType();?>" data-theme-path="<?php $this->options->themeUrl();?>" >
 
-<!-- theme -->
-<?php $random_number = rand() / getrandmax();?>
-<link href="<?php $this->options->themeUrl('/css/theme/light.css?'.$random_number);?>" rel="stylesheet" type="text/css" title="light">
-<link href="<?php $this->options->themeUrl('/css/theme/dark.css?'.$random_number);?>" rel="alternate stylesheet" type="text/css" title="dark">
-
 <!-- iconfont -->
 <link href="<?php $this->options->themeUrl('/fonts/iconfont.css');?>" rel="stylesheet" type="text/css">
 

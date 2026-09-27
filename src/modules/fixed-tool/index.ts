@@ -10,7 +10,6 @@
 import "./style.scss";
 import { dataStore } from "@/store/data";
 import { watch } from "vue";
-import Theme from "@/utils/theme";
 import FixedDocSearch from "../docsearch";
 
 /** 返回顶部 */
@@ -72,42 +71,6 @@ class BackTop {
 }
 
 new BackTop();
-
-/** 切换主题 */
-class SwitchTheme {
-	/** 切换按钮 */
-	private btn = document.querySelector(".theme-switch");
-	/** 主题实例 */
-	private theme = Theme.getInterface();
-	/** 当前主题 */
-	private activeTheme = "";
-
-	constructor() {
-		this.activeTheme = this.theme.getActiveTheme();
-		this.btn && this.btn.addEventListener("click", this.onSwitchClick);
-	}
-
-	/** 切换按钮点击事件 */
-	private onSwitchClick = () => {
-		let themeName = "";
-		switch (this.activeTheme) {
-			case "light":
-				themeName = "dark";
-				this.btn?.classList.add("dark");
-				break;
-			case "dark":
-				themeName = "light";
-				this.btn?.classList.remove("dark");
-				break;
-			default:
-				themeName = "light";
-				console.warn(`主题名不合法：${this.activeTheme}，已切换为默认主题`);
-		}
-		this.theme.switchTheme(themeName);
-		this.activeTheme = themeName;
-	};
-}
-new SwitchTheme();
 
 /** docsearch */
 const docsearch = new FixedDocSearch();

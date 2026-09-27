@@ -14,8 +14,7 @@ import { createApp } from "vue";
 import App from "@/modules/spa/App.vue";
 
 //style
-import "@/styles/reset.scss";
-import "@/styles/layout.scss";
+import "@/styles/index.scss";
 import "element-plus/es/components/config-provider/style/css";
 import "element-plus/es/components/message/style/css";
 

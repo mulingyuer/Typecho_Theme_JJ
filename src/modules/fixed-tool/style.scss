@@ -28,32 +28,11 @@
 		opacity: 0.7;
 	}
 }
-.fixed-tool-item {
-	.dark-icon {
-		display: none;
-	}
-	.light-icon {
-		display: block;
-		color: var(--jj-fixed-tool-item-color-hover);
-	}
-	&.dark {
-		.dark-icon {
-			display: block;
-		}
-		.light-icon {
-			display: none;
-		}
-	}
-}
 .fixed-tool-item.back-to-top {
 	display: none;
 	&.visible {
 		display: flex;
 	}
-}
-// 暂时隐藏主题切换
-.fixed-tool-item.theme-switch {
-	display: none;
 }
 // 移动端目录树
 .fixed-tool-item.mobile-directory-tree-toggle {
