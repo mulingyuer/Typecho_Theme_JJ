@@ -1,7 +1,9 @@
+name: typecho-mysql57
+
 services:
   typecho:
     image: joyqi/typecho:1.3.0-php8.2-apache
-    container_name: typecho-jj
+    container_name: typecho-mysql57
     # 不直接暴露宿主机端口，由 Caddy 反向代理统一提供 80/443 访问
     expose:
       - "80"
@@ -41,7 +43,7 @@ services:
 
   mysql:
     image: mysql:5.7
-    container_name: typecho-jj-mysql
+    container_name: typecho-mysql57-db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: typecho
@@ -52,7 +54,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: typecho-jj-phpmyadmin
+    container_name: typecho-mysql57-pma
     ports:
       - "8080:80" # Web 访问端口
     environment:
@@ -68,7 +70,7 @@ services:
 
   caddy:
     image: caddy:2-alpine
-    container_name: typecho-jj-caddy
+    container_name: typecho-mysql57-caddy
     ports:
       - "80:80" # HTTP（Caddy 默认重定向到 HTTPS）
       - "443:443" # HTTPS（mkcert 本地受信证书）

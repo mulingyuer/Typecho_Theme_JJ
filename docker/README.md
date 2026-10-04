@@ -4,14 +4,14 @@
 
 ## 环境组成
 
-| 服务       | 镜像                                | 说明                                                  |
-| ---------- | ----------------------------------- | ----------------------------------------------------- |
-| typecho    | `joyqi/typecho:1.3.0-php8.2-apache` | Typecho 官方镜像（PHP 8.2 + Apache），站点目录 `/app` |
-| caddy      | `caddy:2-alpine`                    | 反向代理，提供 HTTPS 访问（`https://jj.test`）        |
-| mysql      | `mysql:5.7`                         | 数据库，数据持久化在 `mysql-data/`                    |
-| phpmyadmin | `phpmyadmin:latest`                 | Web 数据库管理面板，访问 `http://localhost:8080`      |
+| 服务       | 镜像                                | 容器名               | 说明                                                  |
+| ---------- | ----------------------------------- | -------------------- | ----------------------------------------------------- |
+| typecho    | `joyqi/typecho:1.3.0-php8.2-apache` | `typecho-mysql57`    | Typecho 官方镜像（PHP 8.2 + Apache），站点目录 `/app` |
+| caddy      | `caddy:2-alpine`                    | `typecho-mysql57-caddy` | 反向代理，提供 HTTPS 访问（`https://jj.test`）     |
+| mysql      | `mysql:5.7`                         | `typecho-mysql57-db` | 数据库，数据持久化在 `mysql-data/`                    |
+| phpmyadmin | `phpmyadmin:latest`                 | `typecho-mysql57-pma`   | Web 数据库管理面板，访问 `http://localhost:8080`   |
 
-> 除 MySQL 5.7 外，本环境还支持 **MySQL 8.0**、**SQLite**、**PostgreSQL 16** 三种数据库切换，详见下文「切换数据库环境」。
+> **环境隔离**：四套环境（mysql57 / mysql80 / pgsql / sqlite）通过 compose 顶层 `name:` 字段拥有独立项目名与容器名（命名规范 `typecho-<环境>[-db|-pma|-caddy]`），`docker ps` 可直接区分当前环境，网络与数据卷互不共享。除 MySQL 5.7 外，还支持 **MySQL 8.0**、**SQLite**、**PostgreSQL 16** 三种数据库切换，详见下文「切换数据库环境」。
 
 ## 目录结构
 
@@ -29,6 +29,9 @@ docker/
 ├── config.inc.php            # Typecho 配置文件（本地生成，git 忽略）
 ├── plugins/                  # 本地插件目录 → /app/usr/plugins（内容 git 忽略）
 ├── mysql-data/               # MySQL 5.7 数据（本地生成，git 忽略）
+├── mysql-data-80/            # MySQL 8.0 数据（本地生成，git 忽略，切到 8.0 时生成）
+├── pgsql-data/               # PostgreSQL 16 数据（本地生成，git 忽略，切到 PG 时生成）
+├── sqlite-data/              # SQLite 数据文件（本地生成，git 忽略，切到 SQLite 时生成）
 ├── backup/                   # 数据库备份/恢复脚本与备份文件（备份文件 git 忽略）
 │   ├── backup.ps1            # 备份数据库
 │   └── restore.ps1           # 恢复数据库
@@ -264,14 +267,15 @@ docker compose up -d
 
 ### 环境矩阵
 
-| 环境              | 启动命令                                                                   | 数据目录                 | 说明                 |
-| ----------------- | -------------------------------------------------------------------------- | ------------------------ | -------------------- |
-| MySQL 5.7（默认） | `docker compose up -d`                                                     | `mysql-data/`            | 开发基准环境         |
-| MySQL 8.0         | `docker compose -f docker-compose.yml -f docker-compose.mysql80.yml up -d` | `mysql-data-80/`         | 验证 MySQL 8.0 兼容  |
-| SQLite            | `docker compose -f docker-compose.sqlite.yml up -d`                        | `sqlite-data/typecho.db` | 单容器，无数据库服务 |
-| PostgreSQL 16     | `docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d`   | `pgsql-data/`            | 验证 PG 严格模式兼容 |
+| 环境              | 项目名           | 启动命令                                                                   | 数据目录                 | 说明                 |
+| ----------------- | ---------------- | -------------------------------------------------------------------------- | ------------------------ | -------------------- |
+| MySQL 5.7（默认） | `typecho-mysql57` | `docker compose up -d`                                                     | `mysql-data/`            | 开发基准环境         |
+| MySQL 8.0         | `typecho-mysql80` | `docker compose -f docker-compose.yml -f docker-compose.mysql80.yml up -d` | `mysql-data-80/`         | 验证 MySQL 8.0 兼容  |
+| SQLite            | `typecho-sqlite`  | `docker compose -f docker-compose.sqlite.yml up -d`                        | `sqlite-data/typecho.db` | 单容器，无数据库服务 |
+| PostgreSQL 16     | `typecho-pgsql`   | `docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d`   | `pgsql-data/`            | 验证 PG 严格模式兼容 |
 
-> 切换前必须先 `docker compose down`，避免端口与数据目录冲突。
+> 切换前必须先 `docker compose down`（在**当前运行环境对应的项目**下执行，如 `docker compose -f docker-compose.sqlite.yml down`），避免端口与数据目录冲突。
+> 各环境项目名独立（compose 顶层 `name:` 字段），数据卷与网络互不共享；容器名遵循 `typecho-<环境>[-db|-pma|-caddy]` 规范，`docker ps` 可直接辨认当前环境。
 
 > **HTTPS 说明**：Caddy 反向代理在所有数据库环境中均可使用，切换数据库时无需修改 Caddy 配置。各覆盖文件中的 `TYPECHO_SITE_URL` 已统一为 `https://jj.test`。
 
@@ -317,9 +321,11 @@ docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
 # 恢复本地备份
 ./backup/restore.ps1 ./backup/typecho-20260921-120000.sql
 
-# 恢复线上导出的备份，并自动把站点 URL 替换为 http://jj.test
+# 恢复线上导出的备份，并自动把站点 URL 替换为 https://jj.test
 ./backup/restore.ps1 ./backup.sql -UpdateSiteUrl
 ```
+
+> 备份/恢复脚本内部使用 `docker compose cp` + 容器内文件读写，不经 PowerShell 管道转写，避免 UTF-8 BOM 与换行符问题。
 
 ## 常见问题
 
@@ -350,9 +356,13 @@ docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
 **Q：数据库数据想清空重来？**
 
 ```powershell
+# MySQL 5.7 环境
 docker compose down
 Remove-Item -Recurse -Force mysql-data
 docker compose up -d
+
+# 其他环境同理，替换为对应的数据目录（mysql-data-80 / pgsql-data / sqlite-data）
+# 并使用对应的 -f 参数执行 down / up
 ```
 
 **Q：需要 HTTPS？**

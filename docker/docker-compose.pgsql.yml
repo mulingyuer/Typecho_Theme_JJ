@@ -7,9 +7,14 @@
 #   - PostgreSQL 数据持久化在 ./pgsql-data/ 目录，与 MySQL 数据互不干扰；
 #   - PG 环境不使用 config.inc.php 挂载（安装脚本会自动生成），避免 Pdo_Mysql 配置冲突；
 #   - 若 ./config.inc.php 中存在 MySQL 配置，启动前可临时移走，或使用全新空目录再启动。
+
+# 项目名独立于 base（typecho-mysql57），避免网络/数据卷互相污染
+name: typecho-pgsql
+
 services:
   typecho:
     image: joyqi/typecho:1.3.0-php8.2-apache
+    container_name: typecho-pgsql
     environment:
       TYPECHO_INSTALL: 1
       TYPECHO_DB_ADAPTER: Pdo_Pgsql
@@ -37,7 +42,7 @@ services:
 
   pgsql:
     image: postgres:16-alpine
-    container_name: typecho-jj-pgsql
+    container_name: typecho-pgsql-db
     environment:
       POSTGRES_USER: typecho
       POSTGRES_PASSWORD: typecho
@@ -56,6 +61,7 @@ services:
   # 容器会启动但只占极少资源，typecho 实际连接的是 pgsql 服务
   mysql:
     image: alpine:latest
+    container_name: typecho-pgsql-mysql-stub
     entrypoint:
       [
         "sh",
@@ -65,4 +71,10 @@ services:
 
   phpmyadmin:
     image: alpine:latest
+    container_name: typecho-pgsql-pma-stub
     entrypoint: ["sh", "-c", "echo 'phpMyAdmin placeholder' && sleep infinity"]
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: typecho-pgsql-caddy
+    profiles: ["reverse-proxy"]

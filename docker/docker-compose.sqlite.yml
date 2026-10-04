@@ -7,9 +7,14 @@
 #   - SQLite 数据文件持久化在 ./sqlite-data/ 目录（挂载到 /app/data），与 MySQL 数据互不干扰；
 #   - SQLite 环境不使用 config.inc.php 挂载（安装脚本会自动生成），避免 Pdo_Mysql 配置冲突；
 #   - 若 ./config.inc.php 中存在 MySQL 配置，启动前可临时移走，或使用全新空目录再启动。
+
+# 项目名独立（单文件启动时默认项目名是目录名 docker，会与其他环境共享网络/数据卷）
+name: typecho-sqlite
+
 services:
   typecho:
     image: joyqi/typecho:1.3.0-php8.2-apache
+    container_name: typecho-sqlite
     environment:
       TYPECHO_INSTALL: 1
       TYPECHO_DB_ADAPTER: Pdo_SQLite
@@ -34,9 +39,38 @@ services:
       - ./sqlite-data:/app/data
     depends_on: !reset []
 
-  # SQLite 无数据库服务，覆盖为空避免基础配置启动 mysql/phpmyadmin
+  # SQLite 无数据库服务，显式禁用 mysql / phpmyadmin
+  # 不继承 base 的 container_name，避免与 mysql57 环境冲突
   mysql:
+    image: alpine:latest
+    container_name: typecho-sqlite-mysql-stub
     profiles: ["disabled"]
+    entrypoint:
+      ["sh", "-c", "echo 'SQLite env, MySQL disabled' && sleep infinity"]
 
   phpmyadmin:
+    image: alpine:latest
+    container_name: typecho-sqlite-pma-stub
     profiles: ["disabled"]
+    entrypoint:
+      ["sh", "-c", "echo 'SQLite env, phpMyAdmin disabled' && sleep infinity"]
+
+  # 独立定义 caddy（不继承 base，因 base caddy 在 reverse-proxy profile 下被禁用）
+  caddy:
+    image: caddy:2-alpine
+    container_name: typecho-sqlite-caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./certs:/etc/caddy/certs:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - typecho
+    restart: unless-stopped
+
+volumes:
+  caddy-data:
+  caddy-config:

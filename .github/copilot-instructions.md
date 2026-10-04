@@ -121,7 +121,7 @@ cd docker; docker compose -f docker-compose.sqlite.yml up -d   # 访问 https://
 2. 安装 CA 并生成证书：`mkcert -install`，然后在 `docker/certs/` 下执行 `mkcert jj.test`（证书已 gitignore 不入库）
 3. 启动服务：`docker compose up -d`（Caddy 自动提供 HTTPS）
 
-详见 [docker/README.md](../docker/README.md)「配置本地 HTTPS」章节与 [HTTPS_SETUP_PLAN.md](../HTTPS_SETUP_PLAN.md)。
+详见 [docker/README.md](../docker/README.md)「配置本地 HTTPS」章节。
 
 ## 七、AI 生成代码时的检查清单
 
