@@ -9,7 +9,8 @@
  */
 /*
  * @Author: mulingyuer
- * @Description: 主题组装插件：将 src/ 下的页面PHP、模块PHP、functions、static 组装为完整 Typecho 主题
+ * @Description: 主题组装插件：将 src/ 下的页面PHP（dist/*.php）、页面组件PHP（dist/pages/<name>/components/）、
+ * 模块PHP（dist/modules/）、functions 组装为完整 Typecho 主题
  * 怎么可能会有bug！！！
  */
 import type { Plugin } from "vite";
@@ -125,8 +126,12 @@ function assemble(
 	const modulesDir = resolve(srcDir, "modules");
 	const functionsDir = resolve(srcDir, "functions");
 
-	// 1. 页面 PHP：注入资源标签 → dist/*.php
-	const pageFiles = globSync("*/*.php", { cwd: pagesDir });
+	// 1. 页面 PHP 模板（src/pages/<name>/<name>.php）：注入资源标签 → dist/*.php
+	// components 子目录是页面级组件，不属于页面模板，需排除
+	const pageFiles = globSync("*/*.php", { cwd: pagesDir }).filter((relPath) => {
+		const pageName = relPath.split(/[/\\]/)[0];
+		return basename(relPath, ".php") === pageName;
+	});
 	for (const relPath of pageFiles) {
 		const pageName = relPath.split(/[/\\]/)[0];
 		const srcFile = resolve(pagesDir, relPath);
@@ -168,16 +173,36 @@ function assemble(
 		}
 	}
 
-	// 2. 模块 PHP：src/modules/**/*.php → dist/php_modules/
-	const moduleFiles = globSync("**/*.php", { cwd: modulesDir });
-	const phpModulesDir = join(outDir, "php_modules");
-	for (const relPath of moduleFiles) {
-		const srcFile = resolve(modulesDir, relPath);
-		const outFile = join(phpModulesDir, relPath);
+	// 1.5 页面级组件 PHP：src/pages/<name>/components/**/*.php → dist/pages/<name>/components/**
+	// 只拷贝不注入资源标签
+	const pageComponentFiles = globSync("*/components/**/*.php", { cwd: pagesDir });
+	for (const relPath of pageComponentFiles) {
+		const srcFile = resolve(pagesDir, relPath);
+		const outFile = join(outDir, "pages", relPath);
 		mkdirSync(dirname(outFile), { recursive: true });
 		copyFileSync(srcFile, outFile);
 	}
-	logger.info(`[theme-assembler] 模块: ${moduleFiles.length} 个 PHP → php_modules/`);
+	if (pageComponentFiles.length > 0) {
+		logger.info(`[theme-assembler] 页面组件: ${pageComponentFiles.length} 个 PHP → pages/`);
+	}
+
+	// 2. 模块 PHP：src/modules/**/*.php → dist/modules/
+	const moduleFiles = globSync("**/*.php", { cwd: modulesDir });
+	const distModulesDir = join(outDir, "modules");
+	for (const relPath of moduleFiles) {
+		const srcFile = resolve(modulesDir, relPath);
+		const outFile = join(distModulesDir, relPath);
+		mkdirSync(dirname(outFile), { recursive: true });
+		copyFileSync(srcFile, outFile);
+	}
+	logger.info(`[theme-assembler] 模块: ${moduleFiles.length} 个 PHP → modules/`);
+
+	// 2.5 清理旧版产物目录（dist/php_modules 为历史命名，增量 watch 构建会残留）
+	const legacyPhpModulesDir = join(outDir, "php_modules");
+	if (existsSync(legacyPhpModulesDir)) {
+		rmSync(legacyPhpModulesDir, { recursive: true, force: true });
+		logger.info("[theme-assembler] 已清理旧产物目录: php_modules/");
+	}
 
 	// 3. functions：src/functions/*.php → dist/functions.php（index.php 即入口）
 	const functionsIndexSrc = resolve(functionsDir, "index.php");

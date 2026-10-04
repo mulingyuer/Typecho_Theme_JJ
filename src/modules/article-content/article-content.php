@@ -22,7 +22,7 @@
         <img class="article-content-title-img" src="<?php echo $titleImg; ?>" alt="<?php $this->title()?>">
       <?php endif;?>
       <div id="markdown" class="article-content-markdown markdown-body">
-        <?php $this->need('./php_modules/markdown/markdown.php');?>
+        <?php $this->need('/modules/markdown/markdown.php');?>
       </div>
     </div>
   </div>

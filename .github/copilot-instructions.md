@@ -78,21 +78,22 @@ src/ ──Vite 多入口构建──▶ JS/CSS/manifest ──theme-assembler�
 
 ## 五、目录约定
 
-| 目录                      | 职责                                                                                                      |
-| ------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `src/pages/<name>/`       | 页面单元：`<name>.php`（模板）、`index.ts`（入口）、`style.scss`；目录名即入口名                          |
-| `src/modules/<name>/`     | 可复用模块：PHP 模板 + `index.ts` + `style.scss`，可按需再分子目录（如 comment/comment-form）             |
-| `src/functions/`          | 纯 PHP 助手：`utils.php`（公共函数）、`theme-config.php`、`seo.php`、`comment.php` 等，构建时组装进主题根 |
-| `src/api/` `src/request/` | 浏览器端请求封装（axios 实例、接口定义）                                                                  |
-| `src/store/`              | 前端共享数据/状态                                                                                         |
-| `src/styles/`             | 全局 SCSS：color/mixins/variable 已由构建自动注入每个 scss 文件，**勿重复 @use**                          |
-| `src/plugins/`            | 第三方库的本地改造版（如 simplebar）                                                                      |
-| `src/types/`              | 全局 d.ts 类型声明                                                                                        |
-| `src/bin/`                | 骨架屏等构建期脚本                                                                                        |
-| `vite/plugin/`            | 自定义 Vite 插件（theme-assembler 等），改动须保持 UTF-8 读写 PHP                                         |
-| `public/`                 | 静态资源（css/fonts/images/scripts），原样进 dist                                                         |
-| `docker/`                 | 本地联调环境：base compose + mysql80/pgsql/sqlite 覆盖文件，挂载 `../dist` 为主题目录                     |
-| `scripts/`                | Node 侧工程脚本（版本更新、打包 zip），独立 tsconfig                                                      |
+| 目录                           | 职责                                                                                                                                               |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/pages/<name>/`            | 页面单元：`<name>.php`（模板，产物 → `dist/<name>.php`，home → `index.php`）、`index.ts`（入口）、`style.scss`；目录名即入口名                     |
+| `src/pages/<name>/components/` | 页面级组件 PHP（产物 → `dist/pages/<name>/components/`），只拷贝不注入 VITE_HEAD_TAGS；**只放页面专属、不复用的 PHP**，通用组件仍放 `src/modules/` |
+| `src/modules/<name>/`          | 可复用模块：PHP 模板（产物 → `dist/modules/`） + `index.ts` + `style.scss`，可按需再分子目录（如 comment/comment-form）                            |
+| `src/functions/`               | 纯 PHP 助手：`utils.php`（公共函数）、`theme-config.php`、`seo.php`、`comment.php` 等，构建时组装进主题根                                          |
+| `src/api/` `src/request/`      | 浏览器端请求封装（axios 实例、接口定义）                                                                                                           |
+| `src/store/`                   | 前端共享数据/状态                                                                                                                                  |
+| `src/styles/`                  | 全局 SCSS：color/mixins/variable 已由构建自动注入每个 scss 文件，**勿重复 @use**                                                                   |
+| `src/plugins/`                 | 第三方库的本地改造版（如 simplebar）                                                                                                               |
+| `src/types/`                   | 全局 d.ts 类型声明                                                                                                                                 |
+| `src/bin/`                     | 骨架屏等构建期脚本                                                                                                                                 |
+| `vite/plugin/`                 | 自定义 Vite 插件（theme-assembler 等），改动须保持 UTF-8 读写 PHP                                                                                  |
+| `public/`                      | 静态资源（css/fonts/images/scripts），原样进 dist                                                                                                  |
+| `docker/`                      | 本地联调环境：base compose + mysql80/pgsql/sqlite 覆盖文件，挂载 `../dist` 为主题目录                                                              |
+| `scripts/`                     | Node 侧工程脚本（版本更新、打包 zip），独立 tsconfig                                                                                               |
 
 ## 六、常用命令
 

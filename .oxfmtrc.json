@@ -15,7 +15,6 @@
 		"docker/mysql-data/",
 		"docker/backup/",
 		"docker/plugins/",
-		"php_modules/",
 		"pnpm-lock.yaml",
 		".git/",
 		".husky/"

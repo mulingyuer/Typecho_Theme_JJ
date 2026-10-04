@@ -27,7 +27,7 @@
           </div>
           <div class="comment-form-footer">
             <div class="comment-form-tool">
-              <?php $this->need("/php_modules/comment/emoji.php");?>
+              <?php $this->need("/modules/comment/emoji.php");?>
             </div>
             <div class="comment-form-btn-wrap">
               <?php $comments->cancelReply('<button class="comment-form-btn comment-form-cancel">放弃</button>');?>

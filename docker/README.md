@@ -339,7 +339,7 @@ docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
 **Q：后台「外观」里看不到 JJ 主题 / 页面报错主题缺失？**
 
 - 容器挂载的是仓库根目录下的 `dist/` 构建产物，先确认已执行 `pnpm build`（或 `pnpm dev` 常驻）；
-- 用 `docker compose exec typecho ls /app/usr/themes/Typecho_Theme_JJ` 确认挂载内容，应看到 `index.php`、`functions.php`、`php_modules/` 等主题产物。
+- 用 `docker compose exec typecho ls /app/usr/themes/Typecho_Theme_JJ` 确认挂载内容，应看到 `index.php`、`functions.php`、`modules/` 等主题产物。
 
 **Q：主题/插件改了没生效？**
 

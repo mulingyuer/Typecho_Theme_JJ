@@ -4,9 +4,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <?php $this->need('./php_modules/notes/notes.php');?>
+  <?php $this->need('/modules/notes/notes.php');?>
 <head>
-  <?php $this->need('./php_modules/default-head/default-head.php');?>
+  <?php $this->need('/modules/default-head/default-head.php');?>
   <?php if ($this->options->errorType === 'chrome'): ?>
     <link href="<?php $this->options->themeUrl('/game/fonts.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php $this->options->themeUrl('/game/game.css');?>" rel="stylesheet" type="text/css">
@@ -17,8 +17,8 @@
   <?php $this->options->headInsertCode();?>
 </head>
 <body class="<?php if ($this->options->errorType !== 'chrome') {echo 'juejin-error';}?>">
-  <?php $this->need('./php_modules/header/header.php');?>
-  <?php $this->need('./php_modules/nav/nav.php');?>
+  <?php $this->need('/modules/header/header.php');?>
+  <?php $this->need('/modules/nav/nav.php');?>
   <main class="main" role="main">
     <div class="container">
       <div class="error-content">
@@ -51,10 +51,10 @@
   </main>
   <?php if ($this->options->errorType === 'chrome'): ?>
     <div id="t" class="offline">
-      <?php $this->need('./php_modules/404/game.php');?>
+      <?php $this->need('/modules/404/game.php');?>
     </div>
   <?php endif;?>
-  <?php $this->need('./php_modules/fixed-tool/fixed-tool.php');?>
+  <?php $this->need('/modules/fixed-tool/fixed-tool.php');?>
   <?php //body标签底部插入代码 ?>
   <?php $this->options->bodyInsertCode();?>
   <?php //typecho 插件挂接点 ?>

@@ -1,5 +1,5 @@
 <div class="notification-list">
-  <?php $this->need("/php_modules/notification/list-skeleton/list-skeleton.php");?>
+  <?php $this->need("/modules/notification/list-skeleton/list-skeleton.php");?>
   <div class="notification-list-content hidden">
     <?php $this->widget('Widget_Comments_Recent', 'pageSize=50&ignoreAuthor=true')->to($comments);?>
     <?php if ($comments->have()): ?>
