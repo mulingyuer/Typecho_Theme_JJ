@@ -1,5 +1,5 @@
 <?php $this->comments()->to($comments);?>
-<div id="<?php $this->respondId();?>" class="comment-form-wrap">
+<div id="<?php $this->respondId();?>" class="comment-form-wrap" data-gravatar-prefix="<?php echo getGravatarPrefix(); ?>">
   <form class="comment-form" method="post" action="<?php $this->commentUrl()?>" id="comment-form" role="form">
     <div class="comment-form-body">
       <div class="comment-form-avatar">
@@ -7,7 +7,7 @@
           <?php $this->author->gravatar();?>
         <?php else: ?>
           <?php $email = $this->remember('mail', true);if (!empty($email)): ?>
-            <img src="https://cravatar.cn/avatar/<?php echo md5($email); ?>">
+            <img src="<?php echo \Typecho\Common::gravatarUrl($email, 80); ?>">
           <?php else: ?>
             <img src="<?php $this->options->themeUrl('/images/comment/default_avatar.svg');?>">
           <?php endif;?>

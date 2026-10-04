@@ -27,6 +27,43 @@ function parseFields($fields)
 }
 
 /**
+ * @description: 应用主题设置中的 Gravatar 头像源，define __TYPECHO_GRAVATAR_PREFIX__ 常量。
+ * 系统 config.inc.php 已定义时不覆盖（系统配置优先）。
+ * 必须在任何模板渲染前调用（functions/index.php 顶部）。
+ * @return void
+ */
+function applyGravatarPrefix()
+{
+    if (defined('__TYPECHO_GRAVATAR_PREFIX__')) {
+        return;
+    }
+    $source = Helper::options()->gravatarSource;
+    if (!is_string($source) || $source === '') {
+        return;
+    }
+    if ($source === 'custom') {
+        $custom = trim((string)Helper::options()->gravatarSourceCustom);
+        if ($custom !== '') {
+            define('__TYPECHO_GRAVATAR_PREFIX__', rtrim($custom, '/') . '/');
+        }
+        return;
+    }
+    define('__TYPECHO_GRAVATAR_PREFIX__', $source);
+}
+
+/**
+ * @description: 获取当前生效的 Gravatar 头像源前缀（含已 define 的常量或官方默认）
+ * @return string
+ */
+function getGravatarPrefix()
+{
+    if (defined('__TYPECHO_GRAVATAR_PREFIX__')) {
+        return __TYPECHO_GRAVATAR_PREFIX__;
+    }
+    return 'https://secure.gravatar.com/avatar/';
+}
+
+/**
  * @description: 文章发布时间
  * @param {*} $time 原文章发布时间
  * @Date: 2023-03-19 16:58:25

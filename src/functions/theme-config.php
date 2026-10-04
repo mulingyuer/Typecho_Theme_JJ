@@ -211,6 +211,32 @@ function themeConfig($form)
     );
     $form->addInput($errorType);
 
+    // 头像源
+    $gravatarSource = new \Typecho\Widget\Helper\Form\Element\Select(
+        'gravatarSource',
+        array(
+            '' => _t('默认（跟随系统或官方 secure.gravatar.com）'),
+            'https://cravatar.cn/avatar/' => _t('Cravatar（国内推荐）'),
+            'https://weavatar.com/avatar/' => _t('WeAvatar'),
+            'https://cdn.sep.cc/avatar/' => _t('极客族镜像'),
+            'https://gravatar.loli.net/avatar/' => _t('loli.net 镜像'),
+            'https://gravatar.com/avatar/' => _t('Gravatar 官方'),
+            'custom' => _t('自定义'),
+        ),
+        '', _t('Gravatar 头像源'), _t('替换全站头像前缀，无需修改 config.inc.php；若系统 config.inc.php 已定义 __TYPECHO_GRAVATAR_PREFIX__ 则以系统为准')
+    );
+    $form->addInput($gravatarSource);
+
+    // 自定义头像源前缀
+    $gravatarSourceCustom = new \Typecho\Widget\Helper\Form\Element\Text(
+        'gravatarSourceCustom',
+        null,
+        '',
+        _t('自定义头像源前缀'),
+        _t('仅当上方选择「自定义」时生效，需以 /avatar/ 结尾（如 https://example.com/avatar/），留空则回退官方源')
+    );
+    $form->addInput($gravatarSourceCustom);
+
     // 底部联系地址
     $address = new \Typecho\Widget\Helper\Form\Element\Text(
         'address',

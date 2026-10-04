@@ -62,6 +62,7 @@ src/ ──Vite 多入口构建──▶ JS/CSS/manifest ──theme-assembler�
 
 - 每个页面一个入口：`src/pages/<page>/index.ts`，由 glob 自动发现，无需手动注册
 - theme-assembler 依据 `.vite/manifest.json` 收集各入口的 CSS 与静态依赖 chunk，向页面 PHP 注入 `<link>` / `<script type="module">` / modulepreload 标签
+- 每次组装完成且乱码校验通过后，theme-assembler 会将 `dist/` 整体同步到 `docker/themes/Typecho_Theme_JJ/`（先删后拷，供 docker 挂载联调）
 - 页面模板支持三类资源占位符，可在同一页面同时使用、各自独立替换：
   - `<!--VITE_CSS_TAGS-->`：仅 CSS `<link rel="stylesheet">`，推荐放 `<head>`
   - `<!--VITE_JS_TAGS-->`：modulepreload + 入口 `<script type="module">`，推荐放 `</body>` 前（`$this->footer()` 之前）
@@ -97,7 +98,7 @@ src/ ──Vite 多入口构建──▶ JS/CSS/manifest ──theme-assembler�
 | `src/bin/`                     | 骨架屏等构建期脚本                                                                                                                                  |
 | `vite/plugin/`                 | 自定义 Vite 插件（theme-assembler 等），改动须保持 UTF-8 读写 PHP                                                                                   |
 | `public/`                      | 静态资源（css/fonts/images/scripts），原样进 dist                                                                                                   |
-| `docker/`                      | 本地联调环境：base compose + mysql80/pgsql/sqlite 覆盖文件，挂载 `../dist` 为主题目录                                                               |
+| `docker/`                      | 本地联调环境：base compose + mysql80/pgsql/sqlite 覆盖文件，`themes/`（整目录挂载，JJ 主题为构建同步产物）、`plugins/` 挂载插件                     |
 | `scripts/`                     | Node 侧工程脚本（版本更新、打包 zip），独立 tsconfig                                                                                                |
 
 ## 六、常用命令

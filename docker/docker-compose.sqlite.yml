@@ -34,7 +34,7 @@ services:
       TYPECHO_USER_PASSWORD: admin123
       TYPECHO_USER_MAIL: admin@jj.test
     volumes: !override
-      - ../dist:/app/usr/themes/Typecho_Theme_JJ
+      - ./themes:/app/usr/themes
       - ./plugins:/app/usr/plugins
       - ./sqlite-data:/app/data
     depends_on: !reset []

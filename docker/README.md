@@ -1,6 +1,6 @@
 # Typecho 本地开发环境使用说明
 
-基于 Docker Compose 的 Typecho 本地开发环境。主题挂载的是仓库根目录下的 `dist/` **构建产物**（`pnpm build` / `pnpm dev` 输出），插件、配置文件挂载本地目录，改动即时生效。
+基于 Docker Compose 的 Typecho 本地开发环境。主题挂载的是 `docker/themes/Typecho_Theme_JJ/`（构建产物 `dist/` 会在每次构建后自动同步到该目录），插件、配置文件挂载本地目录，改动即时生效。
 
 ## 环境组成
 
@@ -28,6 +28,8 @@ docker/
 ├── config.inc.example.php    # 配置占位模板（入库共享）
 ├── config.inc.php            # Typecho 配置文件（本地生成，git 忽略）
 ├── plugins/                  # 本地插件目录 → /app/usr/plugins（内容 git 忽略）
+├── themes/                   # 本地主题目录 → /app/usr/themes（内容 git 忽略）
+│   └── Typecho_Theme_JJ/     # JJ 主题产物（构建后自动从 dist 同步，勿手动编辑）
 ├── mysql-data/               # MySQL 5.7 数据（本地生成，git 忽略）
 ├── mysql-data-80/            # MySQL 8.0 数据（本地生成，git 忽略，切到 8.0 时生成）
 ├── pgsql-data/               # PostgreSQL 16 数据（本地生成，git 忽略，切到 PG 时生成）
@@ -40,19 +42,21 @@ docker/
 
 挂载关系：
 
-| 本地路径                | 容器路径                           | 用途     |
-| ----------------------- | ---------------------------------- | -------- |
-| `../dist`（构建产物）   | `/app/usr/themes/Typecho_Theme_JJ` | 主题     |
-| `docker/plugins/`       | `/app/usr/plugins`                 | 插件     |
-| `docker/config.inc.php` | `/app/config.inc.php`              | 配置文件 |
+| 本地路径                              | 容器路径                           | 用途     |
+| ------------------------------------- | ---------------------------------- | -------- |
+| `docker/themes/`                      | `/app/usr/themes`                  | 主题     |
+| `docker/plugins/`                     | `/app/usr/plugins`                 | 插件     |
+| `docker/config.inc.php`               | `/app/config.inc.php`              | 配置文件 |
 
-> 主题目录只挂载 `dist/` 构建产物，容器内不会出现 `src/`、`node_modules/` 等开发文件。
+> - `docker/themes/` 整目录挂载，可放入任意多个主题（如 Typecho 自带的 `default`、`classic-22`），后台「外观」中即可切换；
+> - 其中 `Typecho_Theme_JJ/` 是构建同步产物（theme-assembler 每次构建后从 `dist/` 先删后拷同步，**只动这个子目录，不影响其他主题**），请勿手动编辑，改动会被下次构建覆盖；
+> - 主题/插件目录只挂载产物与资源，容器内不会出现 `src/`、`node_modules/` 等开发文件。
 
 ## 首次启动
 
 ### 1. 构建主题产物
 
-容器挂载的是 `dist/` 构建产物，启动前必须先生成：
+容器挂载的是构建产物，启动前必须先生成：
 
 ```powershell
 # 在仓库根目录执行
@@ -60,7 +64,8 @@ pnpm install
 pnpm build
 ```
 
-> 后续持续开发时建议改用 `pnpm dev`（watch 模式）常驻，改动会自动重新构建到 `dist/`。
+> 构建输出到仓库根 `dist/`，随后由 theme-assembler 插件自动同步到 `docker/themes/Typecho_Theme_JJ/`（先整体删除再复制，保证无旧文件残留）。
+> 后续持续开发时建议改用 `pnpm dev`（watch 模式）常驻，改动会自动重新构建并同步。
 
 ### 2. 准备配置占位文件
 
@@ -185,13 +190,13 @@ docker compose restart caddy
 # 终端 1：启动容器环境（在 docker/ 目录）
 docker compose up -d
 
-# 终端 2：启动构建 watch（在仓库根目录，持续输出到 dist/）
+# 终端 2：启动构建 watch（在仓库根目录，持续输出到 dist/ 并同步到 docker/themes/）
 pnpm dev
 ```
 
 之后：
 
-- 改 `src/` 下任意 PHP / TS / SCSS 文件 → watch 自动重新构建到 `dist/` → 刷新 `https://jj.test` 即时生效；
+- 改 `src/` 下任意 PHP / TS / SCSS 文件 → watch 自动重新构建到 `dist/` 并同步到 `docker/themes/Typecho_Theme_JJ/` → 刷新 `https://jj.test` 即时生效；
 - 改 `docker/plugins/` 下的插件 → 即时生效；
 - 改 `docker/config.inc.php` → 即时生效。
 
@@ -344,12 +349,13 @@ docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
 
 **Q：后台「外观」里看不到 JJ 主题 / 页面报错主题缺失？**
 
-- 容器挂载的是仓库根目录下的 `dist/` 构建产物，先确认已执行 `pnpm build`（或 `pnpm dev` 常驻）；
+- 容器挂载的是 `docker/themes/` 整目录，其中 JJ 主题为构建同步产物，先确认已执行 `pnpm build`（或 `pnpm dev` 常驻）且 `docker/themes/Typecho_Theme_JJ/` 有内容；
 - 用 `docker compose exec typecho ls /app/usr/themes/Typecho_Theme_JJ` 确认挂载内容，应看到 `index.php`、`functions.php`、`modules/` 等主题产物。
 
 **Q：主题/插件改了没生效？**
 
-- 确认 `pnpm dev`（watch 模式）正在运行，改动会自动重新构建到 `dist/`；
+- 确认 `pnpm dev`（watch 模式）正在运行，改动会自动重新构建并同步到 `docker/themes/Typecho_Theme_JJ/`（只覆盖该子目录，其他主题不受影响）；
+- 手动放入 `docker/themes/` 的其他主题、`docker/plugins/` 的插件改动即时生效；
 - 确认挂载是否生效：`docker compose exec typecho ls /app/usr/themes/Typecho_Theme_JJ` 应看到主题产物文件；
 - PHP 文件改动一般即时生效；如开启了 OPcache 缓存可 `docker compose restart typecho`。
 

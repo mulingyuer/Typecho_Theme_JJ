@@ -20,6 +20,10 @@ class CommentAvatar {
   private avatarImg = document.querySelector<HTMLImageElement>(
     "#comment-form .comment-form-avatar img",
   );
+  /** PHP 侧输出的生效头像源前缀 */
+  private originPreFix =
+    document.querySelector<HTMLElement>(".comment-form-wrap")?.dataset
+      .gravatarPrefix;
 
   constructor() {
     if (this.emailInput && this.avatarImg) {
@@ -32,7 +36,10 @@ class CommentAvatar {
   private inputChange = debounce(() => {
     const email = this.emailInput!.value;
     if (!email || !EmailRegExp.test(email)) return;
-    this.avatarImg!.src = generatedGravatar({ email });
+    this.avatarImg!.src = generatedGravatar({
+      email,
+      originPreFix: this.originPreFix,
+    });
   }, 300);
 }
 

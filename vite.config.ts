@@ -30,70 +30,70 @@ const srcDir = resolve(__dirname, "src");
 
 /** 生成多入口对象：{ home: src/pages/home/index.ts, ... } */
 function createEntry(): Record<string, string> {
-  const entry: Record<string, string> = {};
-  const files = globSync("*/index.ts", { cwd: pagesDir });
-  for (const filePath of files) {
-    const name = filePath.split(/(\/|\\)/i)[0];
-    entry[name] = resolve(pagesDir, filePath);
-  }
-  return entry;
+	const entry: Record<string, string> = {};
+	const files = globSync("*/index.ts", { cwd: pagesDir });
+	for (const filePath of files) {
+		const name = filePath.split(/(\/|\\)/i)[0];
+		entry[name] = resolve(pagesDir, filePath);
+	}
+	return entry;
 }
 
 export default defineConfig(({ command }) => {
-  const entry = createEntry();
-  const plugins: PluginOption[] = [
-    vue(),
-    themeAssembler({
-      srcDir,
-      entryNames: Object.fromEntries(
-        Object.keys(entry).map((name) => [`src/pages/${name}/index.ts`, name]),
-      ),
-    }),
-  ];
+	const entry = createEntry();
+	const plugins: PluginOption[] = [
+		vue(),
+		themeAssembler({
+			srcDir,
+			entryNames: Object.fromEntries(Object.keys(entry).map((name) => [`src/pages/${name}/index.ts`, name])),
+			// 构建完成后同步产物到 docker 主题挂载目录（先整体删除再复制，无残留）
+			mirrorDir: resolve(__dirname, "docker/themes/Typecho_Theme_JJ")
+		})
+	];
 
-  return {
-    plugins,
-    resolve: {
-      alias: {
-        "@": resolve(__dirname, "src"),
-      },
-    },
-    define: {
-      __VUE_OPTIONS_API__: false,
-      __VUE_PROD_DEVTOOLS__: command === "serve" ? true : false,
-      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
-    },
-    css: {
-      transformer: "lightningcss",
-      lightningcss: {
-        targets: cssTargets,
-      },
-      preprocessorOptions: {
-        scss: {
-          additionalData: `
+	return {
+		plugins,
+		resolve: {
+			alias: {
+				"@": resolve(__dirname, "src")
+			}
+		},
+		define: {
+			__VUE_OPTIONS_API__: false,
+			__VUE_PROD_DEVTOOLS__: command === "serve" ? true : false,
+			__VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
+		},
+		css: {
+			transformer: "lightningcss",
+			lightningcss: {
+				targets: cssTargets
+			},
+			preprocessorOptions: {
+				scss: {
+					additionalData: `
 						@use "@/styles/_mixins.scss" as *;
 						@use "@/styles/_variable.scss" as *;
-					`,
-        },
-      },
-    },
-    build: {
-      target: "es2015",
-      outDir: "dist",
-      emptyOutDir: true,
-      manifest: true,
-      /**
-       * 关闭 modulepreload polyfill 注入（默认 true 会注入约 1KB 的兼容代码）。
-       * 本项目由 theme-assembler 手动输出 <link rel="modulepreload"> 标签，
-       * 不支持的旧浏览器（如 Safari 11-14）会静默忽略并回退到 <script type="module">，
-       * 仅失去预加载优化，不影响功能。
-       */
-      modulePreload: {
-        polyfill: false,
-      },
-      rolldownOptions: {
-        input: entry,
-      },
-    },
-  };
+					`
+				}
+			}
+		},
+		build: {
+			target: "es2015",
+			outDir: "dist",
+			emptyOutDir: true,
+			manifest: true,
+			/**
+			 * 关闭 modulepreload polyfill 注入（默认 true 会注入约 1KB 的兼容代码）。
+			 * 本项目由 theme-assembler 手动输出 <link rel="modulepreload"> 标签，
+			 * 不支持的旧浏览器（如 Safari 11-14）会静默忽略并回退到 <script type="module">，
+			 * 仅失去预加载优化，不影响功能。
+			 */
+			modulePreload: {
+				polyfill: false
+			},
+			rolldownOptions: {
+				input: entry
+			}
+		}
+	};
 });

@@ -13,6 +13,10 @@ docker/plugins/*
 !docker/plugins/.gitkeep
 !docker/backup
 
+# 主题产物镜像同步目录（构建后自动从 dist 同步，不入库）
+docker/themes/*
+!docker/themes/.gitkeep
+
 # 本地 HTTPS 证书（mkcert 生成，私钥不入库）
 docker/certs/*.pem
 docker/certs/*.key

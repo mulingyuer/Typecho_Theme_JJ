@@ -122,7 +122,7 @@ export type GeneratedGravatarOptions = {
   /** 大小 */
   size?: number;
   /** 头像源 */
-  originPreFix?: string;
+  originPreFix?: string | undefined;
 };
 /** 生成gravatar全球头像 */
 export const generatedGravatar = (function () {
