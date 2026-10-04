@@ -62,6 +62,11 @@ src/ ──Vite 多入口构建──▶ JS/CSS/manifest ──theme-assembler�
 
 - 每个页面一个入口：`src/pages/<page>/index.ts`，由 glob 自动发现，无需手动注册
 - theme-assembler 依据 `.vite/manifest.json` 收集各入口的 CSS 与静态依赖 chunk，向页面 PHP 注入 `<link>` / `<script type="module">` / modulepreload 标签
+- 页面模板支持三类资源占位符，可在同一页面同时使用、各自独立替换：
+  - `<!--VITE_CSS_TAGS-->`：仅 CSS `<link rel="stylesheet">`，推荐放 `<head>`
+  - `<!--VITE_JS_TAGS-->`：modulepreload + 入口 `<script type="module">`，推荐放 `</body>` 前（`$this->footer()` 之前）
+  - `<!--VITE_HEAD_TAGS-->`：CSS + JS 全量（向后兼容，存量页面均用此形式）
+  - 需要精细控制加载顺序时（如 CSS 在 head、JS 在 body 底部），使用 CSS + JS 占位符组合；无 manifest 时占位符保留不报错，产物有 `VITE_*_TAGS` 残留则构建报错
 - public/ 下静态资源原样拷贝到 dist/
 
 ### 分层职责
@@ -78,22 +83,22 @@ src/ ──Vite 多入口构建──▶ JS/CSS/manifest ──theme-assembler�
 
 ## 五、目录约定
 
-| 目录                           | 职责                                                                                                                                               |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src/pages/<name>/`            | 页面单元：`<name>.php`（模板，产物 → `dist/<name>.php`，home → `index.php`）、`index.ts`（入口）、`style.scss`；目录名即入口名                     |
-| `src/pages/<name>/components/` | 页面级组件 PHP（产物 → `dist/pages/<name>/components/`），只拷贝不注入 VITE_HEAD_TAGS；**只放页面专属、不复用的 PHP**，通用组件仍放 `src/modules/` |
-| `src/modules/<name>/`          | 可复用模块：PHP 模板（产物 → `dist/modules/`） + `index.ts` + `style.scss`，可按需再分子目录（如 comment/comment-form）                            |
-| `src/functions/`               | 纯 PHP 助手：`utils.php`（公共函数）、`theme-config.php`、`seo.php`、`comment.php` 等，构建时组装进主题根                                          |
-| `src/api/` `src/request/`      | 浏览器端请求封装（axios 实例、接口定义）                                                                                                           |
-| `src/store/`                   | 前端共享数据/状态                                                                                                                                  |
-| `src/styles/`                  | 全局 SCSS：color/mixins/variable 已由构建自动注入每个 scss 文件，**勿重复 @use**                                                                   |
-| `src/plugins/`                 | 第三方库的本地改造版（如 simplebar）                                                                                                               |
-| `src/types/`                   | 全局 d.ts 类型声明                                                                                                                                 |
-| `src/bin/`                     | 骨架屏等构建期脚本                                                                                                                                 |
-| `vite/plugin/`                 | 自定义 Vite 插件（theme-assembler 等），改动须保持 UTF-8 读写 PHP                                                                                  |
-| `public/`                      | 静态资源（css/fonts/images/scripts），原样进 dist                                                                                                  |
-| `docker/`                      | 本地联调环境：base compose + mysql80/pgsql/sqlite 覆盖文件，挂载 `../dist` 为主题目录                                                              |
-| `scripts/`                     | Node 侧工程脚本（版本更新、打包 zip），独立 tsconfig                                                                                               |
+| 目录                           | 职责                                                                                                                                                |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/pages/<name>/`            | 页面单元：`<name>.php`（模板，产物 → `dist/<name>.php`，home → `index.php`）、`index.ts`（入口）、`style.scss`；目录名即入口名                      |
+| `src/pages/<name>/components/` | 页面级组件 PHP（产物 → `dist/pages/<name>/components/`），只拷贝不注入 Vite 资源占位符；**只放页面专属、不复用的 PHP**，通用组件仍放 `src/modules/` |
+| `src/modules/<name>/`          | 可复用模块：PHP 模板（产物 → `dist/modules/`） + `index.ts` + `style.scss`，可按需再分子目录（如 comment/comment-form）                             |
+| `src/functions/`               | 纯 PHP 助手：`utils.php`（公共函数）、`theme-config.php`、`seo.php`、`comment.php` 等，构建时组装进主题根                                           |
+| `src/api/` `src/request/`      | 浏览器端请求封装（axios 实例、接口定义）                                                                                                            |
+| `src/store/`                   | 前端共享数据/状态                                                                                                                                   |
+| `src/styles/`                  | 全局 SCSS：color/mixins/variable 已由构建自动注入每个 scss 文件，**勿重复 @use**                                                                    |
+| `src/plugins/`                 | 第三方库的本地改造版（如 simplebar）                                                                                                                |
+| `src/types/`                   | 全局 d.ts 类型声明                                                                                                                                  |
+| `src/bin/`                     | 骨架屏等构建期脚本                                                                                                                                  |
+| `vite/plugin/`                 | 自定义 Vite 插件（theme-assembler 等），改动须保持 UTF-8 读写 PHP                                                                                   |
+| `public/`                      | 静态资源（css/fonts/images/scripts），原样进 dist                                                                                                   |
+| `docker/`                      | 本地联调环境：base compose + mysql80/pgsql/sqlite 覆盖文件，挂载 `../dist` 为主题目录                                                               |
+| `scripts/`                     | Node 侧工程脚本（版本更新、打包 zip），独立 tsconfig                                                                                                |
 
 ## 六、常用命令
 
