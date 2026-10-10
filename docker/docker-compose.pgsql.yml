@@ -62,12 +62,7 @@ services:
   mysql:
     image: alpine:latest
     container_name: typecho-pgsql-mysql-stub
-    entrypoint:
-      [
-        "sh",
-        "-c",
-        "echo 'MySQL placeholder, use pgsql instead' && sleep infinity",
-      ]
+    entrypoint: ["sh", "-c", "echo 'MySQL placeholder, use pgsql instead' && sleep infinity"]
 
   phpmyadmin:
     image: alpine:latest

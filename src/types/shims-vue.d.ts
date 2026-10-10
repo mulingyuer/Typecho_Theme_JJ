@@ -8,7 +8,7 @@
  * 怎么可能会有bug！！！
  */
 declare module "*.vue" {
-  import type { DefineComponent } from "vue";
-  const component: DefineComponent<{}, {}, any>;
-  export default component;
+	import type { DefineComponent } from "vue";
+	const component: DefineComponent<{}, {}, any>;
+	export default component;
 }

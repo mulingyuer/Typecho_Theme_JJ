@@ -17,14 +17,14 @@ import type { LikeResult } from "./types";
  * @Author: mulingyuer
  */
 export function getArticleList(url: string) {
-  return request<string>({
-    url,
-    // 幂等 GET，开启重试（retryCondition 默认就是 isNetworkOrIdempotentRequestError）
-    "axios-retry": {
-      retries: 2,
-      retryDelay: exponentialDelay,
-    },
-  });
+	return request<string>({
+		url,
+		// 幂等 GET，开启重试（retryCondition 默认就是 isNetworkOrIdempotentRequestError）
+		"axios-retry": {
+			retries: 2,
+			retryDelay: exponentialDelay
+		}
+	});
 }
 
 /**
@@ -34,13 +34,13 @@ export function getArticleList(url: string) {
  * @Author: mulingyuer
  */
 export function postLike(url: string) {
-  // 写操作不开重试，避免重复提交导致计数错乱
-  return request<LikeResult>({
-    url: `${url}?themeAction=promo`,
-    method: "POST",
-    params: {
-      operate: "inc", //操作类型 inc 增加 dec 减少
-      field: "likes", //操作字段
-    },
-  });
+	// 写操作不开重试，避免重复提交导致计数错乱
+	return request<LikeResult>({
+		url: `${url}?themeAction=promo`,
+		method: "POST",
+		params: {
+			operate: "inc", //操作类型 inc 增加 dec 减少
+			field: "likes" //操作字段
+		}
+	});
 }

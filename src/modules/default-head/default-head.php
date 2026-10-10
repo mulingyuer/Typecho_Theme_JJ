@@ -43,7 +43,7 @@ content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale
 <meta property="twitter:image" content="<?php echo seoImage($this); ?>">
 
 <!-- config -->
-<meta name="theme-config" data-pagination-type="<?php $this->options->paginationType();?>" data-theme-path="<?php $this->options->themeUrl();?>" >
+<meta name="theme-config" data-pagination-type="<?php $this->options->paginationType();?>" data-notification-pagination-type="<?php $this->options->notificationPaginationType();?>" data-theme-path="<?php $this->options->themeUrl();?>" >
 
 <!-- iconfont -->
 <link href="<?php $this->options->themeUrl('/fonts/iconfont.css');?>" rel="stylesheet" type="text/css">

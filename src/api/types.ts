@@ -10,7 +10,7 @@
 
 /** 点赞接口返回结果 */
 export interface LikeResult {
-  msg: string;
-  status: number;
-  result: string;
+	msg: string;
+	status: number;
+	result: string;
 }

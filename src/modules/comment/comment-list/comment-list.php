@@ -6,7 +6,9 @@
     <?php $comments->listComments();?>
   </div>
   <div class="comment-pagination">
-    <?php $comments->pageNav('&lt;', '&gt;');?>
+    <?php // 评论固定 button 翻页（楼中楼嵌套结构不支持无限滚动，见 modules/pagination/README.md）；
+    // pageNav 必须传评论 Widget，Archive 的 $countSql 未初始化会直接 pageNav 抛 Error?>
+    <?php renderPagination($this, array('type' => 'button', 'prevText' => '&lt;', 'nextText' => '&gt;', 'hidden' => false, 'navWidget' => $comments));?>
   </div>
 <?php else: ?>
   <div class="comment-list-empty">

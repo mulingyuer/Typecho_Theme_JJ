@@ -28,29 +28,28 @@ initGlobalImgLoadError();
 
 //监听scroll事件，记录滚动条位置
 function updateScrollY() {
-  dataStore.scrollY =
-    document.documentElement.scrollTop || document.body.scrollTop;
+	dataStore.scrollY = document.documentElement.scrollTop || document.body.scrollTop;
 }
 updateScrollY();
 window.addEventListener("scroll", updateScrollY);
 
 //监听resize事件，记录窗口大小
 function updateWindowSize() {
-  dataStore.windowWidth = window.innerWidth;
-  dataStore.windowHeight = window.innerHeight;
+	dataStore.windowWidth = window.innerWidth;
+	dataStore.windowHeight = window.innerHeight;
 }
 updateWindowSize();
 window.addEventListener("resize", updateWindowSize);
 
 //ascii
 if (import.meta.env.PROD) {
-  asciiEmoji();
+	asciiEmoji();
 }
 
 // spa初始化
 async function init() {
-  const el = document.createElement("div");
-  document.body.appendChild(el);
-  createApp(App).mount(el);
+	const el = document.createElement("div");
+	document.body.appendChild(el);
+	createApp(App).mount(el);
 }
 init();

@@ -11,8 +11,8 @@ import mitt from "mitt";
 
 /** mitt事件类型 */
 export type EventMitt = {
-  /** header是否显示 */
-  HEADER_SHOW: boolean;
+	/** header是否显示 */
+	HEADER_SHOW: boolean;
 };
 
 /** 实例 */

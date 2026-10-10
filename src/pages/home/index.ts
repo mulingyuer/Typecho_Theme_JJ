@@ -11,10 +11,18 @@ import "./style.scss";
 import "@/modules/nav";
 import "@/modules/home/article-nav";
 import "@/modules/article-card";
-import "@/modules/article-pagination";
-import "@/modules/article-skeleton";
+import "@/modules/pagination";
+import { initArticlePagination } from "@/modules/article-card/articlePagination";
+import { SkeletonController } from "@/modules/skeleton";
 import "@/modules/article-empty";
 import "@/modules/home/recent-comments";
 import "@/modules/home/recommended-article";
 import "@/modules/home/theme-tool";
 import "@/modules/footer";
+
+new SkeletonController({
+	selector: ".article-skeleton",
+	contentSelectors: [".article-card-wrap", ".jj-pagination", ".jj-pagination-button", ".jj-pagination-button-no-more"]
+});
+
+initArticlePagination();

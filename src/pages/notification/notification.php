@@ -8,6 +8,7 @@ if ( ! defined('__TYPECHO_ROOT_DIR__')) {
     exit;
 }
 ?>
+<?php if ( ! isAjax()): ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <?php $this->need('/modules/notes/notes.php');?>
@@ -23,7 +24,10 @@ if ( ! defined('__TYPECHO_ROOT_DIR__')) {
     <div class="container">
       <div class="main-content notification-content">
         <div class="main-left">
-          <?php $this->need('/modules/notification/list.php');?>
+<?php endif;?>
+          <?php $this->need('pages/notification/components/list.php');?>
+          <?php $this->need('pages/notification/components/pagination.php');?>
+<?php if ( ! isAjax()): ?>
         </div>
       </div>
     </div>
@@ -35,3 +39,4 @@ if ( ! defined('__TYPECHO_ROOT_DIR__')) {
   <?php $this->footer();?>
 </body>
 </html>
+<?php endif;?>

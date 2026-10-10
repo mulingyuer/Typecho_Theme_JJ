@@ -922,3 +922,123 @@ function themeInit($archive)
     }
 }
 
+/**
+ * @description: 渲染通用骨架屏 DOM。
+ * 布局配置说明见 src/modules/skeleton/README.md。
+ * 内联 style 只承载配置传入的尺寸/间距，颜色一律走 CSS 变量。
+ * @param array{selector:string, count?:int, item:array} $options
+ * @return void
+ */
+function renderSkeleton($options){
+    $selector = isset($options['selector']) && is_string($options['selector']) ? $options['selector'] : '';
+    $count = isset($options['count']) && is_int($options['count']) && $options['count'] > 0 ? $options['count'] : 1;
+    $item = isset($options['item']) && is_array($options['item']) ? $options['item'] : null;
+
+    if ($selector === '' || $item === null) {
+        return;
+    }
+
+    echo '<div class="jj-skeleton ' . htmlspecialchars($selector, ENT_QUOTES, 'UTF-8') . '">';
+    for ($i = 0; $i < $count; $i++) {
+        echo '<div class="jj-skeleton-item">';
+        renderSkeletonBlock($item);
+        echo '</div>';
+    }
+    echo '</div>';
+}
+
+/**
+ * @description: 递归渲染单个骨架块（renderSkeleton 内部使用）
+ * @param array $block 块配置
+ * @return void
+ */
+function renderSkeletonBlock($block)
+{
+    if (!is_array($block) || !isset($block['type']) || !is_string($block['type'])) {
+        return;
+    }
+
+    switch ($block['type']) {
+        case 'avatar':
+            $size = isset($block['size']) && is_numeric($block['size']) ? (int)$block['size'] : 40;
+            echo '<div class="jj-skeleton-avatar" style="width:' . $size . 'px;height:' . $size . 'px"></div>';
+            break;
+        case 'line':
+            $style = '';
+            if (isset($block['width']) && is_string($block['width']) && $block['width'] !== '') {
+                $style = ' style="width:' . htmlspecialchars($block['width'], ENT_QUOTES, 'UTF-8') . '"';
+            }
+            echo '<div class="jj-skeleton-line"' . $style . '></div>';
+            break;
+        case 'image':
+            $width = isset($block['width']) && is_string($block['width']) ? $block['width'] : '';
+            $height = isset($block['height']) && is_string($block['height']) ? $block['height'] : '';
+            $style = '';
+            if ($width !== '') {
+                $style .= 'width:' . htmlspecialchars($width, ENT_QUOTES, 'UTF-8') . ';';
+            }
+            if ($height !== '') {
+                $style .= 'height:' . htmlspecialchars($height, ENT_QUOTES, 'UTF-8') . ';';
+            }
+            echo '<div class="jj-skeleton-image"' . ($style !== '' ? ' style="' . $style . '"' : '') . '></div>';
+            break;
+        case 'row':
+        case 'column':
+            $gap = isset($block['gap']) && is_numeric($block['gap']) ? (int)$block['gap'] : ($block['type'] === 'row' ? 12 : 8);
+            $children = isset($block['children']) && is_array($block['children']) ? $block['children'] : array();
+            echo '<div class="jj-skeleton-' . $block['type'] . '" style="gap:' . $gap . 'px">';
+            foreach ($children as $child) {
+                renderSkeletonBlock($child);
+            }
+            echo '</div>';
+            break;
+    }
+}
+
+/**
+ * @description: 渲染通用分页组件。
+ * 使用文档见 src/modules/pagination/README.md。
+ *
+ * @param Widget_Archive $archive 归档对象（模板中一般为 $this）
+ * @param array $options {
+ *   @type string      $type       翻页模式：'infinite'（无限滚动）| 'button'（按钮翻页），默认 'infinite'
+ *   @type string|null $prevText   上一页文案，传 null/false 不渲染上一页，默认 '上一页'
+ *   @type string|null $nextText   下一页文案，传 null/false 不渲染下一页，默认 '下一页'
+ *   @type int         $pageSize   button 模式 pageNav() 两侧页码数，默认 1
+ *   @type string      $noMoreText infinite 模式"没有更多了"文案，默认 '没有更多了'
+ *   @type string|null $nextUrl    手动指定下一页链接（无法走 pageLink() 的场景，如独立页 ?page=N）
+ *   @type string|null $prevUrl    手动指定上一页链接（与 nextUrl 配套的手工模式）
+ *   @type bool|null   $hasMore    手动指定是否有下一页（与 nextUrl 配套），null 时由 pageLink 判断
+ *   @type string      $loadingImg loading 图相对主题目录路径，默认 '/images/article-loading.gif'
+ *   @type bool        $hidden     是否初始隐藏（配合骨架屏），默认 true
+ *   @type object|null $navWidget  button 模式（pageNav 分支）实际调用的 Widget，
+ *                                 默认 $archive。评论分页必须传评论 Widget（$this->comments() 回调参数），
+ *                                 因为 Archive 的 $countSql 未初始化，直接 pageNav() 会抛 Error
+ * }
+ * @return void
+ */
+function renderPagination($archive, $options = array())
+{
+    if (!is_array($options)) {
+        $options = array();
+    }
+    $defaults = array(
+        'type'       => 'infinite',
+        'prevText'   => '上一页',
+        'nextText'   => '下一页',
+        'pageSize'   => 1,
+        'noMoreText' => '没有更多了',
+        'nextUrl'    => null,
+        'prevUrl'    => null,
+        'hasMore'    => null,
+        'loadingImg' => '/images/article-loading.gif',
+        'hidden'     => true,
+        'navWidget'  => null,
+    );
+    $paginationOptions = array_merge($defaults, $options);
+    // need() 在 Widget 方法调用栈内 include 模板，读不到本函数的局部变量，
+    // 挂到 Archive 对象属性上传递（模板内 $this 与 $archive 是同一对象）
+    $archive->paginationOptions = $paginationOptions;
+    $archive->need('/modules/pagination/pagination.php');
+}
+

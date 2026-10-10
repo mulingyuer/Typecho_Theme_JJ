@@ -200,6 +200,17 @@ function themeConfig($form)
     );
     $form->addInput($paginationType);
 
+    // 评论管理翻页类型
+    $notificationPaginationType = new \Typecho\Widget\Helper\Form\Element\Select(
+        'notificationPaginationType',
+        array(
+            'infinite' => _t('无限滚动'),
+            'button' => _t('按钮翻页'),
+        ),
+        'infinite', _t('评论管理翻页类型'), _t('默认使用无限滚动；评论列表固定按钮翻页，不提供配置')
+    );
+    $form->addInput($notificationPaginationType);
+
     // 404页面类型
     $errorType = new \Typecho\Widget\Helper\Form\Element\Select(
         'errorType',

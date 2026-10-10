@@ -47,7 +47,7 @@
 		"oxlint": "^1.83.0",
 		"sass-embedded": "^1.104.1",
 		"ts-node": "^10.9.2",
-		"typescript": "^5.5.4",
+		"typescript": "^7.0.2",
 		"vite": "^8.3.0"
 	},
 	"packageManager": "pnpm@12.5.1"

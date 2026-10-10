@@ -9,10 +9,10 @@
  */
 
 declare module "axios" {
-  interface AxiosInstance {
-    /** 拦截器已剥掉 AxiosResponse 外壳，返回类型即响应体 */
-    <T = any>(config: AxiosRequestConfig): Promise<T>;
-  }
+	interface AxiosInstance {
+		/** 拦截器已剥掉 AxiosResponse 外壳，返回类型即响应体 */
+		<T = any>(config: AxiosRequestConfig): Promise<T>;
+	}
 }
 
 export {};

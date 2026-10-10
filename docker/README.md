@@ -4,12 +4,12 @@
 
 ## 环境组成
 
-| 服务       | 镜像                                | 容器名               | 说明                                                  |
-| ---------- | ----------------------------------- | -------------------- | ----------------------------------------------------- |
-| typecho    | `joyqi/typecho:1.3.0-php8.2-apache` | `typecho-mysql57`    | Typecho 官方镜像（PHP 8.2 + Apache），站点目录 `/app` |
-| caddy      | `caddy:2-alpine`                    | `typecho-mysql57-caddy` | 反向代理，提供 HTTPS 访问（`https://jj.test`）     |
-| mysql      | `mysql:5.7`                         | `typecho-mysql57-db` | 数据库，数据持久化在 `mysql-data/`                    |
-| phpmyadmin | `phpmyadmin:latest`                 | `typecho-mysql57-pma`   | Web 数据库管理面板，访问 `http://localhost:8080`   |
+| 服务       | 镜像                                | 容器名                  | 说明                                                  |
+| ---------- | ----------------------------------- | ----------------------- | ----------------------------------------------------- |
+| typecho    | `joyqi/typecho:1.3.0-php8.2-apache` | `typecho-mysql57`       | Typecho 官方镜像（PHP 8.2 + Apache），站点目录 `/app` |
+| caddy      | `caddy:2-alpine`                    | `typecho-mysql57-caddy` | 反向代理，提供 HTTPS 访问（`https://jj.test`）        |
+| mysql      | `mysql:5.7`                         | `typecho-mysql57-db`    | 数据库，数据持久化在 `mysql-data/`                    |
+| phpmyadmin | `phpmyadmin:latest`                 | `typecho-mysql57-pma`   | Web 数据库管理面板，访问 `http://localhost:8080`      |
 
 > **环境隔离**：四套环境（mysql57 / mysql80 / pgsql / sqlite）通过 compose 顶层 `name:` 字段拥有独立项目名与容器名（命名规范 `typecho-<环境>[-db|-pma|-caddy]`），`docker ps` 可直接区分当前环境，网络与数据卷互不共享。除 MySQL 5.7 外，还支持 **MySQL 8.0**、**SQLite**、**PostgreSQL 16** 三种数据库切换，详见下文「切换数据库环境」。
 
@@ -37,16 +37,18 @@ docker/
 ├── backup/                   # 数据库备份/恢复脚本与备份文件（备份文件 git 忽略）
 │   ├── backup.ps1            # 备份数据库
 │   └── restore.ps1           # 恢复数据库
+├── seed.php                  # 三库通用的 Typecho 测试数据生成脚本
+├── seed.ps1                  # 选择容器并执行测试数据脚本
 └── README.md                 # 本文档
 ```
 
 挂载关系：
 
-| 本地路径                              | 容器路径                           | 用途     |
-| ------------------------------------- | ---------------------------------- | -------- |
-| `docker/themes/`                      | `/app/usr/themes`                  | 主题     |
-| `docker/plugins/`                     | `/app/usr/plugins`                 | 插件     |
-| `docker/config.inc.php`               | `/app/config.inc.php`              | 配置文件 |
+| 本地路径                | 容器路径              | 用途     |
+| ----------------------- | --------------------- | -------- |
+| `docker/themes/`        | `/app/usr/themes`     | 主题     |
+| `docker/plugins/`       | `/app/usr/plugins`    | 插件     |
+| `docker/config.inc.php` | `/app/config.inc.php` | 配置文件 |
 
 > - `docker/themes/` 整目录挂载，可放入任意多个主题（如 Typecho 自带的 `default`、`classic-22`），后台「外观」中即可切换；
 > - 其中 `Typecho_Theme_JJ/` 是构建同步产物（theme-assembler 每次构建后从 `dist/` 先删后拷同步，**只动这个子目录，不影响其他主题**），请勿手动编辑，改动会被下次构建覆盖；
@@ -272,8 +274,8 @@ docker compose up -d
 
 ### 环境矩阵
 
-| 环境              | 项目名           | 启动命令                                                                   | 数据目录                 | 说明                 |
-| ----------------- | ---------------- | -------------------------------------------------------------------------- | ------------------------ | -------------------- |
+| 环境              | 项目名            | 启动命令                                                                   | 数据目录                 | 说明                 |
+| ----------------- | ----------------- | -------------------------------------------------------------------------- | ------------------------ | -------------------- |
 | MySQL 5.7（默认） | `typecho-mysql57` | `docker compose up -d`                                                     | `mysql-data/`            | 开发基准环境         |
 | MySQL 8.0         | `typecho-mysql80` | `docker compose -f docker-compose.yml -f docker-compose.mysql80.yml up -d` | `mysql-data-80/`         | 验证 MySQL 8.0 兼容  |
 | SQLite            | `typecho-sqlite`  | `docker compose -f docker-compose.sqlite.yml up -d`                        | `sqlite-data/typecho.db` | 单容器，无数据库服务 |
@@ -309,6 +311,21 @@ docker compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
 - 管理员账号均为 `admin` / `admin123`；
 - 首次启动自动执行安装（`TYPECHO_INSTALL=1`），已有表时跳过（`TYPECHO_DB_NEXT=keep`）；
 - 主题与插件挂载方式与默认环境一致，改代码即时生效。
+
+## 生成分页测试数据
+
+`seed.php` 使用 Typecho 数据库查询构造器，可在 MySQL 5.7/8.0、PostgreSQL 和 SQLite 环境复用。`seed.ps1` 会自动选择唯一运行中的 Typecho 容器；也可以用 `-Env` 显式指定环境：
+
+```powershell
+# 生成测试数据（执行前自动清理旧的 seed- 测试数据）
+.\docker\seed.ps1
+.\docker\seed.ps1 -Env mysql57
+
+# 仅清理脚本生成的数据
+.\docker\seed.ps1 -Env mysql57 -Clean
+```
+
+数据包含 60 篇文章、30 个分类、25 个标签、每篇 1–10 条评论（部分为嵌套回复）、3 篇独立页，以及主题使用的 `views`、`likes`、`titleImg` 自定义字段。清理只匹配 `seed-post-`、`seed-page-`、`seed-cat-` 和 `seed-tag-` 前缀，不会删除其他内容。执行前请确认目标库允许写入；清理操作不可恢复，建议先备份需要保留的数据。
 
 ## 备份与恢复
 

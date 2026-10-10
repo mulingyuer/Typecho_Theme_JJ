@@ -3,21 +3,21 @@
 // simplebar
 // Reinstate scrolling for non-JS clients
 .simplebar-content-wrapper {
-  scrollbar-width: auto;
-  -ms-overflow-style: auto;
+	scrollbar-width: auto;
+	-ms-overflow-style: auto;
 }
 
 .simplebar-content-wrapper::-webkit-scrollbar,
 .simplebar-hide-scrollbar::-webkit-scrollbar {
-  display: initial;
-  width: initial;
-  height: initial;
+	display: initial;
+	width: initial;
+	height: initial;
 }
 
 .simplebar-scrollbar::before {
-  width: 5px;
-  background-color: var(--jj-scroll-bar-bg1);
+	width: 5px;
+	background-color: var(--jj-scroll-bar-bg1);
 }
 .simplebar-scrollbar.simplebar-visible:before {
-  opacity: 1;
+	opacity: 1;
 }

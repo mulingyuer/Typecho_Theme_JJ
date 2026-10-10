@@ -9,8 +9,10 @@
  */
 
 export type Config = {
-	/** 分页类型 */
+	/** 文章分页类型 */
 	paginationType: "infinite" | "button";
+	/** 通知分页类型 */
+	notificationPaginationType: "infinite" | "button";
 	/** 主题path */
 	themePath: string;
 };

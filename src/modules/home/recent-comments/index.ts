@@ -8,12 +8,18 @@
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
+import { SkeletonController } from "@/modules/skeleton";
 import { singletonFaceReplace } from "@/modules/comment/emoji/faceReplace";
-import recentCommentsSkeleton from "@/modules/home/recent-comments-skeleton";
 
 class RecentComments {
 	/** 评论列表 */
 	private commentList: HTMLElement | null = document.querySelector(".recent-comments-list");
+	/** 骨架控制器 */
+	private skeleton = new SkeletonController({
+		selector: ".recent-comments-skeleton",
+		contentSelectors: [".recent-comments-list"],
+		waitForCloseSignal: true
+	});
 
 	constructor() {
 		//表情替换
@@ -22,7 +28,7 @@ class RecentComments {
 		}
 
 		//关闭骨架
-		recentCommentsSkeleton.receiveClose();
+		this.skeleton.receiveClose();
 	}
 }
 new RecentComments();

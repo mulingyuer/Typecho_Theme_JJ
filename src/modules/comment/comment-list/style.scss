@@ -145,42 +145,20 @@
 	}
 }
 
-// comment-pagination
+// comment-pagination（通用分页组件的样式定制：仅覆写变量与布局，见 modules/pagination/README.md）
 .comment-pagination {
-	.page-navigator {
+	--jj-pagination-item-bg: #f7f8fa;
+	--jj-pagination-item-size: 35px;
+	--jj-pagination-item-radius: 4px;
+	.jj-pagination-button {
 		padding: 10px;
-		list-style: none;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	li {
-		& + li {
-			margin-left: 8px;
-		}
-		&.current a {
-			color: var(--jj-comment-pagination-a-hover);
-			background-color: var(--jj-comment-pagination-a-bg-hover);
-		}
-	}
-	a {
-		display: block;
-		width: 35px;
-		height: 35px;
-		line-height: 35px;
-		text-align: center;
-		background-color: var(--jj-comment-pagination-a-bg);
-		font-size: 14px;
-		color: var(--jj-comment-pagination-a);
-		text-decoration: none;
-		border-radius: 4px;
-		transition: all 0.3s;
-		&:hover {
-			color: var(--jj-comment-pagination-a-hover);
-			background-color: var(--jj-comment-pagination-a-bg-hover);
-		}
-		&:active {
-			opacity: 0.7;
+		border: none;
+		background: transparent;
+		border-radius: 0;
+		margin-bottom: 0;
+		a,
+		span {
+			font-size: 14px;
 		}
 	}
 }

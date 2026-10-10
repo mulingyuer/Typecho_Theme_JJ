@@ -5,7 +5,17 @@
       <h3 class="recent-comments-title">最近评论</h3>
     </div>
     <div class="recent-comments-body">
-      <?php $this->need("/modules/home/recent-comments-skeleton/recent-comments-skeleton.php");?>
+      <?php renderSkeleton([
+      	'selector' => 'recent-comments-skeleton',
+      	'count'    => 3,
+      	'item'     => ['type' => 'row', 'gap' => 10, 'children' => [
+      		['type' => 'avatar', 'size' => 36],
+      		['type' => 'column', 'gap' => 4, 'children' => [
+      			['type' => 'line', 'width' => '40%'],
+      			['type' => 'line'],
+      		]],
+      	]],
+      ]);?>
       <div class="recent-comments-list hidden">
         <?php $this->widget('Widget_Comments_Recent', 'pageSize=6')->to($comments);?>
         <?php if (!$comments->have()): ?>

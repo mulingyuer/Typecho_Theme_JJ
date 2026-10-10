@@ -1,6 +1,8 @@
 .article-empty {
 	background-color: var(--jj-article-empty-bg);
-	& + .article-pagination {
+	& + .jj-pagination,
+	& + .jj-pagination-button,
+	& + .jj-pagination-button-no-more {
 		display: none;
 	}
 }

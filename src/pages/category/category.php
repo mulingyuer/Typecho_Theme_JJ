@@ -24,12 +24,20 @@
 <?php endif;?>
           <?php //是否有内容?>
           <?php if ($this->have()): ?>
-            <?php $this->need('/modules/article-skeleton/article-skeleton.php');?>
+            <?php renderSkeleton([
+            	'selector' => 'article-skeleton',
+            	'item'     => ['type' => 'column', 'gap' => 16, 'children' => [
+            		['type' => 'line', 'width' => '40%'],
+            		['type' => 'line'],
+            		['type' => 'line', 'width' => '80%'],
+            		['type' => 'line', 'width' => '60%'],
+            	]],
+            ]);?>
             <?php $this->need('/modules/article-card/article-card.php');?>
           <?php else: ?>
             <?php $this->need('/modules/article-empty/article-empty.php');?>
           <?php endif;?>
-          <?php $this->need('/modules/article-pagination/article-pagination.php');?>
+          <?php renderPagination($this, ['type' => $this->options->paginationType === 'button' ? 'button' : 'infinite']);?>
 <?php if ( ! isAjax()): ?>
         </div>
         <div class="main-right">

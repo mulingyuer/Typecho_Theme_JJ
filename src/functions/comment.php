@@ -71,6 +71,7 @@ function getArticleSummary($that, $maxLength = 80)
 function getIdPosts($id)
 {
     $permalink = '';
+    $path = '';
     $title = '';
 
     if ($id) {
@@ -93,9 +94,13 @@ function getIdPosts($id)
         if ($result) {
             $i = 1;
             foreach ($result as $val) {
-                $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
+                // permalink/path 不是数据库字段，push() 返回的原始行数组里不存在，
+                // 必须通过 widget 对象的魔术方法 __get 惰性计算（___permalink()/___path()）获取
+                $contentWidget = Typecho_Widget::widget('Widget_Abstract_Contents');
+                $val = $contentWidget->push($val);
                 $title = htmlspecialchars($val['title']);
-                $permalink = $val['permalink'];
+                $permalink = $contentWidget->permalink;
+                $path = $contentWidget->path;
             }
         }
     }
@@ -103,6 +108,135 @@ function getIdPosts($id)
     return array(
         'title' => $title,
         'permalink' => $permalink,
+        'path' => $path,
     );
+}
+
+/**
+ * @description: 计算评论在文章评论列表中的所在页码（复刻 Widget\Comments\Archive 分页规则）
+ * @param {*} $cid 文章id
+ * @param {*} $coid 评论id
+ * @Date: 2026-10-10 22:20:00
+ * @Author: mulingyuer
+ */
+function getCommentPageNum($cid, $coid)
+{
+    $options = Typecho_Widget::widget('Widget_Options');
+
+    // 未开启评论分页，固定第 1 页
+    if (empty($options->commentsPageBreak)) {
+        return 1;
+    }
+
+    $db = Typecho_Db::get();
+    $select = $db->select('coid', 'parent')->from('table.comments')
+        ->where('cid = ?', $cid)
+        ->where('status = ?', 'approved')
+        ->order('coid', Typecho_Db::SORT_ASC);
+
+    // 与官方评论组件保持一致：仅评论、排除 trackback/pingback
+    if (!empty($options->commentsShowCommentOnly)) {
+        $select->where('type = ?', 'comment');
+    }
+
+    $rows = $db->fetchAll($select);
+
+    // 官方分页规则：楼中楼回复挂在父评论下，只有顶层评论参与分页
+    $topLevelCoids = array();
+    foreach ($rows as $row) {
+        if (empty($row['parent'])) {
+            $topLevelCoids[] = intval($row['coid']);
+        }
+    }
+
+    // 评论列表倒序显示时，新评论在第 1 页
+    if ('DESC' === $options->commentsOrder) {
+        $topLevelCoids = array_reverse($topLevelCoids);
+    }
+
+    // 定位评论：回复评论跟随其顶层父评论定位
+    $coid = intval($coid);
+    $position = array_search($coid, $topLevelCoids, true);
+    if (false === $position) {
+        $topMap = array();
+        foreach ($rows as $row) {
+            $topMap[intval($row['coid'])] = intval($row['parent']);
+        }
+        while (!empty($topMap[$coid])) {
+            $coid = $topMap[$coid];
+        }
+        $position = array_search($coid, $topLevelCoids, true);
+    }
+
+    // 找不到（评论已删除/未过审）时兜底第 1 页
+    if (false === $position) {
+        return 1;
+    }
+
+    $pageSize = max(1, intval($options->commentsPageSize));
+    return intval(floor($position / $pageSize)) + 1;
+}
+
+/**
+ * @description: 评论所在页是否为文章默认页（无 comment-page 分段时显示的页）
+ * 复刻 Widget\Comments\Archive 规则：commentsPageDisplay=last 时默认显示最后一页，否则第 1 页
+ * @param {*} $pageNum 评论所在页码
+ * @param {*} $cid 文章id
+ * @Date: 2026-10-10 23:10:00
+ * @Author: mulingyuer
+ */
+function isCommentDefaultPage($pageNum, $cid)
+{
+    $options = Typecho_Widget::widget('Widget_Options');
+
+    if ('last' !== $options->commentsPageDisplay) {
+        return 1 === $pageNum;
+    }
+
+    // 默认显示最后一页：总页数 = ceil(顶层评论数 / 每页条数)
+    $db = Typecho_Db::get();
+    $select = $db->select(array('COUNT(coid)' => 'num'))->from('table.comments')
+        ->where('cid = ?', $cid)
+        ->where('status = ?', 'approved')
+        ->where('parent = ?', 0);
+    if (!empty($options->commentsShowCommentOnly)) {
+        $select->where('type = ?', 'comment');
+    }
+    $topCount = intval($db->fetchObject($select)->num);
+
+    $pageSize = max(1, intval($options->commentsPageSize));
+    $lastPage = max(1, intval(ceil($topCount / $pageSize)));
+    return $pageNum === $lastPage;
+}
+
+/**
+ * @description: 生成跳转评论的完整链接（含评论分页段），如 .../archives/1116/comment-page-2#comment-6130
+ * @param {*} $permalink 文章链接
+ * @param {*} $path 文章路径（不含域名，如 /index.php/archives/1116/）
+ * @param {*} $cid 文章id
+ * @param {*} $coid 评论id
+ * @Date: 2026-10-10 22:20:00
+ * @Author: mulingyuer
+ */
+function getCommentReplyUrl($permalink, $path, $cid, $coid)
+{
+    if (empty($permalink)) {
+        return '#comment-' . intval($coid);
+    }
+
+    $options = Typecho_Widget::widget('Widget_Options');
+    $pageNum = getCommentPageNum($cid, $coid);
+    $base = $permalink;
+
+    // 评论不在默认页时，才需要拼 comment-page-N 分段
+    if (!empty($path) && !isCommentDefaultPage($pageNum, $cid)) {
+        // 与官方评论分页一致，走 comment_page 路由生成 .../comment-page-N
+        $base = Typecho_Router::url('comment_page', array(
+            'permalink' => $path,
+            'commentPage' => $pageNum,
+        ), $options->index);
+    }
+
+    return $base . '#comment-' . intval($coid);
 }
 

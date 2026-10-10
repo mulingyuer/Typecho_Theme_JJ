@@ -3,6 +3,23 @@
 		display: none;
 	}
 }
+/* 文章列表骨架（通用 skeleton 组件的业务定制） */
+.article-skeleton {
+	background-color: var(--jj-skeleton-bg);
+	padding: 20px;
+	.jj-skeleton-line {
+		height: 14px;
+	}
+	.jj-skeleton-item > .jj-skeleton-column > .jj-skeleton-line:first-child {
+		margin-top: 8px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.article-skeleton {
+		padding: 12px 10px;
+	}
+}
 .article-card {
 	padding: 12px 20px;
 	background-color: var(--jj-article-card-bg);

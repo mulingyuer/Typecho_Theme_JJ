@@ -31,6 +31,21 @@
 }
 // .recent-comments-body {
 // }
+/* 最近评论骨架（通用 skeleton 组件的业务定制） */
+.recent-comments-skeleton {
+	.jj-skeleton-item {
+		padding: 15px 20px;
+		& + & {
+			margin-top: 0;
+		}
+	}
+	.jj-skeleton-line:first-child {
+		height: 16px;
+	}
+	.jj-skeleton-line:last-child {
+		height: 13px;
+	}
+}
 .recent-comments-list {
 	&.hidden {
 		display: none;

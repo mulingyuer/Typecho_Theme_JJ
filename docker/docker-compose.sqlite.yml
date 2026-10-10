@@ -45,15 +45,13 @@ services:
     image: alpine:latest
     container_name: typecho-sqlite-mysql-stub
     profiles: ["disabled"]
-    entrypoint:
-      ["sh", "-c", "echo 'SQLite env, MySQL disabled' && sleep infinity"]
+    entrypoint: ["sh", "-c", "echo 'SQLite env, MySQL disabled' && sleep infinity"]
 
   phpmyadmin:
     image: alpine:latest
     container_name: typecho-sqlite-pma-stub
     profiles: ["disabled"]
-    entrypoint:
-      ["sh", "-c", "echo 'SQLite env, phpMyAdmin disabled' && sleep infinity"]
+    entrypoint: ["sh", "-c", "echo 'SQLite env, phpMyAdmin disabled' && sleep infinity"]
 
   # 独立定义 caddy（不继承 base，因 base caddy 在 reverse-proxy profile 下被禁用）
   caddy:

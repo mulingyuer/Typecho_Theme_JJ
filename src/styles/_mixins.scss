@@ -32,15 +32,15 @@
 @mixin skeleton-animation() {
 	background-image: linear-gradient(
 		90deg,
-		var(--jj-skeleton-line-bg1),
-		var(--jj-skeleton-line-bg2),
-		var(--jj-skeleton-line-bg1)
+		var(--jj-skeleton-block-bg),
+		var(--jj-skeleton-block-bg-highlight),
+		var(--jj-skeleton-block-bg)
 	);
 	background-size: 480px 480px;
-	animation: article-skeleton-animation 0.6s linear infinite;
+	animation: jj-skeleton-animation 0.6s linear infinite;
 }
 
-@keyframes article-skeleton-animation {
+@keyframes jj-skeleton-animation {
 	0% {
 		background-position: 0 0;
 	}
