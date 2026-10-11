@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2026-10-11
- * @LastEditTime: 2026-10-11 13:03:59
+ * @LastEditTime: 2026-10-11 15:06:44
  * @LastEditors: mulingyuer
  * @Description: 文章列表区模块入口（骨架屏 + 文章卡片 + 分页，时序对齐 notification 页）
  * @FilePath: \Typecho_Theme_JJ\src\modules\article-list\index.ts
@@ -48,7 +48,7 @@ export async function initArticleList() {
 	// 关闭骨架屏
 	listSkeleton.receiveClose();
 
-	await sleep(1500);
+	await sleep(500);
 
 	// 文章卡片（点击代理 + 首屏缩略图懒加载）
 	const articleCard = new ArticleCard();

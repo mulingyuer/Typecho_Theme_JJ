@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2026-08-02 11:20:27
- * @LastEditTime: 2026-10-11 00:09:00
+ * @LastEditTime: 2026-10-11 15:07:15
  * @LastEditors: mulingyuer
  * @Description: 通知页入口文件
  * @FilePath: \Typecho_Theme_JJ\src\pages\notification\index.ts
@@ -55,7 +55,7 @@ async function initNotificationPage() {
   // 关闭骨架屏
   listSkeleton.receiveClose();
 
-  await sleep(1500);
+  await sleep(500);
 
   // 初始化无限滚动分页
   initNotificationPagination(listContainer);
