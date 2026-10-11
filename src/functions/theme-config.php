@@ -211,17 +211,6 @@ function themeConfig($form)
     );
     $form->addInput($notificationPaginationType);
 
-    // 404页面类型
-    $errorType = new \Typecho\Widget\Helper\Form\Element\Select(
-        'errorType',
-        array(
-            'chrome' => _t('谷歌浏览器小恐龙'),
-            'juejin' => _t('掘金404'),
-        ),
-        'juejin', _t('404页面类型'), _t('默认使用掘金404')
-    );
-    $form->addInput($errorType);
-
     // 头像源
     $gravatarSource = new \Typecho\Widget\Helper\Form\Element\Select(
         'gravatarSource',

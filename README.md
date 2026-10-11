@@ -47,16 +47,15 @@ Gitee仓库：[Typecho_Theme_JJ](https://gitee.com/mulingyuer/Typecho_Theme_JJ)
 11. 新版的掘金 UI
 12. 搜索记录列表
 13. 文章列表加载支持无限加载和分页加载切换
-14. 自定义 404 页面支持两种类型自由切换
-15. 更好的页面性能和 SEO
-16. 有彩蛋哦
-17. 高保真掘金目录树
-18. 支持 docsearch（需要自己申请 apiKey）
-19. 新增移动端目录树功能
-20. 新增文章置顶功能
-21. 新增首页右侧推荐文章功能（具体查看文档）
-22. 配套文章编辑器 [Typecho_Plugin_JJEditor](https://github.com/mulingyuer/Typecho_Plugin_JJEditor) 实现友链页样式编辑时预览
-23. 还有很多变化需细细品味
+14. 更好的页面性能和 SEO
+15. 有彩蛋哦
+16. 高保真掘金目录树
+17. 支持 docsearch（需要自己申请 apiKey）
+18. 新增移动端目录树功能
+19. 新增文章置顶功能
+20. 新增首页右侧推荐文章功能（具体查看文档）
+21. 配套文章编辑器 [Typecho_Plugin_JJEditor](https://github.com/mulingyuer/Typecho_Plugin_JJEditor) 实现友链页样式编辑时预览
+22. 还有很多变化需细细品味
 
 ## 主题预览
 

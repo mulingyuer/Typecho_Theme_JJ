@@ -7,53 +7,27 @@
   <?php $this->need('/modules/notes/notes.php');?>
 <head>
   <?php $this->need('/modules/default-head/default-head.php');?>
-  <?php if ($this->options->errorType === 'chrome'): ?>
-    <link href="<?php $this->options->themeUrl('/game/fonts.css');?>" rel="stylesheet" type="text/css">
-    <link href="<?php $this->options->themeUrl('/game/game.css');?>" rel="stylesheet" type="text/css">
-    <script src="<?php $this->options->themeUrl('/game/game.js');?>"></script>
-  <?php endif;?>
   <!--VITE_HEAD_TAGS-->
   <?php //head标签底部插入代码 ?>
   <?php $this->options->headInsertCode();?>
 </head>
-<body class="<?php if ($this->options->errorType !== 'chrome') {echo 'juejin-error';}?>">
+<body class="juejin-error">
   <?php $this->need('/modules/header/header.php');?>
   <?php $this->need('/modules/nav/nav.php');?>
   <main class="main" role="main">
     <div class="container">
       <div class="error-content">
-        <?php if ($this->options->errorType === 'chrome'): ?>
-          <div class="error-card">
-            <div class="error-card-head">
-              <div class="error-card-logo-wrap">
-                <img class="error-card-logo" src="<?php $this->options->themeUrl('/images/header/mobile-logo.png');?>" alt="<?php $this->options->title();?>">
-              </div>
-            </div>
-            <div class="error-card-body">
-              <div class="error-title">
-                <strong>404.</strong>出现了一个错误。
-              </div>
-              <div class="error-desc">也许可以尝试一下其他方式（空格 || 触摸）</div>
-            </div>
+        <div class="juejin-error-card">
+          <div class="juejin-error-card-head">
+            <img class="juejin-error-card-img" src="<?php $this->options->themeUrl('/images/404.svg');?>" alt="404">
           </div>
-        <?php else: ?>
-          <div class="juejin-error-card">
-            <div class="juejin-error-card-head">
-              <img class="juejin-error-card-img" src="<?php $this->options->themeUrl('/images/404.svg');?>" alt="404">
-            </div>
-            <div class="juejin-error-card-footer">
-              <a class="juejin-error-card-btn" href="<?php $this->options->siteUrl();?>" target="_self">返回首页</a>
-            </div>
+          <div class="juejin-error-card-footer">
+            <a class="juejin-error-card-btn" href="<?php $this->options->siteUrl();?>" target="_self">返回首页</a>
           </div>
-        <?php endif;?>
+        </div>
       </div>
     </div>
   </main>
-  <?php if ($this->options->errorType === 'chrome'): ?>
-    <div id="t" class="offline">
-      <?php $this->need('/modules/404/game.php');?>
-    </div>
-  <?php endif;?>
   <?php $this->need('/modules/fixed-tool/fixed-tool.php');?>
   <?php //body标签底部插入代码 ?>
   <?php $this->options->bodyInsertCode();?>
