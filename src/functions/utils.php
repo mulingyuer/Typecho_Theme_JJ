@@ -99,30 +99,42 @@ function timeFormatting($time)
 
 /**
  * @description: 获取文章缩略图
+ * 优先级：自定义字段 titleImg/thumb > 正文 HTML 图片 > 正文 Markdown 图片 > 附件图片
+ * 附件查询仅在前面分支均无结果时执行，避免列表页每篇文章多查一次附件表。
  * @param {*} $that
  * @Date: 2023-03-19 17:03:31
  * @Author: mulingyuer
  */
 function articleThumbnail($that)
 {
-    $attach = $that->attachments(1)->attachment;
-    $pattern1 = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
-    $pattern2 = '/\!\[.*?\]\((.*?)\)/i';
-
-    //如果有自定义缩略图
-    if ($that->fields->titleImg) {
-        return $that->fields->titleImg;
-    } elseif ($that->fields->thumb) {
-        return $that->fields->thumb;
-    } elseif (preg_match_all($pattern1, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
-        return $thumbUrl[1][0];
-    } elseif (preg_match_all($pattern2, $that->content, $thumbUrl) && strlen($thumbUrl[1][0]) > 7) {
-        return $thumbUrl[1][0];
-    } elseif ($attach && $attach->isImage) {
-        return $attach->url;
-    } else {
-        return '';
+    static $cache = array();
+    $cid = isset($that->cid) ? (int) $that->cid : 0;
+    if ($cid && array_key_exists($cid, $cache)) {
+        return $cache[$cid];
     }
+
+    $thumbnail = '';
+    $fields = parseFields($that->fields);
+
+    if (!empty($fields['titleImg'])) {
+        $thumbnail = $fields['titleImg'];
+    } elseif (!empty($fields['thumb'])) {
+        $thumbnail = $fields['thumb'];
+    } elseif (preg_match('/<img.*?src="(.*?)"[^>]*>/i', $that->content, $matches) && strlen($matches[1]) > 7) {
+        $thumbnail = $matches[1];
+    } elseif (preg_match('/\!\[.*?\]\((.*?)\)/i', $that->content, $matches) && strlen($matches[1]) > 7) {
+        $thumbnail = $matches[1];
+    } else {
+        $attach = $that->attachments(1)->attachment;
+        if ($attach && $attach->isImage) {
+            $thumbnail = $attach->url;
+        }
+    }
+
+    if ($cid) {
+        $cache[$cid] = $thumbnail;
+    }
+    return $thumbnail;
 }
 
 /**

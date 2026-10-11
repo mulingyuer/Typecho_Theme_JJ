@@ -34,11 +34,11 @@
                   <span><?php $relatedPosts->commentsNum(_t('0'), _t('1'), _t('%d '));?></span>
                 </a>
               </div>
-              <?php $relatedTags = array_slice($relatedPosts->tags, 0, 3);?>
-              <?php if (count($relatedTags) > 0): ?>
+              <?php $relatedTags = array_slice(is_array($relatedPosts->tags) ? $relatedPosts->tags : array(), 0, 3);?>
+              <?php if (!empty($relatedTags)): ?>
               <div class="articles-related-list-item-footer-right">
                 <?php foreach ($relatedTags as $tag): ?>
-                  <a class="articles-related-list-item-tag" href="<?php echo $tag['url']; ?>"><?php echo $tag['name']; ?></a>
+                  <a class="articles-related-list-item-tag" href="<?php echo htmlspecialchars($tag['url']); ?>"><?php echo htmlspecialchars($tag['name']); ?></a>
                 <?php endforeach;?>
               </div>
               <?php endif;?>

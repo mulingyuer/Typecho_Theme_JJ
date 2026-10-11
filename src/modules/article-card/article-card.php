@@ -1,5 +1,5 @@
 <?php $isArticleInfinite = $this->options->paginationType === 'infinite';?>
-<?php $ArticleTarget = "_self";if ($isArticleInfinite) {$ArticleTarget = "_blank";}?>
+<?php $ArticleTarget = $isArticleInfinite ? '_blank' : '_self';?>
 <div class="article-card-wrap hidden">
   <?php while ($this->next()): ?>
   <article class="article-card" data-link="<?php $this->permalink();?>" itemscope itemtype="http://schema.org/BlogPosting">
@@ -10,11 +10,11 @@
       </span>
       <time class="article-card-time" datetime="<?php $this->date('c');?>" itemprop="datePublished"><?php timeFormatting($this->created);?></time>
       <span class="article-card-category">
-        <?php $categories = $this->categories;?>
+        <?php $categories = array_slice(is_array($this->categories) ? $this->categories : array(), 0, 2);?>
         <?php if (!empty($categories)): ?>
           <?php foreach ($categories as $category): ?>
-            <a class="article-card-category-link" target="<?php echo $ArticleTarget; ?>" href="<?php echo $category['permalink']; ?>" title="<?php echo $category['name']; ?>">
-              <?php echo $category['name']; ?>
+            <a class="article-card-category-link" target="<?php echo $ArticleTarget; ?>" href="<?php echo htmlspecialchars($category['permalink']); ?>" title="<?php echo htmlspecialchars($category['name']); ?>">
+              <?php echo htmlspecialchars($category['name']); ?>
             </a>
           <?php endforeach;?>
         <?php else: ?>
@@ -41,11 +41,11 @@
               <span><?php echo numUnitConversion($this->commentsNum); ?></span>
             </a>
           </div>
-          <?php $articleTags = array_slice($this->tags, 0, 3);?>
-          <?php if (count($articleTags) > 0): ?>
+          <?php $articleTags = array_slice(is_array($this->tags) ? $this->tags : array(), 0, 3);?>
+          <?php if (!empty($articleTags)): ?>
           <div class="article-card-footer-right">
             <?php foreach ($articleTags as $tag): ?>
-              <a class="article-card-tag" href="<?php echo $tag['url']; ?>" target="<?php echo $ArticleTarget; ?>" title="<?php echo $tag['name']; ?>"><?php echo $tag['name']; ?></a>
+              <a class="article-card-tag" href="<?php echo htmlspecialchars($tag['url']); ?>" target="<?php echo $ArticleTarget; ?>" title="<?php echo htmlspecialchars($tag['name']); ?>"><?php echo htmlspecialchars($tag['name']); ?></a>
             <?php endforeach;?>
           </div>
           <?php endif;?>
@@ -54,7 +54,7 @@
       <?php $thumbnail = articleThumbnail($this);?>
       <?php if ($thumbnail !== ''): ?>
       <div class="article-card-thumb">
-        <img class="article-card-thumb-img" src="<?php $this->options->themeUrl('/images/loading.gif');?>" data-src="<?php echo $thumbnail; ?>" data-error="<?php $this->options->themeUrl('/images/loading_error.gif');?>" alt="<?php $this->title()?>">
+        <img class="article-card-thumb-img" src="<?php $this->options->themeUrl('/images/loading.gif');?>" data-src="<?php echo htmlspecialchars($thumbnail); ?>" data-error="<?php $this->options->themeUrl('/images/loading_error.gif');?>" alt="<?php echo htmlspecialchars($this->title); ?>">
       </div>
       <?php endif;?>
     </div>
