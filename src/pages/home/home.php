@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <h1 style="display:none;"><?php blogTitle($this); ?></h1>
+    <h1 style="display:none;"><?php echo headEscape(blogTitle($this)); ?></h1>
     <?php $this->need('/modules/header/header.php'); ?>
     <?php $this->need('/modules/nav/nav.php'); ?>
     <main class="main" role="main">

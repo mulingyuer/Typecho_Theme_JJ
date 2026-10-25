@@ -4,6 +4,29 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 /**
+ * @description: 生成相对于当前主题目录的资源 URL
+ * @param string $path 资源路径，例如 /images/favicon/favicon.svg
+ * @return string
+ */
+function themeResourceUrl($path = '')
+{
+    $themeUrl = rtrim((string) Helper::options()->themeUrl, '/');
+    $path = ltrim((string) $path, '/');
+
+    return $path === '' ? $themeUrl : $themeUrl . '/' . $path;
+}
+
+/**
+ * @description: 转义头部模板中的动态 HTML 文本或属性值
+ * @param mixed $value
+ * @return string
+ */
+function headEscape($value)
+{
+    return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
+}
+
+/**
  * @description: 兼容解析文章自定义字段。
  * Typecho 1.3 起 $archive->fields 为对象，旧版本为 serialize 字符串，统一转为数组返回。
  * @param {*} $fields 原始 fields 值（对象或字符串）
@@ -71,7 +94,9 @@ function getGravatarPrefix()
  */
 function timeFormatting($time)
 {
-    if ($time == 'no') {return;}
+    if ($time == 'no') {
+        return;
+    }
     $chunks = array(
         array(31536000, '年'),
         array(2592000, '月'),
@@ -90,7 +115,6 @@ function timeFormatting($time)
         if (($count = floor($since / $seconds)) != 0) {
             break;
         }
-
     }
     $output = $count . $name . '前';
 
@@ -224,7 +248,7 @@ function promo($widget)
             $widget->setField($field, 'str', $value, $widget->cid);
         } else {
             $db->query($db->delete('table.fields')
-                    ->where('cid = ? AND name = ?', $widget->cid, $field));
+                ->where('cid = ? AND name = ?', $widget->cid, $field));
         }
         $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
     } elseif ($operate === 'inc') {
@@ -241,7 +265,7 @@ function promo($widget)
             $widget->setField($field, 'str', $value, $widget->cid);
         } else {
             $db->query($db->delete('table.fields')
-                    ->where('cid = ? AND name = ?', $widget->cid, $field));
+                ->where('cid = ? AND name = ?', $widget->cid, $field));
         }
         $widget->response->throwJson(array('status' => 1, 'msg' => _t('已完成操作'), 'result' => json_encode($result)));
     }
@@ -270,11 +294,13 @@ function getAllPages()
     $db = Typecho_Db::get();
     if (class_exists('\Typecho\Widget')) {
         $widget = \Widget\Contents\Page\Rows::alloc();
-        foreach (array(
-            'stack' => array(),
-            'row' => array(),
-            'length' => 0,
-        ) as $name => $val) {
+        foreach (
+            array(
+                'stack' => array(),
+                'row' => array(),
+                'length' => 0,
+            ) as $name => $val
+        ) {
             try {
                 $reflect = new ReflectionClass($widget);
                 $property = $reflect->getProperty($name);
@@ -287,12 +313,11 @@ function getAllPages()
         $widget = new Widget_Contents_Page_List(Typecho_Request::getInstance(), Typecho_Widget_Helper_Empty::getInstance(), null);
     }
     $db->fetchAll($db->select()
-            ->from('table.contents')
-            ->where('table.contents.type = ?', 'page')
-            ->where('table.contents.status = ? or table.contents.status = ?', 'publish', 'hidden')
-            ->where('table.contents.created < ?', Helper::options()->time), array($widget, 'push'));
+        ->from('table.contents')
+        ->where('table.contents.type = ?', 'page')
+        ->where('table.contents.status = ? or table.contents.status = ?', 'publish', 'hidden')
+        ->where('table.contents.created < ?', Helper::options()->time), array($widget, 'push'));
     return $widget;
-
 }
 
 /**
@@ -435,7 +460,9 @@ function getGroup($uid = 0)
     $db = Typecho_Db::get();
     $prow = $db->fetchRow($db->select('group')->from('table.users')->where('uid = ?', $uid));
     $group = $prow['group'];
-    if (empty($group)) {$group = 'visitor';}
+    if (empty($group)) {
+        $group = 'visitor';
+    }
 
     return $group;
 }
@@ -643,7 +670,6 @@ function setDocSearchCookie()
         $content = json_encode($data);
         setcookie($key, $content, $expire, $path, $domain, $secure, $httpOnly);
     }
-
 }
 
 /**
@@ -899,7 +925,8 @@ function getArticleDetailRecommended()
         'title' => $cidArticle->title,
         'permalink' => $cidArticle->permalink,
         'date' => $cidArticle->created,
-        'thumb' => $cidArticle->fields->thumb);
+        'thumb' => $cidArticle->fields->thumb
+    );
 }
 
 //主题themeInit函数
@@ -908,7 +935,9 @@ function themeInit($archive)
     //评论回复楼层最高999层.这个正常设置最高只有7层
     Helper::options()->commentsMaxNestingLevels = 999;
     //自动增加浏览次数
-    if ($archive->is('single') || $archive->is('page')) {viewsCounter($archive);}
+    if ($archive->is('single') || $archive->is('page')) {
+        viewsCounter($archive);
+    }
     //目录树
     if ($archive->is('single')) {
         $archive->content = addAnchorPoint($archive->content);
@@ -941,7 +970,8 @@ function themeInit($archive)
  * @param array{selector:string, count?:int, item:array} $options
  * @return void
  */
-function renderSkeleton($options){
+function renderSkeleton($options)
+{
     $selector = isset($options['selector']) && is_string($options['selector']) ? $options['selector'] : '';
     $count = isset($options['count']) && is_int($options['count']) && $options['count'] > 0 ? $options['count'] : 1;
     $item = isset($options['item']) && is_array($options['item']) ? $options['item'] : null;
@@ -1053,4 +1083,3 @@ function renderPagination($archive, $options = array())
     $archive->paginationOptions = $paginationOptions;
     $archive->need('/modules/pagination/pagination.php');
 }
-
