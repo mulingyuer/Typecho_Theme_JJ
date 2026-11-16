@@ -18,6 +18,9 @@ import "@/styles/index.scss";
 import "simplebar/dist/simplebar.css";
 import "element-plus/es/components/config-provider/style/css";
 import "element-plus/es/components/message/style/css";
+import "element-plus/es/components/dialog/style/css";
+import "element-plus/es/components/input/style/css";
+import "element-plus/es/components/button/style/css";
 
 //modules
 import "@/modules/header";

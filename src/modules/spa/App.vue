@@ -8,12 +8,15 @@
  * 怎么可能会有bug！！！
 -->
 <template>
-	<el-config-provider :locale="zhCn"> </el-config-provider>
+	<el-config-provider :locale="zhCn">
+		<global-modal-renderer />
+	</el-config-provider>
 </template>
 
 <script setup lang="ts">
 import { ElConfigProvider } from "element-plus";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
+import GlobalModalRenderer from "@/components/GlobalModalRenderer";
 </script>
 
 <style lang="scss" scoped></style>

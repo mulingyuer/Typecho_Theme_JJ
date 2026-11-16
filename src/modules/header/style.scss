@@ -133,6 +133,9 @@
 	align-items: center;
 	justify-content: center;
 	margin-right: 6px;
+	border: 0;
+	padding: 0;
+	background: transparent;
 	cursor: pointer;
 	&:hover {
 		color: var(--jj-header-comment-color-active);
@@ -196,6 +199,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: 0;
+	padding: 0;
 	cursor: pointer;
 	&:active {
 		opacity: 0.7;
@@ -252,7 +257,12 @@
 	border-bottom: 1px solid var(--jj-header-nav-border-color);
 }
 .search-history-clear-btn {
+	border: 0;
+	padding: 0;
+	background: transparent;
+	font-size: inherit;
 	color: var(--jj-search-history-clear-color);
+	cursor: pointer;
 	&:active {
 		opacity: 0.7;
 	}
@@ -268,7 +278,8 @@
 	white-space: nowrap;
 	@include one-line();
 	&:hover,
-	&:active {
+	&:active,
+	&.active {
 		background-color: var(--jj-search-history-item-bg);
 	}
 }
@@ -451,63 +462,6 @@
 	&:active {
 		opacity: 0.7;
 	}
-}
-
-//移动端搜索
-.mobile-search {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 2;
-	display: none;
-	overflow: hidden;
-	&.visible {
-		.mobile-search-mask {
-			opacity: 1;
-		}
-		.mobile-search-content {
-			transform: translate3D(0, 0, 0);
-		}
-	}
-}
-.mobile-search-mask {
-	height: 100%;
-	background-color: var(--jj-mobile-search-mask-bg);
-	opacity: 0;
-	transition: opacity 0.2s ease-in-out;
-}
-.mobile-search-content {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 120px;
-	background-color: var(--jj-mobile-search-bg);
-	transition: transform 0.15s ease-in-out;
-	transform: translate3D(0, -100%, 0);
-}
-.mobile-search-close {
-	position: absolute;
-	top: 10px;
-	right: 20px;
-	font-size: 20px;
-	color: var(--jj-header-search-btn-color);
-	cursor: pointer;
-	&:active {
-		opacity: 0.7;
-	}
-}
-.mobile-search-close-icon {
-	font-size: inherit;
-}
-.mobile-search-body {
-	height: 100%;
-	padding: 20px;
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
 }
 
 @media screen and (max-width: 1190px) {
