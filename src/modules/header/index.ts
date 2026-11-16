@@ -11,11 +11,10 @@ import "./style.scss";
 import { dataStore } from "@/store/data";
 import { watch } from "vue";
 import { useSearchHistory } from "@/composables/useSearchHistory";
-import { lockBodyScroll, unlockBodyScroll } from "@/utils/rollingLock";
-// import QRCode from "qrcode";
 import eventMitt from "@/utils/mittEvent";
-import { ElMessage } from "element-plus";
 import MobileSearchDialog from "@/components/MobileSearchDialog";
+import LoginDialog from "@/components/LoginDialog";
+import type { LoginDialogProps } from "@/components/LoginDialog/types";
 import { useModal } from "@/composables/useModal";
 
 const modal = useModal();
@@ -308,82 +307,37 @@ class HeaderMenu {
 }
 new HeaderMenu();
 
-//loginDialog
-class LoginDialog {
-	private qrCodeImg: HTMLElement | null = null; //二维码容器
-	private loginBtn: HTMLElement | null = null; //登录按钮
-	private dialog: HTMLElement | null = null; //弹窗容器
-	private closeBtn: HTMLElement | null = null; //关闭按钮
-	private mask: HTMLElement | null = null; //遮罩层
-	private dialogContent: HTMLElement | null = null; //弹窗内容
-	private articleBtn: HTMLElement | null = null; //写文章按钮
+type LoginConfig = Pick<LoginDialogProps, "action" | "referer">;
 
-	constructor() {
-		this.loginBtn = document.querySelector(".header-login-btn");
-		if (!this.loginBtn) return;
-		this.dialog = document.querySelector(".login-dialog");
-		this.qrCodeImg = document.querySelector(".login-dialog-qrcode-img");
-		this.closeBtn = document.querySelector(".login-dialog-close");
-		this.mask = document.querySelector(".login-dialog-mask");
-		this.dialogContent = document.querySelector(".login-dialog-content");
-		this.articleBtn = document.querySelector(".header-article-btn.login");
-		//二维码
-		// this.createQrCode();
-		//绑定事件
-		this.loginBtn.addEventListener("click", this.onClickLogin.bind(this));
-		this.closeBtn && this.closeBtn.addEventListener("click", this.onClickClose.bind(this));
-		this.mask && this.mask.addEventListener("click", this.onClickClose.bind(this));
-		if (this.articleBtn) {
-			this.articleBtn.addEventListener("click", this.onClickLogin.bind(this));
-		}
-		//协议按钮
-		const protocolBtn = Array.from(document.querySelectorAll(".login-dialog-footer .login-dialog-link"));
-		protocolBtn.forEach((btn) => {
-			btn.addEventListener("click", this.onProtocolBtnClick);
-		});
+function initLoginDialog() {
+	const configElement = document.querySelector<HTMLScriptElement>("#header-login-config");
+	// 已登录页面没有登录配置，无需初始化。
+	if (!configElement) return;
+
+	let config: LoginConfig;
+	try {
+		config = JSON.parse(configElement.textContent || "") as LoginConfig;
+	} catch (error) {
+		console.error("登录弹窗配置解析失败", error);
+		return;
+	}
+	if (!config.action || !config.referer) {
+		console.error("登录弹窗配置缺少 action 或 referer");
+		return;
 	}
 
-	/** 生成二维码并丢入html中 */
-	// private createQrCode() {
-	// 	QRCode.toDataURL("https://s1.ax1x.com/2023/03/17/ppGkaMd.png", { margin: 1 })
-	// 		.then((url) => {
-	// 			this.qrCodeImg?.setAttribute("src", url);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error("二维码生成失败", error);
-	// 		});
-	// }
-
-	/** 登录按钮点击事件 */
-	private onClickLogin() {
-		if (!this.dialog) return;
-		this.dialog.classList.add("visible");
-		getComputedStyle(this.dialog).display;
-		this.mask?.classList.add("visible");
-		this.dialogContent?.classList.add("visible");
-		lockBodyScroll();
+	function openLoginDialog() {
+		// 两个入口复用同一常驻实例；关闭产生的 rejection 属于正常取消。
+		void modal
+			.open({
+				component: LoginDialog,
+				props: { action: config.action, referer: config.referer },
+				persistent: { key: "login-dialog" }
+			})
+			.catch(() => {});
 	}
 
-	/** 关闭弹窗事件 */
-	private onClickClose() {
-		if (!this.dialog || !this.dialogContent) return;
-		this.dialogContent.addEventListener(
-			"transitionend",
-			() => {
-				this.dialog?.classList.remove("visible");
-				this.dialogContent?.classList.remove("hidden");
-				this.dialogContent?.classList.remove("visible");
-				unlockBodyScroll();
-			},
-			{ once: true }
-		);
-		this.mask?.classList.remove("visible");
-		this.dialogContent.classList.add("hidden");
-	}
-
-	/** 协议按钮事件 */
-	private onProtocolBtnClick = () => {
-		ElMessage.info({ message: "真的一滴都没有了", plain: true });
-	};
+	document.querySelector(".header-login-btn")?.addEventListener("click", openLoginDialog);
+	document.querySelector(".header-article-btn.login")?.addEventListener("click", openLoginDialog);
 }
-new LoginDialog();
+initLoginDialog();

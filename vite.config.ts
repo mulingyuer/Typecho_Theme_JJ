@@ -52,6 +52,8 @@ export default defineConfig(({ command }) => {
 	];
 
 	return {
+		// 资源由主题目录内的 JS/CSS 相对引用，避免部署到 Typecho 子目录时指向站点根目录。
+		base: "./",
 		plugins,
 		resolve: {
 			alias: {

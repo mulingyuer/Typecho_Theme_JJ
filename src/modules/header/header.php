@@ -138,56 +138,15 @@
   </div>
 </header>
 <?php if (!$this->user->hasLogin()): ?>
-<div class="login-dialog">
-  <div class="login-dialog-content-wrap">
-    <div class="login-dialog-mask"></div>
-    <div class="login-dialog-content">
-      <div class="login-dialog-close">
-        <i class="jj-icon jj-icon-guanbi login-dialog-close-icon"></i>
-      </div>
-      <div class="login-dialog-head">
-        <h2 class="login-dialog-title">登录</h2>
-      </div>
-      <div class="login-dialog-body">
-        <div class="login-dialog-body-left">
-          <div class="login-dialog-body-left-title">账号密码登录</div>
-          <form class="login-dialog-form" action="<?php $this->options->loginAction()?>" method="post" name="login" rold="form">
-            <input type="hidden" name="referer" value="<?php echo $this->request->getRequestUrl(); ?>" required>
-            <div class="login-dialog-input-group username">
-              <input type="text" name="name" placeholder="请输入账号" required pattern="\S+.*">
-              <img class="panfish-img greeting" src="<?php $this->options->themeUrl('/images/login/greeting.png');?>">
-            </div>
-            <div class="login-dialog-input-group password">
-              <input type="password" name="password" placeholder="请输入密码" autocomplete="off" required pattern="\S+.*">
-              <img class="panfish-img blindfold" src="<?php $this->options->themeUrl('/images/login/blindfold.png');?>">
-            </div>
-            <div class="login-dialog-input-group remember">
-              <label class="remember-label" for="remember">
-                <input type="checkbox" name="remember" class="checkbox" value="1" id="remember">
-                <span class="login-dialog-input-checkbox">
-                  <i class="jj-icon jj-icon-check login-dialog-input-checkbox-icon"></i>
-                </span>
-                <span class="login-dialog-input-checkbox-text">记住账号</span>
-              </label>
-            </div>
-            <div class="login-dialog-input-group submit">
-              <button class="login-dialog-form-btn">登录</button>
-            </div>
-            <img class="panfish-img normal" src="<?php $this->options->themeUrl('/images/login/normal.png');?>">
-          </form>
-        </div>
-        <div class="login-dialog-body-right">
-          <div class="login-dialog-qrcode-title">扫码登录</div>
-          <div class="login-dialog-qrcode">
-            <img class="login-dialog-qrcode-img" src="<?php $this->options->themeUrl('/images/login/login_dialog_qrcode.png');?>" alt="扫码登录">
-          </div>
-          <div class="login-dialog-qrcode-tips">请使用手机扫码登录</div>
-        </div>
-      </div>
-      <div class="login-dialog-footer">
-        注册登录即表示同意<a class="login-dialog-link" href="javascript:;" title="用户协议">用户协议</a>和<a class="login-dialog-link" href="javascript:;" title="隐私政策">隐私政策</a>
-      </div>
-    </div>
-  </div>
-</div>
+<?php
+// 登录配置是 PHP 与 Vue 的唯一数据契约；HEX 转义防止 URL 特殊字符破坏脚本内容。
+$loginConfig = json_encode(
+    [
+        'action' => $this->options->loginAction,
+        'referer' => $this->request->getRequestUrl(),
+    ],
+    JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+);
+?>
+<script id="header-login-config" type="application/json"><?php echo $loginConfig; ?></script>
 <?php endif;?>
