@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { ElConfigProvider } from "element-plus";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
-import GlobalModalRenderer from "@/components/GlobalModalRenderer";
+import GlobalModalRenderer from "@/components/GlobalModalRenderer/index.vue";
 </script>
 
 <style lang="scss" scoped></style>

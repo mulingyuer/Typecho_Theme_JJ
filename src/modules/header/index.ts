@@ -12,8 +12,8 @@ import { dataStore } from "@/store/data";
 import { watch } from "vue";
 import { useSearchHistory } from "@/composables/useSearchHistory";
 import eventMitt from "@/utils/mittEvent";
-import MobileSearchDialog from "@/components/MobileSearchDialog";
-import LoginDialog from "@/components/LoginDialog";
+import MobileSearchDialog from "@/components/MobileSearchDialog/index.vue";
+import LoginDialog from "@/components/LoginDialog/index.vue";
 import type { LoginDialogProps } from "@/components/LoginDialog/types";
 import { useModal } from "@/composables/useModal";
 
