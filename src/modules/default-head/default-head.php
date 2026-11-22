@@ -14,7 +14,7 @@ $headImage = seoImage($this);
 <!-- RSS 订阅 -->
 <?php
 ob_start();
-$this->header('keywords=&description=&generator=&template=&pingback=&xmlrpc=&wlw=&social=&commentReply=&antiSpam=');
+$this->header('keywords=&description=&generator=&template=&pingback=&xmlrpc=&wlw=&social=');
 $typechoHeader = ob_get_clean();
 echo preg_replace('/^\s*<link\s+rel=["\']canonical["\'][^>]*>\s*/i', '', $typechoHeader, 1);
 ?>
