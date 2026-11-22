@@ -88,12 +88,14 @@ new SkeletonController(options: SkeletonControllerOptions)
 | `selector`           | string   | —       | 骨架容器选择器（即 PHP 侧的 `selector`，需带 `.`） |
 | `contentSelectors`   | string[] | `[]`    | 关闭骨架时需要移除 `hidden` 的内容容器选择器列表   |
 | `waitForCloseSignal` | boolean  | `false` | 是否需要外部调用 `receiveClose()` 后才允许关闭     |
-| `maxDelay`           | number   | `200`   | DOMContentLoaded 后延迟关闭的毫秒数（避免闪烁）    |
+| `maxDelay`           | number   | `200`   | 从控制器创建起骨架最少展示的毫秒数（避免闪烁）     |
 
 ### 两种关闭模式
 
-- **自动关闭**（`waitForCloseSignal: false`，默认）：DOM 解析完成后延迟 `maxDelay` 毫秒自动隐藏骨架、显示内容。适用于首屏 PHP 直出场景。
-- **信号关闭**（`waitForCloseSignal: true`）：DOM 解析完成后仍保持骨架，直到业务调用 `receiveClose()`（通常是接口数据渲染完成后）。适用于异步列表场景。
+- **自动关闭**（`waitForCloseSignal: false`，默认）：DOM 解析完成且达到 `maxDelay` 最小展示时间后，自动隐藏骨架、显示内容。适用于首屏 PHP 直出场景。
+- **信号关闭**（`waitForCloseSignal: true`）：DOM 解析完成、业务调用 `receiveClose()`（通常是接口数据渲染完成后）且达到 `maxDelay` 最小展示时间后才关闭。两个就绪事件不分先后，适用于异步列表场景。
+
+`maxDelay` 是从控制器创建时计算的最小展示时间，不是数据就绪后的额外固定等待。控制器兼容在 `DOMContentLoaded` 之后初始化，重复调用 `receiveClose()` 也不会重复切换显隐。
 
 ```ts
 // 自动关闭

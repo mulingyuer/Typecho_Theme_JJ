@@ -12,53 +12,46 @@ import { SkeletonController } from "@/modules/skeleton";
 import "./styles/index.scss";
 import { singletonFaceReplace } from "@/modules/comment/emoji/faceReplace";
 import PaginationLoader from "@/modules/pagination";
-import { sleep } from "@/utils/tool";
 
 /** 初始化无限滚动分页 */
 function initNotificationPagination(listContainer: HTMLElement | null) {
-  if (!listContainer) return;
+	if (!listContainer) return;
 
-  const pagination = document.querySelector<HTMLElement>(
-    ".notification-pagination-wrap .jj-pagination--infinite",
-  );
-  if (!pagination) return;
+	const pagination = document.querySelector<HTMLElement>(".notification-pagination-wrap .jj-pagination--infinite");
+	if (!pagination) return;
 
-  return new PaginationLoader({
-    pagination,
-    listContainer,
-    itemSelector: ".notification-list-item",
-    afterAppend(items) {
-      // 分页新增的节点需要补一次表情替换
-      singletonFaceReplace.start(items);
-    },
-  });
+	return new PaginationLoader({
+		pagination,
+		listContainer,
+		itemSelector: ".notification-list-item",
+		afterAppend(items) {
+			// 分页新增的节点需要补一次表情替换
+			singletonFaceReplace.start(items);
+		}
+	});
 }
 
-async function initNotificationPage() {
-  // 评论列表容器
-  const listContainer = document.querySelector<HTMLElement>(
-    ".notification-list-content",
-  );
+function initNotificationPage() {
+	// 评论列表容器
+	const listContainer = document.querySelector<HTMLElement>(".notification-list-content");
 
-  // 骨架屏
-  const listSkeleton = new SkeletonController({
-    selector: ".list-skeleton",
-    contentSelectors: [".notification-list-content"],
-    waitForCloseSignal: true,
-  });
+	// 骨架屏
+	const listSkeleton = new SkeletonController({
+		selector: ".list-skeleton",
+		contentSelectors: [".notification-list-content"],
+		waitForCloseSignal: true
+	});
 
-  if (listContainer) {
-    // 初始化表情替换
-    singletonFaceReplace.start(listContainer);
-  }
+	if (listContainer) {
+		// 初始化表情替换
+		singletonFaceReplace.start(listContainer);
+	}
 
-  // 关闭骨架屏
-  listSkeleton.receiveClose();
+	// 初始化无限滚动分页
+	initNotificationPagination(listContainer);
 
-  await sleep(500);
-
-  // 初始化无限滚动分页
-  initNotificationPagination(listContainer);
+	// 列表同步初始化完成后关闭骨架屏
+	listSkeleton.receiveClose();
 }
 
 initNotificationPage();

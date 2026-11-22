@@ -11,7 +11,6 @@ import { ArticleCard } from "@/modules/article-card";
 import "@/modules/pagination";
 import "@/modules/article-empty";
 import { SkeletonController } from "@/modules/skeleton";
-import { sleep } from "@/utils/tool";
 import { PaginationLoader } from "@/modules/pagination";
 
 /** 初始化分页 */
@@ -32,7 +31,7 @@ const initArticlePagination = (articleCard: ArticleCard) => {
 };
 
 /** 初始化文章列表区 */
-export async function initArticleList() {
+export function initArticleList() {
 	// 骨架屏
 	const listSkeleton = new SkeletonController({
 		selector: ".article-skeleton",
@@ -45,14 +44,12 @@ export async function initArticleList() {
 		waitForCloseSignal: true
 	});
 
-	// 关闭骨架屏
-	listSkeleton.receiveClose();
-
-	await sleep(500);
-
 	// 文章卡片（点击代理 + 首屏缩略图懒加载）
 	const articleCard = new ArticleCard();
 
 	// 初始化分页
 	initArticlePagination(articleCard);
+
+	// 卡片和占位相关初始化完成后关闭骨架屏
+	listSkeleton.receiveClose();
 }
