@@ -1,16 +1,11 @@
 /*
  * @Author: mulingyuer
  * @Date: 2026-09-26 15:30:21
- * @LastEditTime: 2026-09-26 15:41:14
+ * @LastEditTime: 2026-11-22 20:04:38
  * @LastEditors: mulingyuer
- * @Description:
- * @FilePath: \Typecho_Theme_JJ\vite\plugin\theme-assembler.ts
- * 怎么可能会有bug！！！
- */
-/*
- * @Author: mulingyuer
  * @Description: 主题组装插件：将 src/ 下的页面PHP（dist/*.php）、页面组件PHP（dist/pages/<name>/components/）、
  * 模块PHP（dist/modules/）、functions 组装为完整 Typecho 主题
+ * @FilePath: \Typecho_Theme_JJ\vite\plugin\theme-assembler.ts
  * 怎么可能会有bug！！！
  */
 import type { Plugin } from "vite";
