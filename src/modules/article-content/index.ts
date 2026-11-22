@@ -8,8 +8,9 @@
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
+import "medium-zoom/dist/style.css";
 import hljs from "./hljs";
-import LightBox from "./lightBox";
+import mediumZoom from "medium-zoom";
 import copy from "@/utils/copy";
 import { ElMessage } from "element-plus";
 
@@ -181,4 +182,44 @@ new CodeBlock();
 
 /** 灯箱处理 */
 const markdownBody = document.querySelector(".markdown-body");
-if (markdownBody) new LightBox(markdownBody as HTMLElement);
+if (markdownBody) {
+	const zoom = mediumZoom({
+		margin: 0,
+		background: "rgba(0, 0, 0, 0.7)",
+		scrollOffset: 40
+	});
+	const pendingImages = new WeakSet<HTMLImageElement>();
+
+	const attachImage = (image: HTMLImageElement) => {
+		if (
+			image.closest("a") ||
+			!(image.currentSrc || image.src) ||
+			!image.complete ||
+			image.naturalWidth === 0 ||
+			image.naturalHeight === 0 ||
+			zoom.getImages().includes(image)
+		) {
+			return;
+		}
+		zoom.attach(image);
+	};
+
+	markdownBody.querySelectorAll<HTMLImageElement>("img").forEach((image) => {
+		if (image.closest("a") || !(image.currentSrc || image.src)) return;
+		if (image.complete) {
+			attachImage(image);
+			return;
+		}
+		if (pendingImages.has(image)) return;
+		pendingImages.add(image);
+		image.addEventListener(
+			"load",
+			() => {
+				pendingImages.delete(image);
+				attachImage(image);
+			},
+			{ once: true }
+		);
+		image.addEventListener("error", () => pendingImages.delete(image), { once: true });
+	});
+}

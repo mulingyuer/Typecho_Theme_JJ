@@ -43,6 +43,13 @@
 	vertical-align: top;
 }
 
+.medium-zoom-overlay {
+	z-index: 3000;
+}
+.medium-zoom-image--opened {
+	z-index: 3001;
+}
+
 // 回复可见
 .respond-visible {
 	a {
