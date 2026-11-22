@@ -11,8 +11,26 @@ import type { EmojiImageList } from "../types";
 
 export const HotWord: EmojiImageList = [
 	{
-		key: "热词系列_上任鹅城",
-		src: "/images/emoji/hot_word/2de0e94aeb749acf34441b0a2987135b62b16b8c.png",
+		key: "家庭教师_Ciao",
+		src: "/images/emoji/hot_word/9cb2c7ceca44c9a2e6184640841c64cd87facab9.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "牧神记_一剑开皇",
+		src: "/images/emoji/hot_word/fdf94601f03fa4b189653e0e841357905719591c.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词系列_健健康康",
+		src: "/images/emoji/hot_word/db3f8c8cc72bedd5000e74ca1b2bdb1d9162f5ca.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词系列_再给一集",
+		src: "/images/emoji/hot_word/9f5e7d6a2d6171f8a96b9d112cc97278eaf5acca.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
@@ -23,14 +41,26 @@ export const HotWord: EmojiImageList = [
 		renderClassName: "big-emoji-img"
 	},
 	{
-		key: "热词系列_哇酷哇酷",
-		src: "/images/emoji/hot_word/04dbba8080a3d2eeeb2b80f845ff6b4b5232643b.png",
+		key: "热词系列_发刀大队",
+		src: "/images/emoji/hot_word/4d2f556dea78a37f5dbb1d99a6576b2d38ce582f.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
 	{
-		key: "热词系列_呵呵",
-		src: "/images/emoji/hot_word/2b20ec5940137d61b4172747c349dcb105e94eff.png",
+		key: "热词系列_道友请了",
+		src: "/images/emoji/hot_word/94efa372b3a7388aad265b4678241f07081bffb3.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词系列_念头通达",
+		src: "/images/emoji/hot_word/6519460319141c9684e14b986d53fcf39b39347b.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词表情_世萌双冠",
+		src: "/images/emoji/hot_word/8d962fcf0b18761d5f4315a49b7ae428da08cf4a.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
@@ -41,26 +71,20 @@ export const HotWord: EmojiImageList = [
 		renderClassName: "big-emoji-img"
 	},
 	{
-		key: "热词系列_美貌惊人",
-		src: "/images/emoji/hot_word/e8eb4e8ae62d68ad7db176fe163a714379991a18.png",
-		hidden: false,
-		renderClassName: "big-emoji-img"
-	},
-	{
 		key: "热词系列_六到无语",
 		src: "/images/emoji/hot_word/3cae536616fdd1a3c1399312381b563e54ac3271.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
 	{
-		key: "热词系列_干杯",
-		src: "/images/emoji/hot_word/5ce649d5f716566db41dbf68c2e319517516d321.png",
+		key: "热词系列_美貌惊人",
+		src: "/images/emoji/hot_word/e8eb4e8ae62d68ad7db176fe163a714379991a18.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
 	{
-		key: "热词表情_世萌双冠",
-		src: "/images/emoji/hot_word/8d962fcf0b18761d5f4315a49b7ae428da08cf4a.png",
+		key: "热词系列_干杯",
+		src: "/images/emoji/hot_word/5ce649d5f716566db41dbf68c2e319517516d321.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
@@ -91,6 +115,24 @@ export const HotWord: EmojiImageList = [
 	{
 		key: "热词系列_妙啊",
 		src: "/images/emoji/hot_word/3ed5b0b2e1f632884d93abe6ae2a387e6f4395fd.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词系列_哇酷哇酷",
+		src: "/images/emoji/hot_word/04dbba8080a3d2eeeb2b80f845ff6b4b5232643b.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词系列_呵呵",
+		src: "/images/emoji/hot_word/2b20ec5940137d61b4172747c349dcb105e94eff.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词系列_上任鹅城",
+		src: "/images/emoji/hot_word/2de0e94aeb749acf34441b0a2987135b62b16b8c.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
@@ -181,6 +223,12 @@ export const HotWord: EmojiImageList = [
 	{
 		key: "热词系列_燃起来了",
 		src: "/images/emoji/hot_word/5a6199d39ee57e6e00ee1db33a7d430f5a9ff045.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词系列_赛博考古",
+		src: "/images/emoji/hot_word/590a6fdc7f0af07363975cf2e17a5f9972968891.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
@@ -301,6 +349,12 @@ export const HotWord: EmojiImageList = [
 	{
 		key: "热词系列_AWSL",
 		src: "/images/emoji/hot_word/c37f88cf799f9badf9d84b7671dc3dd98c0fc0c2.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "热词系列_霸体在此",
+		src: "/images/emoji/hot_word/637d83d08e881d9a5116042d5e8f87f157d26d5e.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	},
@@ -463,6 +517,18 @@ export const HotWord: EmojiImageList = [
 	{
 		key: "热词系列_你可真星",
 		src: "/images/emoji/hot_word/54c8ddff400abfe388060cabfbb579280fdea1be.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "凡人修仙传_退至身后",
+		src: "/images/emoji/hot_word/6e578d2207b43b3fa3be99155dd4676e3f54e00b.png",
+		hidden: false,
+		renderClassName: "big-emoji-img"
+	},
+	{
+		key: "凡人修仙传_给个交代",
+		src: "/images/emoji/hot_word/581a521d7dbfb6bd358e0df728f47c15d640d2f9.png",
 		hidden: false,
 		renderClassName: "big-emoji-img"
 	}

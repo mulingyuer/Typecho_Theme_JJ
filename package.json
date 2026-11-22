@@ -14,6 +14,7 @@
 		"format:check": "oxfmt --check .",
 		"check": "run-p lint format:check",
 		"fix": "run-s lint:fix format",
+		"compress:emoji": "node scripts/compressEmoji.mjs",
 		"update-version": "bumpp --no-commit --no-tag --no-push && ts-node -P scripts/tsconfig.json scripts/updateVersion.ts",
 		"build-zip": "ts-node -P scripts/tsconfig.json scripts/zip.ts",
 		"release": "run-s update-version build build-zip"
@@ -46,6 +47,7 @@
 		"oxfmt": "^0.68.0",
 		"oxlint": "^1.83.0",
 		"sass-embedded": "^1.104.1",
+		"sharp": "^0.35.5",
 		"ts-node": "^10.9.2",
 		"typescript": "^7.0.2",
 		"vite": "^8.3.0"

@@ -11,48 +11,18 @@ import type { EmojiImageList } from "../types";
 
 export const YellowFace: EmojiImageList = [
 	{
-		key: "龙年",
-		src: "/images/emoji/yellow_face/7d0e1e48a56a6b739bcbb4f602fe555082d64ed7.png",
+		key: "doge_金箍",
+		src: "/images/emoji/yellow_face/aadaca1895e09c5596fc6365192ec93a23718cf0.png",
 		hidden: false
 	},
 	{
-		key: "2024",
-		src: "/images/emoji/yellow_face/4f737e887381813f7913522c09bebcaed85a245e.png",
+		key: "笑哭",
+		src: "/images/emoji/yellow_face/c3043ba94babf824dea03ce500d0e73763bf4f40.png",
 		hidden: false
 	},
 	{
-		key: "14周年",
-		src: "/images/emoji/yellow_face/53148f85bb7e2d8bada8cea57ee4b1f36f48237d.png",
-		hidden: false
-	},
-	{
-		key: "脱单doge",
-		src: "/images/emoji/yellow_face/bf7e00ecab02171f8461ee8cf439c73db9797748.png",
-		hidden: false
-	},
-	{
-		key: "微笑",
-		src: "/images/emoji/yellow_face/685612eadc33f6bc233776c6241813385844f182.png",
-		hidden: false
-	},
-	{
-		key: "口罩",
-		src: "/images/emoji/yellow_face/3ad2f66b151496d2a5fb0a8ea75f32265d778dd3.png",
-		hidden: false
-	},
-	{
-		key: "doge",
-		src: "/images/emoji/yellow_face/3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png",
-		hidden: false
-	},
-	{
-		key: "妙啊",
-		src: "/images/emoji/yellow_face/b4cb77159d58614a9b787b91b1cd22a81f383535.png",
-		hidden: false
-	},
-	{
-		key: "OK",
-		src: "/images/emoji/yellow_face/4683fd9ffc925fa6423110979d7dcac5eda297f4.png",
+		key: "蹲蹲",
+		src: "/images/emoji/yellow_face/878f1dfac79622050f730d1fee5f7b1a55951c74.png",
 		hidden: false
 	},
 	{
@@ -61,8 +31,8 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
-		key: "辣眼睛",
-		src: "/images/emoji/yellow_face/35d62c496d1e4ea9e091243fa812866f5fecc101.png",
+		key: "微笑",
+		src: "/images/emoji/yellow_face/685612eadc33f6bc233776c6241813385844f182.png",
 		hidden: false
 	},
 	{
@@ -71,8 +41,38 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
+		key: "打call",
+		src: "/images/emoji/yellow_face/431432c43da3ee5aab5b0e4f8931953e649e9975.png",
+		hidden: false
+	},
+	{
+		key: "OK",
+		src: "/images/emoji/yellow_face/4683fd9ffc925fa6423110979d7dcac5eda297f4.png",
+		hidden: false
+	},
+	{
+		key: "doge",
+		src: "/images/emoji/yellow_face/3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png",
+		hidden: false
+	},
+	{
+		key: "大哭",
+		src: "/images/emoji/yellow_face/2caafee2e5db4db72104650d87810cc2c123fc86.png",
+		hidden: false
+	},
+	{
+		key: "辣眼睛",
+		src: "/images/emoji/yellow_face/35d62c496d1e4ea9e091243fa812866f5fecc101.png",
+		hidden: false
+	},
+	{
 		key: "滑稽",
 		src: "/images/emoji/yellow_face/d15121545a99ac46774f1f4465b895fe2d1411c3.png",
+		hidden: false
+	},
+	{
+		key: "喜极而泣",
+		src: "/images/emoji/yellow_face/485a7e0c01c2d70707daae53bee4a9e2e31ef1ed.png",
 		hidden: false
 	},
 	{
@@ -81,8 +81,13 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
-		key: "打call",
-		src: "/images/emoji/yellow_face/431432c43da3ee5aab5b0e4f8931953e649e9975.png",
+		key: "BLG战队",
+		src: "/images/emoji/yellow_face/8612e5a3ab338a16b7db58d1a85fa1ecdf31f7a4.png",
+		hidden: false
+	},
+	{
+		key: "我们是冠军",
+		src: "/images/emoji/yellow_face/f16ee2d3469da4b54e7273e609bc060cc165dfd1.png",
 		hidden: false
 	},
 	{
@@ -96,8 +101,8 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
-		key: "豹富",
-		src: "/images/emoji/yellow_face/3d1dbe52ea16e12ff7b1c371196f728a4097fb33.png",
+		key: "妙啊",
+		src: "/images/emoji/yellow_face/b4cb77159d58614a9b787b91b1cd22a81f383535.png",
 		hidden: false
 	},
 	{
@@ -106,23 +111,28 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
-		key: "笑哭",
-		src: "/images/emoji/yellow_face/c3043ba94babf824dea03ce500d0e73763bf4f40.png",
-		hidden: false
-	},
-	{
 		key: "藏狐",
 		src: "/images/emoji/yellow_face/ba0937ef6f3ccca85e2e0047e6263f3b4da37201.png",
 		hidden: false
 	},
 	{
-		key: "脸红",
-		src: "/images/emoji/yellow_face/0922c375da40e6b69002bd89b858572f424dcfca.png",
+		key: "脱单doge",
+		src: "/images/emoji/yellow_face/bf7e00ecab02171f8461ee8cf439c73db9797748.png",
+		hidden: false
+	},
+	{
+		key: "笑",
+		src: "/images/emoji/yellow_face/81edf17314cea3b48674312b4364df44d5c01f17.png",
 		hidden: false
 	},
 	{
 		key: "给心心",
 		src: "/images/emoji/yellow_face/1597302b98827463f5b75c7cac1f29ea6ce572c4.png",
+		hidden: false
+	},
+	{
+		key: "脸红",
+		src: "/images/emoji/yellow_face/0922c375da40e6b69002bd89b858572f424dcfca.png",
 		hidden: false
 	},
 	{
@@ -146,33 +156,18 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
-		key: "嫌弃",
-		src: "/images/emoji/yellow_face/de4c0783aaa60ec03de0a2b90858927bfad7154b.png",
-		hidden: false
-	},
-	{
 		key: "害羞",
 		src: "/images/emoji/yellow_face/9d2ec4e1fbd6cb1b4d12d2bbbdd124ccb83ddfda.png",
 		hidden: false
 	},
 	{
-		key: "大哭",
-		src: "/images/emoji/yellow_face/2caafee2e5db4db72104650d87810cc2c123fc86.png",
+		key: "嫌弃",
+		src: "/images/emoji/yellow_face/de4c0783aaa60ec03de0a2b90858927bfad7154b.png",
 		hidden: false
 	},
 	{
 		key: "疑惑",
 		src: "/images/emoji/yellow_face/b7840db4b1f9f4726b7cb23c0972720c1698d661.png",
-		hidden: false
-	},
-	{
-		key: "喜极而泣",
-		src: "/images/emoji/yellow_face/485a7e0c01c2d70707daae53bee4a9e2e31ef1ed.png",
-		hidden: false
-	},
-	{
-		key: "笑",
-		src: "/images/emoji/yellow_face/81edf17314cea3b48674312b4364df44d5c01f17.png",
 		hidden: false
 	},
 	{
@@ -216,13 +211,13 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
-		key: "无语",
-		src: "/images/emoji/yellow_face/44667b7d9349957e903b1b62cb91fb9b13720f04.png",
+		key: "点赞",
+		src: "/images/emoji/yellow_face/1a67265993913f4c35d15a6028a30724e83e7d35.png",
 		hidden: false
 	},
 	{
-		key: "点赞",
-		src: "/images/emoji/yellow_face/1a67265993913f4c35d15a6028a30724e83e7d35.png",
+		key: "无语",
+		src: "/images/emoji/yellow_face/44667b7d9349957e903b1b62cb91fb9b13720f04.png",
 		hidden: false
 	},
 	{
@@ -241,13 +236,13 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
-		key: "委屈",
-		src: "/images/emoji/yellow_face/d2f26cbdd6c96960320af03f5514c5b524990840.png",
+		key: "傲娇",
+		src: "/images/emoji/yellow_face/010540d0f61220a0db4922e4a679a1d8eca94f4e.png",
 		hidden: false
 	},
 	{
-		key: "傲娇",
-		src: "/images/emoji/yellow_face/010540d0f61220a0db4922e4a679a1d8eca94f4e.png",
+		key: "委屈",
+		src: "/images/emoji/yellow_face/d2f26cbdd6c96960320af03f5514c5b524990840.png",
 		hidden: false
 	},
 	{
@@ -268,6 +263,11 @@ export const YellowFace: EmojiImageList = [
 	{
 		key: "生病",
 		src: "/images/emoji/yellow_face/0f25ce04ae1d7baf98650986454c634f6612cb76.png",
+		hidden: false
+	},
+	{
+		key: "生气",
+		src: "/images/emoji/yellow_face/3195714219c4b582a4fb02033dd1519913d0246d.png",
 		hidden: false
 	},
 	{
@@ -296,6 +296,11 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
+		key: "抓狂",
+		src: "/images/emoji/yellow_face/4c87afff88c22439c45b79e9d2035d21d5622eba.png",
+		hidden: false
+	},
+	{
 		key: "哈欠",
 		src: "/images/emoji/yellow_face/888d877729cbec444ddbd1cf4c9af155a7a06086.png",
 		hidden: false
@@ -316,18 +321,133 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
+		key: "口罩",
+		src: "/images/emoji/yellow_face/3ad2f66b151496d2a5fb0a8ea75f32265d778dd3.png",
+		hidden: false
+	},
+	{
 		key: "撇嘴",
 		src: "/images/emoji/yellow_face/531863568e5668c5ac181d395508a0eeb1f0cda4.png",
 		hidden: false
 	},
 	{
-		key: "抓狂",
-		src: "/images/emoji/yellow_face/4c87afff88c22439c45b79e9d2035d21d5622eba.png",
+		key: "黑眼圈_金箍",
+		src: "/images/emoji/yellow_face/3d8edacc6efa4bc397642ee2bdc688c2eb976b4f.png",
 		hidden: false
 	},
 	{
-		key: "生气",
-		src: "/images/emoji/yellow_face/3195714219c4b582a4fb02033dd1519913d0246d.png",
+		key: "猴哥",
+		src: "/images/emoji/yellow_face/4dae851bd07b91418824ba3897659b7b9017114d.png",
+		hidden: false
+	},
+	{
+		key: "鸭科夫_流汗鸭",
+		src: "/images/emoji/yellow_face/b49b325224cef1ef8313728022aa86e93e65bd08.png",
+		hidden: false
+	},
+	{
+		key: "鸭科夫_干嘛鸭",
+		src: "/images/emoji/yellow_face/2e67293d703e6501d7a639870477cbcc16277a23.png",
+		hidden: false
+	},
+	{
+		key: "鸭科夫_红温鸭",
+		src: "/images/emoji/yellow_face/3ff2737eb4d78fba74f37276d99755ee5df621b8.png",
+		hidden: false
+	},
+	{
+		key: "黑猫",
+		src: "/images/emoji/yellow_face/6bd61d4f5c29c17098f31dfb6ce2140dd2b728a8.png",
+		hidden: false
+	},
+	{
+		key: "三花猫",
+		src: "/images/emoji/yellow_face/3a36c1f88956996b31a835c13041f4d505f2e2e0.png",
+		hidden: false
+	},
+	{
+		key: "折耳猫",
+		src: "/images/emoji/yellow_face/4a09dc958bdd82391ba97af0d09dab0925c5b46c.png",
+		hidden: false
+	},
+	{
+		key: "银魂_justaway",
+		src: "/images/emoji/yellow_face/7ef3eecc6b69404524e86b5f48d94c02ab0a9b34.png",
+		hidden: false
+	},
+	{
+		key: "我独自升级_疑惑",
+		src: "/images/emoji/yellow_face/6cac4bce69f120e04c44f09bcd624c8dcd5675fa.png",
+		hidden: false
+	},
+	{
+		key: "怪兽8号_奇可露",
+		src: "/images/emoji/yellow_face/694a2bc638d2242e379d802715d29536357f9d36.png",
+		hidden: false
+	},
+	{
+		key: "颂乐人偶_眯眼笑",
+		src: "/images/emoji/yellow_face/6087f6b3919b915c8922e608cfde147dd5ece43b.png",
+		hidden: false
+	},
+	{
+		key: "坂本_佛系",
+		src: "/images/emoji/yellow_face/89c70d9044637a66fceaf99d89b257984117ce36.png",
+		hidden: false
+	},
+	{
+		key: "生气_金箍",
+		src: "/images/emoji/yellow_face/fb3fbcf44157a5ba460b62341a86b38c11e7a664.png",
+		hidden: false
+	},
+	{
+		key: "龙年",
+		src: "/images/emoji/yellow_face/7d0e1e48a56a6b739bcbb4f602fe555082d64ed7.png",
+		hidden: false
+	},
+	{
+		key: "豹富",
+		src: "/images/emoji/yellow_face/3d1dbe52ea16e12ff7b1c371196f728a4097fb33.png",
+		hidden: false
+	},
+	{
+		key: "兔兔岛_开心",
+		src: "/images/emoji/yellow_face/40dabdb3237a9d8c726f663360d7e967eac3ac01.png",
+		hidden: false
+	},
+	{
+		key: "兔兔岛_吃面",
+		src: "/images/emoji/yellow_face/7277d90e321bf4407377ff18cc0bfcde106234d9.png",
+		hidden: false
+	},
+	{
+		key: "兔兔岛_睡觉",
+		src: "/images/emoji/yellow_face/c272aa0e59e2e20432e54fa229b15652f2593308.png",
+		hidden: false
+	},
+	{
+		key: "重返未来1999_喂",
+		src: "/images/emoji/yellow_face/4e224148584938588a0d500eea8127db21f06ebb.png",
+		hidden: false
+	},
+	{
+		key: "重返未来1999_赞",
+		src: "/images/emoji/yellow_face/e250228e3ba06822496dc2ff81e49324298f8bc8.png",
+		hidden: false
+	},
+	{
+		key: "重返未来1999_谢谢老板",
+		src: "/images/emoji/yellow_face/d87d32fd4c91f1045842362c328e8f359dab4fd6.png",
+		hidden: false
+	},
+	{
+		key: "重返未来1999_什么",
+		src: "/images/emoji/yellow_face/8f1a9abbe5364a110aba1bde276d1f2712108edc.png",
+		hidden: false
+	},
+	{
+		key: "胆大党_微笑",
+		src: "/images/emoji/yellow_face/24d13e3f1713d854f93416ac11b3c5ceb4f0120f.png",
 		hidden: false
 	},
 	{
@@ -486,8 +606,103 @@ export const YellowFace: EmojiImageList = [
 		hidden: false
 	},
 	{
+		key: "鸣潮_好呀",
+		src: "/images/emoji/yellow_face/b500f106c3be1d61e110e6f1cfaafc5c2311ed37.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_唉",
+		src: "/images/emoji/yellow_face/8b1a0c279d23f9c1a947c96ffc658d848650a773.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_咦",
+		src: "/images/emoji/yellow_face/866390294acb5e6cf6017e3f88acffa21d9130bb.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_嘿",
+		src: "/images/emoji/yellow_face/0cf0a8c8e1f32b9d4144a25c43e972580a7a631f.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_哇",
+		src: "/images/emoji/yellow_face/759651f8e616075c9494160d2541ed581c55550a.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_嗯",
+		src: "/images/emoji/yellow_face/441b5da4fdf295728f859f9388d528a79f3367bc.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_嗨",
+		src: "/images/emoji/yellow_face/2589293ba4ba4e60e65569a079819a8578c48378.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_祈愿",
+		src: "/images/emoji/yellow_face/8ec500d5820f43852d272349cc32927084628376.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_你好",
+		src: "/images/emoji/yellow_face/06a9869adc94651e62e1579527d051243dfabcf7.png",
+		hidden: false
+	},
+	{
+		key: "鸣潮_嘿嘿",
+		src: "/images/emoji/yellow_face/177eeb8dc85f38ff3d150ab6bb09f431e4e394e5.png",
+		hidden: false
+	},
+	{
 		key: "洛天依",
 		src: "/images/emoji/yellow_face/9fe06f3594d9afaf4ee2b74770f1c3086ae0ba11.png",
+		hidden: false
+	},
+	{
+		key: "少女乐团派对_派对",
+		src: "/images/emoji/yellow_face/b3ea2c80fdd3b4db112c659e08416f987467d4b9.png",
+		hidden: false
+	},
+	{
+		key: "少女乐团派对_等一下",
+		src: "/images/emoji/yellow_face/bebd886bed3c4d5ded63728eb1e06d0fce0cae8f.png",
+		hidden: false
+	},
+	{
+		key: "少女乐团派对_期待",
+		src: "/images/emoji/yellow_face/da237793f08eab3acd7b811e33ae5aad672a8b0a.png",
+		hidden: false
+	},
+	{
+		key: "少女乐团派对_感想",
+		src: "/images/emoji/yellow_face/6d40f35734f2cea4f081455b9a9560951aa88ee7.png",
+		hidden: false
+	},
+	{
+		key: "少女乐团派对_开心",
+		src: "/images/emoji/yellow_face/1815b2e21a0379ba3d052942ae7314326e0d8272.png",
+		hidden: false
+	},
+	{
+		key: "少女乐团派对_哇哦",
+		src: "/images/emoji/yellow_face/afc0f71bf9a65b1d929f5bd3ebd77cd725e3226e.png",
+		hidden: false
+	},
+	{
+		key: "少女乐团派对_害羞",
+		src: "/images/emoji/yellow_face/3f30402c194d84be15014089d042e436efb83075.png",
+		hidden: false
+	},
+	{
+		key: "少女乐团派对_流汗",
+		src: "/images/emoji/yellow_face/69467ee7811f506d883df698a55fa44757b8ffc8.png",
+		hidden: false
+	},
+	{
+		key: "怪兽8号_开心",
+		src: "/images/emoji/yellow_face/10ff5a4eba58e8d99fa3d5f21c98f10c3b61cc5f.png",
 		hidden: false
 	},
 	{
@@ -558,6 +773,36 @@ export const YellowFace: EmojiImageList = [
 	{
 		key: "来古-注意",
 		src: "/images/emoji/yellow_face/4b671ba32a2581cf40e5cd41c67b111eb8010de0.png",
+		hidden: false
+	},
+	{
+		key: "FGO_尴尬",
+		src: "/images/emoji/yellow_face/1c6d649c507cc20f5cac2f630ba115b0da24f8d9.png",
+		hidden: false
+	},
+	{
+		key: "FGO_跪",
+		src: "/images/emoji/yellow_face/d2fecbdcac237b801e9354d5f6671875ae0cce1b.png",
+		hidden: false
+	},
+	{
+		key: "FGO_好耶",
+		src: "/images/emoji/yellow_face/bb2279baa660dd196fd944a2c7bd2f7f22e55f80.png",
+		hidden: false
+	},
+	{
+		key: "FGO_好棒",
+		src: "/images/emoji/yellow_face/66d8b3d85fb6d816217badddcc5bf868bf750388.png",
+		hidden: false
+	},
+	{
+		key: "FGO_礼物",
+		src: "/images/emoji/yellow_face/a132811673c8cc2743884c74f34ce7c48f8c04a8.png",
+		hidden: false
+	},
+	{
+		key: "FGO_无语",
+		src: "/images/emoji/yellow_face/94360c282f8fc97dbcb7dae3fd3c0e92b24ffc4b.png",
 		hidden: false
 	},
 	{
@@ -774,7 +1019,131 @@ export const YellowFace: EmojiImageList = [
 		key: "元梦_哭哭",
 		src: "/images/emoji/yellow_face/06c2245a0ce59e118da5af8f9b06a141b0cd43cc.png",
 		hidden: false
+	},
+	{
+		key: "无限暖暖_暖暖",
+		src: "/images/emoji/yellow_face/71dfc073d05c1672031ad2b8c8404d4b97ae66aa.png",
+		hidden: false
+	},
+	{
+		key: "无限暖暖_大喵",
+		src: "/images/emoji/yellow_face/4b924d0245e922834c76d9dcf2448a0c8240fe92.png",
+		hidden: false
+	},
+	{
+		key: "无限暖暖_单品灵",
+		src: "/images/emoji/yellow_face/a234e5544a65d237749eed7370de577f6b42b47e.png",
+		hidden: false
+	},
+	{
+		key: "无限暖暖_心愿精灵",
+		src: "/images/emoji/yellow_face/8d2c2d9ff36317cd71309bf18db82694f213d13a.png",
+		hidden: false
+	},
+	{
+		key: "无限暖暖_美食家蜜蜂",
+		src: "/images/emoji/yellow_face/db6013fd4551a2b3f13ca5f5e1d5c9fd9a44f5eb.png",
+		hidden: false
+	},
+	{
+		key: "无限暖暖_袜袜羊",
+		src: "/images/emoji/yellow_face/98c5c2bffb45e7e4f26b7f030afa7ea0e44b0d19.png",
+		hidden: false
+	},
+	{
+		key: "无限暖暖_围兜狸猫",
+		src: "/images/emoji/yellow_face/4f7f0b66f202fd57150450df2ee95e10ee5ff3f6.png",
+		hidden: false
+	},
+	{
+		key: "无限暖暖_毛线汪汪",
+		src: "/images/emoji/yellow_face/06c38ae541b44aa640e152fb97966ca35442a0d2.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟_沉默",
+		src: "/images/emoji/yellow_face/10394b10492cfb70a1dad40b65577194c4137d09.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟_打call",
+		src: "/images/emoji/yellow_face/af50d35c709657dcf8654020a07d19a0a4827bd2.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟_扶额",
+		src: "/images/emoji/yellow_face/2e15e0f19552dde2ad694bd0940780e11d63b8c9.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟_惊",
+		src: "/images/emoji/yellow_face/b4c8b2e4f46da4a34bbb27183c0e750d0d9eefe8.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟_敬礼",
+		src: "/images/emoji/yellow_face/523503796fdb28e8036c1fe339a63054a3dcc02d.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟_哭哭",
+		src: "/images/emoji/yellow_face/c1133cedc2a260fd9a28fef2795db46ccfebfc41.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟_装傻",
+		src: "/images/emoji/yellow_face/39396136192016bb3e4a7a60db2ba288a161a6a1.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟终末地_比心",
+		src: "/images/emoji/yellow_face/3f3fd5b1ebc083372dd56c3c9afd1cc5e63a4de9.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟终末地_哈欠",
+		src: "/images/emoji/yellow_face/df8855059206659a9b0993f871de87f38711f6c4.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟终末地_喝茶",
+		src: "/images/emoji/yellow_face/d5d8fa12679347563c5975598df14e79d6520c33.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟终末地_愣住",
+		src: "/images/emoji/yellow_face/06bf4097d56f77d95ae253efc994cf561af2723d.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟终末地_什么",
+		src: "/images/emoji/yellow_face/519246b9667a80422f8468d8684568afcd629faf.png",
+		hidden: false
+	},
+	{
+		key: "明日方舟终末地_笑",
+		src: "/images/emoji/yellow_face/50b136e46c6b756a4cda2015b3dbfd249aac4db1.png",
+		hidden: false
+	},
+	{
+		key: "来自星尘_盯",
+		src: "/images/emoji/yellow_face/dad717572ddafc6b194b74be1f24a06430e4d306.png",
+		hidden: false
+	},
+	{
+		key: "来自星尘_wink",
+		src: "/images/emoji/yellow_face/04d1271a6b0df157c163d4acce717bdb65f6e21d.png",
+		hidden: false
+	},
+	{
+		key: "泡姆泡姆_棒",
+		src: "/images/emoji/yellow_face/533035cdeb29815f1be5f05b1b7f97877cdffb92.png",
+		hidden: false
+	},
+	{
+		key: "泡姆泡姆_加油",
+		src: "/images/emoji/yellow_face/47a13be55f08d6f62bf737347aef3579f71c1618.png",
+		hidden: false
 	}
 ];
-
 export default YellowFace;
