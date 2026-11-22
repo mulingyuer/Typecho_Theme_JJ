@@ -90,6 +90,10 @@
 		display: flex;
 	}
 }
+.header-nav-list > li {
+	flex-grow: 1;
+	width: 100%;
+}
 .header-nav-list-item {
 	position: relative;
 	display: block;
@@ -98,8 +102,9 @@
 	padding: 0 10px;
 	font-size: 14px;
 	color: var(--jj-header-text-color);
+	text-align: center;
 	text-decoration: none;
-	white-space: nowrap;
+	@include one-line();
 	&::after {
 		content: "";
 		position: absolute;

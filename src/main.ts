@@ -29,12 +29,18 @@ import "@/modules/fixed-tool";
 //错误处理
 initGlobalImgLoadError();
 
-//监听scroll事件，记录滚动条位置
+//监听scroll事件，记录滚动条位置（按帧节流，避免高频 scroll 事件重复写入响应式数据）
+let scrollRafId: number | null = null;
 function updateScrollY() {
 	dataStore.scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+	scrollRafId = null;
+}
+function onScroll() {
+	if (scrollRafId !== null) return;
+	scrollRafId = window.requestAnimationFrame(updateScrollY);
 }
 updateScrollY();
-window.addEventListener("scroll", updateScrollY);
+window.addEventListener("scroll", onScroll, { passive: true });
 
 //监听resize事件，记录窗口大小
 function updateWindowSize() {

@@ -1,0 +1,38 @@
+// 过渡动画样式
+
+// 弹窗动画
+.jj-dialog-fade-enter-active,
+.jj-dialog-fade-leave-active {
+	transition: opacity 0.2s ease;
+}
+
+.jj-dialog-fade-enter-active .el-overlay-dialog,
+.jj-dialog-fade-leave-active .el-overlay-dialog {
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease;
+}
+
+.jj-dialog-fade-enter-from,
+.jj-dialog-fade-leave-to {
+	opacity: 0;
+}
+
+.jj-dialog-fade-enter-from .el-overlay-dialog {
+	opacity: 0;
+	transform: translate3d(0, -50px, 0);
+}
+
+.jj-dialog-fade-leave-to .el-overlay-dialog {
+	opacity: 0;
+	transform: translate3d(0, 50px, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.jj-dialog-fade-enter-active,
+	.jj-dialog-fade-leave-active,
+	.jj-dialog-fade-enter-active .el-overlay-dialog,
+	.jj-dialog-fade-leave-active .el-overlay-dialog {
+		transition-duration: 0.01ms;
+	}
+}

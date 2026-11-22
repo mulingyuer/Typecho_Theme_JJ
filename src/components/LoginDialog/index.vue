@@ -3,12 +3,9 @@
 		v-model="visible"
 		class="login-dialog"
 		:show-close="false"
-		:close-on-click-modal="true"
-		:close-on-press-escape="true"
-		:lock-scroll="true"
 		:align-center="true"
-		:destroy-on-close="false"
 		append-to-body
+		transition="jj-dialog-fade"
 		aria-label="登录"
 		@close="onClose"
 		@closed="onClosed"
