@@ -5,7 +5,7 @@
     <?php if (!is_array($children)) {$children = array();}?>
       <?php if (count($children)): ?>
       <div class="secondary-nav">
-          <div class="secondary-nav-content">
+          <div class="secondary-nav-content" id="secondary-nav-content">
             <div class="secondary-nav-fold">
               <div class="secondary-nav-left">
                 <?php $allCategory = $category->getRow($category->parent > 0 ? $category->parent : $category->mid);?>
@@ -21,10 +21,10 @@
                 <?php }?>
               </div>
               <div class="secondary-nav-right">
-                <button class="secondary-nav-fold-btn">
+                <button class="secondary-nav-fold-btn" type="button" aria-expanded="false" aria-controls="secondary-nav-content">
                   <span class="secondary-nav-fold-btn-unfurl">展开</span>
                   <span class="secondary-nav-fold-btn-retract">收起</span>
-                  <i class="jj-icon jj-icon-down secondary-nav-fold-btn-icon"></i>
+                  <i class="jj-icon jj-icon-down secondary-nav-fold-btn-icon" aria-hidden="true"></i>
                 </button>
               </div>
             </div>

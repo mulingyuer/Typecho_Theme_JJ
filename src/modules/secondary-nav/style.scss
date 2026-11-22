@@ -23,6 +23,9 @@
 }
 .secondary-nav-right {
 	flex-shrink: 0;
+	&[hidden] {
+		display: none;
+	}
 }
 .secondary-nav-item {
 	text-decoration: none;
