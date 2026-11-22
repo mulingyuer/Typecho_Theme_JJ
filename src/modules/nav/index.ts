@@ -28,7 +28,7 @@ class Nav {
 	private nav: HTMLElement | null = null;
 	private itemParent: Array<HTMLElement> = [];
 	private navSecondaryWarp: HTMLElement | null = null;
-	private scrollWrap: HTMLElement | null = null;
+	// private scrollWrap: HTMLElement | null = null;
 	private popoverDomData: PopoverDomData = new Map();
 
 	constructor() {
@@ -36,7 +36,7 @@ class Nav {
 		if (!this.nav) return;
 		this.itemParent = Array.from(this.nav.querySelectorAll(".nav-list-item-parent"));
 		this.navSecondaryWarp = document.querySelector(".nav-secondary-warp");
-		this.scrollWrap = document.querySelector(".nav-list");
+		// this.scrollWrap = document.querySelector(".nav-list");
 
 		//监听事件
 		eventMitt.on("HEADER_SHOW", this.listenHeader.bind(this));
@@ -88,7 +88,7 @@ class Nav {
 
 	/** btn显示气泡 */
 	private onBtnShowPopover(event: MouseEvent) {
-		if (this.isScrollWrapScroll()) return;
+		// if (this.isScrollWrapScroll()) return;
 		const btn = event.currentTarget as PopoverBtn;
 		const domData = this.popoverDomData.get(btn);
 		if (!domData) return;
@@ -182,12 +182,12 @@ class Nav {
 	}
 
 	/** 判断scroll容器是否出现滚动条 */
-	private isScrollWrapScroll(): boolean {
-		let flag = false;
-		if (this.scrollWrap) {
-			flag = this.scrollWrap.scrollWidth > this.scrollWrap.clientWidth;
-		}
-		return flag;
-	}
+	// private isScrollWrapScroll(): boolean {
+	// 	let flag = false;
+	// 	if (this.scrollWrap) {
+	// 		flag = this.scrollWrap.scrollWidth > this.scrollWrap.clientWidth;
+	// 	}
+	// 	return flag;
+	// }
 }
 new Nav();

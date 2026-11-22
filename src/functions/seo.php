@@ -163,8 +163,14 @@ function isParentActive($activeSlug, $category, $children)
 {
 
     $flag = false;
+    if (!is_array($children)) {
+        return $flag;
+    }
     foreach ($children as $mid) {
-        $child = $category->getCategory($mid);
+        $child = $category->getRow($mid);
+        if ($child === null) {
+            continue;
+        }
         if ($child['slug'] === $activeSlug) {
             $flag = true;
             break;
@@ -177,8 +183,14 @@ function isParentActive($activeSlug, $category, $children)
 function secondaryAllActive($that, $category, $children)
 {
     $flag = true;
+    if (!is_array($children)) {
+        return $flag;
+    }
     foreach ($children as $mid) {
-        $child = $category->getCategory($mid);
+        $child = $category->getRow($mid);
+        if ($child === null) {
+            continue;
+        }
         if ($that->is('category', $child['slug'])) {
             $flag = false;
             break;

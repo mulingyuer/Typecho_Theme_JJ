@@ -5,8 +5,8 @@
         <?php $this->widget('Widget_Metas_Category_List')->to($category); ?>
         <?php while ($category->next()): ?>
           <?php if ($category->levels === 0): ?>
-            <?php $children = $category->getAllChildren($category->mid); ?>
-            <?php if (empty($children)): ?>
+            <?php $children = $category->getAllChildIds($category->mid); ?>
+            <?php if (count($children) === 0): ?>
               <a class="nav-list-item<?php if ($this->is('category', $category->slug)) {
                                         echo ' active';
                                       } ?>" href="<?php $category->permalink(); ?>" target="_self" title="<?php $category->name(); ?>"><?php $category->name(); ?></a>
@@ -17,10 +17,11 @@
                 <a class="nav-list-item-parent-name" href="<?php $category->permalink(); ?>" target="_self" title="<?php $category->name(); ?>"><?php $category->name(); ?></a>
                 <div class="nav-list-secondary">
                   <?php foreach ($children as $mid) { ?>
-                    <?php $child = $category->getCategory($mid); ?>
+                    <?php $child = $category->getRow($mid); ?>
+                    <?php if ($child === null) {continue;} ?>
                     <a class="nav-list-secondary-item<?php if ($this->is('category', $child['slug'])) {
                                                         echo ' active';
-                                                      }; ?>" href="<?php echo $child['permalink'] ?>" target="_self" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
+                                                      }; ?>" href="<?php echo Typecho\Router::url('category', $child, Helper::options()->index); ?>" target="_self" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
                   <?php } ?>
                 </div>
               </div>
