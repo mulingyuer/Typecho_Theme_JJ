@@ -64,16 +64,19 @@
 				</div>
 			</div>
 			<div class="login-dialog-footer">
-				注册登录即表示同意<a class="login-dialog-link" href="javascript:;" title="用户协议" @click="showProtocolTip"
-					>用户协议</a
-				>和<a class="login-dialog-link" href="javascript:;" title="隐私政策" @click="showProtocolTip">隐私政策</a>
+				注册登录即表示同意<button class="login-dialog-link" type="button" @click="showPolicy('agreement')">
+					用户协议</button
+				>和<button class="login-dialog-link" type="button" @click="showPolicy('privacy')">隐私政策</button>
 			</div>
 		</div>
 	</el-dialog>
 </template>
 
 <script setup lang="ts">
-import { ElDialog, ElMessage } from "element-plus";
+import { ElDialog } from "element-plus";
+import PolicyDialog from "@/components/PolicyDialog/index.vue";
+import type { PolicyType } from "@/components/PolicyDialog/types";
+import { useModal } from "@/composables/useModal";
 import normalImage from "@/assets/images/login/normal.png";
 import greetingImage from "@/assets/images/login/greeting.png";
 import blindfoldImage from "@/assets/images/login/blindfold.png";
@@ -82,6 +85,7 @@ import qrcodeImage from "@/assets/images/login/login_dialog_qrcode.png";
 defineProps<{ modalId: symbol; action: string; referer: string }>();
 const visible = defineModel<boolean>({ required: true });
 const emit = defineEmits<{ cancel: [reason?: unknown]; closed: [] }>();
+const modal = useModal();
 
 function close() {
 	if (!visible.value) return;
@@ -97,9 +101,15 @@ function onClosed() {
 	emit("closed");
 }
 
-/** 保留原静态协议提示，不引入额外路由或配置。 */
-function showProtocolTip() {
-	ElMessage.info({ message: "真的一滴都没有了", plain: true });
+function showPolicy(type: PolicyType) {
+	// 协议弹窗独立于登录实例，关闭产生的 rejection 属于正常取消。
+	void modal
+		.open({
+			component: PolicyDialog,
+			props: { type },
+			persistent: { key: "policy-dialog" }
+		})
+		.catch(() => {});
 }
 </script>
 
@@ -343,11 +353,20 @@ function showProtocolTip() {
 	text-align: center;
 }
 .login-dialog-link {
-	text-decoration: none;
+	border: 0;
+	border-radius: 2px;
+	padding: 0;
+	background: transparent;
+	font: inherit;
 	color: var(--jj-login-dialog-link-color);
 	margin: 0 5px;
+	cursor: pointer;
 	&:hover {
 		color: var(--jj-login-dialog-link-color-hover);
+	}
+	&:focus-visible {
+		outline: 2px solid var(--jj-login-dialog-link-color);
+		outline-offset: 3px;
 	}
 	&:active {
 		opacity: 0.7;
