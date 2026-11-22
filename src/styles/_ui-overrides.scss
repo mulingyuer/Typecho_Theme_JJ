@@ -21,3 +21,10 @@
 .simplebar-scrollbar.simplebar-visible:before {
 	opacity: 1;
 }
+
+
+// 自定义滚动条样式，给滚动容器添加该类即可
+.scroll-box {
+  scrollbar-width: thin;
+  scrollbar-color: var(--jj-scroll-bar-bg1) transparent;
+}
