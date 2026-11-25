@@ -4,6 +4,7 @@ import { preloadWasm } from "../code-highlight/highlighter";
 import { isHighlighted, renderCodeBlock } from "../code-highlight";
 import { hasLanguage, readRawLanguage, resolveLanguageId, resolveLanguageLabel } from "../code-highlight/lang-map";
 import { FALLBACK_THEME_ID, resolveThemeId } from "../code-highlight/theme-map";
+import { isMermaidBlock } from "./mermaid-detect";
 
 /** 折叠按钮 svg */
 const FOLD_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.924 9.617A1 1 0 0 0 16 9H8a1 1 0 0 0-.707 1.707l4 4a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0 .217-1.09z" data-name="Down"></path></svg>`;
@@ -37,7 +38,8 @@ export class CodeBlock {
 	 */
 	private prepareCodeBlock(pre: HTMLPreElement) {
 		const codeEl = pre.querySelector("code");
-		if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl)) return;
+		// Mermaid 代码块不参与高亮与 UI 头部，整体交给 features/mermaid-chart
+		if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl) || isMermaidBlock(codeEl)) return;
 
 		const raw = readRawLanguage(codeEl.classList);
 		const lang = resolveLanguageId(raw);
@@ -135,7 +137,8 @@ export class CodeBlock {
 		const queue: HTMLPreElement[] = [];
 		this.article?.querySelectorAll<HTMLPreElement>("pre").forEach((pre) => {
 			const codeEl = pre.querySelector("code");
-			if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl)) return;
+			// 与 prepareCodeBlock 保持一致的排除条件：Mermaid 块不进入高亮队列
+			if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl) || isMermaidBlock(codeEl)) return;
 			queue.push(pre);
 		});
 		return queue;

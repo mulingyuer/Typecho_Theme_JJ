@@ -454,6 +454,218 @@ function getArticleHighlightTheme($that)
 }
 
 /**
+ * @description: 记录文章渲染前的 Markdown 原文，供增强检测使用。
+ * $archive->content 在模板里通常已是解析后的 HTML（且 themeInit 里还会被 addAnchorPoint 改写），
+ * 公式定界符只存在于原文，因此必须在任何加工之前留一份副本。
+ * 只在单页/独立页生效：列表页不需要增强能力，避免无谓的字符串拷贝。
+ * @param Widget_Abstract $archive
+ * @return void
+ */
+function rememberMarkdownSource($archive)
+{
+    if (!isset($archive) || !is_object($archive)) {
+        return;
+    }
+    if (property_exists($archive, 'content') && is_string($archive->content)) {
+        $archive->_markdownSource = $archive->content;
+    }
+}
+
+/**
+ * @description: 读取 rememberMarkdownSource() 保存的 Markdown 原文。
+ * @param mixed $that 当前页面对象
+ * @return string 拿不到原文时回退到 content，最终回退空串
+ */
+function getMarkdownSource($that)
+{
+    if (is_object($that)) {
+        if (property_exists($that, '_markdownSource') && is_string($that->_markdownSource)) {
+            return $that->_markdownSource;
+        }
+        if (property_exists($that, 'content') && is_string($that->content)) {
+            // 兼容未调用 rememberMarkdownSource() 的场景（例如 markdown 模块被单独引入）
+            return $that->content;
+        }
+    }
+    return '';
+}
+
+/**
+ * @description: 清理单个 Mermaid 代码块的原始定义文本。
+ * 输入是 <code> 的 innerHTML（HighDown 保留源码并把标记转义），输出还原后的图表源码。
+ * @param {string} $inner <code> 元素的 innerHTML
+ * @return {string|null} 清理后的源码；空块返回 null
+ */
+function extractMermaidBlock($inner)
+{
+    // 相关比较常量全部由字符拼装，避免 PHP 把源码中的关闭标签当作语法结束
+    $q = chr(63);
+    $lt = chr(60);
+    $gt = chr(62);
+    $decoded = trim(html_entity_decode((string) $inner, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    if ($decoded === '') {
+        return null;
+    }
+    if (strpos($decoded, pack('H*', 'EFBBBF')) === 0) {
+        $decoded = substr($decoded, 3);
+    }
+    $ltrimmed = ltrim($decoded);
+    $head = $lt . $q . chr(120) . chr(109) . 'l';
+    if (substr($ltrimmed, 0, 5) === $head) {
+        $end = strpos($ltrimmed, $q . $gt);
+        if ($end !== false) {
+            $decoded = ltrim(substr($ltrimmed, $end + 2));
+        }
+    }
+    $cleaned = trim((string) $decoded);
+    return $cleaned === '' ? null : $cleaned;
+}
+
+/**
+ * @description: 收集文章中所有 Mermaid 代码块的原始定义文本，作为 data-mermaid-source 属性输出。
+ * class~="x" 语义为「空格分隔词之一」，因此一次匹配同时覆盖 language-mermaid / lang-mermaid；
+ * 数组下标与前端 querySelectorAll 的顺序严格一致（原文一次给足，前端不再解析 DOM）。
+ * @param {string} $html 解析后的 HTML
+ * @return {string|null} JSON 数组字符串；无 Mermaid 时返回 null
+ */
+function collectMermaidSources($html)
+{
+    if (!is_string($html) || $html === '' || stripos($html, 'mermaid') === false) {
+        return null;
+    }
+
+    $sources = array();
+    $pattern = '/<pre\b[^>]*>\s*<code\b[^>]*class=(["\'])[^"\']*(?:language|lang)-mermaid[^"\']*\1[^>]*>(.*?)<\/code>\s*<\/pre>/is';
+    if (preg_match_all($pattern, $html, $matches)) {
+        foreach ((array) $matches[2] as $inner) {
+            $source = extractMermaidBlock($inner);
+            if ($source !== null) {
+                $sources[] = $source;
+            }
+        }
+    }
+
+    return $sources === array() ? null : json_encode($sources, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+}
+
+/**
+ * @description: 判断单行原文中是否存在成对的行内 $...$
+ * 逐字符扫描：奇数位 "$" 视为起始、偶数位视为结束；被反斜杠转义的字符（含 \$ ）一律跳过，
+ * 避免 "$5 and $9" 这类货币写法或孤立 "$" 造成误判；定界符之间必须是可见文本。
+ * @param {string} $text 单行文本
+ * @return {bool}
+ */
+function hasPairedInlineMath($text)
+{
+    $back = chr(92);
+    $openAt = -1;
+    $length = strlen((string) $text);
+    for ($index = 0; $index < $length; $index++) {
+        if (substr($text, $index, 1) === $back) {
+            $index++;
+            continue;
+        }
+        if (substr($text, $index, 1) !== '$') {
+            continue;
+        }
+        if ($openAt === -1) {
+            $openAt = $index;
+            continue;
+        }
+        if (trim(substr($text, $openAt + 1, $index - $openAt - 1)) !== '') {
+            return true;
+        }
+        $openAt = -1;
+    }
+    return false;
+}
+
+/**
+ * @description: 判断原文中是否包含数学公式（行内或块级）。
+ *  - 行内：$...$ 与 \(...\)，按行判定，防止跨段落误配
+ *  - 块级：$$、\[ \]、\( \) 允许跨行；单对定界符内容上限 2MB，避免恶意长文本回溯
+ * 反斜杠相关常量全部由 chr(92) 拼装，源文件内不出现连续反斜杠字面。
+ * @param {string} $markdown Markdown 原文
+ * @return {bool}
+ */
+function hasMathFormula($markdown)
+{
+    $markdown = (string) $markdown;
+    $back = chr(92);
+    if ($markdown === '' || (strpos($markdown, '$') === false && strpos($markdown, $back) === false)) {
+        return false;
+    }
+
+    // 行内按行判定
+    $lines = preg_split('/\R/', $markdown);
+    foreach (is_array($lines) ? $lines : array($markdown) as $line) {
+        if (hasPairedInlineMath((string) $line)) {
+            return true;
+        }
+    }
+
+    // 反斜杠块级定界符 \[ \] 与 \( \)
+    foreach (array('[', '(') as $left) {
+        $right = $left === '[' ? ']' : ')';
+        $openToken = $back . $left;
+        $closeToken = $back . $right;
+        $from = 0;
+        while (($start = strpos($markdown, $openToken, $from)) !== false) {
+            $end = strpos($markdown, $closeToken, $start + 2);
+            if ($end === false) {
+                break;
+            }
+            if ($end - $start <= 2097152) {
+                return true;
+            }
+            $from = $end + 2;
+        }
+    }
+
+    // 块级 $$...$$
+    if (strpos($markdown, '$$') !== false && preg_match('/\$\$\X+?\$\$/', $markdown) === 1) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * @description: 统一检测文章是否需要 Markdown 增强（数学公式 / Mermaid）。
+ * 结果只用于决定是否加载对应前端模块，不落库、不做后台配置项。
+ * @param string $html 解析后的正文 HTML
+ * @param string $markdown Markdown 原文（可选，缺省时用 html 兜底检测 Mermaid）
+ * @return array{math:bool,mermaid:bool}
+ */
+function detectMarkdownEnhancements($html, $markdown = '')
+{
+    $math = hasMathFormula(is_string($markdown) && $markdown !== '' ? $markdown : strip_tags((string) $html));
+    $mermaid = collectMermaidSources($html) !== null;
+
+    return array('math' => $math, 'mermaid' => $mermaid);
+}
+
+/**
+ * @description: 渲染增强标记：把需要启用的能力写成 data-* 属性。
+ * 无对应能力时不输出该属性，避免在普通文章上附加额外状态。
+ * @param array{math:bool,mermaid:bool} $enhancements detectMarkdownEnhancements() 的结果
+ * @param string|null $mermaidSources collectMermaidSources() 的结果
+ * @return void
+ */
+function renderMarkdownEnhancementAttrs($enhancements, $mermaidSources = null)
+{
+    if (!empty($enhancements['math'])) {
+        echo ' data-enhance-math="true"';
+    }
+    if (!empty($enhancements['mermaid'])) {
+        echo ' data-enhance-mermaid="true"';
+    }
+    if (is_string($mermaidSources) && $mermaidSources !== '' && $mermaidSources !== 'null') {
+        echo ' data-mermaid-source="' . headEscape($mermaidSources) . '"';
+    }
+}
+
+/**
  * @description: 获取用户组
  * @Date: 2023-03-23 05:10:27
  * @Author: mulingyuer
@@ -941,6 +1153,8 @@ function themeInit($archive)
     if ($archive->is('single') || $archive->is('page')) {
         viewsCounter($archive);
     }
+    // 在加工 content 之前留下 Markdown 原文，供公式 / Mermaid 检测使用
+    rememberMarkdownSource($archive);
     //目录树
     if ($archive->is('single')) {
         $archive->content = addAnchorPoint($archive->content);

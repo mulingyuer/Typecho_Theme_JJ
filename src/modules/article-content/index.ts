@@ -2,6 +2,7 @@ import "./style.scss";
 import "medium-zoom/dist/style.css";
 import { CodeBlock } from "./features/code-block";
 import { initImageZoom } from "./features/image-zoom";
+import { loadArticleEnhancements } from "./features/enhance-loader";
 
 // 代码块 UI / header / 交互：内部会扫描所有 pre 并补好 header、语言标签与复制按钮
 const codeBlock = new CodeBlock();
@@ -26,3 +27,6 @@ for (const pre of codeBlock.collectQueue()) {
 
 // 灯箱逻辑
 initImageZoom();
+
+// Load optional math and Mermaid enhancements when the template marks them.
+void loadArticleEnhancements();

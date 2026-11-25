@@ -1,0 +1,26 @@
+.markdown-body {
+	.mermaid-chart {
+		display: flex;
+		max-width: 100%;
+		margin: 1.5em 0;
+		justify-content: center;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	.mermaid-chart svg {
+		max-width: 100%;
+		flex: 0 0 auto;
+	}
+
+	// 仅表达「图表未能渲染」的失败态，配色跟随正文与代码块，不引入新变量
+	.mermaid-fallback {
+		margin: 1.5em 0;
+		padding: 12px;
+		overflow-x: auto;
+		font-size: 14px;
+		line-height: 1.6;
+		color: inherit;
+		background: transparent;
+	}
+}

@@ -21,8 +21,14 @@
       <?php if ($titleImg): ?>
         <img class="article-content-title-img" src="<?php echo $titleImg; ?>" alt="<?php $this->title()?>">
       <?php endif;?>
+      <?php
+        // 公式检测只看 Markdown 原文，Mermaid 检测看解析后的 HTML；结果只决定是否加载增强模块，不落库
+        $markdownSource = getMarkdownSource($this);
+        $mermaidSources = collectMermaidSources($this->content);
+        $articleEnhancements = detectMarkdownEnhancements($this->content, $markdownSource);
+      ?>
       <div id="markdown" class="article-content-markdown markdown-body"
-           data-code-theme="<?php echo getArticleHighlightTheme($this); ?>">
+           data-code-theme="<?php echo getArticleHighlightTheme($this); ?>"<?php renderMarkdownEnhancementAttrs($articleEnhancements, $mermaidSources); ?>>
         <?php $this->need('/modules/markdown/markdown.php');?>
       </div>
     </div>

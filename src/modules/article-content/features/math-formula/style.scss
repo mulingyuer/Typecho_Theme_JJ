@@ -1,0 +1,19 @@
+.markdown-body {
+	.katex {
+		font-size: 1em;
+	}
+
+	.katex-display {
+		max-width: 100%;
+		margin: 1em 0;
+		overflow-x: auto;
+		overflow-y: hidden;
+		text-align: center;
+	}
+
+	.katex-display > .katex {
+		display: inline-block;
+		max-width: 100%;
+		text-align: left;
+	}
+}
