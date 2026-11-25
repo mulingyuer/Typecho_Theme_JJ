@@ -52,7 +52,8 @@ $defaultMarkdownThemeHighlightMap = array(
     'scrolls-light' => 'juejin',
     'simplicity-green' => 'juejin',
     'arknights' => 'atom-one-light',
-    'vuepress' => 'base16/tomorrow-night',
+    // 旧值 base16/tomorrow-night 在 public/css/highlight/ 下无对应文件（404），迁移到 shiki 后映射为 github-dark
+    'vuepress' => 'github-dark',
     'nico' => 'atelier-sulphurpool-light',
     'devui-blue' => 'juejin',
     'serene-rose' => 'atom-one-dark',

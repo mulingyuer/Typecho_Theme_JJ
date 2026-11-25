@@ -43,6 +43,15 @@
 	vertical-align: top;
 }
 
+// 代码块背景/前景由 shiki 主题经 JS 注入为 pre 上的 CSS 变量，此处（模块样式）晚于文章主题 CSS 加载，优先覆盖之
+.markdown-body pre {
+	background: var(--code-block-bg, transparent);
+}
+.markdown-body pre > code {
+	background: transparent;
+	color: var(--code-block-fg, inherit);
+}
+
 .medium-zoom-overlay {
 	z-index: 3000;
 }

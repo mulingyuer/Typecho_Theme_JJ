@@ -38,6 +38,10 @@ function parseFields($fields)
         return $fields;
     }
     if (is_object($fields)) {
+        // Typecho\Config 实现了 ArrayAccess，get_object_vars() 读不到其内部数组，优先 toArray()
+        if (method_exists($fields, 'toArray')) {
+            return (array) $fields->toArray();
+        }
         return get_object_vars($fields);
     }
     if (is_string($fields) && $fields !== '') {
@@ -369,8 +373,8 @@ if ($_SERVER['SCRIPT_NAME'] == __TYPECHO_ADMIN_DIR__ . 'write-post.php' || $_SER
         // 文章主题
         $markdownTheme = new Typecho_Widget_Helper_Form_Element_Select('markdownTheme', $markdownThemeMap, 'juejin', _t('文章主题'), _t('默认使用掘金主题'));
         $layout->addItem($markdownTheme);
-        // 代码高亮
-        $highlightTheme = new Typecho_Widget_Helper_Form_Element_Select('highlightTheme', $markdownHighlightMap, null, _t('文章代码块主题'), _t('文章主题自带配套的代码高亮，如果你有定制需求，可以自行选择代码高亮主题，否则默认选择无即可。'));
+        // 代码高亮（由 shiki 渲染，选中值作为 data-code-theme 输出到正文容器）
+        $highlightTheme = new Typecho_Widget_Helper_Form_Element_Select('highlightTheme', $markdownHighlightMap, null, _t('文章代码块主题'), _t('由 shiki 按需加载对应主题：文章主题自带配套的高亮，若有定制需求可自行选择，否则保持"无"即可。'));
         $layout->addItem($highlightTheme);
     }
 }
@@ -395,7 +399,8 @@ function getArticleTitleImg($that)
 function getArticleTheme($that)
 {
     $defaultTheme = Helper::options()->defaultMarkdownTheme;
-    $fieldsTheme = $that->fields->markdownTheme;
+    $fields = parseFields($that->fields);
+    $fieldsTheme = isset($fields['markdownTheme']) ? $fields['markdownTheme'] : '';
     if (empty($fieldsTheme)) {
         $fieldsTheme = 'juejin';
     }
@@ -417,37 +422,35 @@ function getArticleTheme($that)
  */
 function getMarkdownTheme($that)
 {
-    global $defaultMarkdownThemeHighlightMap;
     $themeUrl = Helper::options()->themeUrl;
-    // 文章主题
-    $articleTheme = $that->fields->markdownTheme;
-    $defaultTheme = Helper::options()->defaultMarkdownTheme;
-    if (empty($articleTheme)) {
-        $articleTheme = 'juejin';
-    }
-    if ($defaultTheme !== 'juejin' && $articleTheme === 'juejin') {
-        $articleTheme = $defaultTheme;
-    }
-    // 代码高亮主题
-    $highlightTheme = $that->fields->highlightTheme;
-    if (empty($highlightTheme)) {
-        // 如果文章主题对应的代码高亮主题不存在
-        // 则使用默认代码高亮主题
-        if (array_key_exists($articleTheme, $defaultMarkdownThemeHighlightMap)) {
-            $highlightTheme = $defaultMarkdownThemeHighlightMap[$articleTheme];
-        } else {
-            $highlightTheme = 'juejin';
-        }
-    }
+    $articleTheme = getArticleTheme($that);
 
-    // 文章主题链接
+    // 文章主题链接（高亮主题不再由 CSS 提供，改由 getArticleHighlightTheme() 输出到 HTML 属性）
     $articleHref = $themeUrl . '/css/markdown/' . $articleTheme . '.css';
     $articleLink = '<link href="' . $articleHref . '" rel="stylesheet">';
-    // 代码高亮主题链接
-    $highlightHref = $themeUrl . '/css/highlight/' . $highlightTheme . '.css';
-    $highlightLink = '<link href="' . $highlightHref . '" rel="stylesheet">';
 
-    echo $articleLink . $highlightLink;
+    echo $articleLink;
+}
+
+/**
+ * @description: 归一化出文章的逻辑高亮主题 key（沿用后台字段取值，无数据迁移）。
+ * 优先级：文章 fields.highlightTheme（非空）→ 文章主题映射的默认高亮 → juejin。
+ * @param {*} $that
+ * @return string
+ */
+function getArticleHighlightTheme($that)
+{
+    global $defaultMarkdownThemeHighlightMap;
+    $fields = parseFields($that->fields);
+    $articleTheme = getArticleTheme($that);
+    $highlightTheme = isset($fields['highlightTheme']) ? (string) $fields['highlightTheme'] : '';
+    if ($highlightTheme === '') {
+        $highlightTheme = array_key_exists($articleTheme, $defaultMarkdownThemeHighlightMap)
+            ? $defaultMarkdownThemeHighlightMap[$articleTheme]
+            : 'juejin';
+    }
+
+    return $highlightTheme;
 }
 
 /**

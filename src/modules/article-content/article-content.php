@@ -21,7 +21,8 @@
       <?php if ($titleImg): ?>
         <img class="article-content-title-img" src="<?php echo $titleImg; ?>" alt="<?php $this->title()?>">
       <?php endif;?>
-      <div id="markdown" class="article-content-markdown markdown-body">
+      <div id="markdown" class="article-content-markdown markdown-body"
+           data-code-theme="<?php echo getArticleHighlightTheme($this); ?>">
         <?php $this->need('/modules/markdown/markdown.php');?>
       </div>
     </div>
