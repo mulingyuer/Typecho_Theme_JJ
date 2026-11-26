@@ -8,3 +8,4 @@
  * 怎么可能会有bug！！！
  */
 import "./style.scss";
+import "@/modules/markdown";

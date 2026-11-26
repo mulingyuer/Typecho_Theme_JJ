@@ -1,49 +1,42 @@
 import copy from "@/utils/copy";
 import { ElMessage } from "element-plus";
-import { preloadWasm } from "../code-highlight/highlighter";
 import { isHighlighted, renderCodeBlock } from "../code-highlight";
 import { hasLanguage, readRawLanguage, resolveLanguageId, resolveLanguageLabel } from "../code-highlight/lang-map";
 import { FALLBACK_THEME_ID, resolveThemeId } from "../code-highlight/theme-map";
 import { isMermaidBlock } from "./mermaid-detect";
 
-/** 折叠按钮 svg */
+/** 折叠按钮 SVG */
 const FOLD_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.924 9.617A1 1 0 0 0 16 9H8a1 1 0 0 0-.707 1.707l4 4a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0 .217-1.09z" data-name="Down"></path></svg>`;
 
-/** 无扩展名 / 未识别语言时的纯文本兜底 id（shiki 内置特殊语言） */
+/** 无语言或未知语言使用纯文本 id，避免 Shiki 初始化失败 */
 const PLAIN_LANG = "text";
 
 /**
- * @description: 代码块 UI 与交互模块。只负责 DOM 结构与用户操作，高亮细节全部委托给 ../code-highlight
+ * 给指定 Markdown 根节点内的代码块增加 UI，并按需交给代码高亮模块处理。
  */
 export class CodeBlock {
-	/** 文章正文容器 */
-	private article: HTMLElement | null = document.querySelector(".markdown-body");
-	/** 复制按钮定时器（恢复文案用） */
+	/** 当前模块绑定的 Markdown 根节点 */
+	private root: HTMLElement | null = null;
+
+	/** 复制成功后的复位定时器 */
 	private copyBtnTimers = new Map<HTMLElement, ReturnType<typeof setTimeout>>();
 
-	constructor() {
-		if (!this.article) return;
-		this.init();
+	/** 给根节点内所有普通 pre 添加 header、语言标签和复制按钮 */
+	public bind(root: HTMLElement): void {
+		this.root = root;
+		root.querySelectorAll("pre").forEach((pre) => this.prepareCodeBlock(pre as HTMLPreElement));
 	}
 
-	/** 扫描所有 pre：补齐 header、解析语言，并把实际高亮动作登记到待处理队列 */
-	private init() {
-		const preList = Array.from(this.article!.querySelectorAll("pre"));
-		preList.forEach((pre) => this.prepareCodeBlock(pre));
-	}
+	private prepareCodeBlock(pre: HTMLPreElement): void {
+		if (!this.root) return;
 
-	/**
-	 * @description: 为单个 pre 补齐 code、header 与语言标签。真正的高亮由 index.ts 的视口调度触发。
-	 * @param {HTMLPreElement} pre 目标代码块元素
-	 */
-	private prepareCodeBlock(pre: HTMLPreElement) {
 		const codeEl = pre.querySelector("code");
-		// Mermaid 代码块不参与高亮与 UI 头部，整体交给 features/mermaid-chart
-		if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl) || isMermaidBlock(codeEl)) return;
+		if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl) || isMermaidBlock(codeEl)) {
+			return;
+		}
 
 		const raw = readRawLanguage(codeEl.classList);
 		const lang = resolveLanguageId(raw);
-		// 未识别 / 无语言时按纯文本处理，标签仍显示原始标记文本，不抛错
 		const finalLang = lang !== "" && hasLanguage(lang) ? lang : PLAIN_LANG;
 		const label = raw === "" ? "" : resolveLanguageLabel(finalLang, raw);
 
@@ -54,21 +47,25 @@ export class CodeBlock {
 			languageText.textContent = label;
 			right.appendChild(languageText);
 		}
+
 		right.appendChild(this.createCopyBtn());
 		pre.insertBefore(wrapper, codeEl);
 
-		// 记录该块的渲染参数，供 index.ts 的懒加载调度直接读取
 		codeEl.dataset.codeLang = finalLang;
-		const themeKey = document.getElementById("markdown")?.getAttribute("data-code-theme");
-		codeEl.dataset.codeTheme = resolveThemeId(themeKey);
+		codeEl.dataset.codeTheme = resolveThemeId(this.root.getAttribute("data-code-theme"));
 	}
 
-	/** 创建 code-header 模板 */
-	private createCodeHeaderTemplate() {
+	private createCodeHeaderTemplate(): {
+		wrapper: HTMLDivElement;
+		left: HTMLDivElement;
+		right: HTMLDivElement;
+	} {
 		const wrapper = document.createElement("div");
 		wrapper.className = "code-block-header";
+
 		const left = document.createElement("div");
 		left.className = "code-block-header-left";
+
 		const right = document.createElement("div");
 		right.className = "code-block-header-right";
 
@@ -78,8 +75,7 @@ export class CodeBlock {
 		return { wrapper, left, right };
 	}
 
-	/** 创建折叠按钮 */
-	private createFoldBtn() {
+	private createFoldBtn(): HTMLDivElement {
 		const foldBtn = document.createElement("div");
 		foldBtn.className = "code-block-header-fold-btn";
 		foldBtn.innerHTML = FOLD_SVG;
@@ -87,79 +83,73 @@ export class CodeBlock {
 		return foldBtn;
 	}
 
-	/** 折叠按钮点击事件 */
-	private foldBtnClick = (event: Event) => {
+	private foldBtnClick = (event: Event): void => {
 		const currentTarget = event.currentTarget as HTMLElement;
-		const codeBlockHeader = currentTarget.closest(".code-block-header");
-		if (!codeBlockHeader) return;
-		codeBlockHeader.classList.toggle("fold");
+		const header = currentTarget.closest(".code-block-header");
+		header?.classList.toggle("fold");
 	};
 
-	/** 创建复制按钮 */
-	private createCopyBtn() {
+	private createCopyBtn(): HTMLDivElement {
 		const copyBtn = document.createElement("div");
 		copyBtn.className = "code-block-header-copy-btn";
-		copyBtn.textContent = "复制代码";
+		copyBtn.textContent = "复制";
 		copyBtn.addEventListener("click", this.copyBtnClick);
 		return copyBtn;
 	}
 
-	/** 复制按钮点击事件 */
-	private copyBtnClick = (event: Event) => {
+	private copyBtnClick = (event: Event): void => {
 		const currentTarget = event.currentTarget as HTMLElement;
-		if (this.copyBtnTimers.has(currentTarget)) {
-			clearTimeout(this.copyBtnTimers.get(currentTarget));
+		const timer = this.copyBtnTimers.get(currentTarget);
+		if (timer) {
+			clearTimeout(timer);
 			this.copyBtnTimers.delete(currentTarget);
 		}
+
 		const pre = currentTarget.closest("pre");
 		const codeEl = pre instanceof HTMLElement ? pre.querySelector("code") : null;
 		if (!(codeEl instanceof HTMLElement)) return;
+
 		copy(codeEl)
 			.then(() => {
 				currentTarget.textContent = "复制成功";
 				this.copyBtnTimers.set(
 					currentTarget,
 					setTimeout(() => {
-						currentTarget.textContent = "复制代码";
+						currentTarget.textContent = "复制";
 						this.copyBtnTimers.delete(currentTarget);
 					}, 2000)
 				);
 			})
 			.catch(() => {
-				ElMessage.error({ message: "复制失败，请手动复制", plain: true });
+				ElMessage.error({ message: "复制失败，请手动复制代码", plain: true });
 			});
 	};
 
-	/**
-	 * @description: 收集文章内尚未处理的代码块，供 index.ts 用 IntersectionObserver 逐个触发
-	 */
+	/** 收集等待进入视口的普通代码块，Mermaid 块已被排除 */
 	public collectQueue(): HTMLPreElement[] {
 		const queue: HTMLPreElement[] = [];
-		this.article?.querySelectorAll<HTMLPreElement>("pre").forEach((pre) => {
+
+		this.root?.querySelectorAll<HTMLPreElement>("pre").forEach((pre) => {
 			const codeEl = pre.querySelector("code");
-			// 与 prepareCodeBlock 保持一致的排除条件：Mermaid 块不进入高亮队列
-			if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl) || isMermaidBlock(codeEl)) return;
+			if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl) || isMermaidBlock(codeEl)) {
+				return;
+			}
 			queue.push(pre);
 		});
+
 		return queue;
 	}
 
-	/**
-	 * @description: 对单个 pre 执行真实高亮。折叠状态下由调度层跳过（展开后 IO 会再次进入视口）
-	 * @param {HTMLPreElement} pre 目标代码块元素
-	 */
-	public highlightOne(pre: HTMLPreElement) {
+	/** 高亮单个代码块；任何失败都由下层保留纯文本 */
+	public highlightOne(pre: HTMLPreElement): void {
 		const codeEl = pre.querySelector("code");
 		if (!(codeEl instanceof HTMLElement) || isHighlighted(codeEl)) return;
+
 		const lang = codeEl.dataset.codeLang || PLAIN_LANG;
 		const themeId = codeEl.dataset.codeTheme || FALLBACK_THEME_ID;
-		void renderCodeBlock(codeEl, { lang, label: "", themeId }).catch((error) =>
-			console.warn("[code-block] 代码块渲染异常：", error)
-		);
-	}
 
-	/** WASM 预热：下载代价挪出首屏长任务窗口 */
-	public warmUp() {
-		preloadWasm();
+		void renderCodeBlock(codeEl, { lang, label: "", themeId }).catch((error) => {
+			console.warn("[code-block] 代码高亮失败", error);
+		});
 	}
 }

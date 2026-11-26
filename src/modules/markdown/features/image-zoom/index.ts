@@ -1,22 +1,18 @@
 import mediumZoom from "medium-zoom";
 
 /**
- * @description: 正文图片灯箱（medium-zoom）。懒加载图片在 load/error 后才尝试挂载，
- * 已挂在 a 内或无 src 的图片不处理，避免重复绑定。
+ * 为 Markdown 根节点中的图片启用 medium-zoom。
+ * 位于链接中的图片保持原链接行为；懒加载图片在 load 后且尺寸有效时再绑定。
  */
-export function initImageZoom() {
-	const markdownBody = document.querySelector(".markdown-body");
-	if (!markdownBody) return;
-
+export function initImageZoom(root: HTMLElement): void {
 	const zoom = mediumZoom({
 		margin: 0,
 		background: "rgba(0, 0, 0, 0.7)",
 		scrollOffset: 40
 	});
-	// 懒加载图片在完成前不可绑定，处理完即从集合移除
 	const pendingImages = new WeakSet<HTMLImageElement>();
 
-	const attachImage = (image: HTMLImageElement) => {
+	const attachImage = (image: HTMLImageElement): void => {
 		if (
 			image.closest("a") ||
 			!(image.currentSrc || image.src) ||
@@ -27,15 +23,18 @@ export function initImageZoom() {
 		) {
 			return;
 		}
+
 		zoom.attach(image);
 	};
 
-	markdownBody.querySelectorAll<HTMLImageElement>("img").forEach((image) => {
+	root.querySelectorAll<HTMLImageElement>("img").forEach((image) => {
 		if (image.closest("a") || !(image.currentSrc || image.src)) return;
+
 		if (image.complete) {
 			attachImage(image);
 			return;
 		}
+
 		if (pendingImages.has(image)) return;
 		pendingImages.add(image);
 		image.addEventListener(

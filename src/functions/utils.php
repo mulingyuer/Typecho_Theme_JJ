@@ -405,7 +405,7 @@ function getArticleTheme($that)
         $fieldsTheme = 'juejin';
     }
 
-    if ($defaultTheme !== 'juejin' && $fieldsTheme === 'juejin') {
+    if (is_string($defaultTheme) && $defaultTheme !== '' && $defaultTheme !== 'juejin' && $fieldsTheme === 'juejin') {
         $theme = $defaultTheme;
     } else {
         $theme = $fieldsTheme;
@@ -454,10 +454,70 @@ function getArticleHighlightTheme($that)
 }
 
 /**
+ * @description: 把成对的 \(...\) 与 \[...\] 公式片段替换为简短占位标记，规避 HyperDown 把前导反斜杠当转义符吞掉。
+ * 这些片段之后由 markMathBlocksInHtml() 在解析后还原为真实定界符文本，KaTeX 才能识别。
+ * @param string $markdown Markdown 原文
+ * @param array $map 出参：占位标记 => 原始公式片段
+ * @param int $seed 出参：占位序号（多次调用时保证唯一）
+ * @return string 替换后的 Markdown 原文
+ */
+function maskMathDelimiters($markdown, &$map, &$seed)
+{
+    if (!is_string($markdown) || $markdown === '' || strpos($markdown, chr(92)) === false) {
+        return (string) $markdown;
+    }
+
+    $back = chr(92);
+    foreach (array('()', '[]') as $pair) {
+        $left = substr($pair, 0, 1);
+        $right = substr($pair, 1, 1);
+        $open = $back . $left;
+        $close = $back . $right;
+        $from = 0;
+        while (($start = strpos($markdown, $open, $from)) !== false) {
+            $cursor = $start + strlen($open);
+            $end = -1;
+            while (($found = strpos($markdown, $close, $cursor)) !== false) {
+                if ($found > 0 && substr($markdown, $found - 1, 1) === $back) {
+                    $cursor = $found + strlen($close);
+                    continue;
+                }
+                $end = $found;
+                break;
+            }
+            if ($end < 0) {
+                break;
+            }
+            $fragment = substr($markdown, $start, $end + strlen($close) - $start);
+            $key = "\x01JJMATH" . ($seed++) . "\x00";
+            $map[$key] = $fragment;
+            $markdown = substr_replace($markdown, $key, $start, strlen($fragment));
+            $from = $start + strlen($key);
+        }
+    }
+
+    return $markdown;
+}
+
+/**
+ * @description: 把 HTML 中的公式占位标记替换回 \left...\right 文本。
+ * @param string $html 解析后的正文 HTML
+ * @param array $map maskMathDelimiters() 生成的映射
+ * @return string
+ */
+function restoreMathDelimiters($html, $map)
+{
+    if (!is_string($html) || empty($map)) {
+        return $html;
+    }
+
+    return str_replace(array_keys($map), array_values($map), $html);
+}
+
+/**
  * @description: 记录文章渲染前的 Markdown 原文，供增强检测使用。
- * $archive->content 在模板里通常已是解析后的 HTML（且 themeInit 里还会被 addAnchorPoint 改写），
- * 公式定界符只存在于原文，因此必须在任何加工之前留一份副本。
- * 只在单页/独立页生效：列表页不需要增强能力，避免无谓的字符串拷贝。
+ * 同时把公式定界符替换成占位符写回 Typecho 内部行数据，解析后再由 renderMarkdownEnhancementAttrs() 侧统一还原。
+ * 只在单页/独立页生效；列表页无需增强能力，也不做这些处理。
  * @param Widget_Abstract $archive
  * @return void
  */
@@ -466,9 +526,41 @@ function rememberMarkdownSource($archive)
     if (!isset($archive) || !is_object($archive)) {
         return;
     }
-    if (property_exists($archive, 'content') && is_string($archive->content)) {
-        $archive->_markdownSource = $archive->content;
+
+    // themeInit 阶段 ->content 已经是解析后的 HTML；真正的 Markdown 原文只在内部行数据里
+    $raw = '';
+    try {
+        $rowProperty = new ReflectionProperty($archive, 'row');
+        $rowProperty->setAccessible(true);
+        $row = $rowProperty->getValue($archive);
+        if (is_array($row) && isset($row['text']) && is_string($row['text'])) {
+            $raw = (string) $row['text'];
+        }
+    } catch (ReflectionException $error) {
+        $raw = '';
     }
+
+    if ($raw === '' || strpos($raw, '<!--markdown-->') !== 0 || strpos($raw, chr(92)) === false) {
+        return;
+    }
+
+    $seed = 0;
+    $map = array();
+    $masked = maskMathDelimiters($raw, $map, $seed);
+
+    $archive->_markdownSource = restoreMathDelimiters(substr($masked, 15), $map);
+    // 直接把掩码版内容转换为 HTML，再通过 __set 回填到当前对象，确保模板读到的 content 一定带占位符
+    $converted = \Utils\Markdown::convert(substr($masked, 15));
+    if (is_string($converted)) {
+        try {
+            $archive->content = $converted;
+        } catch (Throwable $error) {
+            // 回填失败时退化为普通渲染：\( \) / \[ \] 会显示为缺反斜杠的原文，正文仍可读
+        }
+    }
+
+    global $jjMathMaskMap;
+    $jjMathMaskMap = array_merge(is_array($jjMathMaskMap ?? null) ? $jjMathMaskMap : array(), $map);
 }
 
 /**
@@ -535,17 +627,21 @@ function collectMermaidSources($html)
     }
 
     $sources = array();
+    $hasRenderableSource = false;
     $pattern = '/<pre\b[^>]*>\s*<code\b[^>]*class=(["\'])[^"\']*(?:language|lang)-mermaid[^"\']*\1[^>]*>(.*?)<\/code>\s*<\/pre>/is';
     if (preg_match_all($pattern, $html, $matches)) {
         foreach ((array) $matches[2] as $inner) {
             $source = extractMermaidBlock($inner);
-            if ($source !== null) {
-                $sources[] = $source;
+            if ($source === null) {
+                $sources[] = '';
+                continue;
             }
+            $sources[] = $source;
+            $hasRenderableSource = true;
         }
     }
 
-    return $sources === array() ? null : json_encode($sources, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    return !$hasRenderableSource ? null : json_encode($sources, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 /**
@@ -581,22 +677,42 @@ function hasPairedInlineMath($text)
 }
 
 /**
+ * @description: 移除 Markdown 原文中的围栏代码块与行内代码，供公式检测使用。
+ * 定界符只可能出现在正文里，代码块必须保持原样交给 Shiki，避免 "$5 and $9" 之类被当成公式。
+ * @param {string} $markdown Markdown 原文
+ * @return {string} 仅保留正文的文本
+ */
+function stripMarkdownCodeForMathCheck($markdown)
+{
+    $markdown = (string) $markdown;
+    $markdown = preg_replace('/`{3,}[^\r\n`]*\R.*?\R?`{3,}/s', ' ', $markdown);
+    if (!is_string($markdown)) {
+        return '';
+    }
+
+    return preg_replace('/`+[^`\r\n]*`+/', ' ', $markdown) ?? $markdown;
+}
+
+/**
  * @description: 判断原文中是否包含数学公式（行内或块级）。
- *  - 行内：$...$ 与 \(...\)，按行判定，防止跨段落误配
- *  - 块级：$$、\[ \]、\( \) 允许跨行；单对定界符内容上限 2MB，避免恶意长文本回溯
+ *  - 行内：$...$ 与 \\(...\\)，按行判定，防止跨段落误配
+ *  - 块级：$$...$$ 与 \\[...\\] 允许跨行；单对定界符内容上限 2MB，避免恶意长文本回溯
+ * 注意 HyperDown 会把 "单个反斜杠 + 标点" 的反斜杠吞掉，所以 \( \) 需写成 \\( \\)、\[ \] 需写成 \\[ \\] 才能保留到前端；
+ * 因此检测只认「双反斜杠」形式，单反斜杠写法不作为增强依据，避免加载 KaTeX 后仍无公式可渲染。
+ * 检测前会剔除代码块，避免代码里的 $ 触发误判。
  * 反斜杠相关常量全部由 chr(92) 拼装，源文件内不出现连续反斜杠字面。
  * @param {string} $markdown Markdown 原文
  * @return {bool}
  */
 function hasMathFormula($markdown)
 {
-    $markdown = (string) $markdown;
+    $markdown = stripMarkdownCodeForMathCheck((string) $markdown);
     $back = chr(92);
     if ($markdown === '' || (strpos($markdown, '$') === false && strpos($markdown, $back) === false)) {
         return false;
     }
 
-    // 行内按行判定
+    // 行内按行判定（含代码块的正文；代码已剔除）
     $lines = preg_split('/\R/', $markdown);
     foreach (is_array($lines) ? $lines : array($markdown) as $line) {
         if (hasPairedInlineMath((string) $line)) {
@@ -604,7 +720,7 @@ function hasMathFormula($markdown)
         }
     }
 
-    // 反斜杠块级定界符 \[ \] 与 \( \)
+    // 反斜杠定界符 \( \) 与 \[ \]（解析前会被掩码保护，因此按单成员判断）
     foreach (array('[', '(') as $left) {
         $right = $left === '[' ? ']' : ')';
         $openToken = $back . $left;
@@ -1047,21 +1163,339 @@ function getHomeRecommendedArticleList()
 }
 
 /**
- * @description: todoList 格式化
+ * @description: 把 class / target / rel 这类空白分隔的白名单 token 去重合并，保持首次出现顺序。
+ * 值里出现引号、尖括号、反斜杠等非安全字符时整段丢弃，只接受白名单 token。
+ * @param {array<string>} $parts 若干原始值片段
+ * @return {string} 合并结果；没有可信内容时返回空串
+ */
+function mergeWhiteListTokens(array $parts)
+{
+    $seen = array();
+    foreach ($parts as $part) {
+        if (!is_string($part)) {
+            continue;
+        }
+        $tokens = preg_split('/\s+/', trim($part));
+        foreach (is_array($tokens) ? $tokens : array() as $token) {
+            // 字母数字与有限符号（覆盖 _blank、noopener、task-list-item 等）
+            if ($token !== '' && preg_match('/^[A-Za-z0-9_-]+$/', $token)) {
+                $seen[$token] = true;
+            }
+        }
+    }
+
+    return $seen === array() ? '' : implode(' ', array_keys($seen));
+}
+
+/**
+ * @description: 读取HTML元素的class属性值。
+ * @param {string} $tag 元素开始标签
+ * @return {string} class 值（不存在时为空串）
+ */
+function getTagClassValue($tag)
+{
+    if (preg_match('/\bclass\s*=\s*"([^"]*)"/i', (string) $tag, $match)) {
+        return $match[1];
+    }
+    if (preg_match("/\bclass\s*=\s*'([^']*)'/i", (string) $tag, $match)) {
+        return $match[1];
+    }
+
+    return '';
+}
+
+/**
+ * 读取元素开始标签中的双引号或单引号属性。
+ * @param {string} $tag
+ * @param {string} $name
+ * @return {string|null}
+ */
+function getTagAttributeValue($tag, $name)
+{
+    $tag = (string) $tag;
+    $name = preg_quote((string) $name, '/');
+    if (preg_match('/\b' . $name . '\s*=\s*"([^"]*)"/i', $tag, $match)) {
+        return $match[1];
+    }
+    if (preg_match("/\b" . $name . "\s*=\s*'([^']*)'/i", $tag, $match)) {
+        return $match[1];
+    }
+
+    return null;
+}
+
+/**
+ * @description: 在元素开始标签上设置属性（存在则整段替换，不存在则插入到标签名之后）。
+ * 仅写入合并后的可信值，不做富文本拼接。
+ * @param {string} $tag 元素开始标签
+ * @param {string} $name 属性名（小写）
+ * @param {string} $value 已过滤的属性值
+ * @return {string}
+ */
+function setTagAttributeValue($tag, $name, $value)
+{
+    $tag = (string) $tag;
+    if ($value !== '') {
+        $pattern = '/\s*\b' . preg_quote($name, '/') . '\s*=\s*"[^"]*"/i';
+        if (preg_match($pattern, $tag)) {
+            $tag = preg_replace($pattern, ' ' . $name . '="' . $value . '"', $tag);
+        } elseif (preg_match("/\s*\b" . preg_quote($name, '/') . "\s*=\s*'[^']*'/i", $tag)) {
+            $tag = preg_replace("/\s*\b" . preg_quote($name, '/') . "\s*=\s*'[^']*'/i", ' ' . $name . '="' . $value . '"', $tag);
+        } else {
+            // 自闭合与成对标签都在标签名后插入
+            $tag = preg_replace('/^(<\w+)/i', '$1 ' . $name . '="' . $value . '"', $tag);
+        }
+    }
+
+    return is_string($tag) ? $tag : (string) $tag;
+}
+
+/**
+ * @description: 判断 href 是否为需要按外链处理的 http(s) 链接（跨站）。
+ * 站内（同 host）、锚点、相对路径、mailto:/tel: 等协议一律不算外链。
+ * @param {string} $href
+ * @param {string} $selfHost 站点 host（小写，可为空）
+ * @return {bool}
+ */
+function isMarkdownExternalHref($href, $selfHost)
+{
+    $href = trim((string) $href);
+    if ($href === '') {
+        return false;
+    }
+
+    $href = html_entity_decode($href, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    // 先按 RFC 形式识别 scheme；parse_url() 会把 tel:123 误判成 host=port
+    $scheme = '';
+    if (preg_match('/^([A-Za-z][A-Za-z0-9+.\-]*):/', $href, $match)) {
+        $scheme = strtolower($match[1]);
+    }
+    if ($scheme !== '' && $scheme !== 'http' && $scheme !== 'https') {
+        return false;
+    }
+
+    $parts = parse_url($href);
+    if (!is_array($parts)) {
+        return false;
+    }
+
+    $host = isset($parts['host']) ? strtolower((string) $parts['host']) : '';
+    if ($host === '') {
+        return false;
+    }
+    if ($selfHost === '') {
+        return true;
+    }
+
+    return $host !== strtolower((string) $selfHost);
+}
+
+/**
+ * @description: 格式化正文中的外链：为跨站 http(s) 链接补齐 target="_blank" 与 rel="noopener noreferrer"。
+ * 复用前面已经存在的 <a> 标签，只增删自己负责的两个属性；已有 rel 的其他值会保留去重合并。
+ * 站内链接、锚点、相对路径、mailto:/tel: 等行为完全不变。
+ * @param {string} $html 解析后的正文 HTML
+ * @return {string}
+ */
+function formatMarkdownExternalLinks($html)
+{
+    $html = (string) $html;
+    if (stripos($html, '<a') === false) {
+        return $html;
+    }
+
+    $selfHost = '';
+    $siteUrl = Helper::options()->siteUrl;
+    if (is_string($siteUrl) && $siteUrl !== '') {
+        $host = parse_url($siteUrl, PHP_URL_HOST);
+        if (is_string($host) && $host !== '') {
+            $selfHost = strtolower($host);
+        }
+    }
+
+    $result = preg_replace_callback(
+        '/<a\b[^>]*>/i',
+        function ($matches) use ($selfHost) {
+            $tag = (string) $matches[0];
+            $href = getTagAttributeValue($tag, 'href');
+            if ($href === null || !isMarkdownExternalHref($href, $selfHost)) {
+                return $tag;
+            }
+
+            $target = getTagAttributeValue($tag, 'target');
+            if ($target === null) {
+                $tag = setTagAttributeValue($tag, 'target', '_blank');
+                $target = '_blank';
+            }
+
+            if (strtolower(trim($target)) === '_blank') {
+                $rel = mergeWhiteListTokens(
+                    array(
+                        getTagAttributeValue($tag, 'rel') ?: '',
+                        'noopener',
+                        'noreferrer'
+                    )
+                );
+                $tag = setTagAttributeValue($tag, 'rel', $rel);
+            }
+
+            return $tag;
+        },
+        $html
+    );
+
+    return is_string($result) ? $result : $html;
+}
+
+/**
+ * @description: 判断当前访客是否可查看 [hide] 回复可见内容。
+ * 已登录用户可见；未登录时仅当存在该文章下已通过审核、且邮箱与访客 cookie 一致的评论才可见。
+ * @param Widget_Abstract $archive 当前页面对象
+ * @return {bool}
+ */
+function canViewReplyVisibleContent($archive)
+{
+    if (!is_object($archive)) {
+        return false;
+    }
+    // Typecho 中 `$user` 是 Widget 的 protected 属性：模板内 include 的全局函数里 `$archive->user`
+    // 只会走 __get() 而取不到该属性（isset/null 合并都落空），因此登录态改用核心用户组件判定。
+    /** @var mixed $user */
+    $user = class_exists('\\Widget\\User') ? \Widget\User::alloc() : null;
+    if (is_object($user) && method_exists($user, 'hasLogin') && $user->hasLogin()) {
+        return true;
+    }
+
+    if (!is_object($archive)) {
+        return false;
+    }
+
+    // cid 与 remember 由归档对象自身提供（模板作用域内可用）；缺失时回退请求参数 / cookie
+    $cid = intval($archive->parameter->cid ?? $archive->cid ?? $archive->request->cid ?? 0);
+    if ($cid <= 0) {
+        return false;
+    }
+    /** @var mixed $mail */
+    $mail = method_exists($archive, 'remember')
+        ? $archive->remember('mail', true)
+        : \Typecho\Cookie::get('__typecho_remember_mail');
+    if (!is_string($mail) || $mail === '') {
+        return false;
+    }
+
+    $db = Typecho_Db::get();
+    $row = $db->fetchRow(
+        $db->select()->from('table.comments')
+            ->where('cid = ?', $cid)
+            ->where('mail = ?', $mail)
+            ->where('status = ?', 'approved')
+            ->limit(1)
+    );
+
+    return !empty($row);
+}
+
+/**
+ * @description: 渲染 [hide] 回复可见短代码。
+ * 只处理闭合的 [hide]...[/hide]：可见时去掉标记保留内部 HTML；不可见时替换为固定提示 DOM。
+ * @param {string} $html 正文 HTML
+ * @param {bool} $canView 是否可见
+ * @return {string}
+ */
+function renderReplyVisibleContent($html, $canView)
+{
+    $html = (string) $html;
+    if ($html === '' || strpos($html, '[hide]') === false) {
+        return $html;
+    }
+    $hidePattern = "/\[hide\](?:<br\s*\/?>)?(.*?)\[\/hide\]/is";
+
+    if ($canView) {
+        $result = preg_replace($hidePattern, '$1', $html);
+    } else {
+        $result = preg_replace(
+            $hidePattern,
+            '<div class="respond-visible">此处内容已隐藏<a  href="#comments">回复</a>后方可阅读。</div>',
+            $html
+        );
+    }
+
+    return is_string($result) ? $result : $html;
+}
+
+/**
+ * @description: todoList 格式化：把列表项开头的 [ ] / [x] 转成只读复选框。
+ * 只处理解析后 <li> 的第一个文本位置，不碰正文、代码块与属性中的同类文本；
+ * 已有 class 保持不变（task-list-item / contains-task-list 追加而不覆盖）。
  * @param {*} $html
  * @Date: 2024-04-27 15:21:07
  * @Author: mulingyuer
  */
 function todoListFormatted($html)
 {
-    // 匹配 [ ] 和 [x] 并替换为相应的 input 元素
-    $html = preg_replace('/<li>\[x\]\s/sm', '<li class="task-list-item"><input type="checkbox" checked disabled/>', $html);
-    $html = preg_replace('/<li>\[\s\]\s/sm', '<li class="task-list-item"><input type="checkbox" disabled/>', $html);
+    $openBox = '<input type="checkbox" disabled/>';
+    $checkedBox = '<input type="checkbox" checked disabled/>';
+    $html = (string) $html;
 
-    // 为包含任务列表的 ul/ol 添加 class
-    $html = preg_replace('/<(ul|ol)>(.*?<li class="task-list-item">.*?)<\/\1>/s', '<$1 class="contains-task-list">$2</$1>', $html);
+    // 1) 列表项开头的 [ ] / [xX] -> 复选框，任务项加 task-list-item；标记之后紧跟的一个空白一并去掉（保持原视觉）
+    $html = preg_replace_callback(
+        '/(<li\b[^>]*>)\s*\[([ xX])\]\s?/',
+        function ($matches) use ($checkedBox, $openBox) {
+            $tag = rtrim((string) ($matches[1] ?? ''), '>');
+            $box = strtolower((string) ($matches[2] ?? '')) === 'x' ? $checkedBox : $openBox;
+            $class = mergeWhiteListTokens(array(getTagClassValue($tag), 'task-list-item'));
+            $tag = setTagAttributeValue($tag, 'class', $class);
 
-    return $html;
+            return $tag . '>' . $box;
+        },
+        $html
+    );
+    if (!is_string($html)) {
+        return (string) $html;
+    }
+
+    // 2) 包含任务项的 ul/ol -> contains-task-list。逐个最外层列表判定：
+    //    未被处理的内部内容不再改写，避免重复扫描与嵌套列表被误标记。
+    $html = (string) $html;
+    $offset = 0;
+    while (is_string($html) && preg_match('/<(ul|ol)\b[^>]*>|<(\/?)(ul|ol)\b[^>]*>/i', $html, $m, PREG_OFFSET_CAPTURE, $offset)) {
+        $at = (int) ($m[0][1] ?? 0);
+        $closing = isset($m[2][0]) && $m[2][0] === '/';
+        if ($closing) {
+            $offset = $at + strlen($m[0][0]);
+            continue;
+        }
+        // 找到与之匹配的同标签结束位置（简单计数，Typecho 直出的列表结构规整）
+        $depth = 1;
+        $cursor = $at + strlen($m[0][0]);
+        $endAt = -1;
+        while ($depth > 0 && preg_match('/<\/?(?:ul|ol)\b[^>]*>/i', $html, $n, PREG_OFFSET_CAPTURE, $cursor)) {
+            if (substr((string) $n[0][0], 1, 1) !== '/') {
+                $depth++;
+            } else {
+                $depth--;
+                if ($depth === 0) {
+                    $endAt = (int) $n[0][1];
+                }
+            }
+            $cursor = (int) $n[0][1] + strlen($n[0][0]);
+        }
+        if ($endAt < 0) {
+            break;
+        }
+        $block = substr($html, $at, $endAt - $at);
+        if (strpos($block, 'task-list-item') !== false) {
+            preg_match('/<[^>]+>/i', $block, $head);
+            $class = mergeWhiteListTokens(array(getTagClassValue($head[0] ?? ''), 'contains-task-list'));
+            $newHead = setTagAttributeValue($head[0] ?? '', 'class', $class);
+            $html = substr($html, 0, $at) . $newHead . substr($block, strlen($head[0] ?? '')) . substr($html, $endAt);
+            $offset = $at + strlen($newHead);
+        } else {
+            $offset = $endAt;
+        }
+    }
+
+    return is_string($html) ? $html : (string) $html;
 }
 
 /** 计算文章的阅读时间 */

@@ -1,4 +1,3 @@
-import { highlightCode } from "./highlighter";
 import type { ThemedToken } from "shiki";
 
 /** 行号容器类名（渲染进 code 内，选择器同步落在 base.css） */
@@ -49,6 +48,7 @@ export async function renderCodeBlock(codeEl: HTMLElement, options: HighlightOpt
 
 	let result: { lines: ThemedToken[][]; fg?: string; bg?: string };
 	try {
+		const { highlightCode } = await import("./highlighter");
 		result = await highlightCode(rawText, options.lang, options.themeId);
 	} catch (error) {
 		console.warn("[code-highlight] 高亮失败，保留纯文本：", error);

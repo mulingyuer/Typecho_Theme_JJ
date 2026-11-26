@@ -13,6 +13,7 @@ if ( ! defined('__TYPECHO_ROOT_DIR__')) {
   <?php $this->need('/modules/notes/notes.php');?>
 <head>
   <?php $this->need('/modules/default-head/default-head.php');?>
+  <?php $this->need('/modules/head/markdown_theme.php');?>
   <!--VITE_HEAD_TAGS-->
   <?php //head标签底部插入代码 ?>
   <?php $this->options->headInsertCode();?>
